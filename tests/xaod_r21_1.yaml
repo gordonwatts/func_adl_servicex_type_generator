@@ -1,0 +1,3412 @@
+collections:
+  - collection_name: SlowMuons
+    cpp_item_type: xAOD::SlowMuon_v1
+    python_item_type: xAOD.SlowMuon_v1
+    cpp_container_type: DataVector<xAOD::SlowMuon_v1>
+    python_container_type: Iterator[xAOD.SlowMuon_v1]
+    include_file: xAODMuon/SlowMuonContainer.h
+  - collection_name: MuonSegments
+    cpp_item_type: xAOD::MuonSegment_v1
+    python_item_type: xAOD.MuonSegment_v1
+    cpp_container_type: DataVector<xAOD::MuonSegment_v1>
+    python_container_type: Iterator[xAOD.MuonSegment_v1]
+    include_file: xAODMuon/MuonSegmentContainer.h
+  - collection_name: Muons
+    cpp_item_type: xAOD::Muon_v1
+    python_item_type: xAOD.Muon_v1
+    cpp_container_type: DataVector<xAOD::Muon_v1>
+    python_container_type: Iterator[xAOD.Muon_v1]
+    include_file: xAODMuon/MuonContainer.h
+  - collection_name: TauJets
+    cpp_item_type: xAOD::TauJet_v3
+    python_item_type: xAOD.TauJet_v3
+    cpp_container_type: DataVector<xAOD::TauJet_v3>
+    python_container_type: Iterator[xAOD.TauJet_v3]
+    include_file: xAODTau/TauJetContainer.h
+  - collection_name: TauTracks
+    cpp_item_type: xAOD::TauTrack_v1
+    python_item_type: xAOD.TauTrack_v1
+    cpp_container_type: DataVector<xAOD::TauTrack_v1>
+    python_container_type: Iterator[xAOD.TauTrack_v1]
+    include_file: xAODTau/TauTrackContainer.h
+  - collection_name: DiTauJets
+    cpp_item_type: xAOD::DiTauJet_v1
+    python_item_type: xAOD.DiTauJet_v1
+    cpp_container_type: DataVector<xAOD::DiTauJet_v1>
+    python_container_type: Iterator[xAOD.DiTauJet_v1]
+    include_file: xAODTau/DiTauJetContainer.h
+  - collection_name: CaloClusters
+    cpp_item_type: xAOD::CaloCluster_v1
+    python_item_type: xAOD.CaloCluster_v1
+    cpp_container_type: DataVector<xAOD::CaloCluster_v1>
+    python_container_type: Iterator[xAOD.CaloCluster_v1]
+    include_file: xAODCaloEvent/CaloClusterContainer.h
+  - collection_name: CaloTowers
+    cpp_item_type: xAOD::CaloTower_v1
+    python_item_type: xAOD.CaloTower_v1
+    cpp_container_type: xAOD::CaloTowerContainer_v1
+    python_container_type: Iterator[xAOD.CaloTower_v1]
+    include_file: xAODCaloEvent/CaloTowerContainer.h
+  - collection_name: TrackCaloClusters
+    cpp_item_type: xAOD::TrackCaloCluster_v1
+    python_item_type: xAOD.TrackCaloCluster_v1
+    cpp_container_type: DataVector<xAOD::TrackCaloCluster_v1>
+    python_container_type: Iterator[xAOD.TrackCaloCluster_v1]
+    include_file: xAODPFlow/TrackCaloClusterContainer.h
+  - collection_name: PFOs
+    cpp_item_type: xAOD::PFO_v1
+    python_item_type: xAOD.PFO_v1
+    cpp_container_type: DataVector<xAOD::PFO_v1>
+    python_container_type: Iterator[xAOD.PFO_v1]
+    include_file: xAODPFlow/PFOContainer.h
+  - collection_name: TruthMetaDatas
+    cpp_item_type: xAOD::TruthMetaData_v1
+    python_item_type: xAOD.TruthMetaData_v1
+    cpp_container_type: DataVector<xAOD::TruthMetaData_v1>
+    python_container_type: Iterator[xAOD.TruthMetaData_v1]
+    include_file: xAODTruth/TruthMetaDataContainer.h
+  - collection_name: TruthParticles
+    cpp_item_type: xAOD::TruthParticle_v1
+    python_item_type: xAOD.TruthParticle_v1
+    cpp_container_type: DataVector<xAOD::TruthParticle_v1>
+    python_container_type: Iterator[xAOD.TruthParticle_v1]
+    include_file: xAODTruth/TruthParticleContainer.h
+  - collection_name: TruthVertexs
+    cpp_item_type: xAOD::TruthVertex_v1
+    python_item_type: xAOD.TruthVertex_v1
+    cpp_container_type: DataVector<xAOD::TruthVertex_v1>
+    python_container_type: Iterator[xAOD.TruthVertex_v1]
+    include_file: xAODTruth/TruthVertexContainer.h
+  - collection_name: TruthEvents
+    cpp_item_type: xAOD::TruthEvent_v1
+    python_item_type: xAOD.TruthEvent_v1
+    cpp_container_type: DataVector<xAOD::TruthEvent_v1>
+    python_container_type: Iterator[xAOD.TruthEvent_v1]
+    include_file: xAODTruth/TruthEventContainer.h
+  - collection_name: BTagVertexs
+    cpp_item_type: xAOD::BTagVertex_v1
+    python_item_type: xAOD.BTagVertex_v1
+    cpp_container_type: DataVector<xAOD::BTagVertex_v1>
+    python_container_type: Iterator[xAOD.BTagVertex_v1]
+    include_file: xAODBTagging/BTagVertexContainer.h
+  - collection_name: BTaggings
+    cpp_item_type: xAOD::BTagging_v1
+    python_item_type: xAOD.BTagging_v1
+    cpp_container_type: DataVector<xAOD::BTagging_v1>
+    python_container_type: Iterator[xAOD.BTagging_v1]
+    include_file: xAODBTagging/BTaggingContainer.h
+  - collection_name: MissingET
+    cpp_item_type: xAOD::MissingET_v1
+    python_item_type: xAOD.MissingET_v1
+    cpp_container_type: xAOD::MissingETContainer_v1
+    python_container_type: Iterator[xAOD.MissingET_v1]
+    include_file: xAODMissingET/MissingETContainer.h
+  - collection_name: Jets
+    cpp_item_type: xAOD::Jet_v1
+    python_item_type: xAOD.Jet_v1
+    cpp_container_type: DataVector<xAOD::Jet_v1>
+    python_container_type: Iterator[xAOD.Jet_v1]
+    include_file: xAODJet/JetContainer.h
+  - collection_name: IParticles
+    cpp_item_type: xAOD::IParticle
+    python_item_type: xAOD.IParticle
+    cpp_container_type: DataVector<xAOD::IParticle>
+    python_container_type: Iterator[xAOD.IParticle]
+    include_file: xAODBase/IParticleContainer.h
+  - collection_name: Electrons
+    cpp_item_type: xAOD::Electron_v1
+    python_item_type: xAOD.Electron_v1
+    cpp_container_type: DataVector<xAOD::Electron_v1>
+    python_container_type: Iterator[xAOD.Electron_v1]
+    include_file: xAODEgamma/ElectronContainer.h
+  - collection_name: Photons
+    cpp_item_type: xAOD::Photon_v1
+    python_item_type: xAOD.Photon_v1
+    cpp_container_type: DataVector<xAOD::Photon_v1>
+    python_container_type: Iterator[xAOD.Photon_v1]
+    include_file: xAODEgamma/PhotonContainer.h
+  - collection_name: Egammas
+    cpp_item_type: xAOD::Egamma_v1
+    python_item_type: xAOD.Egamma_v1
+    cpp_container_type: DataVector<xAOD::Egamma_v1>
+    python_container_type: Iterator[xAOD.Egamma_v1]
+    include_file: xAODEgamma/EgammaContainer.h
+  - collection_name: EventInfos
+    cpp_item_type: xAOD::EventInfo_v1
+    python_item_type: xAOD.EventInfo_v1
+    cpp_container_type: DataVector<xAOD::EventInfo_v1>
+    python_container_type: Iterator[xAOD.EventInfo_v1]
+    include_file: xAODEventInfo/EventInfoContainer.h
+  - collection_name: NeutralParticles
+    cpp_item_type: xAOD::NeutralParticle_v1
+    python_item_type: xAOD.NeutralParticle_v1
+    cpp_container_type: DataVector<xAOD::NeutralParticle_v1>
+    python_container_type: Iterator[xAOD.NeutralParticle_v1]
+    include_file: xAODTracking/NeutralParticleContainer.h
+  - collection_name: TrackParticles
+    cpp_item_type: xAOD::TrackParticle_v1
+    python_item_type: xAOD.TrackParticle_v1
+    cpp_container_type: DataVector<xAOD::TrackParticle_v1>
+    python_container_type: Iterator[xAOD.TrackParticle_v1]
+    include_file: xAODTracking/TrackParticleContainer.h
+  - collection_name: Vertexs
+    cpp_item_type: xAOD::Vertex_v1
+    python_item_type: xAOD.Vertex_v1
+    cpp_container_type: DataVector<xAOD::Vertex_v1>
+    python_container_type: Iterator[xAOD.Vertex_v1]
+    include_file: xAODTracking/VertexContainer.h
+classes:
+  - python_name: ROOT.Detail.TSchemaRuleSet
+    cpp_name: ROOT::Detail::TSchemaRuleSet
+    methods:
+      - name: GetClassName
+        return_type: TString
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: ROOT.Fit.BinData
+    cpp_name: ROOT::Fit::BinData
+    methods:
+      - name: RefVolume
+        return_type: double
+      - name: SumOfContent
+        return_type: double
+      - name: SumOfError2
+        return_type: double
+  - python_name: ROOT.Fit.FitResult
+    cpp_name: ROOT::Fit::FitResult
+    methods:
+      - name: MinFcnValue
+        return_type: double
+      - name: Edm
+        return_type: double
+      - name: Status
+        return_type: int
+      - name: CovMatrixStatus
+        return_type: int
+      - name: Chi2
+        return_type: double
+      - name: Prob
+        return_type: double
+  - python_name: ROOT.Fit.ParameterSettings
+    cpp_name: ROOT::Fit::ParameterSettings
+    methods:
+      - name: Value
+        return_type: double
+      - name: StepSize
+        return_type: double
+      - name: LowerLimit
+        return_type: double
+      - name: UpperLimit
+        return_type: double
+  - python_name: ROOT.Math.Minimizer
+    cpp_name: ROOT::Math::Minimizer
+    methods:
+      - name: MinValue
+        return_type: double
+      - name: Edm
+        return_type: double
+      - name: CovMatrixStatus
+        return_type: int
+      - name: PrintLevel
+        return_type: int
+      - name: Tolerance
+        return_type: double
+      - name: Precision
+        return_type: double
+      - name: Strategy
+        return_type: int
+      - name: Status
+        return_type: int
+      - name: ErrorDef
+        return_type: double
+      - name: Options
+        return_type: ROOT.Math.MinimizerOptions
+  - python_name: ROOT.Math.MinimizerOptions
+    cpp_name: ROOT::Math::MinimizerOptions
+    methods:
+      - name: DefaultErrorDef
+        return_type: double
+      - name: DefaultTolerance
+        return_type: double
+      - name: DefaultPrecision
+        return_type: double
+      - name: DefaultMaxFunctionCalls
+        return_type: int
+      - name: DefaultMaxIterations
+        return_type: int
+      - name: DefaultStrategy
+        return_type: int
+      - name: DefaultPrintLevel
+        return_type: int
+      - name: PrintLevel
+        return_type: int
+      - name: Strategy
+        return_type: int
+      - name: Tolerance
+        return_type: double
+      - name: Precision
+        return_type: double
+      - name: ErrorDef
+        return_type: double
+  - python_name: ROOT.TSchemaRule
+    cpp_name: ROOT::TSchemaRule
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: ROOT.v5.TFormula
+    cpp_name: ROOT::v5::TFormula
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: SG.AuxDataOption
+    cpp_name: SG::AuxDataOption
+    methods:
+      - name: intVal
+        return_type: int
+      - name: floatVal
+        return_type: float
+  - python_name: TArchiveFile
+    cpp_name: TArchiveFile
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TArchiveMember
+    cpp_name: TArchiveMember
+    methods:
+      - name: GetModTime
+        return_type: TDatime
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TArray
+    cpp_name: TArray
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TArrayC
+    cpp_name: TArrayC
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TArrayD
+    cpp_name: TArrayD
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TArrayF
+    cpp_name: TArrayF
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TArrayI
+    cpp_name: TArrayI
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TAttAxis
+    cpp_name: TAttAxis
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TAttBBox2D
+    cpp_name: TAttBBox2D
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TAttFill
+    cpp_name: TAttFill
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TAttLine
+    cpp_name: TAttLine
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TAttMarker
+    cpp_name: TAttMarker
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TAttPad
+    cpp_name: TAttPad
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TAttText
+    cpp_name: TAttText
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TAxis
+    cpp_name: TAxis
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TBasket
+    cpp_name: TBasket
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TBox
+    cpp_name: TBox
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TBranch
+    cpp_name: TBranch
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TBranchRef
+    cpp_name: TBranchRef
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TBrowser
+    cpp_name: TBrowser
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TBrowserImp
+    cpp_name: TBrowserImp
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TBuffer
+    cpp_name: TBuffer
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TBuffer3D
+    cpp_name: TBuffer3D
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TCanvas
+    cpp_name: TCanvas
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TCanvasImp
+    cpp_name: TCanvasImp
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TClass
+    cpp_name: TClass
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TClassMenuItem
+    cpp_name: TClassMenuItem
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TClonesArray
+    cpp_name: TClonesArray
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: begin
+        return_type: TIter
+      - name: end
+        return_type: TIter
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TCollection
+    cpp_name: TCollection
+    methods:
+      - name: begin
+        return_type: TIter
+      - name: end
+        return_type: TIter
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TComplex
+    cpp_name: TComplex
+    methods:
+      - name: I
+        return_type: TComplex
+      - name: One
+        return_type: TComplex
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TContextMenu
+    cpp_name: TContextMenu
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TContextMenuImp
+    cpp_name: TContextMenuImp
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TCut
+    cpp_name: TCut
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TDNDData
+    cpp_name: TDNDData
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TDataMember
+    cpp_name: TDataMember
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TDataType
+    cpp_name: TDataType
+    methods:
+      - name: GetTypeName
+        return_type: TString
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TDatime
+    cpp_name: TDatime
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TDictAttributeMap
+    cpp_name: TDictAttributeMap
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TDictionary
+    cpp_name: TDictionary
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TDirectory
+    cpp_name: TDirectory
+    methods:
+      - name: GetUUID
+        return_type: TUUID
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TDirectoryFile
+    cpp_name: TDirectoryFile
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: GetUUID
+        return_type: TUUID
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TEntryList
+    cpp_name: TEntryList
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TEventList
+    cpp_name: TEventList
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TF1
+    cpp_name: TF1
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TFPBlock
+    cpp_name: TFPBlock
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TFile
+    cpp_name: TFile
+    methods:
+      - name: GetNewUrl
+        return_type: TString
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: GetUUID
+        return_type: TUUID
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TFileCacheRead
+    cpp_name: TFileCacheRead
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TFileCacheWrite
+    cpp_name: TFileCacheWrite
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TFileMergeInfo
+    cpp_name: TFileMergeInfo
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TFileOpenHandle
+    cpp_name: TFileOpenHandle
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TFilePrefetch
+    cpp_name: TFilePrefetch
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TFitResult
+    cpp_name: TFitResult
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: MinFcnValue
+        return_type: double
+      - name: Edm
+        return_type: double
+      - name: Status
+        return_type: int
+      - name: CovMatrixStatus
+        return_type: int
+      - name: Chi2
+        return_type: double
+      - name: Prob
+        return_type: double
+  - python_name: TFitResultPtr
+    cpp_name: TFitResultPtr
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TFormLeafInfo
+    cpp_name: TFormLeafInfo
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TFormLeafInfoReference
+    cpp_name: TFormLeafInfoReference
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TFormula
+    cpp_name: TFormula
+    methods:
+      - name: GetGradientFormula
+        return_type: TString
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TFrame
+    cpp_name: TFrame
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TFriendElement
+    cpp_name: TFriendElement
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TFunction
+    cpp_name: TFunction
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TFunctionTemplate
+    cpp_name: TFunctionTemplate
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TGClient
+    cpp_name: TGClient
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TGCompositeFrame
+    cpp_name: TGCompositeFrame
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TGFont
+    cpp_name: TGFont
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TGFontPool
+    cpp_name: TGFontPool
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TGFrame
+    cpp_name: TGFrame
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TGFrameElement
+    cpp_name: TGFrameElement
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TGGC
+    cpp_name: TGGC
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TGGCPool
+    cpp_name: TGGCPool
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TGIdleHandler
+    cpp_name: TGIdleHandler
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TGLayoutHints
+    cpp_name: TGLayoutHints
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TGLayoutManager
+    cpp_name: TGLayoutManager
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TGMainFrame
+    cpp_name: TGMainFrame
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TGMimeTypes
+    cpp_name: TGMimeTypes
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TGObject
+    cpp_name: TGObject
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TGPicture
+    cpp_name: TGPicture
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TGPicturePool
+    cpp_name: TGPicturePool
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TGResourcePool
+    cpp_name: TGResourcePool
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TGTextLayout
+    cpp_name: TGTextLayout
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TGUnknownWindowHandler
+    cpp_name: TGUnknownWindowHandler
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TGWindow
+    cpp_name: TGWindow
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TGraph
+    cpp_name: TGraph
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TH1
+    cpp_name: TH1
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TH1F
+    cpp_name: TH1F
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: THashList
+    cpp_name: THashList
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: begin
+        return_type: TIter
+      - name: end
+        return_type: TIter
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: THashTable
+    cpp_name: THashTable
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: begin
+        return_type: TIter
+      - name: end
+        return_type: TIter
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TInetAddress
+    cpp_name: TInetAddress
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TIter
+    cpp_name: TIter
+    methods:
+      - name: End
+        return_type: TIter
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TIterator
+    cpp_name: TIterator
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TKey
+    cpp_name: TKey
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TLeaf
+    cpp_name: TLeaf
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TLeafElement
+    cpp_name: TLeafElement
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TLegend
+    cpp_name: TLegend
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TLegendEntry
+    cpp_name: TLegendEntry
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TList
+    cpp_name: TList
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: begin
+        return_type: TIter
+      - name: end
+        return_type: TIter
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TLorentzRotation
+    cpp_name: TLorentzRotation
+    methods:
+      - name: Inverse
+        return_type: TLorentzRotation
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TLorentzVector
+    cpp_name: TLorentzVector
+    methods:
+      - name: Vect
+        return_type: TVector3
+      - name: EtaPhiVector
+        return_type: TVector2
+      - name: BoostVector
+        return_type: TVector3
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TMemberInspector
+    cpp_name: TMemberInspector
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TMethod
+    cpp_name: TMethod
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TMethodArg
+    cpp_name: TMethodArg
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TMethodCall
+    cpp_name: TMethodCall
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TNamed
+    cpp_name: TNamed
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TObjArray
+    cpp_name: TObjArray
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: begin
+        return_type: TIter
+      - name: end
+        return_type: TIter
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TObject
+    cpp_name: TObject
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TPRegexp
+    cpp_name: TPRegexp
+    methods:
+      - name: GetPattern
+        return_type: TString
+      - name: GetModifiers
+        return_type: TString
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TPad
+    cpp_name: TPad
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TPave
+    cpp_name: TPave
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TPrincipal
+    cpp_name: TPrincipal
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TProcessID
+    cpp_name: TProcessID
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TQObject
+    cpp_name: TQObject
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TRealData
+    cpp_name: TRealData
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TRefTable
+    cpp_name: TRefTable
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TRegexp
+    cpp_name: TRegexp
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TRotation
+    cpp_name: TRotation
+    methods:
+      - name: Inverse
+        return_type: TRotation
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TSQLResult
+    cpp_name: TSQLResult
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TSQLRow
+    cpp_name: TSQLRow
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TSelector
+    cpp_name: TSelector
+    methods:
+      - name: Version
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TSeqCollection
+    cpp_name: TSeqCollection
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: begin
+        return_type: TIter
+      - name: end
+        return_type: TIter
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TSpline
+    cpp_name: TSpline
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TStreamerBasicType
+    cpp_name: TStreamerBasicType
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TStreamerElement
+    cpp_name: TStreamerElement
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TStreamerInfo
+    cpp_name: TStreamerInfo
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TStreamerInfoActions.TActionSequence
+    cpp_name: TStreamerInfoActions::TActionSequence
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TStreamerInfoActions.TConfiguredAction
+    cpp_name: TStreamerInfoActions::TConfiguredAction
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TString
+    cpp_name: TString
+    methods:
+      - name: Copy
+        return_type: TString
+      - name: MD5
+        return_type: TString
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TSysEvtHandler
+    cpp_name: TSysEvtHandler
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TThread
+    cpp_name: TThread
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TTime
+    cpp_name: TTime
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TTimer
+    cpp_name: TTimer
+    methods:
+      - name: GetTime
+        return_type: TTime
+      - name: GetAbsTime
+        return_type: TTime
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TToggle
+    cpp_name: TToggle
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TTree
+    cpp_name: TTree
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TTreeCache
+    cpp_name: TTreeCache
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TTreeFormula
+    cpp_name: TTreeFormula
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TTreeFormulaManager
+    cpp_name: TTreeFormulaManager
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TUUID
+    cpp_name: TUUID
+    methods:
+      - name: GetHostAddress
+        return_type: TInetAddress
+      - name: GetTime
+        return_type: TDatime
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TUrl
+    cpp_name: TUrl
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TVector2
+    cpp_name: TVector2
+    methods:
+      - name: Unit
+        return_type: TVector2
+      - name: Ort
+        return_type: TVector2
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TVector3
+    cpp_name: TVector3
+    methods:
+      - name: EtaPhiVector
+        return_type: TVector2
+      - name: Unit
+        return_type: TVector3
+      - name: Orthogonal
+        return_type: TVector3
+      - name: XYvector
+        return_type: TVector2
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TView
+    cpp_name: TView
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TVirtualFFT
+    cpp_name: TVirtualFFT
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TVirtualHistPainter
+    cpp_name: TVirtualHistPainter
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TVirtualIndex
+    cpp_name: TVirtualIndex
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TVirtualPad
+    cpp_name: TVirtualPad
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TVirtualPadPainter
+    cpp_name: TVirtualPadPainter
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TVirtualPerfStats
+    cpp_name: TVirtualPerfStats
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TVirtualStreamerInfo
+    cpp_name: TVirtualStreamerInfo
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TVirtualTreePlayer
+    cpp_name: TVirtualTreePlayer
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TVirtualViewer3D
+    cpp_name: TVirtualViewer3D
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TWbox
+    cpp_name: TWbox
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: xAOD.BTagVertex_v1
+    cpp_name: xAOD::BTagVertex_v1
+    include_file: xAODBTagging/versions/BTagVertex_v1.h
+    methods:
+      - name: chi2
+        return_type: float
+      - name: NDF
+        return_type: float
+      - name: pv_compatibility
+        return_type: float
+  - python_name: xAOD.BTagging_v1
+    cpp_name: xAOD::BTagging_v1
+    include_file: xAODBTagging/versions/BTagging_v1.h
+    methods:
+      - name: SV0_significance3D
+        return_type: double
+      - name: SV1_pb
+        return_type: double
+      - name: SV1_pc
+        return_type: double
+      - name: SV1_pu
+        return_type: double
+      - name: SV1_loglikelihoodratio
+        return_type: double
+      - name: IP2D_pb
+        return_type: double
+      - name: IP2D_pc
+        return_type: double
+      - name: IP2D_pu
+        return_type: double
+      - name: IP2D_loglikelihoodratio
+        return_type: double
+      - name: IP3D_pb
+        return_type: double
+      - name: IP3D_pc
+        return_type: double
+      - name: IP3D_pu
+        return_type: double
+      - name: IP3D_loglikelihoodratio
+        return_type: double
+      - name: SV1plusIP3D_discriminant
+        return_type: double
+      - name: JetFitter_pb
+        return_type: double
+      - name: JetFitter_pc
+        return_type: double
+      - name: JetFitter_pu
+        return_type: double
+      - name: JetFitter_loglikelihoodratio
+        return_type: double
+      - name: MV1_discriminant
+        return_type: double
+      - name: calcLLR
+        return_type: double
+        arguments:
+          - name: num
+            type: double
+          - name: den
+            type: double
+  - python_name: xAOD.CaloCluster_v1
+    cpp_name: xAOD::CaloCluster_v1
+    include_file: xAODCaloEvent/versions/CaloCluster_v1.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: et
+        return_type: double
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+  - python_name: xAOD.CaloTower_v1
+    cpp_name: xAOD::CaloTower_v1
+    include_file: xAODCaloEvent/versions/CaloTower_v1.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+  - python_name: xAOD.DiTauJet_v1
+    cpp_name: xAOD::DiTauJet_v1
+    include_file: xAODTau/versions/DiTauJet_v1.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: e
+        return_type: double
+      - name: m
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: nSubjets
+        return_type: float
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+  - python_name: xAOD.Egamma_v1
+    cpp_name: xAOD::Egamma_v1
+    include_file: xAODEgamma/versions/Egamma_v1.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+  - python_name: xAOD.Electron_v1
+    cpp_name: xAOD::Electron_v1
+    include_file: xAODEgamma/versions/Electron_v1.h
+    methods:
+      - name: charge
+        return_type: float
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+  - python_name: xAOD.EventInfo_v1
+    cpp_name: xAOD::EventInfo_v1
+    include_file: xAODEventInfo/versions/EventInfo_v1.h
+    methods:
+      - name: actualInteractionsPerCrossing
+        return_type: float
+      - name: averageInteractionsPerCrossing
+        return_type: float
+      - name: beamPosX
+        return_type: float
+      - name: beamPosY
+        return_type: float
+      - name: beamPosZ
+        return_type: float
+      - name: beamPosSigmaX
+        return_type: float
+      - name: beamPosSigmaY
+        return_type: float
+      - name: beamPosSigmaZ
+        return_type: float
+      - name: beamPosSigmaXY
+        return_type: float
+      - name: beamTiltXZ
+        return_type: float
+      - name: beamTiltYZ
+        return_type: float
+  - python_name: xAOD.IParticle
+    cpp_name: xAOD::IParticle
+    include_file: xAODBase/IParticle.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+  - python_name: xAOD.JetConstituent
+    cpp_name: xAOD::JetConstituent
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+  - python_name: xAOD.JetConstituentVector
+    cpp_name: xAOD::JetConstituentVector
+    methods:
+      - name: front
+        return_type: xAOD.JetConstituent
+      - name: back
+        return_type: xAOD.JetConstituent
+  - python_name: xAOD.Jet_v1
+    cpp_name: xAOD::Jet_v1
+    include_file: xAODJet/versions/Jet_v1.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: px
+        return_type: float
+      - name: py
+        return_type: float
+      - name: pz
+        return_type: float
+      - name: getConstituents
+        return_type: xAOD.JetConstituentVector
+      - name: getSizeParameter
+        return_type: float
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+  - python_name: xAOD.MissingET_v1
+    cpp_name: xAOD::MissingET_v1
+    include_file: xAODMissingET/versions/MissingET_v1.h
+    methods:
+      - name: mpx
+        return_type: double
+      - name: mpy
+        return_type: double
+      - name: met
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: sumet
+        return_type: double
+  - python_name: xAOD.MuonSegment_v1
+    cpp_name: xAOD::MuonSegment_v1
+    include_file: xAODMuon/versions/MuonSegment_v1.h
+    methods:
+      - name: x
+        return_type: float
+      - name: y
+        return_type: float
+      - name: z
+        return_type: float
+      - name: px
+        return_type: float
+      - name: py
+        return_type: float
+      - name: pz
+        return_type: float
+      - name: t0
+        return_type: float
+      - name: t0error
+        return_type: float
+      - name: chiSquared
+        return_type: float
+      - name: numberDoF
+        return_type: float
+      - name: sector
+        return_type: int
+      - name: etaIndex
+        return_type: int
+      - name: nPrecisionHits
+        return_type: int
+      - name: nPhiLayers
+        return_type: int
+      - name: nTrigEtaLayers
+        return_type: int
+  - python_name: xAOD.Muon_v1
+    cpp_name: xAOD::Muon_v1
+    include_file: xAODMuon/versions/Muon_v1.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: charge
+        return_type: float
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+  - python_name: xAOD.NeutralParticle_v1
+    cpp_name: xAOD::NeutralParticle_v1
+    include_file: xAODTracking/versions/NeutralParticle_v1.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: d0
+        return_type: float
+      - name: z0
+        return_type: float
+      - name: phi0
+        return_type: float
+      - name: theta
+        return_type: float
+      - name: oneOverP
+        return_type: float
+      - name: vx
+        return_type: float
+      - name: vy
+        return_type: float
+      - name: vz
+        return_type: float
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+  - python_name: xAOD.PFO_v1
+    cpp_name: xAOD::PFO_v1
+    include_file: xAODPFlow/versions/PFO_v1.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: ptEM
+        return_type: double
+      - name: etaEM
+        return_type: double
+      - name: phiEM
+        return_type: double
+      - name: mEM
+        return_type: double
+      - name: eEM
+        return_type: double
+      - name: bdtPi0Score
+        return_type: float
+      - name: centerMag
+        return_type: float
+      - name: charge
+        return_type: float
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+  - python_name: xAOD.Photon_v1
+    cpp_name: xAOD::Photon_v1
+    include_file: xAODEgamma/versions/Photon_v1.h
+    methods:
+      - name: conversionRadius
+        return_type: float
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+  - python_name: xAOD.SlowMuon_v1
+    cpp_name: xAOD::SlowMuon_v1
+    include_file: xAODMuon/versions/SlowMuon_v1.h
+    methods:
+      - name: beta
+        return_type: float
+      - name: betaT
+        return_type: float
+      - name: ann
+        return_type: float
+      - name: nRpcHits
+        return_type: int
+      - name: nTileCells
+        return_type: int
+      - name: rpcBetaAvg
+        return_type: float
+      - name: rpcBetaRms
+        return_type: float
+      - name: rpcBetaChi2
+        return_type: float
+      - name: rpcBetaDof
+        return_type: int
+      - name: mdtBetaAvg
+        return_type: float
+      - name: mdtBetaRms
+        return_type: float
+      - name: mdtBetaChi2
+        return_type: float
+      - name: mdtBetaDof
+        return_type: int
+      - name: caloBetaAvg
+        return_type: float
+      - name: caloBetaRms
+        return_type: float
+      - name: caloBetaChi2
+        return_type: float
+      - name: caloBetaDof
+        return_type: int
+      - name: dEdxPixel
+        return_type: float
+      - name: dEdxCalo
+        return_type: float
+      - name: dEdxNClusters
+        return_type: int
+  - python_name: xAOD.TauJet_v3
+    cpp_name: xAOD::TauJet_v3
+    include_file: xAODTau/versions/TauJet_v3.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: e
+        return_type: double
+      - name: m
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: ptJetSeed
+        return_type: double
+      - name: etaJetSeed
+        return_type: double
+      - name: phiJetSeed
+        return_type: double
+      - name: mJetSeed
+        return_type: double
+      - name: ptDetectorAxis
+        return_type: double
+      - name: etaDetectorAxis
+        return_type: double
+      - name: phiDetectorAxis
+        return_type: double
+      - name: mDetectorAxis
+        return_type: double
+      - name: ptIntermediateAxis
+        return_type: double
+      - name: etaIntermediateAxis
+        return_type: double
+      - name: phiIntermediateAxis
+        return_type: double
+      - name: mIntermediateAxis
+        return_type: double
+      - name: ptTauEnergyScale
+        return_type: double
+      - name: etaTauEnergyScale
+        return_type: double
+      - name: phiTauEnergyScale
+        return_type: double
+      - name: mTauEnergyScale
+        return_type: double
+      - name: ptTauEtaCalib
+        return_type: double
+      - name: etaTauEtaCalib
+        return_type: double
+      - name: phiTauEtaCalib
+        return_type: double
+      - name: mTauEtaCalib
+        return_type: double
+      - name: ptPanTauCellBasedProto
+        return_type: double
+      - name: etaPanTauCellBasedProto
+        return_type: double
+      - name: phiPanTauCellBasedProto
+        return_type: double
+      - name: mPanTauCellBasedProto
+        return_type: double
+      - name: ptPanTauCellBased
+        return_type: double
+      - name: etaPanTauCellBased
+        return_type: double
+      - name: phiPanTauCellBased
+        return_type: double
+      - name: mPanTauCellBased
+        return_type: double
+      - name: ptTrigCaloOnly
+        return_type: double
+      - name: etaTrigCaloOnly
+        return_type: double
+      - name: phiTrigCaloOnly
+        return_type: double
+      - name: mTrigCaloOnly
+        return_type: double
+      - name: ptFinalCalib
+        return_type: double
+      - name: etaFinalCalib
+        return_type: double
+      - name: phiFinalCalib
+        return_type: double
+      - name: mFinalCalib
+        return_type: double
+      - name: charge
+        return_type: float
+      - name: trackFilterProngs
+        return_type: int
+      - name: trackFilterQuality
+        return_type: int
+      - name: pi0ConeDR
+        return_type: float
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+  - python_name: xAOD.TauTrack_v1
+    cpp_name: xAOD::TauTrack_v1
+    include_file: xAODTau/versions/TauTrack_v1.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: e
+        return_type: double
+      - name: m
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+  - python_name: xAOD.TrackCaloCluster_v1
+    cpp_name: xAOD::TrackCaloCluster_v1
+    include_file: xAODPFlow/versions/TrackCaloCluster_v1.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: taste
+        return_type: int
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+  - python_name: xAOD.TrackParticle_v1
+    cpp_name: xAOD::TrackParticle_v1
+    include_file: xAODTracking/versions/TrackParticle_v1.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: charge
+        return_type: float
+      - name: d0
+        return_type: float
+      - name: z0
+        return_type: float
+      - name: phi0
+        return_type: float
+      - name: theta
+        return_type: float
+      - name: qOverP
+        return_type: float
+      - name: vx
+        return_type: float
+      - name: vy
+        return_type: float
+      - name: vz
+        return_type: float
+      - name: radiusOfFirstHit
+        return_type: float
+      - name: beamlineTiltX
+        return_type: float
+      - name: beamlineTiltY
+        return_type: float
+      - name: chiSquared
+        return_type: float
+      - name: numberDoF
+        return_type: float
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+  - python_name: xAOD.TruthEvent_v1
+    cpp_name: xAOD::TruthEvent_v1
+    include_file: xAODTruth/versions/TruthEvent_v1.h
+    methods:
+      - name: crossSection
+        return_type: float
+      - name: crossSectionError
+        return_type: float
+  - python_name: xAOD.TruthParticle_v1
+    cpp_name: xAOD::TruthParticle_v1
+    include_file: xAODTruth/versions/TruthParticle_v1.h
+    methods:
+      - name: pdgId
+        return_type: int
+      - name: absPdgId
+        return_type: int
+      - name: barcode
+        return_type: int
+      - name: status
+        return_type: int
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: abseta
+        return_type: double
+      - name: absrapidity
+        return_type: double
+      - name: px
+        return_type: float
+      - name: py
+        return_type: float
+      - name: pz
+        return_type: float
+      - name: charge
+        return_type: double
+      - name: threeCharge
+        return_type: int
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+  - python_name: xAOD.TruthVertex_v1
+    cpp_name: xAOD::TruthVertex_v1
+    include_file: xAODTruth/versions/TruthVertex_v1.h
+    methods:
+      - name: id
+        return_type: int
+      - name: barcode
+        return_type: int
+      - name: x
+        return_type: float
+      - name: y
+        return_type: float
+      - name: z
+        return_type: float
+      - name: perp
+        return_type: float
+      - name: eta
+        return_type: float
+      - name: phi
+        return_type: float
+      - name: t
+        return_type: float
+  - python_name: xAOD.Vertex_v1
+    cpp_name: xAOD::Vertex_v1
+    include_file: xAODTracking/versions/Vertex_v1.h
+    methods:
+      - name: x
+        return_type: float
+      - name: y
+        return_type: float
+      - name: z
+        return_type: float
+      - name: chiSquared
+        return_type: float
+      - name: numberDoF
+        return_type: float

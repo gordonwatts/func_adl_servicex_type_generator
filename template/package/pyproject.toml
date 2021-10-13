@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "{{ package_name }}"
+version = "{{ package_version }}"
+description = "func-adl typed datasets for Servicex for {{ package_info_description }}"
+authors = ["Gordon Watts <gwatts@uw.edu>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+func_adl_servicex = "^1.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
