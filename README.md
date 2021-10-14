@@ -43,3 +43,18 @@ This is currently a package that is planned. The development path is as follows:
 * [ ] Support R22
 * [ ] First release of package
 * [ ] For version 2 plan out support for a flat ROOT `TTree` file.
+
+## Development
+
+This package is using `poetry`. As of writing, the following works on windows (the latest version of poetry is broken on windows):
+
+```
+pip install poetry==1.1.7
+cd func_adl_servicex_type_generator
+poetry env use python
+poetry install
+poetry shell
+code .
+```
+
+All tests should run out of the box with `pytest`. Everything on master should always pass all tests and have excellent code coverage. Work should occur on branches.
