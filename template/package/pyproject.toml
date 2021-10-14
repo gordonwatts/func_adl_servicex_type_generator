@@ -5,7 +5,7 @@ description = "func-adl typed datasets for Servicex for {{ package_info_descript
 authors = ["Gordon Watts <gwatts@uw.edu>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">3.9,<3.10"
 func_adl_servicex = "^1.1"
 
 [tool.poetry.dev-dependencies]

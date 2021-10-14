@@ -9,3 +9,12 @@ class collection_info:
 
     name: str
     collection_type: str
+    collection_item_type: str
+
+
+@dataclass
+class class_info:
+    """Holds the data for a particular class we are emitting"""
+
+    # The fully qualified name of the class
+    name: str
