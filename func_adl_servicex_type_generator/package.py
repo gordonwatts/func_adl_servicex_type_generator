@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, DefaultDict, Dict, Iterable
+from typing import Any, Dict, Iterable
 
 import jinja2
 from func_adl_servicex_type_generator.class_utils import (

@@ -1,1 +1,1 @@
-# from .event_collection import Event
+from .event_collection import Event
