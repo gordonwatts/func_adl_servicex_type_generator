@@ -23,6 +23,8 @@ def run():
         "package_name": "func_adl_servicex_xaodr21",
         "package_version": "1.0.22.2.187",
         "package_info_description": "xAOD R21 22.2.187",
+        "sx_dataset_name": "SXDSAtlasxAODR21",
+        "backend_default_name": "xaod_r21",
         "collections": collections,
     }
 

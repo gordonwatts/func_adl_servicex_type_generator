@@ -19,6 +19,8 @@ def test_template_package(tmp_path, template_path):
         "package_name": "func_adl_servicex_xaodr21",
         "package_version": "1.0.22.2.187",
         "package_info_description": "xAOD R21 22.2.187",
+        "sx_dataset_name": "SXDSAtlasxAODR21",
+        "backend_default_name": "xaod_r21",
         "collections": [],
     }
     assert template_path.exists()
@@ -40,6 +42,8 @@ def test_template_collection_with_object(tmp_path, template_path):
         "package_name": "func_adl_servicex_xaodr21",
         "package_version": "1.0.22.2.187",
         "package_info_description": "xAOD R21 22.2.187",
+        "sx_dataset_name": "SXDSAtlasxAODR21",
+        "backend_default_name": "xaod_r21",
         "collections": [
             collection_info("Jets", "Iterable[Jet]", "Jet"),
         ],
@@ -64,6 +68,8 @@ def test_template_poetry_integration(tmp_path, template_path):
         "package_name": "func_adl_servicex_xaodr21",
         "package_version": "1.0.22.2.187",
         "package_info_description": "xAOD R21 22.2.187",
+        "sx_dataset_name": "SXDSAtlasxAODR21",
+        "backend_default_name": "xaod_r21",
         "collections": [
             collection_info("Jets", "Iterable[Jet]", "Jet"),
         ],

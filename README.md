@@ -11,6 +11,14 @@ Produce a analysis-focused python package that:
 * Can inject intelligent code, like apply special scripts or include files for the C++ backend.
 * Defines a typed flavor of a `servicex` dataset object. 
 
+## Usage
+
+After `pip install`ing this package, the following command will write out a package in the parent directory:
+
+```
+sx_type_gen <path-to-type-yaml-file>
+```
+
 ## How this works
 
 To get things setup:
