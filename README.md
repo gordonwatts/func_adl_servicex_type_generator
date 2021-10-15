@@ -38,7 +38,7 @@ Then the user:
 
 This is currently a package that is planned. The development path is as follows:
 
-* [ ] Produce very simple ATLAS `xAOD` typed objets to access collections like `Jets`, etc, in a R21 xAOD (C++ backend). This should include a locally installable package (`pip install -e`).
+* [x] Produce very simple ATLAS `xAOD` typed objects to access collections like `Jets`, etc, in a R21 xAOD (C++ backend). This should include a locally installable package (`pip install -e`).
 * [ ] In a second package start developing a Jupyter notebook/book showing off the features for accessing the above collections
 * [ ] After `Jets`, do 'EventInfo' and 'MissingET'. These two should generalize the system to other types.
 * [ ] Add support for arbitrary injection of other packages in the ATLAS C++ backend (e.g. corrections). Use `Jets` to develop this. Include ability to do a single systematic error or nominal.
