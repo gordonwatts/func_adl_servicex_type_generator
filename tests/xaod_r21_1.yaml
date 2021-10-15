@@ -59,12 +59,6 @@ collections:
     cpp_container_type: DataVector<xAOD::PFO_v1>
     python_container_type: Iterator[xAOD.PFO_v1]
     include_file: xAODPFlow/PFOContainer.h
-  - collection_name: TruthMetaDatas
-    cpp_item_type: xAOD::TruthMetaData_v1
-    python_item_type: xAOD.TruthMetaData_v1
-    cpp_container_type: DataVector<xAOD::TruthMetaData_v1>
-    python_container_type: Iterator[xAOD.TruthMetaData_v1]
-    include_file: xAODTruth/TruthMetaDataContainer.h
   - collection_name: TruthParticles
     cpp_item_type: xAOD::TruthParticle_v1
     python_item_type: xAOD.TruthParticle_v1
