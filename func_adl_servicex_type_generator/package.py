@@ -53,7 +53,15 @@ def template_package_scaffolding(
 
     # We rename the src directory to be the package name now
     assert (output_path / "src").exists()
-    (output_path / "src").rename(output_path / template_data["package_name"])
+    dest_path = output_path / template_data["package_name"]
+    if not dest_path.exists():
+        (output_path / "src").rename(dest_path)
+    else:
+        for f in (output_path / "src").iterdir():
+            dest = dest_path / f.name
+            if dest.exists():
+                dest.unlink()
+            f.rename(dest)
 
 
 @dataclass
@@ -77,7 +85,8 @@ def write_out_classes(
     Args:
         all_classes (Iterable[class_info]): List of classes to emit
         template_path (Path): Location of our templates
-        project_src_path (Path): The root of the package source directory (top level __init__.py file location)
+        project_src_path (Path): The root of the package source directory
+            (top level __init__.py file location)
     """
     # Load up the template structure and environment
     loader = jinja2.FileSystemLoader(str(template_path / "files"))
