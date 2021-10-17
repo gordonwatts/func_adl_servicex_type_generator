@@ -29,7 +29,7 @@ class method_arg_info:
     name: str
 
     # Default value
-    default_value: str
+    default_value: Optional[str]
 
     # The argument type
     arg_type: str

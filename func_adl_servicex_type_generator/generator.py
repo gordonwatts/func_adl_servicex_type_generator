@@ -19,8 +19,10 @@ def run():
 
     collections, classes = load_yaml(args.yaml_type_file)
 
+    package_name = "func_adl_servicex_xaodr21"
+
     data = {
-        "package_name": "func_adl_servicex_xaodr21",
+        "package_name": package_name,
         "package_version": "1.0.22.2.187",
         "package_info_description": "xAOD R21 22.2.187",
         "sx_dataset_name": "SXDSAtlasxAODR21",
@@ -35,7 +37,5 @@ def run():
     template_package_scaffolding(data, template_path, output_path)
 
     write_out_classes(
-        classes,
-        template_path,
-        output_path / data["package_name"],
+        classes, template_path, output_path / data["package_name"], package_name
     )

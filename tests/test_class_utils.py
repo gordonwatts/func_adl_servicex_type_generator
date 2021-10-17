@@ -30,8 +30,8 @@ def test_as_path_no_ns():
 
 
 def test_import_no_ns():
-    assert import_for_class("Jets", "base") == "from base import Jets"
+    assert import_for_class("Jets", "base") == "from base.jets import Jets"
 
 
 def test_import_ns():
-    assert import_for_class("xAOD.Jets", "basic") == "from basic.xAOD import Jets"
+    assert import_for_class("xAOD.Jets", "basic") == "from basic.xAOD.jets import Jets"

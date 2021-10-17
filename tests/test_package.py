@@ -5,9 +5,11 @@ import pytest
 from func_adl_servicex_type_generator.data_model import (
     class_info,
     collection_info,
+    method_arg_info,
     method_info,
 )
 from func_adl_servicex_type_generator.package import (
+    imports_for_method,
     template_package_scaffolding,
     write_out_classes,
 )
@@ -62,7 +64,7 @@ def test_template_collection_with_object(tmp_path, template_path):
     assert (output_path / data["package_name"] / "event_collection.py").exists()
 
     evt_col_path = output_path / data["package_name"] / "event_collection.py"
-    assert "from func_adl_servicex_xaodr21 import Jet" in (evt_col_path.read_text())
+    assert "from func_adl_servicex_xaodr21.jet import Jet" in (evt_col_path.read_text())
     assert "Iterator[Jet]" in evt_col_path.read_text()
 
 
@@ -95,7 +97,9 @@ def test_template_poetry_integration(tmp_path, template_path):
     classes = [
         class_info("Jet", []),
     ]
-    write_out_classes(classes, template_path, output_path / data["package_name"])
+    write_out_classes(
+        classes, template_path, output_path / data["package_name"], data["package_name"]
+    )
 
     # Make sure poetry is comfortable with this file
     r = os.system(
@@ -124,13 +128,13 @@ def test_class_simple(tmp_path, template_path):
         class_info("Jets", []),
     ]
 
-    write_out_classes(classes, template_path, tmp_path)
+    write_out_classes(classes, template_path, tmp_path, "package")
 
     assert (tmp_path / "jets.py").exists()
     assert (tmp_path / "__init__.py").exists()
 
     # Make sure the jets class will load
-    assert "from .jets import Jets" in ((tmp_path / "__init__.py").read_text())
+    # assert "from .jets import Jets" in ((tmp_path / "__init__.py").read_text())
 
 
 def test_class_namespace(tmp_path, template_path):
@@ -143,13 +147,13 @@ def test_class_namespace(tmp_path, template_path):
         class_info("xAOD.Jets", []),
     ]
 
-    write_out_classes(classes, template_path, tmp_path)
+    write_out_classes(classes, template_path, tmp_path, "package")
 
     assert (tmp_path / "xAOD" / "jets.py").exists()
     assert (tmp_path / "xAOD" / "__init__.py").exists()
     assert (tmp_path / "__init__.py").exists()
 
-    assert "from .jets import Jets" in ((tmp_path / "xAOD" / "__init__.py").read_text())
+    # assert "from .jets import Jets" in ((tmp_path / "xAOD" / "__init__.py").read_text())
 
 
 def test_simple_method(tmp_path, template_path):
@@ -164,6 +168,59 @@ def test_simple_method(tmp_path, template_path):
         )
     ]
 
-    write_out_classes(classes, template_path, tmp_path)
+    write_out_classes(classes, template_path, tmp_path, "package")
 
     assert "pt(self) -> float:" in ((tmp_path / "xAOD" / "jets.py").read_text())
+
+
+def test_method_reference_rtn_type(tmp_path, template_path):
+    """Write out a very simple top level class with a method.
+
+    Args:
+        tmp_path ([type]): [description]
+    """
+    classes = [
+        class_info(
+            "xAOD.Jets", [method_info(name="pt", return_type="float", arguments=[])]
+        ),
+        class_info(
+            "xAOD.Taus", [method_info(name="pt", return_type="xAOD.Jets", arguments=[])]
+        ),
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package")
+
+    assert "from package.xAOD.jets import Jets" in (
+        (tmp_path / "xAOD" / "taus.py").read_text()
+    )
+    assert "pt(self) -> Jets:" in ((tmp_path / "xAOD" / "taus.py").read_text())
+
+
+def test_method_import_nothing():
+    m = method_info("pt", "double", [])
+    assert len(imports_for_method(m, "junk", {"one", "two"})) == 0
+
+
+def test_method_import_return_type():
+    m = method_info("pt", "xAOD.Jet_v1", [])
+
+    r = imports_for_method(m, "junk", {"xAOD.Jet_v1"})
+    assert len(r) == 1
+    assert r[0] == "from junk.xAOD.jet_v1 import Jet_v1"
+
+
+def test_method_import_arguments():
+    m = method_info(
+        "pt",
+        "double",
+        [
+            method_arg_info("arg1", None, "xAOD.Jet_v1"),
+            method_arg_info("arg2", None, "xAOD.TauJet"),
+        ],
+    )
+
+    r = imports_for_method(m, "junk", {"xAOD.Jet_v1", "xAOD.TauJet"})
+    assert len(r) == 2
+
+    assert "from junk.xAOD.jet_v1 import Jet_v1" in r
+    assert "from junk.xAOD.taujet import TauJet" in r

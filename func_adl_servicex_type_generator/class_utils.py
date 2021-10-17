@@ -48,4 +48,5 @@ def import_for_class(class_name: str, package_name: str) -> str:
     lst = [package_name]
     if len(ns) > 0:
         lst.append(ns)
+    lst.append(name.lower())
     return f"from {'.'.join(lst)} import {name}"
