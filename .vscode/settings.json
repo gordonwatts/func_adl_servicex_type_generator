@@ -15,5 +15,8 @@
         "--max-line-length=88"
     ],
     "python.analysis.diagnosticMode": "workspace",
-    "python.analysis.typeCheckingMode": "basic"
+    "python.analysis.typeCheckingMode": "basic",
+    "cSpell.enableFiletypes": [
+        "!yaml"
+    ]
 }
