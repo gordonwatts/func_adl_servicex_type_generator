@@ -2,7 +2,11 @@ import os
 from pathlib import Path
 
 import pytest
-from func_adl_servicex_type_generator.data_model import class_info, collection_info
+from func_adl_servicex_type_generator.data_model import (
+    class_info,
+    collection_info,
+    method_info,
+)
 from func_adl_servicex_type_generator.package import (
     template_package_scaffolding,
     write_out_classes,
@@ -146,3 +150,20 @@ def test_class_namespace(tmp_path, template_path):
     assert (tmp_path / "__init__.py").exists()
 
     assert "from .jets import Jets" in ((tmp_path / "xAOD" / "__init__.py").read_text())
+
+
+def test_simple_method(tmp_path, template_path):
+    """Write out a very simple top level class with a method.
+
+    Args:
+        tmp_path ([type]): [description]
+    """
+    classes = [
+        class_info(
+            "xAOD.Jets", [method_info(name="pt", return_type="float", arguments=[])]
+        )
+    ]
+
+    write_out_classes(classes, template_path, tmp_path)
+
+    assert "pt(self) -> float:" in ((tmp_path / "xAOD" / "jets.py").read_text())

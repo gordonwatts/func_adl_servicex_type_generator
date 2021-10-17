@@ -107,9 +107,7 @@ def write_out_classes(
             dir_path = dir_path.parent
 
         # Write out the object file
-        text = class_template_file.render(
-            class_name=c_name,
-        )
+        text = class_template_file.render(class_name=c_name, methods=c.methods)
 
         with class_file.open("wt") as out:
             for line in text.splitlines():

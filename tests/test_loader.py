@@ -20,3 +20,8 @@ def test_load_full_file():
     assert di_jets.collection_item_type_name == "DiTauJet_v1"
 
     assert jets_class.name == "xAOD.Jet_v1"
+    assert len(jets_class.methods) > 0
+    pt_methods = [m for m in jets_class.methods if m.name == "pt"]
+    assert len(pt_methods) == 1
+    assert pt_methods[0].return_type == "float"
+    assert len(pt_methods[0].arguments) == 0

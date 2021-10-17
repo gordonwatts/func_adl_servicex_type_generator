@@ -4,7 +4,33 @@ from typing import List, Tuple
 import yaml
 
 from func_adl_servicex_type_generator.class_utils import class_split_namespace
-from func_adl_servicex_type_generator.data_model import class_info, collection_info
+from func_adl_servicex_type_generator.data_model import (
+    class_info,
+    collection_info,
+    method_info,
+)
+
+
+def method_loader(methods: List[dict]) -> List[method_info]:
+    """Return the list of methods from the input
+
+    Args:
+        methods (List[dict]): List of found methods
+
+    Returns:
+        List[method_info]: List of methods in our data class format
+    """
+    result = []
+    for d in methods:
+        result.append(
+            method_info(
+                name=d["name"],
+                return_type=d["return_type"],
+                arguments=[],
+            )
+        )
+
+    return result
 
 
 def load_yaml(config_path: Path) -> Tuple[List[collection_info], List[class_info]]:
@@ -31,6 +57,9 @@ def load_yaml(config_path: Path) -> Tuple[List[collection_info], List[class_info
         for c in data_collections
     ]
 
-    classes = [class_info(name=c["python_name"], methods=[]) for c in data_classes]
+    classes = [
+        class_info(name=c["python_name"], methods=method_loader(c["methods"]))
+        for c in data_classes
+    ]
 
     return (collections, classes)
