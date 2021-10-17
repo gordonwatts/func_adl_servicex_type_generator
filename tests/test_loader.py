@@ -17,5 +17,6 @@ def test_load_full_file():
     assert di_jets.name == "DiTauJets"
     assert di_jets.collection_item_type == "xAOD.DiTauJet_v1"
     assert di_jets.collection_type == "Iterator[xAOD.DiTauJet_v1]"
+    assert di_jets.collection_item_type_name == "DiTauJet_v1"
 
     assert jets_class.name == "xAOD.Jet_v1"
