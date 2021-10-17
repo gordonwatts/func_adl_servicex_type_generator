@@ -159,77 +159,73 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: ROOT.Fit.BinData
     cpp_name: ROOT::Fit::BinData
     methods:
       - name: RefVolume
-        return_type: double
+        return_type: float
       - name: SumOfContent
-        return_type: double
+        return_type: float
       - name: SumOfError2
-        return_type: double
+        return_type: float
   - python_name: ROOT.Fit.FitResult
     cpp_name: ROOT::Fit::FitResult
     methods:
       - name: MinFcnValue
-        return_type: double
+        return_type: float
       - name: Edm
-        return_type: double
+        return_type: float
       - name: Status
         return_type: int
       - name: CovMatrixStatus
         return_type: int
       - name: Chi2
-        return_type: double
+        return_type: float
       - name: Prob
-        return_type: double
+        return_type: float
   - python_name: ROOT.Fit.ParameterSettings
     cpp_name: ROOT::Fit::ParameterSettings
     methods:
       - name: Value
-        return_type: double
+        return_type: float
       - name: StepSize
-        return_type: double
+        return_type: float
       - name: LowerLimit
-        return_type: double
+        return_type: float
       - name: UpperLimit
-        return_type: double
+        return_type: float
   - python_name: ROOT.Math.Minimizer
     cpp_name: ROOT::Math::Minimizer
     methods:
       - name: MinValue
-        return_type: double
+        return_type: float
       - name: Edm
-        return_type: double
+        return_type: float
       - name: CovMatrixStatus
         return_type: int
       - name: PrintLevel
         return_type: int
       - name: Tolerance
-        return_type: double
+        return_type: float
       - name: Precision
-        return_type: double
+        return_type: float
       - name: Strategy
         return_type: int
       - name: Status
         return_type: int
       - name: ErrorDef
-        return_type: double
+        return_type: float
       - name: Options
         return_type: ROOT.Math.MinimizerOptions
   - python_name: ROOT.Math.MinimizerOptions
     cpp_name: ROOT::Math::MinimizerOptions
     methods:
       - name: DefaultErrorDef
-        return_type: double
+        return_type: float
       - name: DefaultTolerance
-        return_type: double
+        return_type: float
       - name: DefaultPrecision
-        return_type: double
+        return_type: float
       - name: DefaultMaxFunctionCalls
         return_type: int
       - name: DefaultMaxIterations
@@ -243,11 +239,11 @@ classes:
       - name: Strategy
         return_type: int
       - name: Tolerance
-        return_type: double
+        return_type: float
       - name: Precision
-        return_type: double
+        return_type: float
       - name: ErrorDef
-        return_type: double
+        return_type: float
   - python_name: ROOT.TSchemaRule
     cpp_name: ROOT::TSchemaRule
     methods:
@@ -255,21 +251,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: ROOT.v5.TFormula
     cpp_name: ROOT::v5::TFormula
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -288,19 +272,11 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TArchiveMember
     cpp_name: TArchiveMember
     methods:
       - name: GetModTime
         return_type: TDatime
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -319,17 +295,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TArrayD
     cpp_name: TArrayD
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -341,17 +309,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TArrayI
     cpp_name: TArrayI
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -412,33 +372,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TBasket
     cpp_name: TBasket
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -450,37 +386,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TBranch
     cpp_name: TBranch
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -492,33 +400,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TBrowser
     cpp_name: TBrowser
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -537,10 +421,6 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TBuffer3D
     cpp_name: TBuffer3D
     methods:
@@ -548,45 +428,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TCanvas
     cpp_name: TCanvas
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -605,25 +449,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TClassMenuItem
     cpp_name: TClassMenuItem
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -635,26 +463,10 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: begin
         return_type: TIter
       - name: end
         return_type: TIter
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TCollection
     cpp_name: TCollection
     methods:
@@ -662,10 +474,6 @@ classes:
         return_type: TIter
       - name: end
         return_type: TIter
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -688,32 +496,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TContextMenuImp
     cpp_name: TContextMenuImp
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TCut
-    cpp_name: TCut
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -725,25 +510,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TDataMember
     cpp_name: TDataMember
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -753,18 +522,6 @@ classes:
     methods:
       - name: GetTypeName
         return_type: TString
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -783,21 +540,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TDictionary
     cpp_name: TDictionary
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -811,14 +556,6 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TDirectoryFile
     cpp_name: TDirectoryFile
     methods:
@@ -828,29 +565,9 @@ classes:
         return_type: int
       - name: GetUUID
         return_type: TUUID
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TEntryList
     cpp_name: TEntryList
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -862,14 +579,6 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TF1
     cpp_name: TF1
     methods:
@@ -877,33 +586,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TFPBlock
     cpp_name: TFPBlock
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -917,24 +602,8 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: GetUUID
         return_type: TUUID
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TFileCacheRead
     cpp_name: TFileCacheRead
     methods:
@@ -942,17 +611,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TFileCacheWrite
     cpp_name: TFileCacheWrite
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -971,17 +632,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TFilePrefetch
     cpp_name: TFilePrefetch
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -993,26 +646,18 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: MinFcnValue
-        return_type: double
+        return_type: float
       - name: Edm
-        return_type: double
+        return_type: float
       - name: Status
         return_type: int
       - name: CovMatrixStatus
         return_type: int
       - name: Chi2
-        return_type: double
+        return_type: float
       - name: Prob
-        return_type: double
+        return_type: float
   - python_name: TFitResultPtr
     cpp_name: TFitResultPtr
     methods:
@@ -1043,41 +688,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TFrame
     cpp_name: TFrame
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1089,29 +702,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TFunction
     cpp_name: TFunction
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1123,29 +716,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TGClient
     cpp_name: TGClient
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1157,37 +730,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TGFont
     cpp_name: TGFont
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1199,33 +744,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TGFrame
     cpp_name: TGFrame
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1237,17 +758,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TGGC
     cpp_name: TGGC
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1259,21 +772,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TGIdleHandler
     cpp_name: TGIdleHandler
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1285,17 +786,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TGLayoutManager
     cpp_name: TGLayoutManager
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1307,37 +800,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TGMimeTypes
     cpp_name: TGMimeTypes
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1349,17 +814,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TGPicture
     cpp_name: TGPicture
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1371,21 +828,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TGResourcePool
     cpp_name: TGResourcePool
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1397,17 +842,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TGUnknownWindowHandler
     cpp_name: TGUnknownWindowHandler
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1419,37 +856,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TGraph
     cpp_name: TGraph
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1461,61 +870,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TH1F
     cpp_name: TH1F
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1527,26 +884,10 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: begin
         return_type: TIter
       - name: end
         return_type: TIter
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: THashTable
     cpp_name: THashTable
     methods:
@@ -1558,21 +899,9 @@ classes:
         return_type: TIter
       - name: end
         return_type: TIter
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TInetAddress
     cpp_name: TInetAddress
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1600,25 +929,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TLeaf
     cpp_name: TLeaf
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1630,49 +943,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TLegend
     cpp_name: TLegend
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1684,33 +957,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TList
     cpp_name: TList
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1719,27 +968,6 @@ classes:
         return_type: TIter
       - name: end
         return_type: TIter
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TLorentzRotation
-    cpp_name: TLorentzRotation
-    methods:
-      - name: Inverse
-        return_type: TLorentzRotation
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TLorentzVector
     cpp_name: TLorentzVector
     methods:
@@ -1749,10 +977,6 @@ classes:
         return_type: TVector2
       - name: BoostVector
         return_type: TVector3
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1771,37 +995,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TMethodArg
     cpp_name: TMethodArg
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1813,17 +1009,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TNamed
     cpp_name: TNamed
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1835,36 +1023,13 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: begin
         return_type: TIter
       - name: end
         return_type: TIter
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TObject
     cpp_name: TObject
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TPRegexp
-    cpp_name: TPRegexp
-    methods:
-      - name: GetPattern
-        return_type: TString
-      - name: GetModifiers
-        return_type: TString
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1876,57 +1041,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TPave
     cpp_name: TPave
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1938,25 +1055,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TProcessID
     cpp_name: TProcessID
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1975,23 +1076,8 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TRefTable
     cpp_name: TRefTable
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TRegexp
-    cpp_name: TRegexp
     methods:
       - name: ImplFileLine
         return_type: int
@@ -2006,10 +1092,6 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TSQLResult
     cpp_name: TSQLResult
     methods:
@@ -2017,30 +1099,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TSQLRow
     cpp_name: TSQLRow
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TSelector
-    cpp_name: TSelector
-    methods:
-      - name: Version
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -2056,37 +1117,9 @@ classes:
         return_type: TIter
       - name: end
         return_type: TIter
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TSpline
     cpp_name: TSpline
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -2098,29 +1131,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TStreamerElement
     cpp_name: TStreamerElement
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -2132,18 +1145,6 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TStreamerInfoActions.TActionSequence
     cpp_name: TStreamerInfoActions::TActionSequence
     methods:
@@ -2151,17 +1152,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TStreamerInfoActions.TConfiguredAction
     cpp_name: TStreamerInfoActions::TConfiguredAction
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -2184,25 +1177,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TThread
     cpp_name: TThread
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -2225,56 +1202,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TToggle
-    cpp_name: TToggle
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TTree
     cpp_name: TTree
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -2286,14 +1216,6 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TTreeFormula
     cpp_name: TTreeFormula
     methods:
@@ -2301,25 +1223,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TTreeFormulaManager
     cpp_name: TTreeFormulaManager
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -2342,10 +1248,6 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TVector2
     cpp_name: TVector2
     methods:
@@ -2353,10 +1255,6 @@ classes:
         return_type: TVector2
       - name: Ort
         return_type: TVector2
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -2376,21 +1274,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TView
     cpp_name: TView
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -2402,17 +1288,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TVirtualHistPainter
     cpp_name: TVirtualHistPainter
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -2424,37 +1302,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TVirtualPad
     cpp_name: TVirtualPad
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -2473,21 +1323,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TVirtualStreamerInfo
     cpp_name: TVirtualStreamerInfo
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -2499,10 +1337,6 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TVirtualViewer3D
     cpp_name: TVirtualViewer3D
     methods:
@@ -2510,33 +1344,9 @@ classes:
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
   - python_name: TWbox
     cpp_name: TWbox
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -2556,166 +1366,118 @@ classes:
     include_file: xAODBTagging/versions/BTagging_v1.h
     methods:
       - name: SV0_significance3D
-        return_type: double
+        return_type: float
       - name: SV1_pb
-        return_type: double
+        return_type: float
       - name: SV1_pc
-        return_type: double
+        return_type: float
       - name: SV1_pu
-        return_type: double
+        return_type: float
       - name: SV1_loglikelihoodratio
-        return_type: double
+        return_type: float
       - name: IP2D_pb
-        return_type: double
+        return_type: float
       - name: IP2D_pc
-        return_type: double
+        return_type: float
       - name: IP2D_pu
-        return_type: double
+        return_type: float
       - name: IP2D_loglikelihoodratio
-        return_type: double
+        return_type: float
       - name: IP3D_pb
-        return_type: double
+        return_type: float
       - name: IP3D_pc
-        return_type: double
+        return_type: float
       - name: IP3D_pu
-        return_type: double
+        return_type: float
       - name: IP3D_loglikelihoodratio
-        return_type: double
+        return_type: float
       - name: SV1plusIP3D_discriminant
-        return_type: double
+        return_type: float
       - name: JetFitter_pb
-        return_type: double
+        return_type: float
       - name: JetFitter_pc
-        return_type: double
+        return_type: float
       - name: JetFitter_pu
-        return_type: double
+        return_type: float
       - name: JetFitter_loglikelihoodratio
-        return_type: double
+        return_type: float
       - name: MV1_discriminant
-        return_type: double
+        return_type: float
       - name: calcLLR
-        return_type: double
+        return_type: float
         arguments:
           - name: num
-            type: double
+            type: float
           - name: den
-            type: double
+            type: float
   - python_name: xAOD.CaloCluster_v1
     cpp_name: xAOD::CaloCluster_v1
     include_file: xAODCaloEvent/versions/CaloCluster_v1.h
     methods:
       - name: pt
-        return_type: double
+        return_type: float
       - name: eta
-        return_type: double
+        return_type: float
       - name: phi
-        return_type: double
+        return_type: float
       - name: m
-        return_type: double
+        return_type: float
       - name: e
-        return_type: double
+        return_type: float
       - name: rapidity
-        return_type: double
+        return_type: float
       - name: et
-        return_type: double
-      - name: pt
-        return_type: double
-      - name: eta
-        return_type: double
-      - name: phi
-        return_type: double
-      - name: m
-        return_type: double
-      - name: e
-        return_type: double
-      - name: rapidity
-        return_type: double
+        return_type: float
   - python_name: xAOD.CaloTower_v1
     cpp_name: xAOD::CaloTower_v1
     include_file: xAODCaloEvent/versions/CaloTower_v1.h
     methods:
       - name: pt
-        return_type: double
+        return_type: float
       - name: eta
-        return_type: double
+        return_type: float
       - name: phi
-        return_type: double
+        return_type: float
       - name: rapidity
-        return_type: double
+        return_type: float
       - name: m
-        return_type: double
+        return_type: float
       - name: e
-        return_type: double
-      - name: pt
-        return_type: double
-      - name: eta
-        return_type: double
-      - name: phi
-        return_type: double
-      - name: m
-        return_type: double
-      - name: e
-        return_type: double
-      - name: rapidity
-        return_type: double
+        return_type: float
   - python_name: xAOD.DiTauJet_v1
     cpp_name: xAOD::DiTauJet_v1
     include_file: xAODTau/versions/DiTauJet_v1.h
     methods:
       - name: pt
-        return_type: double
+        return_type: float
       - name: eta
-        return_type: double
+        return_type: float
       - name: phi
-        return_type: double
+        return_type: float
       - name: e
-        return_type: double
+        return_type: float
       - name: m
-        return_type: double
+        return_type: float
       - name: rapidity
-        return_type: double
+        return_type: float
       - name: nSubjets
         return_type: float
-      - name: pt
-        return_type: double
-      - name: eta
-        return_type: double
-      - name: phi
-        return_type: double
-      - name: m
-        return_type: double
-      - name: e
-        return_type: double
-      - name: rapidity
-        return_type: double
   - python_name: xAOD.Egamma_v1
     cpp_name: xAOD::Egamma_v1
     include_file: xAODEgamma/versions/Egamma_v1.h
     methods:
       - name: pt
-        return_type: double
+        return_type: float
       - name: eta
-        return_type: double
+        return_type: float
       - name: phi
-        return_type: double
+        return_type: float
       - name: m
-        return_type: double
+        return_type: float
       - name: e
-        return_type: double
+        return_type: float
       - name: rapidity
-        return_type: double
-      - name: pt
-        return_type: double
-      - name: eta
-        return_type: double
-      - name: phi
-        return_type: double
-      - name: m
-        return_type: double
-      - name: e
-        return_type: double
-      - name: rapidity
-        return_type: double
+        return_type: float
   - python_name: xAOD.Electron_v1
     cpp_name: xAOD::Electron_v1
     include_file: xAODEgamma/versions/Electron_v1.h
@@ -2723,29 +1485,17 @@ classes:
       - name: charge
         return_type: float
       - name: pt
-        return_type: double
+        return_type: float
       - name: eta
-        return_type: double
+        return_type: float
       - name: phi
-        return_type: double
+        return_type: float
       - name: m
-        return_type: double
+        return_type: float
       - name: e
-        return_type: double
+        return_type: float
       - name: rapidity
-        return_type: double
-      - name: pt
-        return_type: double
-      - name: eta
-        return_type: double
-      - name: phi
-        return_type: double
-      - name: m
-        return_type: double
-      - name: e
-        return_type: double
-      - name: rapidity
-        return_type: double
+        return_type: float
   - python_name: xAOD.EventInfo_v1
     cpp_name: xAOD::EventInfo_v1
     include_file: xAODEventInfo/versions/EventInfo_v1.h
@@ -2777,32 +1527,32 @@ classes:
     include_file: xAODBase/IParticle.h
     methods:
       - name: pt
-        return_type: double
+        return_type: float
       - name: eta
-        return_type: double
+        return_type: float
       - name: phi
-        return_type: double
+        return_type: float
       - name: m
-        return_type: double
+        return_type: float
       - name: e
-        return_type: double
+        return_type: float
       - name: rapidity
-        return_type: double
+        return_type: float
   - python_name: xAOD.JetConstituent
     cpp_name: xAOD::JetConstituent
     methods:
       - name: pt
-        return_type: double
+        return_type: float
       - name: eta
-        return_type: double
+        return_type: float
       - name: phi
-        return_type: double
+        return_type: float
       - name: m
-        return_type: double
+        return_type: float
       - name: e
-        return_type: double
+        return_type: float
       - name: rapidity
-        return_type: double
+        return_type: float
   - python_name: xAOD.JetConstituentVector
     cpp_name: xAOD::JetConstituentVector
     methods:
@@ -2815,17 +1565,17 @@ classes:
     include_file: xAODJet/versions/Jet_v1.h
     methods:
       - name: pt
-        return_type: double
+        return_type: float
       - name: eta
-        return_type: double
+        return_type: float
       - name: phi
-        return_type: double
+        return_type: float
       - name: m
-        return_type: double
+        return_type: float
       - name: e
-        return_type: double
+        return_type: float
       - name: rapidity
-        return_type: double
+        return_type: float
       - name: px
         return_type: float
       - name: py
@@ -2836,32 +1586,20 @@ classes:
         return_type: xAOD.JetConstituentVector
       - name: getSizeParameter
         return_type: float
-      - name: pt
-        return_type: double
-      - name: eta
-        return_type: double
-      - name: phi
-        return_type: double
-      - name: m
-        return_type: double
-      - name: e
-        return_type: double
-      - name: rapidity
-        return_type: double
   - python_name: xAOD.MissingET_v1
     cpp_name: xAOD::MissingET_v1
     include_file: xAODMissingET/versions/MissingET_v1.h
     methods:
       - name: mpx
-        return_type: double
+        return_type: float
       - name: mpy
-        return_type: double
+        return_type: float
       - name: met
-        return_type: double
+        return_type: float
       - name: phi
-        return_type: double
+        return_type: float
       - name: sumet
-        return_type: double
+        return_type: float
   - python_name: xAOD.MuonSegment_v1
     cpp_name: xAOD::MuonSegment_v1
     include_file: xAODMuon/versions/MuonSegment_v1.h
@@ -2901,47 +1639,35 @@ classes:
     include_file: xAODMuon/versions/Muon_v1.h
     methods:
       - name: pt
-        return_type: double
+        return_type: float
       - name: eta
-        return_type: double
+        return_type: float
       - name: phi
-        return_type: double
+        return_type: float
       - name: m
-        return_type: double
+        return_type: float
       - name: e
-        return_type: double
+        return_type: float
       - name: rapidity
-        return_type: double
+        return_type: float
       - name: charge
         return_type: float
-      - name: pt
-        return_type: double
-      - name: eta
-        return_type: double
-      - name: phi
-        return_type: double
-      - name: m
-        return_type: double
-      - name: e
-        return_type: double
-      - name: rapidity
-        return_type: double
   - python_name: xAOD.NeutralParticle_v1
     cpp_name: xAOD::NeutralParticle_v1
     include_file: xAODTracking/versions/NeutralParticle_v1.h
     methods:
       - name: pt
-        return_type: double
+        return_type: float
       - name: eta
-        return_type: double
+        return_type: float
       - name: phi
-        return_type: double
+        return_type: float
       - name: m
-        return_type: double
+        return_type: float
       - name: e
-        return_type: double
+        return_type: float
       - name: rapidity
-        return_type: double
+        return_type: float
       - name: d0
         return_type: float
       - name: z0
@@ -2958,62 +1684,38 @@ classes:
         return_type: float
       - name: vz
         return_type: float
-      - name: pt
-        return_type: double
-      - name: eta
-        return_type: double
-      - name: phi
-        return_type: double
-      - name: m
-        return_type: double
-      - name: e
-        return_type: double
-      - name: rapidity
-        return_type: double
   - python_name: xAOD.PFO_v1
     cpp_name: xAOD::PFO_v1
     include_file: xAODPFlow/versions/PFO_v1.h
     methods:
       - name: pt
-        return_type: double
+        return_type: float
       - name: eta
-        return_type: double
+        return_type: float
       - name: phi
-        return_type: double
+        return_type: float
       - name: m
-        return_type: double
+        return_type: float
       - name: e
-        return_type: double
+        return_type: float
       - name: rapidity
-        return_type: double
+        return_type: float
       - name: ptEM
-        return_type: double
+        return_type: float
       - name: etaEM
-        return_type: double
+        return_type: float
       - name: phiEM
-        return_type: double
+        return_type: float
       - name: mEM
-        return_type: double
+        return_type: float
       - name: eEM
-        return_type: double
+        return_type: float
       - name: bdtPi0Score
         return_type: float
       - name: centerMag
         return_type: float
       - name: charge
         return_type: float
-      - name: pt
-        return_type: double
-      - name: eta
-        return_type: double
-      - name: phi
-        return_type: double
-      - name: m
-        return_type: double
-      - name: e
-        return_type: double
-      - name: rapidity
-        return_type: double
   - python_name: xAOD.Photon_v1
     cpp_name: xAOD::Photon_v1
     include_file: xAODEgamma/versions/Photon_v1.h
@@ -3021,29 +1723,17 @@ classes:
       - name: conversionRadius
         return_type: float
       - name: pt
-        return_type: double
+        return_type: float
       - name: eta
-        return_type: double
+        return_type: float
       - name: phi
-        return_type: double
+        return_type: float
       - name: m
-        return_type: double
+        return_type: float
       - name: e
-        return_type: double
+        return_type: float
       - name: rapidity
-        return_type: double
-      - name: pt
-        return_type: double
-      - name: eta
-        return_type: double
-      - name: phi
-        return_type: double
-      - name: m
-        return_type: double
-      - name: e
-        return_type: double
-      - name: rapidity
-        return_type: double
+        return_type: float
   - python_name: xAOD.SlowMuon_v1
     cpp_name: xAOD::SlowMuon_v1
     include_file: xAODMuon/versions/SlowMuon_v1.h
@@ -3093,89 +1783,89 @@ classes:
     include_file: xAODTau/versions/TauJet_v3.h
     methods:
       - name: pt
-        return_type: double
+        return_type: float
       - name: eta
-        return_type: double
+        return_type: float
       - name: phi
-        return_type: double
+        return_type: float
       - name: e
-        return_type: double
+        return_type: float
       - name: m
-        return_type: double
+        return_type: float
       - name: rapidity
-        return_type: double
+        return_type: float
       - name: ptJetSeed
-        return_type: double
+        return_type: float
       - name: etaJetSeed
-        return_type: double
+        return_type: float
       - name: phiJetSeed
-        return_type: double
+        return_type: float
       - name: mJetSeed
-        return_type: double
+        return_type: float
       - name: ptDetectorAxis
-        return_type: double
+        return_type: float
       - name: etaDetectorAxis
-        return_type: double
+        return_type: float
       - name: phiDetectorAxis
-        return_type: double
+        return_type: float
       - name: mDetectorAxis
-        return_type: double
+        return_type: float
       - name: ptIntermediateAxis
-        return_type: double
+        return_type: float
       - name: etaIntermediateAxis
-        return_type: double
+        return_type: float
       - name: phiIntermediateAxis
-        return_type: double
+        return_type: float
       - name: mIntermediateAxis
-        return_type: double
+        return_type: float
       - name: ptTauEnergyScale
-        return_type: double
+        return_type: float
       - name: etaTauEnergyScale
-        return_type: double
+        return_type: float
       - name: phiTauEnergyScale
-        return_type: double
+        return_type: float
       - name: mTauEnergyScale
-        return_type: double
+        return_type: float
       - name: ptTauEtaCalib
-        return_type: double
+        return_type: float
       - name: etaTauEtaCalib
-        return_type: double
+        return_type: float
       - name: phiTauEtaCalib
-        return_type: double
+        return_type: float
       - name: mTauEtaCalib
-        return_type: double
+        return_type: float
       - name: ptPanTauCellBasedProto
-        return_type: double
+        return_type: float
       - name: etaPanTauCellBasedProto
-        return_type: double
+        return_type: float
       - name: phiPanTauCellBasedProto
-        return_type: double
+        return_type: float
       - name: mPanTauCellBasedProto
-        return_type: double
+        return_type: float
       - name: ptPanTauCellBased
-        return_type: double
+        return_type: float
       - name: etaPanTauCellBased
-        return_type: double
+        return_type: float
       - name: phiPanTauCellBased
-        return_type: double
+        return_type: float
       - name: mPanTauCellBased
-        return_type: double
+        return_type: float
       - name: ptTrigCaloOnly
-        return_type: double
+        return_type: float
       - name: etaTrigCaloOnly
-        return_type: double
+        return_type: float
       - name: phiTrigCaloOnly
-        return_type: double
+        return_type: float
       - name: mTrigCaloOnly
-        return_type: double
+        return_type: float
       - name: ptFinalCalib
-        return_type: double
+        return_type: float
       - name: etaFinalCalib
-        return_type: double
+        return_type: float
       - name: phiFinalCalib
-        return_type: double
+        return_type: float
       - name: mFinalCalib
-        return_type: double
+        return_type: float
       - name: charge
         return_type: float
       - name: trackFilterProngs
@@ -3184,92 +1874,56 @@ classes:
         return_type: int
       - name: pi0ConeDR
         return_type: float
-      - name: pt
-        return_type: double
-      - name: eta
-        return_type: double
-      - name: phi
-        return_type: double
-      - name: m
-        return_type: double
-      - name: e
-        return_type: double
-      - name: rapidity
-        return_type: double
   - python_name: xAOD.TauTrack_v1
     cpp_name: xAOD::TauTrack_v1
     include_file: xAODTau/versions/TauTrack_v1.h
     methods:
       - name: pt
-        return_type: double
+        return_type: float
       - name: eta
-        return_type: double
+        return_type: float
       - name: phi
-        return_type: double
+        return_type: float
       - name: e
-        return_type: double
+        return_type: float
       - name: m
-        return_type: double
+        return_type: float
       - name: rapidity
-        return_type: double
-      - name: pt
-        return_type: double
-      - name: eta
-        return_type: double
-      - name: phi
-        return_type: double
-      - name: m
-        return_type: double
-      - name: e
-        return_type: double
-      - name: rapidity
-        return_type: double
+        return_type: float
   - python_name: xAOD.TrackCaloCluster_v1
     cpp_name: xAOD::TrackCaloCluster_v1
     include_file: xAODPFlow/versions/TrackCaloCluster_v1.h
     methods:
       - name: pt
-        return_type: double
+        return_type: float
       - name: eta
-        return_type: double
+        return_type: float
       - name: phi
-        return_type: double
+        return_type: float
       - name: m
-        return_type: double
+        return_type: float
       - name: e
-        return_type: double
+        return_type: float
       - name: rapidity
-        return_type: double
+        return_type: float
       - name: taste
         return_type: int
-      - name: pt
-        return_type: double
-      - name: eta
-        return_type: double
-      - name: phi
-        return_type: double
-      - name: m
-        return_type: double
-      - name: e
-        return_type: double
-      - name: rapidity
-        return_type: double
   - python_name: xAOD.TrackParticle_v1
     cpp_name: xAOD::TrackParticle_v1
     include_file: xAODTracking/versions/TrackParticle_v1.h
     methods:
       - name: pt
-        return_type: double
+        return_type: float
       - name: eta
-        return_type: double
+        return_type: float
       - name: phi
-        return_type: double
+        return_type: float
       - name: m
-        return_type: double
+        return_type: float
       - name: e
-        return_type: double
+        return_type: float
       - name: rapidity
-        return_type: double
+        return_type: float
       - name: charge
         return_type: float
       - name: d0
@@ -3298,18 +1952,6 @@ classes:
         return_type: float
       - name: numberDoF
         return_type: float
-      - name: pt
-        return_type: double
-      - name: eta
-        return_type: double
-      - name: phi
-        return_type: double
-      - name: m
-        return_type: double
-      - name: e
-        return_type: double
-      - name: rapidity
-        return_type: double
   - python_name: xAOD.TruthEvent_v1
     cpp_name: xAOD::TruthEvent_v1
     include_file: xAODTruth/versions/TruthEvent_v1.h
@@ -3331,21 +1973,21 @@ classes:
       - name: status
         return_type: int
       - name: pt
-        return_type: double
+        return_type: float
       - name: eta
-        return_type: double
+        return_type: float
       - name: phi
-        return_type: double
+        return_type: float
       - name: m
-        return_type: double
+        return_type: float
       - name: e
-        return_type: double
+        return_type: float
       - name: rapidity
-        return_type: double
+        return_type: float
       - name: abseta
-        return_type: double
+        return_type: float
       - name: absrapidity
-        return_type: double
+        return_type: float
       - name: px
         return_type: float
       - name: py
@@ -3353,21 +1995,9 @@ classes:
       - name: pz
         return_type: float
       - name: charge
-        return_type: double
+        return_type: float
       - name: threeCharge
         return_type: int
-      - name: pt
-        return_type: double
-      - name: eta
-        return_type: double
-      - name: phi
-        return_type: double
-      - name: m
-        return_type: double
-      - name: e
-        return_type: double
-      - name: rapidity
-        return_type: double
   - python_name: xAOD.TruthVertex_v1
     cpp_name: xAOD::TruthVertex_v1
     include_file: xAODTruth/versions/TruthVertex_v1.h
