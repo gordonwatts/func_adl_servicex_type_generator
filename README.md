@@ -39,7 +39,7 @@ Then the user:
 This is currently a package that is planned. The development path is as follows:
 
 * [x] Produce very simple ATLAS `xAOD` typed objects to access collections like `Jets`, etc, in a R21 xAOD (C++ backend). This should include a locally installable package (`pip install -e`).
-* [ ] In a second package start developing a Jupyter notebook/book showing off the features for accessing the above collections
+* [x] In a second package start developing a Jupyter notebook/book showing off the features for accessing the above collections
   * The [website](https://gordonwatts.github.io/xaod_usage) and github [repo](https://github.com/gordonwatts/xaod_usage).
 * [ ] After `Jets`, do 'EventInfo' and 'MissingET'. These two should generalize the system to other types.
 * [ ] Add automatic collection injection (so that we don't need definitions in the xAOD backend)
