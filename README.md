@@ -41,6 +41,8 @@ This is currently a package that is planned. The development path is as follows:
 * [x] Produce very simple ATLAS `xAOD` typed objects to access collections like `Jets`, etc, in a R21 xAOD (C++ backend). This should include a locally installable package (`pip install -e`).
 * [ ] In a second package start developing a Jupyter notebook/book showing off the features for accessing the above collections
 * [ ] After `Jets`, do 'EventInfo' and 'MissingET'. These two should generalize the system to other types.
+* [ ] Add automatic collection injection (so that we don't need definitions in the xAOD backend)
+* [ ] Add support for `Jet::getAttribute`, which is a C++ code-behind function
 * [ ] Add support for arbitrary injection of other packages in the ATLAS C++ backend (e.g. corrections). Use `Jets` to develop this. Include ability to do a single systematic error or nominal.
 * [ ] Figure out how to deal with multiple systematic errors requested at the same time, in different parts of a query.
 * [ ] Add above to the Jupyter notebook
