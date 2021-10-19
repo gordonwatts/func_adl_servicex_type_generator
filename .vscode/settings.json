@@ -18,5 +18,11 @@
     "python.analysis.typeCheckingMode": "basic",
     "cSpell.enableFiletypes": [
         "!yaml"
+    ],
+    "python.linting.flake8Enabled": true,
+    "python.linting.ignorePatterns": [
+        "**/site-packages/**/*.py",
+        ".vscode/*.py",
+        "func_adl_servicex_type_generator/template"
     ]
 }
