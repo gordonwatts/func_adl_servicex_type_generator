@@ -173,6 +173,32 @@ def test_simple_method(tmp_path, template_path):
     assert "pt(self) -> float:" in ((tmp_path / "xAOD" / "jets.py").read_text())
 
 
+def test_simple_method_with_args(tmp_path, template_path):
+    """Write out a very simple top level class with a method.
+
+    Args:
+        tmp_path ([type]): [description]
+    """
+    classes = [
+        class_info(
+            "xAOD.Jets",
+            [
+                method_info(
+                    name="pt",
+                    return_type="float",
+                    arguments=[method_arg_info("err", None, "float")],
+                )
+            ],
+        )
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package")
+
+    assert "pt(self, err: float) -> float:" in (
+        (tmp_path / "xAOD" / "jets.py").read_text()
+    )
+
+
 def test_method_reference_rtn_type(tmp_path, template_path):
     """Write out a very simple top level class with a method.
 

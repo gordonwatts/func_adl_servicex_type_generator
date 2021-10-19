@@ -5,7 +5,11 @@
 class {{ class_name }}:
     "A class"
 {% for method in methods %}
-    def {{ method.name }}(self) -> {{ class_split_namespace(method.return_type)[1] }}:
+    def {{ method.name }}(self
+        {%- for arg in method.arguments -%}
+        , {{ arg.name }}: {{ class_split_namespace(arg.arg_type)[1]}}
+        {%- endfor -%}
+        ) -> {{ class_split_namespace(method.return_type)[1] }}:
         "A method"
         ...
 {% endfor %}

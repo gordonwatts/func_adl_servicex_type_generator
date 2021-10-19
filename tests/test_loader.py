@@ -13,6 +13,7 @@ def test_load_full_file():
 
     di_jets = collection_dict["DiTauJets"]
     jets_class = classes_dict["xAOD.Jet_v1"]
+    btagging = classes_dict["xAOD.BTagging_v1"]
 
     assert di_jets.name == "DiTauJets"
     assert di_jets.collection_item_type == "xAOD.DiTauJet_v1"
@@ -25,3 +26,8 @@ def test_load_full_file():
     assert len(pt_methods) == 1
     assert pt_methods[0].return_type == "float"
     assert len(pt_methods[0].arguments) == 0
+
+    calc_llr = [m for m in btagging.methods if m.name == "calcLLR"]
+    assert len(calc_llr) == 1
+    assert len(calc_llr[0].arguments) == 2
+    assert calc_llr[0].arguments[0].arg_type == "float"

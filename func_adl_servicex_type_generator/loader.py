@@ -7,6 +7,7 @@ from func_adl_servicex_type_generator.class_utils import class_split_namespace
 from func_adl_servicex_type_generator.data_model import (
     class_info,
     collection_info,
+    method_arg_info,
     method_info,
 )
 
@@ -26,7 +27,11 @@ def method_loader(methods: List[dict]) -> List[method_info]:
             method_info(
                 name=d["name"],
                 return_type=d["return_type"],
-                arguments=[],
+                arguments=[
+                    method_arg_info(a["name"], None, a["type"]) for a in d["arguments"]
+                ]
+                if "arguments" in d
+                else [],
             )
         )
 
