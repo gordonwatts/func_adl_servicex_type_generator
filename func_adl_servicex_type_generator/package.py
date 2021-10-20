@@ -7,6 +7,7 @@ from func_adl_servicex_type_generator.class_utils import (
     class_ns_as_path,
     class_split_namespace,
     import_for_class,
+    remove_namespaces,
 )
 
 from func_adl_servicex_type_generator.data_model import class_info, method_info
@@ -40,6 +41,7 @@ def template_package_scaffolding(
     ]
     template_data = dict(data)
     template_data["import_statements"] = collection_imports
+    template_data["remove_namespaces"] = remove_namespaces
 
     # Generate the package
     for t in loader.list_templates():

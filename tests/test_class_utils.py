@@ -3,6 +3,7 @@ from func_adl_servicex_type_generator.class_utils import (
     class_ns_as_path,
     class_split_namespace,
     import_for_class,
+    remove_namespaces,
 )
 
 
@@ -35,3 +36,23 @@ def test_import_no_ns():
 
 def test_import_ns():
     assert import_for_class("xAOD.Jets", "basic") == "from basic.xAOD.jets import Jets"
+
+
+def test_remove_namespace_none():
+    assert remove_namespaces("int") == "int"
+
+
+def test_remove_namespace_simple():
+    assert remove_namespaces("xAOD.Junk") == "Junk"
+
+
+def test_remove_namespace_arg():
+    assert remove_namespaces("Iterable[xAOD.Junk]") == "Iterable[Junk]"
+
+
+def test_remove_namespace_args():
+    assert remove_namespaces("Iterable[xAOD.Junk, xAOD.Fool]") == "Iterable[Junk, Fool]"
+
+
+def test_remove_namespace_initial():
+    assert remove_namespaces("xAOD.Iterable[xAOD.Junk]") == "Iterable[Junk]"

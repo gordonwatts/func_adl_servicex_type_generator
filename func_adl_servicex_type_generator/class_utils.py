@@ -20,6 +20,51 @@ def class_split_namespace(name: str) -> Tuple[str, str]:
     return name[:last_dot], name[last_dot + 1 :]
 
 
+def remove_namespaces(name: str) -> str:
+    """Remove the namespaces from a fully qualified name
+
+    Args:
+        name (str): The fully qualified name
+
+    Returns:
+        str: The name without the namespaces
+    """
+    typename = ""
+    depth_level = 0
+    argument = ""
+    index = 0
+    split_typename = False
+    while index < len(name):
+        if depth_level > 0:
+            if name[index] == "]":
+                depth_level -= 1
+                if depth_level == 0:
+                    typename += (
+                        "["
+                        + ", ".join(
+                            [remove_namespaces(a.strip()) for a in argument.split(",")]
+                        )
+                        + "]"
+                    )
+            else:
+                argument += name[index]
+            index += 1
+        else:
+            if name[index] == "[":
+                _, typename = class_split_namespace(typename)
+                split_typename = True
+                depth_level += 1
+                index += 1
+            else:
+                typename += name[index]
+                index += 1
+
+    if not split_typename:
+        _, typename = class_split_namespace(typename)
+
+    return typename
+
+
 def class_ns_as_path(name: str) -> Path:
     """Split a namespace into a multi-directory level directory
 

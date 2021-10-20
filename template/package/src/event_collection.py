@@ -5,6 +5,6 @@ from typing import Iterator
 
 class Event:
 {%- for item in collections %}
-    def {{ item.name }}(self, name: str) -> Iterator[{{ item.collection_item_type_name }}]:
+    def {{ item.name }}(self, name: str) -> {{ remove_namespaces(item.collection_type) }}:
         pass
 {%- endfor -%}

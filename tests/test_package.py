@@ -65,7 +65,32 @@ def test_template_collection_with_object(tmp_path, template_path):
 
     evt_col_path = output_path / data["package_name"] / "event_collection.py"
     assert "from func_adl_servicex_xaodr21.jet import Jet" in (evt_col_path.read_text())
-    assert "Iterator[Jet]" in evt_col_path.read_text()
+    assert "Iterable[Jet]" in evt_col_path.read_text()
+
+
+def test_template_collection_with_namespace(tmp_path, template_path):
+    """Run a full integration test, including doing the poetry install."""
+    data = {
+        "package_name": "func_adl_servicex_xaodr21",
+        "package_version": "1.0.22.2.187",
+        "package_info_description": "xAOD R21 22.2.187",
+        "sx_dataset_name": "SXDSAtlasxAODR21",
+        "backend_default_name": "xaod_r21",
+        "collections": [
+            collection_info("Jets", "Iterable[xAOD.Jet]", "xAOD.Jet", "xAOD::Jet"),
+        ],
+    }
+
+    output_path = tmp_path / "my_package"
+    template_package_scaffolding(data, template_path, output_path)
+
+    # Look at the output file and see if it contains what we expect
+    evt_col_file = output_path / data["package_name"] / "event_collection.py"
+
+    text = evt_col_file.read_text()
+
+    assert "from func_adl_servicex_xaodr21.xAOD.jet import Jet" in text
+    assert "Iterable[Jet]" in text
 
 
 def test_template_poetry_integration(tmp_path, template_path):
@@ -132,9 +157,6 @@ def test_class_simple(tmp_path, template_path):
 
     assert (tmp_path / "jets.py").exists()
     assert (tmp_path / "__init__.py").exists()
-
-    # Make sure the jets class will load
-    # assert "from .jets import Jets" in ((tmp_path / "__init__.py").read_text())
 
 
 def test_class_namespace(tmp_path, template_path):
