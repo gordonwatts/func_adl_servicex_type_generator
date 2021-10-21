@@ -8,17 +8,28 @@ class collection_info:
     a collection we are emitting.
     """
 
-    # Name we should give collections
+    # Name we should give collections ("Jets")
     name: str
 
-    # Fully qualified collection type
+    # Fully qualified collection type (Iterator[xAOD.Jet_v1])
     collection_type: str
 
-    # Fully qualified name of the collection item
+    # Fully qualified python name of the collection item (xAOD.Jet_v1)
     collection_item_type: str
 
-    # The collection item type name, with no namespace
+    # The collection item python type name, with no namespace (Jet_v1)
+    # TODO: Get rid of this, and calc this on the fly when needed
     collection_item_type_name: str
+
+    # Collection item type (xAOD::Jet_v1)
+    cpp_item_type: str
+
+    # Collection item (DataVector<xaod::Jet_v1>)
+    cpp_collection_type: str
+
+    # List of include files needed for this
+    # collection (['xAODMuon/SlowMuonContainer.h'])
+    cpp_include_file: List[str]
 
 
 @dataclass

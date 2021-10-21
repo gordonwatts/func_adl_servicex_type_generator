@@ -2,7 +2,9 @@
     "cSpell.words": [
         "AODR",
         "Atlasx",
+        "btagging",
         "prereleases",
+        "pyright",
         "pytest",
         "servicex",
         "SXDS",
@@ -23,6 +25,6 @@
     "python.linting.ignorePatterns": [
         "**/site-packages/**/*.py",
         ".vscode/*.py",
-        "func_adl_servicex_type_generator/template"
+        "template"
     ]
 }

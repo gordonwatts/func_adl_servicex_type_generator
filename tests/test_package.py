@@ -51,7 +51,15 @@ def test_template_collection_with_object(tmp_path, template_path):
         "sx_dataset_name": "SXDSAtlasxAODR21",
         "backend_default_name": "xaod_r21",
         "collections": [
-            collection_info("Jets", "Iterable[Jet]", "Jet", "Jet"),
+            collection_info(
+                "Jets",
+                "Iterable[Jet]",
+                "Jet",
+                "Jet",
+                "Jet",
+                "DataVector<Jet>",
+                ["xAODJet/Jet.h"],
+            ),
         ],
     }
 
@@ -64,8 +72,76 @@ def test_template_collection_with_object(tmp_path, template_path):
     assert (output_path / data["package_name"] / "event_collection.py").exists()
 
     evt_col_path = output_path / data["package_name"] / "event_collection.py"
-    assert "from func_adl_servicex_xaodr21.jet import Jet" in (evt_col_path.read_text())
-    assert "Iterable[Jet]" in evt_col_path.read_text()
+    text = evt_col_path.read_text()
+    assert "from func_adl_servicex_xaodr21.jet import Jet" in text
+    assert "Iterable[Jet]" in text
+
+    assert "'container_type': 'DataVector<Jet>'" in text
+    assert "'element_type': 'Jet'" in text
+    assert "'contains_collection': True," in text
+    assert "'include_files': ['xAODJet/Jet.h',]" in text
+
+
+def test_template_collection_no_include(tmp_path, template_path):
+    """Run a full integration test, including doing the poetry install."""
+    data = {
+        "package_name": "func_adl_servicex_xaodr21",
+        "package_version": "1.0.22.2.187",
+        "package_info_description": "xAOD R21 22.2.187",
+        "sx_dataset_name": "SXDSAtlasxAODR21",
+        "backend_default_name": "xaod_r21",
+        "collections": [
+            collection_info(
+                "Jets",
+                "Iterable[Jet]",
+                "Jet",
+                "Jet",
+                "Jet",
+                "DataVector<Jet>",
+                [],
+            ),
+        ],
+    }
+
+    assert template_path.exists()
+    output_path = tmp_path / "my_package"
+
+    template_package_scaffolding(data, template_path, output_path)
+
+    evt_col_path = output_path / data["package_name"] / "event_collection.py"
+    text = evt_col_path.read_text()
+    assert "'include_files': []" in text
+
+
+def test_template_collection_not_collection(tmp_path, template_path):
+    """Run a full integration test, including doing the poetry install."""
+    data = {
+        "package_name": "func_adl_servicex_xaodr21",
+        "package_version": "1.0.22.2.187",
+        "package_info_description": "xAOD R21 22.2.187",
+        "sx_dataset_name": "SXDSAtlasxAODR21",
+        "backend_default_name": "xaod_r21",
+        "collections": [
+            collection_info(
+                "Jets",
+                "Iterable[Jet]",
+                "Jet",
+                "Jet",
+                "Jet",
+                "Jet",
+                [],
+            ),
+        ],
+    }
+
+    assert template_path.exists()
+    output_path = tmp_path / "my_package"
+
+    template_package_scaffolding(data, template_path, output_path)
+
+    evt_col_path = output_path / data["package_name"] / "event_collection.py"
+    text = evt_col_path.read_text()
+    assert "'contains_collection': False," in text
 
 
 def test_template_collection_with_namespace(tmp_path, template_path):
@@ -77,7 +153,15 @@ def test_template_collection_with_namespace(tmp_path, template_path):
         "sx_dataset_name": "SXDSAtlasxAODR21",
         "backend_default_name": "xaod_r21",
         "collections": [
-            collection_info("Jets", "Iterable[xAOD.Jet]", "xAOD.Jet", "xAOD::Jet"),
+            collection_info(
+                "Jets",
+                "Iterable[xAOD.Jet]",
+                "xAOD.Jet",
+                "Jet",
+                "xAOD::Jet",
+                "DataVector<xAOD::Jet>",
+                ["xAODJet/Jet.h"],
+            ),
         ],
     }
 
@@ -102,7 +186,15 @@ def test_template_poetry_integration(tmp_path, template_path):
         "sx_dataset_name": "SXDSAtlasxAODR21",
         "backend_default_name": "xaod_r21",
         "collections": [
-            collection_info("Jets", "Iterable[Jet]", "Jet", "Jet"),
+            collection_info(
+                "Jets",
+                "Iterable[Jet]",
+                "Jet",
+                "Jet",
+                "Jet",
+                "DataVector<Jet>",
+                ["xAODJet/Jet.h"],
+            ),
         ],
     }
 
@@ -174,8 +266,6 @@ def test_class_namespace(tmp_path, template_path):
     assert (tmp_path / "xAOD" / "jets.py").exists()
     assert (tmp_path / "xAOD" / "__init__.py").exists()
     assert (tmp_path / "__init__.py").exists()
-
-    # assert "from .jets import Jets" in ((tmp_path / "xAOD" / "__init__.py").read_text())
 
 
 def test_simple_method(tmp_path, template_path):

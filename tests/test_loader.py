@@ -14,11 +14,14 @@ def test_load_full_file():
     di_jets = collection_dict["DiTauJets"]
     jets_class = classes_dict["xAOD.Jet_v1"]
     btagging = classes_dict["xAOD.BTagging_v1"]
+    event_info = collection_dict["EventInfo"]
 
     assert di_jets.name == "DiTauJets"
     assert di_jets.collection_item_type == "xAOD.DiTauJet_v1"
     assert di_jets.collection_type == "Iterator[xAOD.DiTauJet_v1]"
     assert di_jets.collection_item_type_name == "DiTauJet_v1"
+    assert di_jets.cpp_item_type == "xAOD::DiTauJet_v1"
+    assert di_jets.cpp_collection_type == "DataVector<xAOD::DiTauJet_v1>"
 
     assert jets_class.name == "xAOD.Jet_v1"
     assert len(jets_class.methods) > 0
@@ -31,3 +34,5 @@ def test_load_full_file():
     assert len(calc_llr) == 1
     assert len(calc_llr[0].arguments) == 2
     assert calc_llr[0].arguments[0].arg_type == "float"
+
+    assert len(event_info.cpp_include_file) == 0

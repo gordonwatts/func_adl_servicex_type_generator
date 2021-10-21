@@ -58,6 +58,11 @@ def load_yaml(config_path: Path) -> Tuple[List[collection_info], List[class_info
             collection_type=c["python_container_type"],
             collection_item_type=c["python_item_type"],
             collection_item_type_name=class_split_namespace(c["python_item_type"])[1],
+            cpp_item_type=c["cpp_item_type"],
+            cpp_collection_type=c["cpp_container_type"],
+            cpp_include_file=[c["include_file"]]
+            if ("include_file" in c) and (len(c["include_file"]) > 0)
+            else [],
         )
         for c in data_collections
     ]
