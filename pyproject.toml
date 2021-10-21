@@ -17,7 +17,7 @@ black = "^21.9b0"
 sx_type_gen = 'func_adl_servicex_type_generator.generator:run'
 
 [tool.pyright]
-exclude = ["func_adl_servicex_type_generator/template"]
+exclude = ["template"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
