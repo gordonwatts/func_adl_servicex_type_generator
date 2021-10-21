@@ -43,6 +43,7 @@ This is currently a package that is planned. The development path is as follows:
   * The [website](https://gordonwatts.github.io/xaod_usage) and github [repo](https://github.com/gordonwatts/xaod_usage).
 * [x] After `Jets`, do 'EventInfo' and 'MissingET'. These two should generalize the system to other types.
 * [ ] Add automatic collection injection (so that we don't need definitions in the xAOD backend)
+* [ ] Do something that requires a separate include file to access an object (include file injection).
 * [ ] Add support for `Jet::getAttribute`, which is a C++ code-behind function
 * [ ] Add support for arbitrary injection of other packages in the ATLAS C++ backend (e.g. corrections). Use `Jets` to develop this. Include ability to do a single systematic error or nominal.
 * [ ] Figure out how to deal with multiple systematic errors requested at the same time, in different parts of a query.
