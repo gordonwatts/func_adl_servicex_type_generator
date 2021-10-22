@@ -63,6 +63,7 @@ def load_yaml(config_path: Path) -> Tuple[List[collection_info], List[class_info
             cpp_include_file=[c["include_file"]]
             if ("include_file" in c) and (len(c["include_file"]) > 0)
             else [],
+            link_libraries=c["link_libraries"],
         )
         for c in data_collections
     ]

@@ -35,4 +35,5 @@ def test_load_full_file():
     assert len(calc_llr[0].arguments) == 2
     assert calc_llr[0].arguments[0].arg_type == "float"
 
-    assert len(event_info.cpp_include_file) == 0
+    assert len(event_info.cpp_include_file) == 1
+    assert event_info.link_libraries == ["xAODEventInfo"]

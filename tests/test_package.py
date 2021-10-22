@@ -59,6 +59,7 @@ def test_template_collection_with_object(tmp_path, template_path):
                 "Jet",
                 "DataVector<Jet>",
                 ["xAODJet/Jet.h"],
+                ["xAODJet"],
             ),
         ],
     }
@@ -92,13 +93,7 @@ def test_template_collection_no_include(tmp_path, template_path):
         "backend_default_name": "xaod_r21",
         "collections": [
             collection_info(
-                "Jets",
-                "Iterable[Jet]",
-                "Jet",
-                "Jet",
-                "Jet",
-                "DataVector<Jet>",
-                [],
+                "Jets", "Iterable[Jet]", "Jet", "Jet", "Jet", "DataVector<Jet>", [], []
             ),
         ],
     }
@@ -123,13 +118,7 @@ def test_template_collection_not_collection(tmp_path, template_path):
         "backend_default_name": "xaod_r21",
         "collections": [
             collection_info(
-                "Jets",
-                "Iterable[Jet]",
-                "Jet",
-                "Jet",
-                "Jet",
-                "Jet",
-                [],
+                "Jets", "Iterable[Jet]", "Jet", "Jet", "Jet", "Jet", [], []
             ),
         ],
     }
@@ -161,6 +150,7 @@ def test_template_collection_with_namespace(tmp_path, template_path):
                 "xAOD::Jet",
                 "DataVector<xAOD::Jet>",
                 ["xAODJet/Jet.h"],
+                [],
             ),
         ],
     }
@@ -194,6 +184,7 @@ def test_template_poetry_integration(tmp_path, template_path):
                 "Jet",
                 "DataVector<Jet>",
                 ["xAODJet/Jet.h"],
+                [],
             ),
         ],
     }

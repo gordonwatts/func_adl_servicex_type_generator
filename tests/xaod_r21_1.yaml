@@ -5,162 +5,216 @@ collections:
     cpp_container_type: DataVector<xAOD::SlowMuon_v1>
     python_container_type: Iterator[xAOD.SlowMuon_v1]
     include_file: xAODMuon/SlowMuonContainer.h
+    link_libraries:
+      - xAODMuon
   - collection_name: MuonSegments
     cpp_item_type: xAOD::MuonSegment_v1
     python_item_type: xAOD.MuonSegment_v1
     cpp_container_type: DataVector<xAOD::MuonSegment_v1>
     python_container_type: Iterator[xAOD.MuonSegment_v1]
     include_file: xAODMuon/MuonSegmentContainer.h
+    link_libraries:
+      - xAODMuon
   - collection_name: Muons
     cpp_item_type: xAOD::Muon_v1
     python_item_type: xAOD.Muon_v1
     cpp_container_type: DataVector<xAOD::Muon_v1>
     python_container_type: Iterator[xAOD.Muon_v1]
     include_file: xAODMuon/MuonContainer.h
+    link_libraries:
+      - xAODMuon
   - collection_name: TauJets
     cpp_item_type: xAOD::TauJet_v3
     python_item_type: xAOD.TauJet_v3
     cpp_container_type: DataVector<xAOD::TauJet_v3>
     python_container_type: Iterator[xAOD.TauJet_v3]
     include_file: xAODTau/TauJetContainer.h
+    link_libraries:
+      - xAODTau
   - collection_name: TauTracks
     cpp_item_type: xAOD::TauTrack_v1
     python_item_type: xAOD.TauTrack_v1
     cpp_container_type: DataVector<xAOD::TauTrack_v1>
     python_container_type: Iterator[xAOD.TauTrack_v1]
     include_file: xAODTau/TauTrackContainer.h
+    link_libraries:
+      - xAODTau
   - collection_name: DiTauJets
     cpp_item_type: xAOD::DiTauJet_v1
     python_item_type: xAOD.DiTauJet_v1
     cpp_container_type: DataVector<xAOD::DiTauJet_v1>
     python_container_type: Iterator[xAOD.DiTauJet_v1]
     include_file: xAODTau/DiTauJetContainer.h
+    link_libraries:
+      - xAODTau
   - collection_name: CaloClusters
     cpp_item_type: xAOD::CaloCluster_v1
     python_item_type: xAOD.CaloCluster_v1
     cpp_container_type: DataVector<xAOD::CaloCluster_v1>
     python_container_type: Iterator[xAOD.CaloCluster_v1]
     include_file: xAODCaloEvent/CaloClusterContainer.h
+    link_libraries:
+      - xAODCaloEvent
   - collection_name: CaloTowers
     cpp_item_type: xAOD::CaloTower_v1
     python_item_type: xAOD.CaloTower_v1
     cpp_container_type: xAOD::CaloTowerContainer_v1
     python_container_type: Iterator[xAOD.CaloTower_v1]
     include_file: xAODCaloEvent/CaloTowerContainer.h
+    link_libraries:
+      - xAODCaloEvent
   - collection_name: TrackCaloClusters
     cpp_item_type: xAOD::TrackCaloCluster_v1
     python_item_type: xAOD.TrackCaloCluster_v1
     cpp_container_type: DataVector<xAOD::TrackCaloCluster_v1>
     python_container_type: Iterator[xAOD.TrackCaloCluster_v1]
     include_file: xAODPFlow/TrackCaloClusterContainer.h
+    link_libraries:
+      - xAODPFlow
   - collection_name: PFOs
     cpp_item_type: xAOD::PFO_v1
     python_item_type: xAOD.PFO_v1
     cpp_container_type: DataVector<xAOD::PFO_v1>
     python_container_type: Iterator[xAOD.PFO_v1]
     include_file: xAODPFlow/PFOContainer.h
+    link_libraries:
+      - xAODPFlow
   - collection_name: TruthMetaDatas
     cpp_item_type: xAOD::TruthMetaData_v1
     python_item_type: xAOD.TruthMetaData_v1
     cpp_container_type: DataVector<xAOD::TruthMetaData_v1>
     python_container_type: Iterator[xAOD.TruthMetaData_v1]
     include_file: xAODTruth/TruthMetaDataContainer.h
+    link_libraries:
+      - xAODTruth
   - collection_name: TruthParticles
     cpp_item_type: xAOD::TruthParticle_v1
     python_item_type: xAOD.TruthParticle_v1
     cpp_container_type: DataVector<xAOD::TruthParticle_v1>
     python_container_type: Iterator[xAOD.TruthParticle_v1]
     include_file: xAODTruth/TruthParticleContainer.h
+    link_libraries:
+      - xAODTruth
   - collection_name: TruthVertexs
     cpp_item_type: xAOD::TruthVertex_v1
     python_item_type: xAOD.TruthVertex_v1
     cpp_container_type: DataVector<xAOD::TruthVertex_v1>
     python_container_type: Iterator[xAOD.TruthVertex_v1]
     include_file: xAODTruth/TruthVertexContainer.h
+    link_libraries:
+      - xAODTruth
   - collection_name: TruthEvents
     cpp_item_type: xAOD::TruthEvent_v1
     python_item_type: xAOD.TruthEvent_v1
     cpp_container_type: DataVector<xAOD::TruthEvent_v1>
     python_container_type: Iterator[xAOD.TruthEvent_v1]
     include_file: xAODTruth/TruthEventContainer.h
+    link_libraries:
+      - xAODTruth
   - collection_name: BTagVertexs
     cpp_item_type: xAOD::BTagVertex_v1
     python_item_type: xAOD.BTagVertex_v1
     cpp_container_type: DataVector<xAOD::BTagVertex_v1>
     python_container_type: Iterator[xAOD.BTagVertex_v1]
     include_file: xAODBTagging/BTagVertexContainer.h
+    link_libraries:
+      - xAODBTagging
   - collection_name: BTaggings
     cpp_item_type: xAOD::BTagging_v1
     python_item_type: xAOD.BTagging_v1
     cpp_container_type: DataVector<xAOD::BTagging_v1>
     python_container_type: Iterator[xAOD.BTagging_v1]
     include_file: xAODBTagging/BTaggingContainer.h
+    link_libraries:
+      - xAODBTagging
   - collection_name: MissingET
     cpp_item_type: xAOD::MissingET_v1
     python_item_type: xAOD.MissingET_v1
     cpp_container_type: xAOD::MissingETContainer_v1
     python_container_type: Iterator[xAOD.MissingET_v1]
     include_file: xAODMissingET/MissingETContainer.h
+    link_libraries:
+      - xAODMissingET
   - collection_name: Jets
     cpp_item_type: xAOD::Jet_v1
     python_item_type: xAOD.Jet_v1
     cpp_container_type: DataVector<xAOD::Jet_v1>
     python_container_type: Iterator[xAOD.Jet_v1]
     include_file: xAODJet/JetContainer.h
+    link_libraries:
+      - xAODJet
   - collection_name: IParticles
     cpp_item_type: xAOD::IParticle
     python_item_type: xAOD.IParticle
     cpp_container_type: DataVector<xAOD::IParticle>
     python_container_type: Iterator[xAOD.IParticle]
     include_file: xAODBase/IParticleContainer.h
+    link_libraries:
+      - xAODBase
   - collection_name: Electrons
     cpp_item_type: xAOD::Electron_v1
     python_item_type: xAOD.Electron_v1
     cpp_container_type: DataVector<xAOD::Electron_v1>
     python_container_type: Iterator[xAOD.Electron_v1]
     include_file: xAODEgamma/ElectronContainer.h
+    link_libraries:
+      - xAODEgamma
   - collection_name: Photons
     cpp_item_type: xAOD::Photon_v1
     python_item_type: xAOD.Photon_v1
     cpp_container_type: DataVector<xAOD::Photon_v1>
     python_container_type: Iterator[xAOD.Photon_v1]
     include_file: xAODEgamma/PhotonContainer.h
+    link_libraries:
+      - xAODEgamma
   - collection_name: Egammas
     cpp_item_type: xAOD::Egamma_v1
     python_item_type: xAOD.Egamma_v1
     cpp_container_type: DataVector<xAOD::Egamma_v1>
     python_container_type: Iterator[xAOD.Egamma_v1]
     include_file: xAODEgamma/EgammaContainer.h
+    link_libraries:
+      - xAODEgamma
   - collection_name: EventInfos
     cpp_item_type: xAOD::EventInfo_v1
     python_item_type: xAOD.EventInfo_v1
     cpp_container_type: DataVector<xAOD::EventInfo_v1>
     python_container_type: Iterator[xAOD.EventInfo_v1]
     include_file: xAODEventInfo/EventInfoContainer.h
+    link_libraries:
+      - xAODEventInfo
   - collection_name: NeutralParticles
     cpp_item_type: xAOD::NeutralParticle_v1
     python_item_type: xAOD.NeutralParticle_v1
     cpp_container_type: DataVector<xAOD::NeutralParticle_v1>
     python_container_type: Iterator[xAOD.NeutralParticle_v1]
     include_file: xAODTracking/NeutralParticleContainer.h
+    link_libraries:
+      - xAODTracking
   - collection_name: TrackParticles
     cpp_item_type: xAOD::TrackParticle_v1
     python_item_type: xAOD.TrackParticle_v1
     cpp_container_type: DataVector<xAOD::TrackParticle_v1>
     python_container_type: Iterator[xAOD.TrackParticle_v1]
     include_file: xAODTracking/TrackParticleContainer.h
+    link_libraries:
+      - xAODTracking
   - collection_name: Vertexs
     cpp_item_type: xAOD::Vertex_v1
     python_item_type: xAOD.Vertex_v1
     cpp_container_type: DataVector<xAOD::Vertex_v1>
     python_container_type: Iterator[xAOD.Vertex_v1]
     include_file: xAODTracking/VertexContainer.h
+    link_libraries:
+      - xAODTracking
   - collection_name: EventInfo
     cpp_item_type: xAOD::EventInfo_v1
     python_item_type: xAOD.EventInfo_v1
     cpp_container_type: xAOD::EventInfo_v1
     python_container_type: xAOD.EventInfo_v1
-    include_file: ""
+    include_file: xAODEventInfo/versions/EventInfo_v1.h
+    link_libraries:
+      - xAODEventInfo
 classes:
   - python_name: DataLinkBase
     cpp_name: DataLinkBase

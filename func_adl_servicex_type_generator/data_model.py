@@ -31,6 +31,9 @@ class collection_info:
     # collection (['xAODMuon/SlowMuonContainer.h'])
     cpp_include_file: List[str]
 
+    # The name of the library (['xAODMuon'])
+    link_libraries: List[str]
+
 
 @dataclass
 class method_arg_info:

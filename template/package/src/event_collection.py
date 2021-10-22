@@ -15,6 +15,7 @@ _collection_map = {
         'container_type': '{{ collection.cpp_collection_type }}',
         'element_type': '{{ collection.cpp_item_type }}',
         'contains_collection': {{ "True" if collection.cpp_item_type != collection.cpp_collection_type else "False" }},
+        'link_libraries': {{ collection.link_libraries }},
     },
 {%- endfor %}
 }
