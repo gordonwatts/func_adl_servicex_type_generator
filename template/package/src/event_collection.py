@@ -13,7 +13,9 @@ _collection_map = {
         'name': '{{ collection.name }}',
         'include_files': [{%- for file in collection.cpp_include_file -%}'{{ file }}',{%- endfor -%}],
         'container_type': '{{ collection.cpp_collection_type }}',
+{%- if collection.cpp_item_type != collection.cpp_collection_type %}
         'element_type': '{{ collection.cpp_item_type }}',
+{%- endif %}
         'contains_collection': {{ "True" if collection.cpp_item_type != collection.cpp_collection_type else "False" }},
         'link_libraries': {{ collection.link_libraries }},
     },
@@ -41,5 +43,5 @@ class Event:
 
 {%- for item in collections %}
     def {{ item.name }}(self, name: str) -> {{ remove_namespaces(item.collection_type) }}:
-        pass
+        ...
 {%- endfor -%}
