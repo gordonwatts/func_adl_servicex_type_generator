@@ -203,7 +203,7 @@ def test_template_poetry_integration(tmp_path, template_path):
 
     # Next, add a single class to make sure that works here!
     classes = [
-        class_info("Jet", []),
+        class_info("Jet", "Jet", [], None, None),
     ]
     write_out_classes(
         classes, template_path, output_path / data["package_name"], data["package_name"]
@@ -233,7 +233,7 @@ def test_class_simple(tmp_path, template_path):
         tmp_path ([type]): [description]
     """
     classes = [
-        class_info("Jets", []),
+        class_info("Jets", "Jets", [], None, None),
     ]
 
     write_out_classes(classes, template_path, tmp_path, "package")
@@ -249,7 +249,7 @@ def test_class_namespace(tmp_path, template_path):
         tmp_path ([type]): [description]
     """
     classes = [
-        class_info("xAOD.Jets", []),
+        class_info("xAOD.Jets", "xAOD::Jets", [], None, None),
     ]
 
     write_out_classes(classes, template_path, tmp_path, "package")
@@ -257,6 +257,54 @@ def test_class_namespace(tmp_path, template_path):
     assert (tmp_path / "xAOD" / "jets.py").exists()
     assert (tmp_path / "xAOD" / "__init__.py").exists()
     assert (tmp_path / "__init__.py").exists()
+
+
+def test_class_as_container(tmp_path, template_path):
+    """Write out a very simple top level class.
+
+    Args:
+        tmp_path ([type]): [description]
+    """
+    classes = [
+        class_info("xAOD.Jets", "xAOD::Jets", [], "xAOD::Fork", "xAOD.Fork"),
+        class_info("xAOD.Fork", "xAOD::Fork", [], None, None),
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package")
+
+    assert (tmp_path / "xAOD" / "jets.py").exists()
+    file_text = (tmp_path / "xAOD" / "jets.py").read_text()
+    jet_class = [ln for ln in file_text.split("\n") if "class Jets" in ln]
+    assert len(jet_class) == 1
+    assert "(Iterable[Fork])" in jet_class[0]
+
+    import_class = [ln for ln in file_text.split("\n") if "import Fork" in ln]
+    assert len(import_class) == 1
+    assert "from package.xAOD.fork import Fork" in import_class[0]
+
+
+def test_class_as_container_no_ns(tmp_path, template_path):
+    """Write out a very simple top level class.
+
+    Args:
+        tmp_path ([type]): [description]
+    """
+    classes = [
+        class_info("xAOD.Jets", "xAOD::Jets", [], "Fork", "Fork"),
+        class_info("Fork", "Fork", [], None, None),
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package")
+
+    assert (tmp_path / "xAOD" / "jets.py").exists()
+    file_text = (tmp_path / "xAOD" / "jets.py").read_text()
+    jet_class = [ln for ln in file_text.split("\n") if "class Jets" in ln]
+    assert len(jet_class) == 1
+    assert "(Iterable[Fork])" in jet_class[0]
+
+    import_class = [ln for ln in file_text.split("\n") if "import Fork" in ln]
+    assert len(import_class) == 1
+    assert "from package.fork import Fork" in import_class[0]
 
 
 def test_simple_method(tmp_path, template_path):
@@ -267,13 +315,44 @@ def test_simple_method(tmp_path, template_path):
     """
     classes = [
         class_info(
-            "xAOD.Jets", [method_info(name="pt", return_type="float", arguments=[])]
+            "xAOD.Jets",
+            "xAOD::Jets",
+            [method_info(name="pt", return_type="float", arguments=[])],
+            None,
+            None,
         )
     ]
 
     write_out_classes(classes, template_path, tmp_path, "package")
 
-    assert "pt(self) -> float:" in ((tmp_path / "xAOD" / "jets.py").read_text())
+    all_text = (tmp_path / "xAOD" / "jets.py").read_text()
+    assert "pt(self) -> float:" in all_text
+    assert "'return_type': 'float'" in all_text
+
+
+def test_simple_method_rtn_collection(tmp_path, template_path):
+    """Write out a very simple top level class with a method.
+
+    Args:
+        tmp_path ([type]): [description]
+    """
+    classes = [
+        class_info(
+            "xAOD.Jets",
+            "xAOD::Jets",
+            [method_info(name="others", return_type="VectorOfFloats", arguments=[])],
+            None,
+            None,
+        ),
+        class_info("VectorOfFloats", "VectorOfFloatsCPP", [], "double", "float"),
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package")
+
+    jets_text = (tmp_path / "xAOD" / "jets.py").read_text()
+    assert "others(self) -> VectorOfFloats:" in jets_text
+    assert "'return_type_element': 'double'" in jets_text
+    assert "'return_type_collection': 'VectorOfFloatsCPP'" in jets_text
 
 
 def test_simple_method_with_args(tmp_path, template_path):
@@ -285,6 +364,7 @@ def test_simple_method_with_args(tmp_path, template_path):
     classes = [
         class_info(
             "xAOD.Jets",
+            "xAOD::Jets",
             [
                 method_info(
                     name="pt",
@@ -292,6 +372,8 @@ def test_simple_method_with_args(tmp_path, template_path):
                     arguments=[method_arg_info("err", None, "float")],
                 )
             ],
+            None,
+            None,
         )
     ]
 
@@ -310,10 +392,18 @@ def test_method_reference_rtn_type(tmp_path, template_path):
     """
     classes = [
         class_info(
-            "xAOD.Jets", [method_info(name="pt", return_type="float", arguments=[])]
+            "xAOD.Jets",
+            "xAOD::Jets",
+            [method_info(name="pt", return_type="float", arguments=[])],
+            None,
+            None,
         ),
         class_info(
-            "xAOD.Taus", [method_info(name="pt", return_type="xAOD.Jets", arguments=[])]
+            "xAOD.Taus",
+            "xAOD::Taus",
+            [method_info(name="pt", return_type="xAOD.Jets", arguments=[])],
+            None,
+            None,
         ),
     ]
 

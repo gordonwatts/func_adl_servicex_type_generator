@@ -1,4 +1,4 @@
-from typing import Iterator, Tuple, TypeVar
+from typing import Iterable, Tuple, TypeVar
 from func_adl import ObjectStream
 import ast
 {%- for import_line in import_statements %}

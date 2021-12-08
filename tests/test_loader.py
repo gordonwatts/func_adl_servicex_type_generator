@@ -18,7 +18,7 @@ def test_load_full_file():
 
     assert di_jets.name == "DiTauJets"
     assert di_jets.collection_item_type == "xAOD.DiTauJet_v1"
-    assert di_jets.collection_type == "Iterator[xAOD.DiTauJet_v1]"
+    assert di_jets.collection_type == "Iterable[xAOD.DiTauJet_v1]"
     assert di_jets.collection_item_type_name == "DiTauJet_v1"
     assert di_jets.cpp_item_type == "xAOD::DiTauJet_v1"
     assert di_jets.cpp_collection_type == "DataVector<xAOD::DiTauJet_v1>"
@@ -37,3 +37,17 @@ def test_load_full_file():
 
     assert len(event_info.cpp_include_file) == 1
     assert event_info.link_libraries == ["xAODEventInfo"]
+
+
+def test_load_container_types():
+    _, classes = load_yaml(Path("./tests/xaod_r21_1.yaml"))
+    classes_dict = {c.name: c for c in classes}
+
+    non_container = classes_dict["xAOD.Jet_v1"]
+    container = classes_dict["xAOD.JetConstituentVector"]
+
+    assert non_container.cpp_container_type is None
+    assert non_container.python_container_type is None
+
+    assert container.cpp_container_type == "xAOD::JetConstituent"
+    assert container.python_container_type == "xAOD.JetConstituent"

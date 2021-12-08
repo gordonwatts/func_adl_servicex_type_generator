@@ -69,7 +69,17 @@ def load_yaml(config_path: Path) -> Tuple[List[collection_info], List[class_info
     ]
 
     classes = [
-        class_info(name=c["python_name"], methods=method_loader(c["methods"]))
+        class_info(
+            name=c["python_name"],
+            cpp_name=c["cpp_name"],
+            methods=method_loader(c["methods"]),
+            python_container_type=None
+            if "is_container_of_python" not in c
+            else c["is_container_of_python"],
+            cpp_container_type=None
+            if "is_container_of_cpp" not in c
+            else c["is_container_of_cpp"],
+        )
         for c in data_classes
     ]
 

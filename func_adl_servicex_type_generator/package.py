@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Set
+from typing import Any, Dict, Iterable, List, Optional, Set
 
 import jinja2
 from func_adl_servicex_type_generator.class_utils import (
@@ -114,6 +114,41 @@ def imports_for_method(
     return result
 
 
+def cpp_collection_element(
+    py_class_name: Optional[str], class_dict: Dict[str, class_info]
+) -> Optional[str]:
+    """If this class is a collection, return the element name, as a C++ class name.
+
+    Args:
+        py_class_name (Optional[str]): The python class name to look up
+        class_dict (Dict[str, class_info]): All classes where we can do a careful looking
+
+    Returns:
+        Optional[str]: The element class name if this is a collection, or None.
+    """
+    if py_class_name is None:
+        return None
+
+    c = class_dict.get(py_class_name, None)
+    if c is None:
+        return None
+
+    return c.cpp_container_type
+
+
+def cpp_return_type(
+    py_class_name: Optional[str], class_dict: Dict[str, class_info]
+) -> Optional[str]:
+    if py_class_name is None:
+        return None
+
+    c = class_dict.get(py_class_name, None)
+    if c is None:
+        return py_class_name
+
+    return c.cpp_name
+
+
 def write_out_classes(
     all_classes: Iterable[class_info],
     template_path: Path,
@@ -137,6 +172,7 @@ def write_out_classes(
     class_template_file = env.get_template("object.py")
 
     all_classes_names = {c.name for c in all_classes}
+    py_all_classes_dict = {c.name: c for c in all_classes}
 
     for c in all_classes:
         # Make sure the directory is present and ready for us to write to
@@ -157,6 +193,34 @@ def write_out_classes(
             for m in c.methods
             for line in imports_for_method(m, package_name, all_classes_names)
         ]
+        if c.python_container_type is not None:
+            import_statements.append("from typing import Iterable")
+            for i_statement in import_for_good_class(
+                c.python_container_type, package_name, all_classes_names
+            ):
+                import_statements.append(i_statement)
+
+        # Add all the objects this needs to inherit from
+        inheritance_list: List[str] = []
+        if c.python_container_type is not None:
+            inheritance_list.append(
+                f"Iterable[{class_split_namespace(c.python_container_type)[1]}]"
+            )
+
+        # Methdos
+        methods = [
+            {
+                "fully_qualified_name": f"{c.cpp_name}",
+                "name": m.name,
+                "cpp_return_type": cpp_return_type(m.return_type, py_all_classes_dict),
+                "return_type": m.return_type,
+                "is_pointer": "False",
+                "return_type_element": cpp_collection_element(
+                    m.return_type, py_all_classes_dict
+                ),
+            }
+            for m in c.methods
+        ]
 
         # Write out the object file
         text = class_template_file.render(
@@ -164,6 +228,8 @@ def write_out_classes(
             methods=c.methods,
             import_statements=import_statements,
             class_split_namespace=class_split_namespace,
+            inheritance_list=inheritance_list,
+            methods_info=methods,
         )
 
         with class_file.open("wt") as out:

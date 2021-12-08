@@ -3,7 +3,7 @@ collections:
     cpp_item_type: xAOD::SlowMuon_v1
     python_item_type: xAOD.SlowMuon_v1
     cpp_container_type: DataVector<xAOD::SlowMuon_v1>
-    python_container_type: Iterator[xAOD.SlowMuon_v1]
+    python_container_type: Iterable[xAOD.SlowMuon_v1]
     include_file: xAODMuon/SlowMuonContainer.h
     link_libraries:
       - xAODMuon
@@ -11,7 +11,7 @@ collections:
     cpp_item_type: xAOD::MuonSegment_v1
     python_item_type: xAOD.MuonSegment_v1
     cpp_container_type: DataVector<xAOD::MuonSegment_v1>
-    python_container_type: Iterator[xAOD.MuonSegment_v1]
+    python_container_type: Iterable[xAOD.MuonSegment_v1]
     include_file: xAODMuon/MuonSegmentContainer.h
     link_libraries:
       - xAODMuon
@@ -19,7 +19,7 @@ collections:
     cpp_item_type: xAOD::Muon_v1
     python_item_type: xAOD.Muon_v1
     cpp_container_type: DataVector<xAOD::Muon_v1>
-    python_container_type: Iterator[xAOD.Muon_v1]
+    python_container_type: Iterable[xAOD.Muon_v1]
     include_file: xAODMuon/MuonContainer.h
     link_libraries:
       - xAODMuon
@@ -27,7 +27,7 @@ collections:
     cpp_item_type: xAOD::TauJet_v3
     python_item_type: xAOD.TauJet_v3
     cpp_container_type: DataVector<xAOD::TauJet_v3>
-    python_container_type: Iterator[xAOD.TauJet_v3]
+    python_container_type: Iterable[xAOD.TauJet_v3]
     include_file: xAODTau/TauJetContainer.h
     link_libraries:
       - xAODTau
@@ -35,7 +35,7 @@ collections:
     cpp_item_type: xAOD::TauTrack_v1
     python_item_type: xAOD.TauTrack_v1
     cpp_container_type: DataVector<xAOD::TauTrack_v1>
-    python_container_type: Iterator[xAOD.TauTrack_v1]
+    python_container_type: Iterable[xAOD.TauTrack_v1]
     include_file: xAODTau/TauTrackContainer.h
     link_libraries:
       - xAODTau
@@ -43,7 +43,7 @@ collections:
     cpp_item_type: xAOD::DiTauJet_v1
     python_item_type: xAOD.DiTauJet_v1
     cpp_container_type: DataVector<xAOD::DiTauJet_v1>
-    python_container_type: Iterator[xAOD.DiTauJet_v1]
+    python_container_type: Iterable[xAOD.DiTauJet_v1]
     include_file: xAODTau/DiTauJetContainer.h
     link_libraries:
       - xAODTau
@@ -51,7 +51,7 @@ collections:
     cpp_item_type: xAOD::CaloCluster_v1
     python_item_type: xAOD.CaloCluster_v1
     cpp_container_type: DataVector<xAOD::CaloCluster_v1>
-    python_container_type: Iterator[xAOD.CaloCluster_v1]
+    python_container_type: Iterable[xAOD.CaloCluster_v1]
     include_file: xAODCaloEvent/CaloClusterContainer.h
     link_libraries:
       - xAODCaloEvent
@@ -59,7 +59,7 @@ collections:
     cpp_item_type: xAOD::CaloTower_v1
     python_item_type: xAOD.CaloTower_v1
     cpp_container_type: xAOD::CaloTowerContainer_v1
-    python_container_type: Iterator[xAOD.CaloTower_v1]
+    python_container_type: Iterable[xAOD.CaloTower_v1]
     include_file: xAODCaloEvent/CaloTowerContainer.h
     link_libraries:
       - xAODCaloEvent
@@ -67,7 +67,7 @@ collections:
     cpp_item_type: xAOD::TrackCaloCluster_v1
     python_item_type: xAOD.TrackCaloCluster_v1
     cpp_container_type: DataVector<xAOD::TrackCaloCluster_v1>
-    python_container_type: Iterator[xAOD.TrackCaloCluster_v1]
+    python_container_type: Iterable[xAOD.TrackCaloCluster_v1]
     include_file: xAODPFlow/TrackCaloClusterContainer.h
     link_libraries:
       - xAODPFlow
@@ -75,7 +75,7 @@ collections:
     cpp_item_type: xAOD::PFO_v1
     python_item_type: xAOD.PFO_v1
     cpp_container_type: DataVector<xAOD::PFO_v1>
-    python_container_type: Iterator[xAOD.PFO_v1]
+    python_container_type: Iterable[xAOD.PFO_v1]
     include_file: xAODPFlow/PFOContainer.h
     link_libraries:
       - xAODPFlow
@@ -83,7 +83,7 @@ collections:
     cpp_item_type: xAOD::TruthMetaData_v1
     python_item_type: xAOD.TruthMetaData_v1
     cpp_container_type: DataVector<xAOD::TruthMetaData_v1>
-    python_container_type: Iterator[xAOD.TruthMetaData_v1]
+    python_container_type: Iterable[xAOD.TruthMetaData_v1]
     include_file: xAODTruth/TruthMetaDataContainer.h
     link_libraries:
       - xAODTruth
@@ -91,7 +91,7 @@ collections:
     cpp_item_type: xAOD::TruthParticle_v1
     python_item_type: xAOD.TruthParticle_v1
     cpp_container_type: DataVector<xAOD::TruthParticle_v1>
-    python_container_type: Iterator[xAOD.TruthParticle_v1]
+    python_container_type: Iterable[xAOD.TruthParticle_v1]
     include_file: xAODTruth/TruthParticleContainer.h
     link_libraries:
       - xAODTruth
@@ -99,7 +99,7 @@ collections:
     cpp_item_type: xAOD::TruthVertex_v1
     python_item_type: xAOD.TruthVertex_v1
     cpp_container_type: DataVector<xAOD::TruthVertex_v1>
-    python_container_type: Iterator[xAOD.TruthVertex_v1]
+    python_container_type: Iterable[xAOD.TruthVertex_v1]
     include_file: xAODTruth/TruthVertexContainer.h
     link_libraries:
       - xAODTruth
@@ -107,7 +107,7 @@ collections:
     cpp_item_type: xAOD::TruthEvent_v1
     python_item_type: xAOD.TruthEvent_v1
     cpp_container_type: DataVector<xAOD::TruthEvent_v1>
-    python_container_type: Iterator[xAOD.TruthEvent_v1]
+    python_container_type: Iterable[xAOD.TruthEvent_v1]
     include_file: xAODTruth/TruthEventContainer.h
     link_libraries:
       - xAODTruth
@@ -115,7 +115,7 @@ collections:
     cpp_item_type: xAOD::BTagVertex_v1
     python_item_type: xAOD.BTagVertex_v1
     cpp_container_type: DataVector<xAOD::BTagVertex_v1>
-    python_container_type: Iterator[xAOD.BTagVertex_v1]
+    python_container_type: Iterable[xAOD.BTagVertex_v1]
     include_file: xAODBTagging/BTagVertexContainer.h
     link_libraries:
       - xAODBTagging
@@ -123,7 +123,7 @@ collections:
     cpp_item_type: xAOD::BTagging_v1
     python_item_type: xAOD.BTagging_v1
     cpp_container_type: DataVector<xAOD::BTagging_v1>
-    python_container_type: Iterator[xAOD.BTagging_v1]
+    python_container_type: Iterable[xAOD.BTagging_v1]
     include_file: xAODBTagging/BTaggingContainer.h
     link_libraries:
       - xAODBTagging
@@ -131,7 +131,7 @@ collections:
     cpp_item_type: xAOD::MissingET_v1
     python_item_type: xAOD.MissingET_v1
     cpp_container_type: xAOD::MissingETContainer_v1
-    python_container_type: Iterator[xAOD.MissingET_v1]
+    python_container_type: Iterable[xAOD.MissingET_v1]
     include_file: xAODMissingET/MissingETContainer.h
     link_libraries:
       - xAODMissingET
@@ -139,7 +139,7 @@ collections:
     cpp_item_type: xAOD::Jet_v1
     python_item_type: xAOD.Jet_v1
     cpp_container_type: DataVector<xAOD::Jet_v1>
-    python_container_type: Iterator[xAOD.Jet_v1]
+    python_container_type: Iterable[xAOD.Jet_v1]
     include_file: xAODJet/JetContainer.h
     link_libraries:
       - xAODJet
@@ -147,7 +147,7 @@ collections:
     cpp_item_type: xAOD::IParticle
     python_item_type: xAOD.IParticle
     cpp_container_type: DataVector<xAOD::IParticle>
-    python_container_type: Iterator[xAOD.IParticle]
+    python_container_type: Iterable[xAOD.IParticle]
     include_file: xAODBase/IParticleContainer.h
     link_libraries:
       - xAODBase
@@ -155,7 +155,7 @@ collections:
     cpp_item_type: xAOD::Electron_v1
     python_item_type: xAOD.Electron_v1
     cpp_container_type: DataVector<xAOD::Electron_v1>
-    python_container_type: Iterator[xAOD.Electron_v1]
+    python_container_type: Iterable[xAOD.Electron_v1]
     include_file: xAODEgamma/ElectronContainer.h
     link_libraries:
       - xAODEgamma
@@ -163,7 +163,7 @@ collections:
     cpp_item_type: xAOD::Photon_v1
     python_item_type: xAOD.Photon_v1
     cpp_container_type: DataVector<xAOD::Photon_v1>
-    python_container_type: Iterator[xAOD.Photon_v1]
+    python_container_type: Iterable[xAOD.Photon_v1]
     include_file: xAODEgamma/PhotonContainer.h
     link_libraries:
       - xAODEgamma
@@ -171,7 +171,7 @@ collections:
     cpp_item_type: xAOD::Egamma_v1
     python_item_type: xAOD.Egamma_v1
     cpp_container_type: DataVector<xAOD::Egamma_v1>
-    python_container_type: Iterator[xAOD.Egamma_v1]
+    python_container_type: Iterable[xAOD.Egamma_v1]
     include_file: xAODEgamma/EgammaContainer.h
     link_libraries:
       - xAODEgamma
@@ -179,7 +179,7 @@ collections:
     cpp_item_type: xAOD::EventInfo_v1
     python_item_type: xAOD.EventInfo_v1
     cpp_container_type: DataVector<xAOD::EventInfo_v1>
-    python_container_type: Iterator[xAOD.EventInfo_v1]
+    python_container_type: Iterable[xAOD.EventInfo_v1]
     include_file: xAODEventInfo/EventInfoContainer.h
     link_libraries:
       - xAODEventInfo
@@ -187,7 +187,7 @@ collections:
     cpp_item_type: xAOD::NeutralParticle_v1
     python_item_type: xAOD.NeutralParticle_v1
     cpp_container_type: DataVector<xAOD::NeutralParticle_v1>
-    python_container_type: Iterator[xAOD.NeutralParticle_v1]
+    python_container_type: Iterable[xAOD.NeutralParticle_v1]
     include_file: xAODTracking/NeutralParticleContainer.h
     link_libraries:
       - xAODTracking
@@ -195,7 +195,7 @@ collections:
     cpp_item_type: xAOD::TrackParticle_v1
     python_item_type: xAOD.TrackParticle_v1
     cpp_container_type: DataVector<xAOD::TrackParticle_v1>
-    python_container_type: Iterator[xAOD.TrackParticle_v1]
+    python_container_type: Iterable[xAOD.TrackParticle_v1]
     include_file: xAODTracking/TrackParticleContainer.h
     link_libraries:
       - xAODTracking
@@ -203,7 +203,7 @@ collections:
     cpp_item_type: xAOD::Vertex_v1
     python_item_type: xAOD.Vertex_v1
     cpp_container_type: DataVector<xAOD::Vertex_v1>
-    python_container_type: Iterator[xAOD.Vertex_v1]
+    python_container_type: Iterable[xAOD.Vertex_v1]
     include_file: xAODTracking/VertexContainer.h
     link_libraries:
       - xAODTracking
@@ -1034,6 +1034,8 @@ classes:
             type: int
   - python_name: TClonesArray
     cpp_name: TClonesArray
+    is_container_of_cpp: TObject
+    is_container_of_python: TObject
     methods:
       - name: ImplFileLine
         return_type: int
@@ -1073,6 +1075,8 @@ classes:
             type: int
   - python_name: TCollection
     cpp_name: TCollection
+    is_container_of_cpp: TObject
+    is_container_of_python: TObject
     methods:
       - name: Capacity
         return_type: int
@@ -2350,6 +2354,8 @@ classes:
         return_type: int
   - python_name: THashList
     cpp_name: THashList
+    is_container_of_cpp: TObject
+    is_container_of_python: TObject
     methods:
       - name: ImplFileLine
         return_type: int
@@ -2383,6 +2389,8 @@ classes:
             type: int
   - python_name: THashTable
     cpp_name: THashTable
+    is_container_of_cpp: TObject
+    is_container_of_python: TObject
     methods:
       - name: GetRehashLevel
         return_type: int
@@ -2568,6 +2576,8 @@ classes:
             type: int
   - python_name: TList
     cpp_name: TList
+    is_container_of_cpp: TObject
+    is_container_of_python: TObject
     methods:
       - name: ImplFileLine
         return_type: int
@@ -2694,6 +2704,8 @@ classes:
             type: int
   - python_name: TObjArray
     cpp_name: TObjArray
+    is_container_of_cpp: TObject
+    is_container_of_python: TObject
     methods:
       - name: GetEntries
         return_type: int
@@ -2968,6 +2980,8 @@ classes:
             type: int
   - python_name: TSeqCollection
     cpp_name: TSeqCollection
+    is_container_of_cpp: TObject
+    is_container_of_python: TObject
     methods:
       - name: LastIndex
         return_type: int
@@ -3997,6 +4011,8 @@ classes:
         return_type: float
   - python_name: xAOD.JetConstituentVector
     cpp_name: xAOD::JetConstituentVector
+    is_container_of_cpp: xAOD::JetConstituent
+    is_container_of_python: xAOD.JetConstituent
     methods:
       - name: front
         return_type: xAOD.JetConstituent

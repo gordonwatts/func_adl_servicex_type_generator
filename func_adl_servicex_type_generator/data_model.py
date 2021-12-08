@@ -11,7 +11,7 @@ class collection_info:
     # Name we should give collections ("Jets")
     name: str
 
-    # Fully qualified collection type (Iterator[xAOD.Jet_v1])
+    # Fully qualified collection type (Iterable[xAOD.Jet_v1])
     collection_type: str
 
     # Fully qualified python name of the collection item (xAOD.Jet_v1)
@@ -67,8 +67,17 @@ class method_info:
 class class_info:
     """Holds the data for a particular class we are emitting"""
 
-    # The fully qualified name of the class
+    # The fully qualified name of the class (python)
     name: str
+
+    # The fully qualified name of the class (cpp)
+    cpp_name: str
 
     # List of methods
     methods: List[method_info]
+
+    # C++ Container object type, None if this is not a container
+    cpp_container_type: Optional[str]
+
+    # Python container object type, None if this is not a container
+    python_container_type: Optional[str]
