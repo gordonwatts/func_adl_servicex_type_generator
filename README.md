@@ -9,13 +9,13 @@ Produce a analysis-focused python package that:
 * Has types for the objects a user is likely to access on a particular backend
 * Has any injected code needed (to access things like special collections off the main `Event` object)
 * Can inject intelligent code, like apply special scripts or include files for the C++ backend.
-* Defines a typed flavor of a `servicex` dataset object. 
+* Defines a typed flavor of a `servicex` dataset object.
 
 ## Usage
 
 After `pip install`ing this package, the following command will write out a package in the parent directory:
 
-```
+```bash
 sx_type_gen <path-to-type-yaml-file>
 ```
 
@@ -43,15 +43,17 @@ This is currently a package that is planned. The development path is as follows:
   * The [website](https://gordonwatts.github.io/xaod_usage) and github [repo](https://github.com/gordonwatts/xaod_usage).
 * [x] After `Jets`, do 'EventInfo' and 'MissingET'. These two should generalize the system to other types.
 * [x] Add automatic collection injection (so that we don't need definitions in the xAOD backend)
-* [ ] Do something that requires a separate include file to access an object (include file injection).
+* [x] Access Jet constituents from Jet objects
+* [ ] Access truth particle arrays from their parent collection articles
 * [ ] Add support for `Jet::getAttribute`, which is a C++ code-behind function
-* [ ] Add support for arbitrary injection of other packages in the ATLAS C++ backend (e.g. corrections). Use `Jets` to develop this. Include ability to do a single systematic error or nominal.
+* [ ] Add support for arbitrary injection of other packages in the ATLAS C++ backend (e.g. corrections). Use `Jets` to develop this.
+* [ ] Support getting a single systematic error or nominal.
 * [ ] Figure out how to deal with multiple systematic errors requested at the same time, in different parts of a query.
-* [ ] Add above to the Jupyter notebook
 * [ ] Do correction for `MissingET`, the most complex correction, perhaps.
 * [ ] Use _common knowledge_ to get the first set of collections and implement those:
   * Tracks
   * etc.
+* [ ] Do something that requires a separate include file to access an object (include file injection).
 * [ ] Support R22
 * [ ] First release of package
 * [ ] For version 2 plan out support for a flat ROOT `TTree` file.
