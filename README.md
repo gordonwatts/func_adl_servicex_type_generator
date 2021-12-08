@@ -62,7 +62,7 @@ This is currently a package that is planned. The development path is as follows:
 
 This package is using `poetry`. As of writing, the following works on windows (the latest version of poetry is broken on windows):
 
-```
+```bash
 pip install poetry==1.1.7
 cd func_adl_servicex_type_generator
 poetry env use python
