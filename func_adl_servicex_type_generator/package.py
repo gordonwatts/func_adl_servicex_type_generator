@@ -121,7 +121,8 @@ def cpp_collection_element(
 
     Args:
         py_class_name (Optional[str]): The python class name to look up
-        class_dict (Dict[str, class_info]): All classes where we can do a careful looking
+        class_dict (Dict[str, class_info]): All classes where we can do a
+            careful looking
 
     Returns:
         Optional[str]: The element class name if this is a collection, or None.
