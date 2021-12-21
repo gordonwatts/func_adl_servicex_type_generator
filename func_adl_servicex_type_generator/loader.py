@@ -27,6 +27,7 @@ def method_loader(methods: List[dict]) -> List[method_info]:
             method_info(
                 name=d["name"],
                 return_type=d["return_type"],
+                return_is_pointer=d["return_is_pointer"],
                 arguments=[
                     method_arg_info(a["name"], None, a["type"]) for a in d["arguments"]
                 ]

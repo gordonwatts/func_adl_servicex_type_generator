@@ -59,6 +59,9 @@ class method_info:
     # Return type of the method. None if no return type
     return_type: Optional[str]
 
+    # Is the return a pointer?
+    return_is_pointer: bool
+
     # Arguments for the method
     arguments: List[method_arg_info]
 

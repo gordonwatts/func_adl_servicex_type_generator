@@ -92,18 +92,27 @@ def import_for_good_class(type_name: str, package_name: str, all_classes: Set[st
 
 
 def imports_for_method(
-    method: method_info, package_name: str, all_class_names: Set[str]
+    method: method_info,
+    parent_class_name: str,
+    package_name: str,
+    all_class_names: Set[str],
 ) -> List[str]:
-    """Generate a list of imports for all the special types needed
+    """Generate a list of imports for all the special types needed.
+
+    If this method references the method being defined, do not create
+    an import statement.
 
     Args:
         method (method_info): The method
+        parent_class_name (str): The name of the class that contains this method
         package_name (str): The name of the package (for use in import statement)
+        all_class_names (Set[str]): All known classes
     """
     # Do the return type
     result = (
         import_for_good_class(method.return_type, package_name, all_class_names)
-        if method.return_type is not None
+        if (method.return_type is not None)
+        and (method.return_type != parent_class_name)
         else []
     )
 
@@ -192,7 +201,7 @@ def write_out_classes(
         import_statements = [
             line
             for m in c.methods
-            for line in imports_for_method(m, package_name, all_classes_names)
+            for line in imports_for_method(m, c.name, package_name, all_classes_names)
         ]
         if c.python_container_type is not None:
             import_statements.append("from typing import Iterable")
@@ -215,7 +224,7 @@ def write_out_classes(
                 "name": m.name,
                 "cpp_return_type": cpp_return_type(m.return_type, py_all_classes_dict),
                 "return_type": m.return_type,
-                "is_pointer": "False",
+                "is_pointer": "True" if m.return_is_pointer else "False",
                 "return_type_element": cpp_collection_element(
                     m.return_type, py_all_classes_dict
                 ),

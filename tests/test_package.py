@@ -317,7 +317,14 @@ def test_simple_method(tmp_path, template_path):
         class_info(
             "xAOD.Jets",
             "xAOD::Jets",
-            [method_info(name="pt", return_type="float", arguments=[])],
+            [
+                method_info(
+                    name="pt",
+                    return_type="float",
+                    return_is_pointer=False,
+                    arguments=[],
+                )
+            ],
             None,
             None,
         )
@@ -328,6 +335,38 @@ def test_simple_method(tmp_path, template_path):
     all_text = (tmp_path / "xAOD" / "jets.py").read_text()
     assert "pt(self) -> float:" in all_text
     assert "'return_type': 'float'" in all_text
+    assert "'is_pointer': 'False'" in all_text
+
+
+def test_simple_method_ptr(tmp_path, template_path):
+    """Write out a very simple top level class with a method.
+
+    Args:
+        tmp_path ([type]): [description]
+    """
+    classes = [
+        class_info(
+            "xAOD.Jets",
+            "xAOD::Jets",
+            [
+                method_info(
+                    name="pt",
+                    return_type="float",
+                    return_is_pointer=True,
+                    arguments=[],
+                )
+            ],
+            None,
+            None,
+        )
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package")
+
+    all_text = (tmp_path / "xAOD" / "jets.py").read_text()
+    assert "pt(self) -> float:" in all_text
+    assert "'return_type': 'float'" in all_text
+    assert "'is_pointer': 'True'" in all_text
 
 
 def test_simple_method_rtn_collection(tmp_path, template_path):
@@ -340,7 +379,14 @@ def test_simple_method_rtn_collection(tmp_path, template_path):
         class_info(
             "xAOD.Jets",
             "xAOD::Jets",
-            [method_info(name="others", return_type="VectorOfFloats", arguments=[])],
+            [
+                method_info(
+                    name="others",
+                    return_type="VectorOfFloats",
+                    return_is_pointer=False,
+                    arguments=[],
+                )
+            ],
             None,
             None,
         ),
@@ -369,6 +415,7 @@ def test_simple_method_with_args(tmp_path, template_path):
                 method_info(
                     name="pt",
                     return_type="float",
+                    return_is_pointer=False,
                     arguments=[method_arg_info("err", None, "float")],
                 )
             ],
@@ -394,14 +441,28 @@ def test_method_reference_rtn_type(tmp_path, template_path):
         class_info(
             "xAOD.Jets",
             "xAOD::Jets",
-            [method_info(name="pt", return_type="float", arguments=[])],
+            [
+                method_info(
+                    name="pt",
+                    return_type="float",
+                    return_is_pointer=False,
+                    arguments=[],
+                )
+            ],
             None,
             None,
         ),
         class_info(
             "xAOD.Taus",
             "xAOD::Taus",
-            [method_info(name="pt", return_type="xAOD.Jets", arguments=[])],
+            [
+                method_info(
+                    name="pt",
+                    return_type="xAOD.Jets",
+                    return_is_pointer=False,
+                    arguments=[],
+                )
+            ],
             None,
             None,
         ),
@@ -415,30 +476,69 @@ def test_method_reference_rtn_type(tmp_path, template_path):
     assert "pt(self) -> Jets:" in ((tmp_path / "xAOD" / "taus.py").read_text())
 
 
+def test_method_reference_rtn_type_same_as_class(tmp_path, template_path):
+    """Method returns class that is being defined - so no import should exist.
+
+    Args:
+        tmp_path ([type]): [description]
+    """
+    classes = [
+        class_info(
+            "xAOD.Jets",
+            "xAOD::Jets",
+            [
+                method_info(
+                    name="pt",
+                    return_type="xAOD.Jets",
+                    return_is_pointer=False,
+                    arguments=[],
+                )
+            ],
+            None,
+            None,
+        ),
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package")
+
+    assert "pt(self) -> 'Jets':" in ((tmp_path / "xAOD" / "jets.py").read_text())
+    assert "from package.xAOD.jets import Jets" not in (
+        (tmp_path / "xAOD" / "jets.py").read_text()
+    )
+
+
 def test_method_import_nothing():
-    m = method_info("pt", "double", [])
-    assert len(imports_for_method(m, "junk", {"one", "two"})) == 0
+    m = method_info("pt", "double", False, [])
+    assert len(imports_for_method(m, "hi", "junk", {"one", "two"})) == 0
 
 
 def test_method_import_return_type():
-    m = method_info("pt", "xAOD.Jet_v1", [])
+    m = method_info("pt", "xAOD.Jet_v1", False, [])
 
-    r = imports_for_method(m, "junk", {"xAOD.Jet_v1"})
+    r = imports_for_method(m, "hi", "junk", {"xAOD.Jet_v1"})
     assert len(r) == 1
     assert r[0] == "from junk.xAOD.jet_v1 import Jet_v1"
+
+
+def test_method_import_return_type_enclosing():
+    m = method_info("pt", "xAOD.Jet_v1", False, [])
+
+    r = imports_for_method(m, "xAOD.Jet_v1", "junk", {"xAOD.Jet_v1"})
+    assert len(r) == 0
 
 
 def test_method_import_arguments():
     m = method_info(
         "pt",
         "double",
+        False,
         [
             method_arg_info("arg1", None, "xAOD.Jet_v1"),
             method_arg_info("arg2", None, "xAOD.TauJet"),
         ],
     )
 
-    r = imports_for_method(m, "junk", {"xAOD.Jet_v1", "xAOD.TauJet"})
+    r = imports_for_method(m, "hi", "junk", {"xAOD.Jet_v1", "xAOD.TauJet"})
     assert len(r) == 2
 
     assert "from junk.xAOD.jet_v1 import Jet_v1" in r

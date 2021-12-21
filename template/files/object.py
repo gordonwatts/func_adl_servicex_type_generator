@@ -48,7 +48,11 @@ class {{ class_name }} {% if inheritance_list|length > 0 %}({% for super_class i
         {%- for arg in method.arguments -%}
         , {{ arg.name }}: {{ class_split_namespace(arg.arg_type)[1]}}
         {%- endfor -%}
-        ) -> {{ class_split_namespace(method.return_type)[1] }}:
+        ) -> {% if class_name == class_split_namespace(method.return_type)[1] -%}
+        '{{ class_split_namespace(method.return_type)[1] }}':
+        {%- else -%}
+        {{ class_split_namespace(method.return_type)[1] }}:
+        {%- endif %}
         "A method"
         ...
 {% endfor %}
