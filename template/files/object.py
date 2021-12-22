@@ -6,6 +6,7 @@ from func_adl import ObjectStream
 {{ import_line }}
 {% endfor %}
 
+
 _method_map = {
 {%- for method in methods_info %}
     '{{ method.name }}': {
@@ -33,6 +34,12 @@ def _add_collection_metadata(s: ObjectStream[T], a: ast.Call) -> Tuple[ObjectStr
     assert isinstance(a.func, ast.Attribute)
     if a.func.attr in _method_map:
         s_update = s.MetaData(_method_map[a.func.attr])
+{%- if include_file != "" %}
+        s_update = s_update.MetaData({
+            'metadata_type': 'include_files',
+            'files': ["{{ include_file }}"],
+        })
+{%- endif %}
         return s_update, a
     else:
         return s, a

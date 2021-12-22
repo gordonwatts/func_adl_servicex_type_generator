@@ -236,6 +236,7 @@ def write_out_classes(
         text = class_template_file.render(
             class_name=c_name,
             methods=c.methods,
+            include_file=c.include_file,
             import_statements=import_statements,
             class_split_namespace=class_split_namespace,
             inheritance_list=inheritance_list,

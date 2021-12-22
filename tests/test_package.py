@@ -203,7 +203,7 @@ def test_template_poetry_integration(tmp_path, template_path):
 
     # Next, add a single class to make sure that works here!
     classes = [
-        class_info("Jet", "Jet", [], None, None),
+        class_info("Jet", "Jet", [], None, None, "jet.hpp"),
     ]
     write_out_classes(
         classes, template_path, output_path / data["package_name"], data["package_name"]
@@ -233,7 +233,7 @@ def test_class_simple(tmp_path, template_path):
         tmp_path ([type]): [description]
     """
     classes = [
-        class_info("Jets", "Jets", [], None, None),
+        class_info("Jets", "Jets", [], None, None, "jet.hpp"),
     ]
 
     write_out_classes(classes, template_path, tmp_path, "package")
@@ -249,7 +249,7 @@ def test_class_namespace(tmp_path, template_path):
         tmp_path ([type]): [description]
     """
     classes = [
-        class_info("xAOD.Jets", "xAOD::Jets", [], None, None),
+        class_info("xAOD.Jets", "xAOD::Jets", [], None, None, "jet.hpp"),
     ]
 
     write_out_classes(classes, template_path, tmp_path, "package")
@@ -266,8 +266,8 @@ def test_class_as_container(tmp_path, template_path):
         tmp_path ([type]): [description]
     """
     classes = [
-        class_info("xAOD.Jets", "xAOD::Jets", [], "xAOD::Fork", "xAOD.Fork"),
-        class_info("xAOD.Fork", "xAOD::Fork", [], None, None),
+        class_info("xAOD.Jets", "xAOD::Jets", [], "xAOD::Fork", "xAOD.Fork", "jet.hpp"),
+        class_info("xAOD.Fork", "xAOD::Fork", [], None, None, "fork.hpp"),
     ]
 
     write_out_classes(classes, template_path, tmp_path, "package")
@@ -290,8 +290,8 @@ def test_class_as_container_no_ns(tmp_path, template_path):
         tmp_path ([type]): [description]
     """
     classes = [
-        class_info("xAOD.Jets", "xAOD::Jets", [], "Fork", "Fork"),
-        class_info("Fork", "Fork", [], None, None),
+        class_info("xAOD.Jets", "xAOD::Jets", [], "Fork", "Fork", "jet.hpp"),
+        class_info("Fork", "Fork", [], None, None, "fork.hpp"),
     ]
 
     write_out_classes(classes, template_path, tmp_path, "package")
@@ -305,6 +305,26 @@ def test_class_as_container_no_ns(tmp_path, template_path):
     import_class = [ln for ln in file_text.split("\n") if "import Fork" in ln]
     assert len(import_class) == 1
     assert "from package.fork import Fork" in import_class[0]
+
+
+def test_class_as_container_include(tmp_path, template_path):
+    """Write out a very simple top level class.
+
+    Args:
+        tmp_path ([type]): [description]
+    """
+    classes = [
+        class_info("xAOD.Jets", "xAOD::Jets", [], "Fork", "Fork", "jet.hpp"),
+        class_info("Fork", "Fork", [], None, None, "fork.hpp"),
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package")
+
+    assert (tmp_path / "xAOD" / "jets.py").exists()
+    file_text = (tmp_path / "fork.py").read_text()
+    jet_class = [ln for ln in file_text.split("\n") if "fork.hpp" in ln]
+    assert len(jet_class) == 1
+    assert "files" in jet_class[0]
 
 
 def test_simple_method(tmp_path, template_path):
@@ -327,6 +347,7 @@ def test_simple_method(tmp_path, template_path):
             ],
             None,
             None,
+            "jet.hpp",
         )
     ]
 
@@ -358,6 +379,7 @@ def test_simple_method_ptr(tmp_path, template_path):
             ],
             None,
             None,
+            "jet.hpp",
         )
     ]
 
@@ -389,8 +411,11 @@ def test_simple_method_rtn_collection(tmp_path, template_path):
             ],
             None,
             None,
+            "jet.hpp",
         ),
-        class_info("VectorOfFloats", "VectorOfFloatsCPP", [], "double", "float"),
+        class_info(
+            "VectorOfFloats", "VectorOfFloatsCPP", [], "double", "float", "vector.hpp"
+        ),
     ]
 
     write_out_classes(classes, template_path, tmp_path, "package")
@@ -421,6 +446,7 @@ def test_simple_method_with_args(tmp_path, template_path):
             ],
             None,
             None,
+            "jet.hpp",
         )
     ]
 
@@ -451,6 +477,7 @@ def test_method_reference_rtn_type(tmp_path, template_path):
             ],
             None,
             None,
+            "jet.hpp",
         ),
         class_info(
             "xAOD.Taus",
@@ -465,6 +492,7 @@ def test_method_reference_rtn_type(tmp_path, template_path):
             ],
             None,
             None,
+            "tau.hpp",
         ),
     ]
 
@@ -496,6 +524,7 @@ def test_method_reference_rtn_type_same_as_class(tmp_path, template_path):
             ],
             None,
             None,
+            "jet.hpp",
         ),
     ]
 

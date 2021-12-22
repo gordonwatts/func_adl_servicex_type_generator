@@ -84,3 +84,6 @@ class class_info:
 
     # Python container object type, None if this is not a container
     python_container_type: Optional[str]
+
+    # The include file that needs to be loaded for this class
+    include_file: str
