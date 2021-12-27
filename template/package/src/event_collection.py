@@ -1,9 +1,8 @@
+from __future__ import annotations
 from typing import Iterable, Tuple, TypeVar
 from func_adl import ObjectStream
 import ast
-{%- for import_line in import_statements %}
-{{ import_line }}
-{% endfor %}
+import {{ package_name }}
 
 # The map for collection definitions in ATLAS
 _collection_map = {
@@ -42,6 +41,6 @@ class Event:
 
 
 {%- for item in collections %}
-    def {{ item.name }}(self, name: str) -> {{ remove_namespaces(item.collection_type) }}:
+    def {{ item.name }}(self, name: str) -> {{ item.collection_type }}:
         ...
 {%- endfor -%}

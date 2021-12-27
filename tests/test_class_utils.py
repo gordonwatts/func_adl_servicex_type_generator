@@ -3,6 +3,8 @@ from func_adl_servicex_type_generator.class_utils import (
     class_ns_as_path,
     class_split_namespace,
     import_for_class,
+    package_qualified_class,
+    process_by_namespace,
     remove_namespaces,
 )
 
@@ -56,3 +58,65 @@ def test_remove_namespace_args():
 
 def test_remove_namespace_initial():
     assert remove_namespaces("xAOD.Iterable[xAOD.Junk]") == "Iterable[Junk]"
+
+
+def test_qualified_name_none():
+    assert package_qualified_class(None, "package", {"hi"}) is None
+
+
+def test_qualified_name_not_in_list():
+    assert package_qualified_class("float", "package", {"hi"}) == "float"
+
+
+def test_qualified_name_in_list():
+    assert package_qualified_class("hi", "package", {"hi"}) == "package.hi.hi"
+
+
+def test_qualified_name_template():
+    assert (
+        package_qualified_class("Iterable[hi]", "package", {"hi"})
+        == "Iterable[package.hi.hi]"
+    )
+
+
+def test_qualified_name_template_upper():
+    assert (
+        package_qualified_class("Iterable[Hi]", "package", {"Hi"})
+        == "Iterable[package.hi.Hi]"
+    )
+
+
+def test_qualified_unknown_name_template():
+    assert (
+        package_qualified_class("Iterable[float]", "package", {"hi"})
+        == "Iterable[float]"
+    )
+
+
+def test_qualified_template_is_known():
+    assert (
+        package_qualified_class("hi[there]", "package", {"hi", "there"})
+        == "package.hi.hi[package.there.there]"
+    )
+
+
+def test_qualified_name_double_template():
+    assert (
+        package_qualified_class("Iterable[Iterable[hi]]", "package", {"hi"})
+        == "Iterable[Iterable[package.hi.hi]]"
+    )
+
+
+def test_qualified_name_two_arg_template():
+    assert (
+        package_qualified_class("Iterable[hi,there]", "package", {"hi", "there"})
+        == "Iterable[package.hi.hi, package.there.there]"
+    )
+
+
+def test_pbn_simple():
+    assert process_by_namespace("a", lambda a: "hi") == "hi"
+
+
+def test_pbn_ns():
+    assert process_by_namespace("b[a]", lambda a: "hi") == "hi[hi]"

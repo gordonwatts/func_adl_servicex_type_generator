@@ -1,11 +1,8 @@
+from __future__ import annotations
 import ast
-from typing import Tuple, TypeVar
+from typing import Tuple, TypeVar, Iterable
 from func_adl import ObjectStream
-
-{%- for import_line in import_statements %}
-{{ import_line }}
-{% endfor %}
-
+import {{ package_name }}
 
 _method_map = {
 {%- for method in methods_info %}
@@ -50,16 +47,12 @@ class {{ class_name }} {% if inheritance_list|length > 0 %}({% for super_class i
 
     _func_adl_type_info = _add_collection_metadata
 
-{% for method in methods %}
+{% for method in methods_info %}
     def {{ method.name }}(self
         {%- for arg in method.arguments -%}
         , {{ arg.name }}: {{ class_split_namespace(arg.arg_type)[1]}}
         {%- endfor -%}
-        ) -> {% if class_name == class_split_namespace(method.return_type)[1] -%}
-        '{{ class_split_namespace(method.return_type)[1] }}':
-        {%- else -%}
-        {{ class_split_namespace(method.return_type)[1] }}:
-        {%- endif %}
+        ) -> {{ method.return_type }}:
         "A method"
         ...
 {% endfor %}

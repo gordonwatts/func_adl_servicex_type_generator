@@ -1,5 +1,6 @@
 from pathlib import Path
 import argparse
+from func_adl_servicex_type_generator.class_utils import package_qualified_class
 
 from func_adl_servicex_type_generator.loader import load_yaml
 from func_adl_servicex_type_generator.package import (
@@ -17,9 +18,18 @@ def run():
     )
     args = parser.parse_args()
 
+    package_name = "func_adl_servicex_xaodr21"
+
     collections, classes = load_yaml(args.yaml_type_file)
 
-    package_name = "func_adl_servicex_xaodr21"
+    # Fix up the collection types
+    all_class_names = {c.name for c in classes}
+    for c in collections:
+        new_c = package_qualified_class(
+            c.collection_type, package_name, all_class_names
+        )
+        assert new_c is not None
+        c.collection_type = new_c
 
     data = {
         "package_name": package_name,

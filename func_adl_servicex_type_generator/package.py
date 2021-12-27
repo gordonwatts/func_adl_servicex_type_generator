@@ -1,13 +1,15 @@
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Set
+from .class_utils import package_qualified_class
+
+import shutil
 
 import jinja2
 from func_adl_servicex_type_generator.class_utils import (
     class_ns_as_path,
     class_split_namespace,
     import_for_class,
-    remove_namespaces,
 )
 
 from func_adl_servicex_type_generator.data_model import class_info, method_info
@@ -31,17 +33,15 @@ def template_package_scaffolding(
     loader = jinja2.FileSystemLoader(str(template_path / "package"))
     env = jinja2.Environment(loader=loader)
 
+    # Remove the package if it was there before
+    if output_path.exists():
+        shutil.rmtree(output_path)
+
     # Create the output directory
     output_path.mkdir(parents=True, exist_ok=True)
 
     # Generate import statements for the collection classes
-    collection_imports = [
-        import_for_class(c.collection_item_type, data["package_name"])
-        for c in data["collections"]
-    ]
     template_data = dict(data)
-    template_data["import_statements"] = collection_imports
-    template_data["remove_namespaces"] = remove_namespaces
 
     # Generate the package
     for t in loader.list_templates():
@@ -191,24 +191,27 @@ def write_out_classes(
         class_file.parent.mkdir(parents=True, exist_ok=True)
 
         dir_path = class_file.parent
-        while (not (dir_path / "__init__.py").exists()) and (
-            dir_path != project_src_path.parent
-        ):
-            (dir_path / "__init__.py").touch()
+        ns_name = ""
+        while dir_path != project_src_path.parent:
+            init_path = dir_path / "__init__.py"
+            init_path.touch()
+            if ns_name != "":
+                import_line = f"from . import {ns_name}"
+                init_text = init_path.read_text()
+                if import_line not in init_text:
+                    with init_path.open("a") as out:
+                        out.write(import_line)
+                        out.write("\n")
+            ns_name = dir_path.name
             dir_path = dir_path.parent
 
+        with (class_file.parent / "__init__.py").open("at") as out_to:
+            out_to.writelines([f"from .{c_name.lower()} import {c_name}\n"])
+
         # Get the imports we need at the top of the file
-        import_statements = [
-            line
-            for m in c.methods
-            for line in imports_for_method(m, c.name, package_name, all_classes_names)
-        ]
+        import_statements = []
         if c.python_container_type is not None:
             import_statements.append("from typing import Iterable")
-            for i_statement in import_for_good_class(
-                c.python_container_type, package_name, all_classes_names
-            ):
-                import_statements.append(i_statement)
 
         # Add all the objects this needs to inherit from
         inheritance_list: List[str] = []
@@ -223,11 +226,14 @@ def write_out_classes(
                 "fully_qualified_name": f"{c.cpp_name}",
                 "name": m.name,
                 "cpp_return_type": cpp_return_type(m.return_type, py_all_classes_dict),
-                "return_type": m.return_type,
+                "return_type": package_qualified_class(
+                    m.return_type, package_name, all_classes_names
+                ),
                 "is_pointer": "True" if m.return_is_pointer else "False",
                 "return_type_element": cpp_collection_element(
                     m.return_type, py_all_classes_dict
                 ),
+                "arguments": m.arguments,
             }
             for m in c.methods
         ]
@@ -241,15 +247,10 @@ def write_out_classes(
             class_split_namespace=class_split_namespace,
             inheritance_list=inheritance_list,
             methods_info=methods,
+            package_name=package_name,
         )
 
         with class_file.open("wt") as out:
             for line in text.splitlines():
                 out.write(line)
                 out.write("\n")
-
-        # Make sure the object is exported in the init file
-        # TODO: Make this work again - right now taken out because it introduces
-        # circular dependencies.
-        # with (class_file.parent / "__init__.py").open("at") as out:
-        #     out.write(f"from .{c_name.lower()} import {c_name}\n")
