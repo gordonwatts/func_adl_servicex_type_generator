@@ -216,9 +216,10 @@ def write_out_classes(
         # Add all the objects this needs to inherit from
         inheritance_list: List[str] = []
         if c.python_container_type is not None:
-            inheritance_list.append(
-                f"Iterable[{class_split_namespace(c.python_container_type)[1]}]"
-            )
+            if c.python_container_type in all_classes_names:
+                inheritance_list.append(
+                    f"Iterable[{package_qualified_class(c.python_container_type, package_name, all_classes_names)}]"
+                )
 
         # Methdos
         methods = [

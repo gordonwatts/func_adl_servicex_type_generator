@@ -262,7 +262,7 @@ def test_class_namespace(tmp_path, template_path):
 
 
 def test_class_as_container(tmp_path, template_path):
-    """Write out a very simple top level class.
+    """Write out a return that is a container that we (should) know about.
 
     Args:
         tmp_path ([type]): [description]
@@ -278,7 +278,26 @@ def test_class_as_container(tmp_path, template_path):
     file_text = (tmp_path / "xAOD" / "jets.py").read_text()
     jet_class = [ln for ln in file_text.split("\n") if "class Jets" in ln]
     assert len(jet_class) == 1
-    assert "(Iterable[Fork])" in jet_class[0]
+    assert "(Iterable[package.xAOD.fork.Fork])" in jet_class[0]
+
+
+def test_class_as_unknown_container(tmp_path, template_path):
+    """Write out a return that is a container that we (should) know about.
+
+    Args:
+        tmp_path ([type]): [description]
+    """
+    classes = [
+        class_info("xAOD.Jets", "xAOD::Jets", [], "xAOD::Fork", "xAOD.Fork", "jet.hpp"),
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package")
+
+    assert (tmp_path / "xAOD" / "jets.py").exists()
+    file_text = (tmp_path / "xAOD" / "jets.py").read_text()
+    jet_class = [ln for ln in file_text.split("\n") if "class Jets" in ln]
+    assert len(jet_class) == 1
+    assert "(Iterable[xAOD.Fork])" not in jet_class[0]
 
 
 def test_class_as_container_no_ns(tmp_path, template_path):
@@ -298,7 +317,7 @@ def test_class_as_container_no_ns(tmp_path, template_path):
     file_text = (tmp_path / "xAOD" / "jets.py").read_text()
     jet_class = [ln for ln in file_text.split("\n") if "class Jets" in ln]
     assert len(jet_class) == 1
-    assert "(Iterable[Fork])" in jet_class[0]
+    assert "(Iterable[package.fork.Fork])" in jet_class[0]
 
 
 def test_class_as_container_include(tmp_path, template_path):
