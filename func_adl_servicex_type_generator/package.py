@@ -180,6 +180,7 @@ def write_out_classes(
     loader = jinja2.FileSystemLoader(str(template_path / "files"))
     env = jinja2.Environment(loader=loader)
     class_template_file = env.get_template("object.py")
+    init_template_file = env.get_template("__init__.py")
 
     all_classes_names = {c.name for c in all_classes}
     py_all_classes_dict = {c.name: c for c in all_classes}
@@ -194,7 +195,10 @@ def write_out_classes(
         ns_name = ""
         while dir_path != project_src_path.parent:
             init_path = dir_path / "__init__.py"
-            init_path.touch()
+            if not init_path.exists():
+                with init_path.open("wt") as out:
+                    out.write(init_template_file.render())
+                    out.write("\n")  # Get around whitespace trimming
             if ns_name != "":
                 import_line = f"from . import {ns_name}"
                 init_text = init_path.read_text()
@@ -206,7 +210,10 @@ def write_out_classes(
             dir_path = dir_path.parent
 
         with (class_file.parent / "__init__.py").open("at") as out_to:
-            out_to.writelines([f"from .{c_name.lower()} import {c_name}\n"])
+            out_to.write(
+                f"{c_name.lower()} = _load_me('{package_name}.{c_ns}.{c_name.lower()}')\n"
+            )
+        # jet_v1 = _load_me('func_adl_servicex_xaodr21.xAOD.jet_v1')
 
         # Get the imports we need at the top of the file
         import_statements = []
