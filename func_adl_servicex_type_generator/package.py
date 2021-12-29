@@ -111,6 +111,8 @@ _g_cpp_to_py_type_map = {
     "bool": "bool",
 }
 
+_g_py_single_types = {i for _, i in _g_cpp_to_py_type_map.items()}
+
 
 def py_type_from_cpp(
     cpp_class_name: Optional[str], cpp_class_dict: Dict[str, class_info]
@@ -212,7 +214,9 @@ def write_out_classes(
         # Add all the objects this needs to inherit from
         inheritance_list: List[str] = []
         if c.python_container_type is not None:
-            if c.python_container_type in all_classes_names:
+            if (c.python_container_type in all_classes_names) or (
+                c.python_container_type in _g_py_single_types
+            ):
                 inheritance_list.append(
                     f"Iterable[{package_qualified_class(c.python_container_type, package_name, all_classes_names)}]"
                 )
