@@ -198,8 +198,9 @@ def write_out_classes(
             dir_path = dir_path.parent
 
         with (class_file.parent / "__init__.py").open("at") as out_to:
+            ns = "" if c_ns == "" else f".{c_ns}"
             out_to.write(
-                f"{c_name.lower()} = _load_me('{package_name}.{c_ns}.{c_name.lower()}')\n"
+                f"{c_name.lower()} = _load_me('{package_name}{ns}.{c_name.lower()}')\n"
             )
         # jet_v1 = _load_me('func_adl_servicex_xaodr21.xAOD.jet_v1')
 
