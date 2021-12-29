@@ -2,7 +2,6 @@ from pathlib import Path
 from func_adl_servicex_type_generator.class_utils import (
     class_ns_as_path,
     class_split_namespace,
-    import_for_class,
     package_qualified_class,
     process_by_namespace,
     remove_namespaces,
@@ -30,14 +29,6 @@ def test_as_path_simple_ns():
 def test_as_path_no_ns():
     r = class_ns_as_path("")
     assert str(r) == "."
-
-
-def test_import_no_ns():
-    assert import_for_class("Jets", "base") == "from base.jets import Jets"
-
-
-def test_import_ns():
-    assert import_for_class("xAOD.Jets", "basic") == "from basic.xAOD.jets import Jets"
 
 
 def test_remove_namespace_none():

@@ -28,7 +28,7 @@ def test_load_full_file():
     assert len(jets_class.methods) > 0
     pt_methods = [m for m in jets_class.methods if m.name == "pt"]
     assert len(pt_methods) == 1
-    assert pt_methods[0].return_type == "float"
+    assert pt_methods[0].return_type == "double"
     assert len(pt_methods[0].arguments) == 0
 
     calc_llr = [m for m in btagging.methods if m.name == "calcLLR"]
@@ -42,7 +42,7 @@ def test_load_full_file():
 
     decayVtx = [m for m in truth.methods if m.name == "decayVtx"]
     assert len(decayVtx) == 1
-    assert decayVtx[0].return_type == "xAOD.TruthVertex_v1"
+    assert decayVtx[0].return_type == "const xAOD::TruthVertex_v1*"
     assert decayVtx[0].return_is_pointer is True
 
 

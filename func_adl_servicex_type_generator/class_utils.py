@@ -105,26 +105,6 @@ def class_ns_as_path(name: str) -> Path:
     return Path(name.replace(".", "/"))
 
 
-def import_for_class(class_name: str, package_name: str) -> str:
-    """Generate the import statement for a class
-
-    Import statement is generated w.r.t. the root of the package,
-    and is relative.
-
-    Args:
-        class_name (str): The fully qualified class name
-
-    Returns:
-        str: The import statement
-    """
-    ns, name = class_split_namespace(class_name)
-    lst = [package_name]
-    if len(ns) > 0:
-        lst.append(ns)
-    lst.append(name.lower())
-    return f"from {'.'.join(lst)} import {name}"
-
-
 def package_qualified_class(
     class_name: Optional[str], package_name: str, all_classes: Set[str]
 ) -> Optional[str]:

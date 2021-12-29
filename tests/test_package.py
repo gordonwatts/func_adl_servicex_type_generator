@@ -9,7 +9,6 @@ from func_adl_servicex_type_generator.data_model import (
     method_info,
 )
 from func_adl_servicex_type_generator.package import (
-    imports_for_method,
     template_package_scaffolding,
     write_out_classes,
 )
@@ -235,7 +234,7 @@ def test_class_simple(tmp_path, template_path):
     assert (tmp_path / "__init__.py").exists()
 
     init_text = (tmp_path / "__init__.py").read_text()
-    assert "from .jets import Jets" in init_text
+    assert "jets = _load_me('package.jets')" in init_text
 
 
 def test_class_namespace(tmp_path, template_path):
@@ -254,7 +253,7 @@ def test_class_namespace(tmp_path, template_path):
 
     assert (tmp_path / "xAOD" / "__init__.py").exists()
     init_text = (tmp_path / "xAOD" / "__init__.py").read_text()
-    assert "from .jets import Jets" in init_text
+    assert "jets = _load_me('package.xAOD.jets')" in init_text
 
     assert (tmp_path / "__init__.py").exists()
     init_text = (tmp_path / "__init__.py").read_text()
@@ -516,41 +515,3 @@ def test_simple_method_with_args(tmp_path, template_path):
 #     assert "import package" in tau_text
 #     assert "pt(self) -> package.xAOD.Jets:" in tau_text
 # TODO: Fix or remove
-
-
-def test_method_import_nothing():
-    m = method_info("pt", "double", False, [])
-    assert len(imports_for_method(m, "hi", "junk", {"one", "two"})) == 0
-
-
-def test_method_import_return_type():
-    m = method_info("pt", "xAOD.Jet_v1", False, [])
-
-    r = imports_for_method(m, "hi", "junk", {"xAOD.Jet_v1"})
-    assert len(r) == 1
-    assert r[0] == "from junk.xAOD.jet_v1 import Jet_v1"
-
-
-def test_method_import_return_type_enclosing():
-    m = method_info("pt", "xAOD.Jet_v1", False, [])
-
-    r = imports_for_method(m, "xAOD.Jet_v1", "junk", {"xAOD.Jet_v1"})
-    assert len(r) == 0
-
-
-def test_method_import_arguments():
-    m = method_info(
-        "pt",
-        "double",
-        False,
-        [
-            method_arg_info("arg1", None, "xAOD.Jet_v1"),
-            method_arg_info("arg2", None, "xAOD.TauJet"),
-        ],
-    )
-
-    r = imports_for_method(m, "hi", "junk", {"xAOD.Jet_v1", "xAOD.TauJet"})
-    assert len(r) == 2
-
-    assert "from junk.xAOD.jet_v1 import Jet_v1" in r
-    assert "from junk.xAOD.taujet import TauJet" in r
