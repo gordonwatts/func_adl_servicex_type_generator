@@ -234,7 +234,8 @@ def write_out_classes(
                 ),
                 "is_pointer": "True" if m.return_is_pointer else "False",
                 "return_type_element": cpp_collection_element(
-                    m.return_type, py_all_classes_dict
+                    py_type_from_cpp(m.return_type, cpp_all_classes_dict),
+                    py_all_classes_dict,
                 ),
                 "arguments": m.arguments,
             }
