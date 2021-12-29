@@ -25,7 +25,7 @@ _method_map = {
 T = TypeVar('T')
 
 
-def _add_collection_metadata(s: ObjectStream[T], a: ast.Call) -> Tuple[ObjectStream[T], ast.AST]:
+def _add_method_metadata(s: ObjectStream[T], a: ast.Call) -> Tuple[ObjectStream[T], ast.AST]:
     '''Add metadata for a collection to the func_adl stream if we know about it
     '''
     assert isinstance(a.func, ast.Attribute)
@@ -45,7 +45,7 @@ def _add_collection_metadata(s: ObjectStream[T], a: ast.Call) -> Tuple[ObjectStr
 class {{ class_name }} {% if inheritance_list|length > 0 %}({% for super_class in inheritance_list %}{{ super_class }}{% endfor %}){% endif %}:
     "A class"
 
-    _func_adl_type_info = _add_collection_metadata
+    _func_adl_type_info = _add_method_metadata
 
 {% for method in methods_info %}
     def {{ method.name }}(self
