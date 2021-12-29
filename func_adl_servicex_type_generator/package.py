@@ -159,6 +159,53 @@ def cpp_return_type(
     return c.cpp_name
 
 
+_g_cpp_to_py_type_map = {
+    "float": "float",
+    "int": "int",
+    "unsigned int": "int",
+    "unsigned long long": "int",
+    "long long": "int",
+    "long": "int",
+    "size_t": "int",
+    "double": "float",
+    "bool": "bool",
+}
+
+
+def py_type_from_cpp(
+    cpp_class_name: Optional[str], cpp_class_dict: Dict[str, class_info]
+) -> str:
+    """Return the Python equivalent type for a C++ class type.
+
+    Will raise an exception if it can't find the mapping.
+
+    Args:
+        cpp_class_name (str): The C++ class name
+        cpp_class_dict (Dict[str, class_info]): Dict of all classes, indexed by C++ name
+
+    Returns:
+        str: The python class name
+    """
+    if cpp_class_name is None:
+        raise RuntimeError("C++ class name is None")
+
+    # Remove the prefixes and post-fixes
+    if cpp_class_name.startswith("const "):
+        cpp_class_name = cpp_class_name[6:]
+    if cpp_class_name.endswith("*"):
+        cpp_class_name = cpp_class_name[:-1]
+
+    py_type = cpp_class_dict.get(cpp_class_name, None)
+    if py_type is not None:
+        return py_type.name
+
+    py_type = _g_cpp_to_py_type_map.get(cpp_class_name, None)
+    if py_type is not None:
+        return py_type
+
+    raise RuntimeError(f"Unknown C++ type {cpp_class_name}")
+
+
 def write_out_classes(
     all_classes: Iterable[class_info],
     template_path: Path,
@@ -184,6 +231,7 @@ def write_out_classes(
 
     all_classes_names = {c.name for c in all_classes}
     py_all_classes_dict = {c.name: c for c in all_classes}
+    cpp_all_classes_dict = {c.cpp_name: c for c in all_classes}
 
     for c in all_classes:
         # Make sure the directory is present and ready for us to write to
@@ -228,14 +276,16 @@ def write_out_classes(
                     f"Iterable[{package_qualified_class(c.python_container_type, package_name, all_classes_names)}]"
                 )
 
-        # Methdos
+        # Methods
         methods = [
             {
                 "fully_qualified_name": f"{c.cpp_name}",
                 "name": m.name,
-                "cpp_return_type": cpp_return_type(m.return_type, py_all_classes_dict),
+                "cpp_return_type": m.return_type,
                 "return_type": package_qualified_class(
-                    m.return_type, package_name, all_classes_names
+                    py_type_from_cpp(m.return_type, cpp_all_classes_dict),
+                    package_name,
+                    all_classes_names,
                 ),
                 "is_pointer": "True" if m.return_is_pointer else "False",
                 "return_type_element": cpp_collection_element(
