@@ -106,12 +106,32 @@ _g_cpp_to_py_type_map = {
     "unsigned long long": "int",
     "long long": "int",
     "long": "int",
-    "size_t": "int",
     "double": "float",
     "bool": "bool",
 }
 
 _g_py_single_types = {i for _, i in _g_cpp_to_py_type_map.items()}
+
+
+def clean_cpp_type(cpp_class_name: Optional[str]) -> Optional[str]:
+    """Remove the prefixes and post-fixes from a C++ class name.
+
+    Args:
+        cpp_class_name (str): The C++ class name
+
+    Returns:
+        str: The cleaned C++ class name
+    """
+    if cpp_class_name is None:
+        return None
+
+    # Remove the prefixes and post-fixes
+    if cpp_class_name.startswith("const "):
+        cpp_class_name = cpp_class_name[6:]
+    if cpp_class_name.endswith("*"):
+        cpp_class_name = cpp_class_name[:-1]
+
+    return cpp_class_name
 
 
 def py_type_from_cpp(
@@ -128,14 +148,9 @@ def py_type_from_cpp(
     Returns:
         str: The python class name
     """
+    cpp_class_name = clean_cpp_type(cpp_class_name)
     if cpp_class_name is None:
         raise RuntimeError("C++ class name is None")
-
-    # Remove the prefixes and post-fixes
-    if cpp_class_name.startswith("const "):
-        cpp_class_name = cpp_class_name[6:]
-    if cpp_class_name.endswith("*"):
-        cpp_class_name = cpp_class_name[:-1]
 
     py_type = cpp_class_dict.get(cpp_class_name, None)
     if py_type is not None:
@@ -226,7 +241,7 @@ def write_out_classes(
             {
                 "fully_qualified_name": f"{c.cpp_name}",
                 "name": m.name,
-                "cpp_return_type": m.return_type,
+                "cpp_return_type": clean_cpp_type(m.return_type),
                 "return_type": package_qualified_class(
                     py_type_from_cpp(m.return_type, cpp_all_classes_dict),
                     package_name,
