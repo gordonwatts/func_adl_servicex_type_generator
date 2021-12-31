@@ -81,6 +81,7 @@ def load_yaml(config_path: Path) -> Tuple[List[collection_info], List[class_info
             if "is_container_of_cpp" not in c
             else c["is_container_of_cpp"],
             include_file=c["include_file"] if "include_file" in c else "",
+            is_alias=("is_alias" in c) and (c["is_alias"] == "True"),
         )
         for c in data_classes
     ]

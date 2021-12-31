@@ -237,6 +237,22 @@ def test_class_simple(tmp_path, template_path):
     assert "jets = _load_me('package.jets')" in init_text
 
 
+def test_class_alias(tmp_path, template_path):
+    """Write out a very simple top level class.
+
+    Args:
+        tmp_path ([type]): [description]
+    """
+    classes = [
+        class_info("Jets", "Jets", [], None, None, "jet.hpp"),
+        class_info("Jets1", "Jets1", [], None, None, "jet1.hpp", True),
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package")
+
+    assert not (tmp_path / "jets1.py").exists()
+
+
 def test_class_namespace(tmp_path, template_path):
     """Write out a very simple top level class.
 

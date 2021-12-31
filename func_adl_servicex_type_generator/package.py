@@ -191,6 +191,10 @@ def write_out_classes(
     cpp_all_classes_dict = {c.cpp_name: c for c in all_classes}
 
     for c in all_classes:
+        # We do not write out aliases...
+        if c.is_alias:
+            continue
+
         # Make sure the directory is present and ready for us to write to
         c_ns, c_name = class_split_namespace(c.name)
         class_file = project_src_path / class_ns_as_path(c_ns) / f"{c_name.lower()}.py"
