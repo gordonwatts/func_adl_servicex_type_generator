@@ -134,6 +134,36 @@ def clean_cpp_type(cpp_class_name: Optional[str]) -> Optional[str]:
     return cpp_class_name
 
 
+def normalize_cpp_type(cpp_class_name: Optional[str]) -> Optional[str]:
+    """Normalize a C++ type for lookup (remove
+    extra spaces, etc.))
+
+    Args:
+        cpp_class_name (str): The C++ class name
+
+    Returns:
+        str: The normalized C++ class name
+    """
+    if cpp_class_name is None:
+        return None
+
+    result = cpp_class_name
+
+    def replace_till_done(s: str, old: str, new: str) -> str:
+        while True:
+            n_result = s.replace(old, new)
+            if n_result == s:
+                break
+            s = n_result
+        return s
+
+    result = replace_till_done(result, "  ", " ")
+    result = replace_till_done(result, "> >", ">>")
+    result = replace_till_done(result, "< <", "<<")
+
+    return result
+
+
 def py_type_from_cpp(
     cpp_class_name: Optional[str], cpp_class_dict: Dict[str, class_info]
 ) -> str:
@@ -245,15 +275,17 @@ def write_out_classes(
             {
                 "fully_qualified_name": f"{c.cpp_name}",
                 "name": m.name,
-                "cpp_return_type": m.return_type,
+                "cpp_return_type": normalize_cpp_type(m.return_type),
                 "return_type": package_qualified_class(
                     py_type_from_cpp(m.return_type, cpp_all_classes_dict),
                     package_name,
                     all_classes_names,
                 ),
-                "return_type_element": cpp_collection_element(
-                    py_type_from_cpp(m.return_type, cpp_all_classes_dict),
-                    py_all_classes_dict,
+                "return_type_element": normalize_cpp_type(
+                    cpp_collection_element(
+                        py_type_from_cpp(m.return_type, cpp_all_classes_dict),
+                        py_all_classes_dict,
+                    )
                 ),
                 "arguments": m.arguments,
             }

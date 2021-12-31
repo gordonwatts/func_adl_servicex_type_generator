@@ -415,6 +415,43 @@ def test_simple_method_ptr(tmp_path, template_path):
     assert "'return_type': 'float*'" in all_text
 
 
+def test_simple_method_return_type_cleaning(tmp_path, template_path):
+    """Write out a vector and make sure the class hows up "clean".
+
+    Args:
+        tmp_path ([type]): [description]
+    """
+    classes = [
+        class_info(
+            "xAOD.Jets",
+            "xAOD::Jets",
+            [
+                method_info(
+                    name="pt",
+                    return_type="vector<DataVector<xAOD::Jet_v1>  >",
+                    arguments=[],
+                )
+            ],
+            None,
+            None,
+            "jet.hpp",
+        ),
+        class_info(
+            "vector_DataVector_xAOD_Jet_v1",
+            "vector<DataVector<xAOD::Jet_v1>  >",
+            [],
+            None,
+            None,
+            "vector",
+        ),
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package")
+
+    all_text = (tmp_path / "xAOD" / "jets.py").read_text()
+    assert "'return_type': 'vector<DataVector<xAOD::Jet_v1>>'" in all_text
+
+
 # def test_simple_method_rtn_collection(tmp_path, template_path):
 #     """Write out a very simple top level class with a method.
 
