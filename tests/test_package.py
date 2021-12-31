@@ -369,7 +369,6 @@ def test_simple_method(tmp_path, template_path):
                 method_info(
                     name="pt",
                     return_type="float",
-                    return_is_pointer=False,
                     arguments=[],
                 )
             ],
@@ -384,7 +383,6 @@ def test_simple_method(tmp_path, template_path):
     all_text = (tmp_path / "xAOD" / "jets.py").read_text()
     assert "pt(self) -> float:" in all_text
     assert "'return_type': 'float'" in all_text
-    assert "'is_pointer': 'False'" in all_text
 
 
 def test_simple_method_ptr(tmp_path, template_path):
@@ -400,8 +398,7 @@ def test_simple_method_ptr(tmp_path, template_path):
             [
                 method_info(
                     name="pt",
-                    return_type="float",
-                    return_is_pointer=True,
+                    return_type="float*",
                     arguments=[],
                 )
             ],
@@ -415,8 +412,7 @@ def test_simple_method_ptr(tmp_path, template_path):
 
     all_text = (tmp_path / "xAOD" / "jets.py").read_text()
     assert "pt(self) -> float:" in all_text
-    assert "'return_type': 'float'" in all_text
-    assert "'is_pointer': 'True'" in all_text
+    assert "'return_type': 'float*'" in all_text
 
 
 # def test_simple_method_rtn_collection(tmp_path, template_path):
@@ -469,7 +465,6 @@ def test_simple_method_with_args(tmp_path, template_path):
                 method_info(
                     name="pt",
                     return_type="float",
-                    return_is_pointer=False,
                     arguments=[method_arg_info("err", None, "float")],
                 )
             ],

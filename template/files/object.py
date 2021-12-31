@@ -16,7 +16,6 @@ _method_map = {
         {%- else %}
         'return_type': '{{ method.cpp_return_type }}',
         {%- endif %}
-        'is_pointer': '{{ method.is_pointer }}',
     },
 {%- endfor %}
 }

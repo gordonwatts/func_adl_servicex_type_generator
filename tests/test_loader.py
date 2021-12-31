@@ -35,7 +35,6 @@ def test_load_full_file():
     assert len(calc_llr) == 1
     assert len(calc_llr[0].arguments) == 2
     assert calc_llr[0].arguments[0].arg_type == "float"
-    assert calc_llr[0].return_is_pointer is False
 
     assert len(event_info.cpp_include_file) == 1
     assert event_info.link_libraries == ["xAODEventInfo"]
@@ -43,7 +42,6 @@ def test_load_full_file():
     decayVtx = [m for m in truth.methods if m.name == "decayVtx"]
     assert len(decayVtx) == 1
     assert decayVtx[0].return_type == "const xAOD::TruthVertex_v1*"
-    assert decayVtx[0].return_is_pointer is True
 
 
 def test_load_container_types():

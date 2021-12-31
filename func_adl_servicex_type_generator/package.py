@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Set
+from typing import Any, Dict, Iterable, List, Optional
 from .class_utils import package_qualified_class
 
 import shutil
@@ -11,7 +11,7 @@ from func_adl_servicex_type_generator.class_utils import (
     class_split_namespace,
 )
 
-from func_adl_servicex_type_generator.data_model import class_info, method_info
+from func_adl_servicex_type_generator.data_model import class_info
 
 
 def template_package_scaffolding(
@@ -237,7 +237,7 @@ def write_out_classes(
                 c.python_container_type in _g_py_single_types
             ):
                 inheritance_list.append(
-                    f"Iterable[{package_qualified_class(c.python_container_type, package_name, all_classes_names)}]"
+                    f"Iterable[{package_qualified_class(c.python_container_type, package_name, all_classes_names)}]"  # NOQA
                 )
 
         # Methods
@@ -245,13 +245,12 @@ def write_out_classes(
             {
                 "fully_qualified_name": f"{c.cpp_name}",
                 "name": m.name,
-                "cpp_return_type": clean_cpp_type(m.return_type),
+                "cpp_return_type": m.return_type,
                 "return_type": package_qualified_class(
                     py_type_from_cpp(m.return_type, cpp_all_classes_dict),
                     package_name,
                     all_classes_names,
                 ),
-                "is_pointer": "True" if m.return_is_pointer else "False",
                 "return_type_element": cpp_collection_element(
                     py_type_from_cpp(m.return_type, cpp_all_classes_dict),
                     py_all_classes_dict,
