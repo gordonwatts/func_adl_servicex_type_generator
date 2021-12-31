@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List, Optional
 
 
@@ -87,3 +87,6 @@ class class_info:
 
     # If this is an alias marker or not
     is_alias: bool = False
+
+    # Other classes we emulate
+    behaviors: List[str] = field(default_factory=list)

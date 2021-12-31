@@ -16,6 +16,7 @@ def test_load_full_file():
     btagging = classes_dict["xAOD.BTagging_v1"]
     truth = classes_dict["xAOD.TruthParticle_v1"]
     event_info = collection_dict["EventInfo"]
+    element_link = classes_dict["ElementLink_DataVector_xAOD_BTagging_v1__"]
 
     assert di_jets.name == "DiTauJets"
     assert di_jets.collection_item_type == "xAOD.DiTauJet_v1"
@@ -42,6 +43,9 @@ def test_load_full_file():
     decayVtx = [m for m in truth.methods if m.name == "decayVtx"]
     assert len(decayVtx) == 1
     assert decayVtx[0].return_type == "const xAOD::TruthVertex_v1*"
+
+    assert len(element_link.behaviors) == 1
+    assert element_link.behaviors[0] == "xAOD::BTagging_v1**"
 
 
 def test_load_container_types():

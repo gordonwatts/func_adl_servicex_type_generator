@@ -385,6 +385,96 @@ def test_simple_method(tmp_path, template_path):
     assert "'return_type': 'float'" in all_text
 
 
+def test_method_with_behavior(tmp_path, template_path):
+    """Write out a very simple top level class with a method.
+
+    Args:
+        tmp_path ([type]): [description]
+    """
+    classes = [
+        class_info(
+            "xAOD.Jets",
+            "xAOD::Jets",
+            [
+                method_info(
+                    name="pt1",
+                    return_type="float",
+                    arguments=[],
+                )
+            ],
+            None,
+            None,
+            "jet.hpp",
+            behaviors=["xAOD::Tracks"],
+        ),
+        class_info(
+            "xAOD.Tracks",
+            "xAOD::Tracks",
+            [
+                method_info(
+                    name="pt2",
+                    return_type="float",
+                    arguments=[],
+                )
+            ],
+            None,
+            None,
+            "jet.hpp",
+        ),
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package")
+
+    all_text = (tmp_path / "xAOD" / "jets.py").read_text()
+    assert "pt1(self) -> float:" in all_text
+    assert "pt2(self) -> float:" in all_text
+    assert "deref_count" not in all_text
+
+
+def test_method_with_behavior_deref(tmp_path, template_path):
+    """Write out a very simple top level class with a method.
+
+    Args:
+        tmp_path ([type]): [description]
+    """
+    classes = [
+        class_info(
+            "xAOD.Jets",
+            "xAOD::Jets",
+            [
+                method_info(
+                    name="pt1",
+                    return_type="float",
+                    arguments=[],
+                )
+            ],
+            None,
+            None,
+            "jet.hpp",
+            behaviors=["xAOD::Tracks**"],
+        ),
+        class_info(
+            "xAOD.Tracks",
+            "xAOD::Tracks",
+            [
+                method_info(
+                    name="pt2",
+                    return_type="float",
+                    arguments=[],
+                )
+            ],
+            None,
+            None,
+            "jet.hpp",
+        ),
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package")
+
+    all_text = (tmp_path / "xAOD" / "jets.py").read_text()
+    assert "'deref_count': 2" in all_text
+
+
 def test_simple_method_ptr(tmp_path, template_path):
     """Write out a very simple top level class with a method.
 

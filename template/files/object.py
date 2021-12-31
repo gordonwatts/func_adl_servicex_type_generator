@@ -16,6 +16,9 @@ _method_map = {
         {%- else %}
         'return_type': '{{ method.cpp_return_type }}',
         {%- endif %}
+        {%- if method.deref_count %}
+        'deref_count': {{ method.deref_count }}
+        {%- endif %}
     },
 {%- endfor %}
 }

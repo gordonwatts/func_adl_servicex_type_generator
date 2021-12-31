@@ -126,12 +126,34 @@ def clean_cpp_type(cpp_class_name: Optional[str]) -> Optional[str]:
         return None
 
     # Remove the prefixes and post-fixes
+    cpp_class_name = cpp_class_name.strip()
     if cpp_class_name.startswith("const "):
-        cpp_class_name = cpp_class_name[6:]
-    if cpp_class_name.endswith("*"):
-        cpp_class_name = cpp_class_name[:-1]
+        cpp_class_name = cpp_class_name[6:].strip()
+    while cpp_class_name.endswith("*"):
+        cpp_class_name = cpp_class_name[:-1].strip()
 
     return cpp_class_name
+
+
+def count_pointer_depth(cpp_class_name: Optional[str]) -> int:
+    """Count number of pointer levels in this declaration
+
+    Args:
+        cpp_class_name (Optional[str]): Class name to do counting on.
+        If None, then return zero
+
+    Returns:
+        int: How many pointers
+    """
+    if cpp_class_name is None:
+        return 0
+
+    cpp_class_name = cpp_class_name.strip()
+    count = 0
+    while cpp_class_name.endswith("*"):
+        cpp_class_name = cpp_class_name[:-1].strip()
+        count += 1
+    return count
 
 
 def normalize_cpp_type(cpp_class_name: Optional[str]) -> Optional[str]:
@@ -270,27 +292,46 @@ def write_out_classes(
                     f"Iterable[{package_qualified_class(c.python_container_type, package_name, all_classes_names)}]"  # NOQA
                 )
 
-        # Methods
-        methods = [
-            {
-                "fully_qualified_name": f"{c.cpp_name}",
-                "name": m.name,
-                "cpp_return_type": normalize_cpp_type(m.return_type),
-                "return_type": package_qualified_class(
-                    py_type_from_cpp(m.return_type, cpp_all_classes_dict),
-                    package_name,
-                    all_classes_names,
-                ),
-                "return_type_element": normalize_cpp_type(
-                    cpp_collection_element(
+        # Methods from this class
+        def generate_methods(methods, deref_count: int = 0):
+            r = [
+                {
+                    "fully_qualified_name": normalize_cpp_type(c.cpp_name),
+                    "name": m.name,
+                    "cpp_return_type": normalize_cpp_type(m.return_type),
+                    "return_type": package_qualified_class(
                         py_type_from_cpp(m.return_type, cpp_all_classes_dict),
-                        py_all_classes_dict,
-                    )
-                ),
-                "arguments": m.arguments,
-            }
-            for m in c.methods
-        ]
+                        package_name,
+                        all_classes_names,
+                    ),
+                    "return_type_element": normalize_cpp_type(
+                        cpp_collection_element(
+                            py_type_from_cpp(m.return_type, cpp_all_classes_dict),
+                            py_all_classes_dict,
+                        )
+                    ),
+                    "arguments": m.arguments,
+                }
+                for m in methods
+            ]
+
+            if deref_count > 0:
+                for m in r:
+                    m["deref_count"] = deref_count
+
+            return r
+
+        methods = generate_methods(c.methods)
+
+        # Methods from behavior as classes
+        for b in c.behaviors:
+            name = clean_cpp_type(b)
+            assert name is not None
+            if name not in cpp_all_classes_dict:
+                raise RuntimeError(f"Unknown behavior class {name} for class {c.name}")
+            methods += generate_methods(
+                cpp_all_classes_dict[name].methods, count_pointer_depth(b)
+            )
 
         # Write out the object file
         text = class_template_file.render(
