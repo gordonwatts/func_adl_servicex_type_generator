@@ -216,17 +216,107 @@ collections:
     link_libraries:
       - xAODEventInfo
 classes:
-  - python_name: DataLinkBase
-    cpp_name: DataLinkBase
-    include_file: AthLinks/DataLinkBase.h
+  - python_name: ElementLink_DataVector_xAOD_BTagging_v1__
+    cpp_name: ElementLink<DataVector<xAOD::BTagging_v1> >
+    also_behaves_like:
+      - xAOD::BTagging_v1**
     methods:
-      - name: persKey
-        return_type: int
+      - name: isValid
+        return_type: bool
+  - python_name: ElementLink_DataVector_xAOD_CaloCluster_v1__
+    cpp_name: ElementLink<DataVector<xAOD::CaloCluster_v1> >
+    also_behaves_like:
+      - xAOD::CaloCluster_v1**
+    methods:
+      - name: isValid
+        return_type: bool
+  - python_name: ElementLink_DataVector_xAOD_EventInfo_v1__
+    cpp_name: ElementLink<DataVector<xAOD::EventInfo_v1> >
+    also_behaves_like:
+      - xAOD::EventInfo_v1**
+    methods:
+      - name: isValid
+        return_type: bool
+  - python_name: ElementLink_DataVector_xAOD_IParticle__
+    cpp_name: ElementLink<DataVector<xAOD::IParticle> >
+    also_behaves_like:
+      - xAOD::IParticle**
+    methods:
+      - name: isValid
+        return_type: bool
+  - python_name: ElementLink_DataVector_xAOD_Jet_v1__
+    cpp_name: ElementLink<DataVector<xAOD::Jet_v1> >
+    also_behaves_like:
+      - xAOD::Jet_v1**
+    methods:
+      - name: isValid
+        return_type: bool
+  - python_name: ElementLink_DataVector_xAOD_MuonSegment_v1__
+    cpp_name: ElementLink<DataVector<xAOD::MuonSegment_v1> >
+    also_behaves_like:
+      - xAOD::MuonSegment_v1**
+    methods:
+      - name: isValid
+        return_type: bool
+  - python_name: ElementLink_DataVector_xAOD_Muon_v1__
+    cpp_name: ElementLink<DataVector<xAOD::Muon_v1> >
+    also_behaves_like:
+      - xAOD::Muon_v1**
+    methods:
+      - name: isValid
+        return_type: bool
+  - python_name: ElementLink_DataVector_xAOD_NeutralParticle_v1__
+    cpp_name: ElementLink<DataVector<xAOD::NeutralParticle_v1> >
+    also_behaves_like:
+      - xAOD::NeutralParticle_v1**
+    methods:
+      - name: isValid
+        return_type: bool
+  - python_name: ElementLink_DataVector_xAOD_PFO_v1__
+    cpp_name: ElementLink<DataVector<xAOD::PFO_v1> >
+    also_behaves_like:
+      - xAOD::PFO_v1**
+    methods:
+      - name: isValid
+        return_type: bool
+  - python_name: ElementLink_DataVector_xAOD_TauTrack_v1__
+    cpp_name: ElementLink<DataVector<xAOD::TauTrack_v1> >
+    also_behaves_like:
+      - xAOD::TauTrack_v1**
+    methods:
+      - name: isValid
+        return_type: bool
+  - python_name: ElementLink_DataVector_xAOD_TrackParticle_v1__
+    cpp_name: ElementLink<DataVector<xAOD::TrackParticle_v1> >
+    also_behaves_like:
+      - xAOD::TrackParticle_v1**
+    methods:
+      - name: isValid
+        return_type: bool
+  - python_name: ElementLink_DataVector_xAOD_TruthParticle_v1__
+    cpp_name: ElementLink<DataVector<xAOD::TruthParticle_v1> >
+    also_behaves_like:
+      - xAOD::TruthParticle_v1**
+    methods:
+      - name: isValid
+        return_type: bool
+  - python_name: ElementLink_DataVector_xAOD_TruthVertex_v1__
+    cpp_name: ElementLink<DataVector<xAOD::TruthVertex_v1> >
+    also_behaves_like:
+      - xAOD::TruthVertex_v1**
+    methods:
+      - name: isValid
+        return_type: bool
+  - python_name: ElementLink_DataVector_xAOD_Vertex_v1__
+    cpp_name: ElementLink<DataVector<xAOD::Vertex_v1> >
+    also_behaves_like:
+      - xAOD::Vertex_v1**
+    methods:
+      - name: isValid
+        return_type: bool
   - python_name: ROOT.Detail.TSchemaRuleSet
     cpp_name: ROOT::Detail::TSchemaRuleSet
     methods:
-      - name: GetClassName
-        return_type: TString
       - name: GetClassVersion
         return_type: int
       - name: ImplFileLine
@@ -240,222 +330,565 @@ classes:
             type: int
           - name: py
             type: int
+  - python_name: ROOT.Detail.TSchemaRuleSet.TMatches
+    cpp_name: ROOT::Detail::TSchemaRuleSet::TMatches
+    is_container_of_cpp: __gnu_cxx::__normal_iterator<const ROOT::TSchemaRule**,vector<const ROOT::TSchemaRule*> >
+    is_container_of_python: __gnu_cxx.__normal_iterator_ROOT_TSchemaRule_vector_ROOT_TSchemaRule__
+    methods:
+      - name: empty
+        return_type: bool
+      - name: data
+        return_type: const ROOT::TSchemaRule*
   - python_name: ROOT.Fit.BinData
     cpp_name: ROOT::Fit::BinData
     methods:
+      - name: HaveCoordErrors
+        return_type: bool
+      - name: HaveAsymErrors
+        return_type: bool
+      - name: LogTransform
+        return_type: ROOT::Fit::BinData
       - name: Value
-        return_type: float
+        return_type: double
+        arguments:
+          - name: ipoint
+            type: int
+      - name: ValuePtr
+        return_type: const double*
+        arguments:
+          - name: ipoint
+            type: int
+      - name: ErrorPtr
+        return_type: const double*
         arguments:
           - name: ipoint
             type: int
       - name: Error
-        return_type: float
+        return_type: double
         arguments:
           - name: ipoint
             type: int
       - name: InvError
-        return_type: float
+        return_type: double
         arguments:
           - name: ipoint
             type: int
+      - name: GetPoint
+        return_type: const double*
+        arguments:
+          - name: ipoint
+            type: int
+          - name: value
+            type: float
       - name: GetCoordErrorComponent
-        return_type: float
+        return_type: double
         arguments:
           - name: ipoint
             type: int
           - name: icoord
             type: int
+      - name: CoordErrors
+        return_type: const double*
+        arguments:
+          - name: ipoint
+            type: int
+      - name: GetPointError
+        return_type: const double*
+        arguments:
+          - name: ipoint
+            type: int
+          - name: errvalue
+            type: float
       - name: GetBinUpEdgeComponent
-        return_type: float
+        return_type: double
         arguments:
           - name: ipoint
             type: int
           - name: icoord
             type: int
+      - name: BinUpEdge
+        return_type: const double*
+        arguments:
+          - name: ipoint
+            type: int
+      - name: HasBinEdges
+        return_type: bool
       - name: RefVolume
-        return_type: float
+        return_type: double
       - name: SumOfContent
-        return_type: float
+        return_type: double
       - name: SumOfError2
-        return_type: float
+        return_type: double
+      - name: IsWeighted
+        return_type: bool
+      - name: GetCoordComponent
+        return_type: const double*
+        arguments:
+          - name: ipoint
+            type: int
+          - name: icoord
+            type: int
+      - name: Coords
+        return_type: const double*
+        arguments:
+          - name: ipoint
+            type: int
       - name: NPoints
-        return_type: int
+        return_type: unsigned int
       - name: Size
-        return_type: int
+        return_type: unsigned int
       - name: NDim
-        return_type: int
+        return_type: unsigned int
+      - name: Range
+        return_type: const ROOT::Fit::DataRange
   - python_name: ROOT.Fit.DataRange
     cpp_name: ROOT::Fit::DataRange
     methods:
       - name: NDim
-        return_type: int
+        return_type: unsigned int
       - name: Size
-        return_type: int
+        return_type: unsigned int
         arguments:
+          - name: icoord
+            type: int
+      - name: IsSet
+        return_type: bool
+      - name: IsInside
+        return_type: bool
+        arguments:
+          - name: x
+            type: float
           - name: icoord
             type: int
   - python_name: ROOT.Fit.FitConfig
     cpp_name: ROOT::Fit::FitConfig
     methods:
+      - name: ParSettings
+        return_type: const ROOT::Fit::ParameterSettings
+        arguments:
+          - name: i
+            type: int
+      - name: ParamsSettings
+        return_type: const vector<ROOT::Fit::ParameterSettings>
       - name: NPar
-        return_type: int
+        return_type: unsigned int
+      - name: ParamsValues
+        return_type: vector<double>
+      - name: CreateMinimizer
+        return_type: ROOT::Math::Minimizer*
+      - name: MinimizerOptions
+        return_type: ROOT::Math::MinimizerOptions
+      - name: NormalizeErrors
+        return_type: bool
+      - name: ParabErrors
+        return_type: bool
+      - name: MinosErrors
+        return_type: bool
+      - name: UpdateAfterFit
+        return_type: bool
+      - name: UseWeightCorrection
+        return_type: bool
   - python_name: ROOT.Fit.FitData
     cpp_name: ROOT::Fit::FitData
     methods:
+      - name: GetCoordComponent
+        return_type: const double*
+        arguments:
+          - name: ipoint
+            type: int
+          - name: icoord
+            type: int
+      - name: Coords
+        return_type: const double*
+        arguments:
+          - name: ipoint
+            type: int
       - name: NPoints
-        return_type: int
+        return_type: unsigned int
       - name: Size
-        return_type: int
+        return_type: unsigned int
       - name: NDim
-        return_type: int
+        return_type: unsigned int
+      - name: Range
+        return_type: const ROOT::Fit::DataRange
   - python_name: ROOT.Fit.FitResult
     cpp_name: ROOT::Fit::FitResult
     methods:
+      - name: IsValid
+        return_type: bool
+      - name: IsEmpty
+        return_type: bool
       - name: MinFcnValue
-        return_type: float
+        return_type: double
       - name: NCalls
-        return_type: int
+        return_type: unsigned int
       - name: Edm
-        return_type: float
+        return_type: double
       - name: NTotalParameters
-        return_type: int
+        return_type: unsigned int
       - name: NPar
-        return_type: int
+        return_type: unsigned int
       - name: NFreeParameters
-        return_type: int
+        return_type: unsigned int
       - name: Status
         return_type: int
       - name: CovMatrixStatus
         return_type: int
+      - name: FittedBinData
+        return_type: const ROOT::Fit::BinData*
       - name: Chi2
-        return_type: float
+        return_type: double
       - name: Ndf
-        return_type: int
+        return_type: unsigned int
       - name: Prob
-        return_type: float
+        return_type: double
+      - name: Errors
+        return_type: const vector<double>
+      - name: GetErrors
+        return_type: const double*
+      - name: Parameters
+        return_type: const vector<double>
+      - name: GetParams
+        return_type: const double*
       - name: Value
-        return_type: float
+        return_type: double
         arguments:
           - name: i
             type: int
       - name: Parameter
-        return_type: float
+        return_type: double
         arguments:
           - name: i
             type: int
       - name: Error
-        return_type: float
+        return_type: double
         arguments:
           - name: i
             type: int
       - name: ParError
-        return_type: float
+        return_type: double
+        arguments:
+          - name: i
+            type: int
+      - name: HasMinosError
+        return_type: bool
         arguments:
           - name: i
             type: int
       - name: LowerError
-        return_type: float
+        return_type: double
         arguments:
           - name: i
             type: int
       - name: UpperError
-        return_type: float
+        return_type: double
         arguments:
           - name: i
             type: int
       - name: GlobalCC
-        return_type: float
+        return_type: double
         arguments:
           - name: i
             type: int
       - name: CovMatrix
-        return_type: float
+        return_type: double
         arguments:
           - name: i
             type: int
           - name: j
             type: int
       - name: Correlation
-        return_type: float
+        return_type: double
         arguments:
           - name: i
             type: int
           - name: j
             type: int
+      - name: Scan
+        return_type: bool
+        arguments:
+          - name: ipar
+            type: int
+          - name: npoints
+            type: int
+          - name: pntsx
+            type: float
+          - name: pntsy
+            type: float
+          - name: xmin
+            type: float
+          - name: xmax
+            type: float
+      - name: Contour
+        return_type: bool
+        arguments:
+          - name: ipar
+            type: int
+          - name: jpar
+            type: int
+          - name: npoints
+            type: int
+          - name: pntsx
+            type: float
+          - name: pntsy
+            type: float
+          - name: confLevel
+            type: float
+      - name: NormalizedErrors
+        return_type: bool
+      - name: IsParameterBound
+        return_type: bool
+        arguments:
+          - name: ipar
+            type: int
+      - name: IsParameterFixed
+        return_type: bool
+        arguments:
+          - name: ipar
+            type: int
+      - name: ParameterBounds
+        return_type: bool
+        arguments:
+          - name: ipar
+            type: int
+          - name: lower
+            type: float
+          - name: upper
+            type: float
   - python_name: ROOT.Fit.ParameterSettings
     cpp_name: ROOT::Fit::ParameterSettings
     methods:
       - name: Value
-        return_type: float
+        return_type: double
       - name: StepSize
-        return_type: float
+        return_type: double
       - name: LowerLimit
-        return_type: float
+        return_type: double
       - name: UpperLimit
-        return_type: float
+        return_type: double
+      - name: IsFixed
+        return_type: bool
+      - name: HasLowerLimit
+        return_type: bool
+      - name: HasUpperLimit
+        return_type: bool
+      - name: IsBound
+        return_type: bool
+      - name: IsDoubleBound
+        return_type: bool
+  - python_name: ROOT.Math.IBaseParam
+    cpp_name: ROOT::Math::IBaseParam
+    methods:
+      - name: Parameters
+        return_type: const double*
+      - name: NPar
+        return_type: unsigned int
+  - python_name: ROOT.Math.IOptions
+    cpp_name: ROOT::Math::IOptions
+    methods:
+      - name: Clone
+        return_type: ROOT::Math::IOptions*
   - python_name: ROOT.Math.Minimizer
     cpp_name: ROOT::Math::Minimizer
     methods:
+      - name: Minimizer
+        return_type: ROOT::Math::Minimizer
+      - name: SetVariableValue
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: value
+            type: float
+      - name: SetVariableValues
+        return_type: bool
+        arguments:
+          - name: x
+            type: float
+      - name: SetVariableStepSize
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: value
+            type: float
+      - name: SetVariableLowerLimit
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: lower
+            type: float
+      - name: SetVariableUpperLimit
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: upper
+            type: float
+      - name: SetVariableLimits
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: lower
+            type: float
+          - name: upper
+            type: float
+      - name: FixVariable
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+      - name: ReleaseVariable
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+      - name: IsFixedVariable
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+      - name: GetVariableSettings
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: pars
+            type: ROOT.Fit.ParameterSettings
+      - name: SetVariableInitialRange
+        return_type: bool
+        arguments:
+          - name: noname_arg
+            type: int
+          - name: noname_arg_1
+            type: float
+          - name: noname_arg_2
+            type: float
+      - name: Minimize
+        return_type: bool
       - name: MinValue
-        return_type: float
+        return_type: double
+      - name: X
+        return_type: const double*
       - name: Edm
-        return_type: float
+        return_type: double
+      - name: MinGradient
+        return_type: const double*
       - name: NCalls
-        return_type: int
+        return_type: unsigned int
       - name: NIterations
-        return_type: int
+        return_type: unsigned int
       - name: NDim
-        return_type: int
+        return_type: unsigned int
       - name: NFree
-        return_type: int
+        return_type: unsigned int
+      - name: ProvidesError
+        return_type: bool
+      - name: Errors
+        return_type: const double*
       - name: CovMatrix
-        return_type: float
+        return_type: double
         arguments:
           - name: ivar
             type: int
           - name: jvar
             type: int
+      - name: GetCovMatrix
+        return_type: bool
+        arguments:
+          - name: covMat
+            type: float
+      - name: GetHessianMatrix
+        return_type: bool
+        arguments:
+          - name: hMat
+            type: float
       - name: CovMatrixStatus
         return_type: int
       - name: Correlation
-        return_type: float
+        return_type: double
         arguments:
           - name: i
             type: int
           - name: j
             type: int
       - name: GlobalCC
-        return_type: float
+        return_type: double
         arguments:
           - name: ivar
             type: int
+      - name: GetMinosError
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: errLow
+            type: float
+          - name: errUp
+            type: float
+          - name: option
+            type: int
+      - name: Hesse
+        return_type: bool
+      - name: Scan
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: nstep
+            type: int
+          - name: x
+            type: float
+          - name: y
+            type: float
+          - name: xmin
+            type: float
+          - name: xmax
+            type: float
+      - name: Contour
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: jvar
+            type: int
+          - name: npoints
+            type: int
+          - name: xi
+            type: float
+          - name: xj
+            type: float
       - name: PrintLevel
         return_type: int
       - name: MaxFunctionCalls
-        return_type: int
+        return_type: unsigned int
       - name: MaxIterations
-        return_type: int
+        return_type: unsigned int
       - name: Tolerance
-        return_type: float
+        return_type: double
       - name: Precision
-        return_type: float
+        return_type: double
       - name: Strategy
         return_type: int
       - name: Status
         return_type: int
       - name: ErrorDef
-        return_type: float
+        return_type: double
+      - name: IsValidError
+        return_type: bool
       - name: Options
-        return_type: ROOT.Math.MinimizerOptions
+        return_type: ROOT::Math::MinimizerOptions
   - python_name: ROOT.Math.MinimizerOptions
     cpp_name: ROOT::Math::MinimizerOptions
     methods:
       - name: DefaultErrorDef
-        return_type: float
+        return_type: double
       - name: DefaultTolerance
-        return_type: float
+        return_type: double
       - name: DefaultPrecision
-        return_type: float
+        return_type: double
       - name: DefaultMaxFunctionCalls
         return_type: int
       - name: DefaultMaxIterations
@@ -464,635 +897,27 @@ classes:
         return_type: int
       - name: DefaultPrintLevel
         return_type: int
+      - name: DefaultExtraOptions
+        return_type: ROOT::Math::IOptions*
       - name: PrintLevel
         return_type: int
       - name: MaxFunctionCalls
-        return_type: int
+        return_type: unsigned int
       - name: MaxIterations
-        return_type: int
+        return_type: unsigned int
       - name: Strategy
         return_type: int
       - name: Tolerance
-        return_type: float
+        return_type: double
       - name: Precision
-        return_type: float
+        return_type: double
       - name: ErrorDef
-        return_type: float
+        return_type: double
+      - name: ExtraOptions
+        return_type: const ROOT::Math::IOptions*
   - python_name: ROOT.TSchemaRule
     cpp_name: ROOT::TSchemaRule
     methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: ROOT.v5.TFormula
-    cpp_name: ROOT::v5::TFormula
-    methods:
-      - name: GetNdim
-        return_type: int
-      - name: GetNpar
-        return_type: int
-      - name: GetNumber
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: SG.AuxDataOption
-    cpp_name: SG::AuxDataOption
-    methods:
-      - name: intVal
-        return_type: int
-      - name: floatVal
-        return_type: float
-  - python_name: TArchiveFile
-    cpp_name: TArchiveFile
-    methods:
-      - name: OpenArchive
-        return_type: int
-      - name: SetCurrentMember
-        return_type: int
-      - name: GetNumberOfMembers
-        return_type: int
-      - name: GetMemberIndex
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TArchiveMember
-    cpp_name: TArchiveMember
-    methods:
-      - name: GetModTime
-        return_type: TDatime
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TArray
-    cpp_name: TArray
-    methods:
-      - name: GetSize
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TArrayC
-    cpp_name: TArrayC
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: GetSize
-        return_type: int
-  - python_name: TArrayD
-    cpp_name: TArrayD
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: GetSize
-        return_type: int
-  - python_name: TArrayF
-    cpp_name: TArrayF
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: GetSize
-        return_type: int
-  - python_name: TArrayI
-    cpp_name: TArrayI
-    methods:
-      - name: At
-        return_type: int
-        arguments:
-          - name: i
-            type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: GetSize
-        return_type: int
-  - python_name: TAttAxis
-    cpp_name: TAttAxis
-    methods:
-      - name: GetNdivisions
-        return_type: int
-      - name: GetMaxDigits
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TAttBBox2D
-    cpp_name: TAttBBox2D
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TAttFill
-    cpp_name: TAttFill
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TAttLine
-    cpp_name: TAttLine
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TAttMarker
-    cpp_name: TAttMarker
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TAttPad
-    cpp_name: TAttPad
-    methods:
-      - name: GetFrameBorderMode
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TAttText
-    cpp_name: TAttText
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TAxis
-    cpp_name: TAxis
-    methods:
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-      - name: GetNbins
-        return_type: int
-      - name: GetFirst
-        return_type: int
-      - name: GetLast
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: GetNdivisions
-        return_type: int
-      - name: GetMaxDigits
-        return_type: int
-  - python_name: TBasket
-    cpp_name: TBasket
-    methods:
-      - name: DropBuffers
-        return_type: int
-      - name: GetBufferSize
-        return_type: int
-      - name: GetEntryPointer
-        return_type: int
-        arguments:
-          - name: Entry
-            type: int
-      - name: GetNevBuf
-        return_type: int
-      - name: GetNevBufSize
-        return_type: int
-      - name: GetLast
-        return_type: int
-      - name: WriteBuffer
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: GetKeylen
-        return_type: int
-      - name: GetNbytes
-        return_type: int
-      - name: GetObjlen
-        return_type: int
-      - name: GetVersion
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TBox
-    cpp_name: TBox
-    methods:
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TBranch
-    cpp_name: TBranch
-    methods:
-      - name: BackFill
-        return_type: int
-      - name: Fill
-        return_type: int
-      - name: FlushBaskets
-        return_type: int
-      - name: GetBasketSize
-        return_type: int
-      - name: GetCompressionAlgorithm
-        return_type: int
-      - name: GetCompressionLevel
-        return_type: int
-      - name: GetCompressionSettings
-        return_type: int
-      - name: GetEntryOffsetLen
-        return_type: int
-      - name: GetOffset
-        return_type: int
-      - name: GetReadBasket
-        return_type: int
-      - name: GetWriteBasket
-        return_type: int
-      - name: GetMaxBaskets
-        return_type: int
-      - name: GetNleaves
-        return_type: int
-      - name: GetSplitLevel
-        return_type: int
-      - name: GetRow
-        return_type: int
-        arguments:
-          - name: row
-            type: int
-      - name: LoadBaskets
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TBranchRef
-    cpp_name: TBranchRef
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: BackFill
-        return_type: int
-      - name: Fill
-        return_type: int
-      - name: FlushBaskets
-        return_type: int
-      - name: GetBasketSize
-        return_type: int
-      - name: GetCompressionAlgorithm
-        return_type: int
-      - name: GetCompressionLevel
-        return_type: int
-      - name: GetCompressionSettings
-        return_type: int
-      - name: GetEntryOffsetLen
-        return_type: int
-      - name: GetOffset
-        return_type: int
-      - name: GetReadBasket
-        return_type: int
-      - name: GetWriteBasket
-        return_type: int
-      - name: GetMaxBaskets
-        return_type: int
-      - name: GetNleaves
-        return_type: int
-      - name: GetSplitLevel
-        return_type: int
-      - name: GetRow
-        return_type: int
-        arguments:
-          - name: row
-            type: int
-      - name: LoadBaskets
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TBrowser
-    cpp_name: TBrowser
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TBrowserImp
-    cpp_name: TBrowserImp
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TBuffer
-    cpp_name: TBuffer
-    methods:
-      - name: GetBufferVersion
-        return_type: int
-      - name: BufferSize
-        return_type: int
-      - name: Length
-        return_type: int
-      - name: GetVersionOwner
-        return_type: int
-      - name: GetMapCount
-        return_type: int
-      - name: GetBufferDisplacement
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TBuffer3D
-    cpp_name: TBuffer3D
-    methods:
-      - name: Type
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TCanvas
-    cpp_name: TCanvas
-    methods:
-      - name: GetDoubleBuffer
-        return_type: int
-      - name: GetEvent
-        return_type: int
-      - name: GetEventX
-        return_type: int
-      - name: GetEventY
-        return_type: int
-      - name: GetSelectedX
-        return_type: int
-      - name: GetSelectedY
-        return_type: int
-      - name: GetCanvasID
-        return_type: int
-      - name: GetWindowTopX
-        return_type: int
-      - name: GetWindowTopY
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: GetCrosshair
-        return_type: int
-      - name: GetNumber
-        return_type: int
-      - name: GetTickx
-        return_type: int
-      - name: GetTicky
-        return_type: int
-      - name: GetMaxPickDistance
-        return_type: int
-      - name: GetGLDevice
-        return_type: int
-      - name: GetLogx
-        return_type: int
-      - name: GetLogy
-        return_type: int
-      - name: GetLogz
-        return_type: int
-      - name: GetPadPaint
-        return_type: int
-      - name: GetPixmapID
-        return_type: int
-      - name: IncrementPaletteColor
-        return_type: int
-        arguments:
-          - name: i
-            type: int
-          - name: opt
-            type: TString
-      - name: NextPaletteColor
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-      - name: GetFrameBorderMode
-        return_type: int
-      - name: NumberOfSignals
-        return_type: int
-      - name: NumberOfConnections
-        return_type: int
-  - python_name: TCanvasImp
-    cpp_name: TCanvasImp
-    methods:
-      - name: InitWindow
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TClass
-    cpp_name: TClass
-    methods:
-      - name: GetClassSize
-        return_type: int
-      - name: GetNdata
-        return_type: int
-      - name: GetNmethods
-        return_type: int
-      - name: Size
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TClassMenuItem
-    cpp_name: TClassMenuItem
-    methods:
-      - name: GetType
-        return_type: int
-      - name: GetSelfObjectPos
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TClonesArray
-    cpp_name: TClonesArray
-    is_container_of_cpp: TObject
-    is_container_of_python: TObject
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: GetEntries
-        return_type: int
-      - name: GetEntriesFast
-        return_type: int
-      - name: GetEntriesUnsafe
-        return_type: int
-      - name: GetLast
-        return_type: int
-      - name: LowerBound
-        return_type: int
-      - name: LastIndex
-        return_type: int
-      - name: Capacity
-        return_type: int
-      - name: GetSize
-        return_type: int
-      - name: GrowBy
-        return_type: int
-        arguments:
-          - name: delta
-            type: int
-      - name: begin
-        return_type: TIter
-      - name: end
-        return_type: TIter
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TCollection
-    cpp_name: TCollection
-    is_container_of_cpp: TObject
-    is_container_of_python: TObject
-    methods:
-      - name: Capacity
-        return_type: int
-      - name: GetEntries
-        return_type: int
-      - name: GetSize
-        return_type: int
-      - name: GrowBy
-        return_type: int
-        arguments:
-          - name: delta
-            type: int
-      - name: begin
-        return_type: TIter
-      - name: end
-        return_type: TIter
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -1111,1504 +936,145 @@ classes:
         return_type: TComplex
       - name: One
         return_type: TComplex
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TContextMenu
-    cpp_name: TContextMenu
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
+      - name: Sqrt
+        return_type: TComplex
         arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TContextMenuImp
-    cpp_name: TContextMenuImp
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TDNDData
-    cpp_name: TDNDData
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
+          - name: c
+            type: TComplex
+      - name: Exp
+        return_type: TComplex
         arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TDataMember
-    cpp_name: TDataMember
-    methods:
-      - name: GetArrayDim
-        return_type: int
-      - name: GetMaxIndex
-        return_type: int
+          - name: c
+            type: TComplex
+      - name: Log
+        return_type: TComplex
         arguments:
-          - name: dim
-            type: int
-      - name: GetUnitSize
-        return_type: int
-      - name: IsSTLContainer
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
+          - name: c
+            type: TComplex
+      - name: Log2
+        return_type: TComplex
         arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TDataType
-    cpp_name: TDataType
-    methods:
-      - name: Size
-        return_type: int
-      - name: GetType
-        return_type: int
-      - name: GetTypeName
-        return_type: TString
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
+          - name: c
+            type: TComplex
+      - name: Log10
+        return_type: TComplex
         arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TDatime
-    cpp_name: TDatime
-    methods:
-      - name: GetDate
-        return_type: int
-      - name: GetTime
-        return_type: int
-      - name: GetYear
-        return_type: int
-      - name: GetMonth
-        return_type: int
-      - name: GetDay
-        return_type: int
-      - name: GetDayOfWeek
-        return_type: int
-      - name: GetHour
-        return_type: int
-      - name: GetMinute
-        return_type: int
-      - name: GetSecond
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: GetGlobalDayFromDate
-        return_type: int
+          - name: c
+            type: TComplex
+      - name: Sin
+        return_type: TComplex
         arguments:
-          - name: date
-            type: int
-      - name: GetDateFromGlobalDay
-        return_type: int
+          - name: c
+            type: TComplex
+      - name: Cos
+        return_type: TComplex
         arguments:
-          - name: day
-            type: int
-      - name: GetLegalGlobalDayFromDate
-        return_type: int
+          - name: c
+            type: TComplex
+      - name: Tan
+        return_type: TComplex
         arguments:
-          - name: date
-            type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TDictAttributeMap
-    cpp_name: TDictAttributeMap
-    methods:
-      - name: GetPropertySize
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
+          - name: c
+            type: TComplex
+      - name: ASin
+        return_type: TComplex
         arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TDictionary
-    cpp_name: TDictionary
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
+          - name: c
+            type: TComplex
+      - name: ACos
+        return_type: TComplex
         arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TDirectory
-    cpp_name: TDirectory
-    methods:
-      - name: GetBufferSize
-        return_type: int
-      - name: GetNbytesKeys
-        return_type: int
-      - name: GetNkeys
-        return_type: int
-      - name: GetUUID
-        return_type: TUUID
-      - name: Sizeof
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
+          - name: c
+            type: TComplex
+      - name: ATan
+        return_type: TComplex
         arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TDirectoryFile
-    cpp_name: TDirectoryFile
-    methods:
-      - name: GetBufferSize
-        return_type: int
-      - name: GetNbytesKeys
-        return_type: int
-      - name: GetNkeys
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: GetUUID
-        return_type: TUUID
-      - name: DistancetoPrimitive
-        return_type: int
+          - name: c
+            type: TComplex
+      - name: SinH
+        return_type: TComplex
         arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TEntryList
-    cpp_name: TEntryList
-    methods:
-      - name: GetTreeNumber
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
+          - name: c
+            type: TComplex
+      - name: CosH
+        return_type: TComplex
         arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TEventList
-    cpp_name: TEventList
-    methods:
-      - name: GetN
-        return_type: int
-      - name: GetSize
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
+          - name: c
+            type: TComplex
+      - name: TanH
+        return_type: TComplex
         arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TF1
-    cpp_name: TF1
-    methods:
-      - name: DistancetoPrimitive
-        return_type: int
+          - name: c
+            type: TComplex
+      - name: ASinH
+        return_type: TComplex
         arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-      - name: GetNpar
-        return_type: int
-      - name: GetNdim
-        return_type: int
-      - name: GetNDF
-        return_type: int
-      - name: GetNpx
-        return_type: int
-      - name: GetNumber
-        return_type: int
-      - name: GetNumberFreeParameters
-        return_type: int
-      - name: GetNumberFitPoints
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-  - python_name: TFPBlock
-    cpp_name: TFPBlock
-    methods:
-      - name: GetLen
-        return_type: int
+          - name: c
+            type: TComplex
+      - name: ACosH
+        return_type: TComplex
         arguments:
-          - name: ""
-            type: int
-      - name: GetNoElem
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
+          - name: c
+            type: TComplex
+      - name: ATanH
+        return_type: TComplex
         arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TFile
-    cpp_name: TFile
-    methods:
-      - name: GetBestBuffer
-        return_type: int
-      - name: GetBytesToPrefetch
-        return_type: int
-      - name: GetCompressionAlgorithm
-        return_type: int
-      - name: GetCompressionLevel
-        return_type: int
-      - name: GetCompressionSettings
-        return_type: int
-      - name: GetErrno
-        return_type: int
-      - name: GetFd
-        return_type: int
-      - name: GetNfree
-        return_type: int
-      - name: GetNProcessIDs
-        return_type: int
-      - name: GetReadCalls
-        return_type: int
-      - name: GetVersion
-        return_type: int
-      - name: GetNbytesInfo
-        return_type: int
-      - name: GetNbytesFree
-        return_type: int
-      - name: GetNewUrl
-        return_type: TString
-      - name: Recover
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: GetFileReadCalls
-        return_type: int
-      - name: GetReadaheadSize
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: GetBufferSize
-        return_type: int
-      - name: GetNbytesKeys
-        return_type: int
-      - name: GetNkeys
-        return_type: int
-      - name: GetUUID
-        return_type: TUUID
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TFileCacheRead
-    cpp_name: TFileCacheRead
-    methods:
-      - name: GetBufferSize
-        return_type: int
-      - name: GetNseek
-        return_type: int
-      - name: GetNtot
-        return_type: int
-      - name: GetReadCalls
-        return_type: int
-      - name: GetNoCacheReadCalls
-        return_type: int
-      - name: SetBufferSize
-        return_type: int
-        arguments:
-          - name: buffersize
-            type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TFileCacheWrite
-    cpp_name: TFileCacheWrite
-    methods:
-      - name: GetBytesInCache
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TFileMergeInfo
-    cpp_name: TFileMergeInfo
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TFileOpenHandle
-    cpp_name: TFileOpenHandle
-    methods:
-      - name: GetCompress
-        return_type: int
-      - name: GetNetOpt
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TFilePrefetch
-    cpp_name: TFilePrefetch
-    methods:
-      - name: ThreadStart
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TFitResult
-    cpp_name: TFitResult
-    methods:
-      - name: Error
-        return_type: float
-        arguments:
-          - name: i
-            type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-      - name: MinFcnValue
-        return_type: float
-      - name: NCalls
-        return_type: int
-      - name: Edm
-        return_type: float
-      - name: NTotalParameters
-        return_type: int
-      - name: NPar
-        return_type: int
-      - name: NFreeParameters
-        return_type: int
-      - name: Status
-        return_type: int
-      - name: CovMatrixStatus
-        return_type: int
-      - name: Chi2
-        return_type: float
-      - name: Ndf
-        return_type: int
-      - name: Prob
-        return_type: float
-      - name: Value
-        return_type: float
-        arguments:
-          - name: i
-            type: int
-      - name: Parameter
-        return_type: float
-        arguments:
-          - name: i
-            type: int
-      - name: ParError
-        return_type: float
-        arguments:
-          - name: i
-            type: int
-      - name: LowerError
-        return_type: float
-        arguments:
-          - name: i
-            type: int
-      - name: UpperError
-        return_type: float
-        arguments:
-          - name: i
-            type: int
-      - name: GlobalCC
-        return_type: float
-        arguments:
-          - name: i
-            type: int
-      - name: CovMatrix
-        return_type: float
-        arguments:
-          - name: i
-            type: int
-          - name: j
-            type: int
-      - name: Correlation
-        return_type: float
-        arguments:
-          - name: i
-            type: int
-          - name: j
-            type: int
-  - python_name: TFitResultPtr
-    cpp_name: TFitResultPtr
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TFormLeafInfo
-    cpp_name: TFormLeafInfo
-    methods:
-      - name: GetArrayLength
-        return_type: int
-      - name: GetMultiplicity
-        return_type: int
-      - name: GetPrimaryIndex
-        return_type: int
-      - name: GetVarDim
-        return_type: int
-      - name: GetVirtVarDim
-        return_type: int
-      - name: GetSize
-        return_type: int
-        arguments:
-          - name: index
-            type: int
-      - name: GetSumOfSizes
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TFormLeafInfoReference
-    cpp_name: TFormLeafInfoReference
-    methods:
-      - name: GetOffset
-        return_type: int
-      - name: GetArrayLength
-        return_type: int
-      - name: GetMultiplicity
-        return_type: int
-      - name: GetPrimaryIndex
-        return_type: int
-      - name: GetVarDim
-        return_type: int
-      - name: GetVirtVarDim
-        return_type: int
-      - name: GetSize
-        return_type: int
-        arguments:
-          - name: index
-            type: int
-      - name: GetSumOfSizes
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TFormula
-    cpp_name: TFormula
-    methods:
-      - name: GetGradientFormula
-        return_type: TString
-      - name: GetNdim
-        return_type: int
-      - name: GetNpar
-        return_type: int
-      - name: GetNumber
-        return_type: int
-      - name: GetVarName
-        return_type: TString
-        arguments:
-          - name: ivar
-            type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TFrame
-    cpp_name: TFrame
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: GetDarkColor
-        return_type: int
-      - name: GetLightColor
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TFriendElement
-    cpp_name: TFriendElement
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TFunction
-    cpp_name: TFunction
-    methods:
-      - name: GetNargs
-        return_type: int
-      - name: GetNargsOpt
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TFunctionTemplate
-    cpp_name: TFunctionTemplate
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TGClient
-    cpp_name: TGClient
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-      - name: NumberOfSignals
-        return_type: int
-      - name: NumberOfConnections
-        return_type: int
-  - python_name: TGCompositeFrame
-    cpp_name: TGCompositeFrame
-    methods:
-      - name: MustCleanup
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: GetDragType
-        return_type: int
-      - name: GetDropType
-        return_type: int
-      - name: GetX
-        return_type: int
-      - name: GetY
-        return_type: int
-      - name: GetBorderWidth
-        return_type: int
-      - name: GetCounter
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-      - name: NumberOfSignals
-        return_type: int
-      - name: NumberOfConnections
-        return_type: int
-  - python_name: TGFont
-    cpp_name: TGFont
-    methods:
-      - name: TextHeight
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TGFontPool
-    cpp_name: TGFontPool
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TGFrame
-    cpp_name: TGFrame
-    methods:
-      - name: GetDragType
-        return_type: int
-      - name: GetDropType
-        return_type: int
-      - name: GetX
-        return_type: int
-      - name: GetY
-        return_type: int
-      - name: GetBorderWidth
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: MustCleanup
-        return_type: int
-      - name: GetCounter
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-      - name: NumberOfSignals
-        return_type: int
-      - name: NumberOfConnections
-        return_type: int
-  - python_name: TGFrameElement
-    cpp_name: TGFrameElement
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TGGC
-    cpp_name: TGGC
-    methods:
-      - name: GetLineWidth
-        return_type: int
-      - name: GetLineStyle
-        return_type: int
-      - name: GetTileStipXOrigin
-        return_type: int
-      - name: GetTileStipYOrigin
-        return_type: int
-      - name: GetSubwindowMode
-        return_type: int
-      - name: GetClipXOrigin
-        return_type: int
-      - name: GetClipYOrigin
-        return_type: int
-      - name: GetCapStyle
-        return_type: int
-      - name: GetJoinStyle
-        return_type: int
-      - name: GetFillStyle
-        return_type: int
-      - name: GetFillRule
-        return_type: int
-      - name: GetDashOffset
-        return_type: int
-      - name: GetDashLen
-        return_type: int
-      - name: GetArcMode
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TGGCPool
-    cpp_name: TGGCPool
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TGIdleHandler
-    cpp_name: TGIdleHandler
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TGLayoutHints
-    cpp_name: TGLayoutHints
-    methods:
-      - name: GetPadTop
-        return_type: int
-      - name: GetPadBottom
-        return_type: int
-      - name: GetPadLeft
-        return_type: int
-      - name: GetPadRight
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TGLayoutManager
-    cpp_name: TGLayoutManager
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TGMainFrame
-    cpp_name: TGMainFrame
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: MustCleanup
-        return_type: int
-      - name: GetDragType
-        return_type: int
-      - name: GetDropType
-        return_type: int
-      - name: GetX
-        return_type: int
-      - name: GetY
-        return_type: int
-      - name: GetBorderWidth
-        return_type: int
-      - name: GetCounter
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-      - name: NumberOfSignals
-        return_type: int
-      - name: NumberOfConnections
-        return_type: int
-  - python_name: TGMimeTypes
-    cpp_name: TGMimeTypes
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TGObject
-    cpp_name: TGObject
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TGPicture
-    cpp_name: TGPicture
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TGPicturePool
-    cpp_name: TGPicturePool
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TGResourcePool
-    cpp_name: TGResourcePool
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TGTextLayout
-    cpp_name: TGTextLayout
-    methods:
-      - name: PointToChar
-        return_type: int
+          - name: c
+            type: TComplex
+      - name: Power
+        return_type: TComplex
         arguments:
           - name: x
-            type: int
+            type: TComplex
           - name: y
-            type: int
-      - name: DistanceToText
+            type: TComplex
+      - name: Finite
         return_type: int
         arguments:
-          - name: x
-            type: int
-          - name: y
-            type: int
-      - name: IntersectText
+          - name: c
+            type: TComplex
+      - name: IsNaN
         return_type: int
         arguments:
-          - name: x
-            type: int
-          - name: y
-            type: int
-          - name: w
-            type: int
-          - name: h
-            type: int
+          - name: c
+            type: TComplex
+      - name: Min
+        return_type: TComplex
+        arguments:
+          - name: a
+            type: TComplex
+          - name: b
+            type: TComplex
+      - name: Max
+        return_type: TComplex
+        arguments:
+          - name: a
+            type: TComplex
+          - name: b
+            type: TComplex
+      - name: Normalize
+        return_type: TComplex
+        arguments:
+          - name: c
+            type: TComplex
+      - name: Conjugate
+        return_type: TComplex
+        arguments:
+          - name: c
+            type: TComplex
+      - name: Range
+        return_type: TComplex
+        arguments:
+          - name: lb
+            type: TComplex
+          - name: ub
+            type: TComplex
+          - name: c
+            type: TComplex
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
         return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TGUnknownWindowHandler
-    cpp_name: TGUnknownWindowHandler
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TGWindow
-    cpp_name: TGWindow
-    methods:
-      - name: MustCleanup
-        return_type: int
-      - name: GetCounter
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TGraph
-    cpp_name: TGraph
-    methods:
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-      - name: GetMaxSize
-        return_type: int
-      - name: GetN
-        return_type: int
-      - name: InsertPoint
-        return_type: int
-      - name: RemovePoint
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-  - python_name: TH1
-    cpp_name: TH1
-    methods:
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-      - name: BufferEmpty
-        return_type: int
-        arguments:
-          - name: action
-            type: int
-      - name: GetBufferLength
-        return_type: int
-      - name: GetBufferSize
-        return_type: int
-      - name: GetDefaultBufferSize
-        return_type: int
-      - name: GetBin
-        return_type: int
-        arguments:
-          - name: binx
-            type: int
-          - name: biny
-            type: int
-          - name: binz
-            type: int
-      - name: GetDimension
-        return_type: int
-      - name: GetMaximumBin
-        return_type: int
-      - name: GetMinimumBin
-        return_type: int
-      - name: GetNbinsX
-        return_type: int
-      - name: GetNbinsY
-        return_type: int
-      - name: GetNbinsZ
-        return_type: int
-      - name: GetNcells
-        return_type: int
-      - name: GetSumw2N
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-  - python_name: TH1F
-    cpp_name: TH1F
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-      - name: BufferEmpty
-        return_type: int
-        arguments:
-          - name: action
-            type: int
-      - name: GetBufferLength
-        return_type: int
-      - name: GetBufferSize
-        return_type: int
-      - name: GetDefaultBufferSize
-        return_type: int
-      - name: GetBin
-        return_type: int
-        arguments:
-          - name: binx
-            type: int
-          - name: biny
-            type: int
-          - name: binz
-            type: int
-      - name: GetDimension
-        return_type: int
-      - name: GetMaximumBin
-        return_type: int
-      - name: GetMinimumBin
-        return_type: int
-      - name: GetNbinsX
-        return_type: int
-      - name: GetNbinsY
-        return_type: int
-      - name: GetNbinsZ
-        return_type: int
-      - name: GetNcells
-        return_type: int
-      - name: GetSumw2N
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: GetSize
-        return_type: int
-  - python_name: THashList
-    cpp_name: THashList
-    is_container_of_cpp: TObject
-    is_container_of_python: TObject
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: LastIndex
-        return_type: int
-      - name: GetLast
-        return_type: int
-      - name: Capacity
-        return_type: int
-      - name: GetEntries
-        return_type: int
-      - name: GetSize
-        return_type: int
-      - name: GrowBy
-        return_type: int
-        arguments:
-          - name: delta
-            type: int
-      - name: begin
-        return_type: TIter
-      - name: end
-        return_type: TIter
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: THashTable
-    cpp_name: THashTable
-    is_container_of_cpp: TObject
-    is_container_of_python: TObject
-    methods:
-      - name: GetRehashLevel
-        return_type: int
-      - name: GetSize
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Capacity
-        return_type: int
-      - name: GetEntries
-        return_type: int
-      - name: GrowBy
-        return_type: int
-        arguments:
-          - name: delta
-            type: int
-      - name: begin
-        return_type: TIter
-      - name: end
-        return_type: TIter
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TInetAddress
-    cpp_name: TInetAddress
-    methods:
-      - name: GetFamily
-        return_type: int
-      - name: GetPort
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TIter
-    cpp_name: TIter
-    methods:
-      - name: End
-        return_type: TIter
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TIterator
-    cpp_name: TIterator
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TKey
-    cpp_name: TKey
-    methods:
-      - name: GetKeylen
-        return_type: int
-      - name: GetNbytes
-        return_type: int
-      - name: GetObjlen
-        return_type: int
-      - name: GetVersion
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TLeaf
-    cpp_name: TLeaf
-    methods:
-      - name: GetLen
-        return_type: int
-      - name: GetLenStatic
-        return_type: int
-      - name: GetLenType
-        return_type: int
-      - name: GetMaximum
-        return_type: int
-      - name: GetMinimum
-        return_type: int
-      - name: GetNdata
-        return_type: int
-      - name: GetOffset
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TLeafElement
-    cpp_name: TLeafElement
-    methods:
-      - name: GetLen
-        return_type: int
-      - name: GetMaximum
-        return_type: int
-      - name: GetNdata
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: GetLenStatic
-        return_type: int
-      - name: GetLenType
-        return_type: int
-      - name: GetMinimum
-        return_type: int
-      - name: GetOffset
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TLegend
-    cpp_name: TLegend
-    methods:
-      - name: GetNColumns
-        return_type: int
-      - name: GetNRows
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-      - name: GetBorderSize
-        return_type: int
-      - name: GetShadowColor
-        return_type: int
-  - python_name: TLegendEntry
-    cpp_name: TLegendEntry
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TList
-    cpp_name: TList
-    is_container_of_cpp: TObject
-    is_container_of_python: TObject
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: LastIndex
-        return_type: int
-      - name: GetLast
-        return_type: int
-      - name: Capacity
-        return_type: int
-      - name: GetEntries
-        return_type: int
-      - name: GetSize
-        return_type: int
-      - name: GrowBy
-        return_type: int
-        arguments:
-          - name: delta
-            type: int
-      - name: begin
-        return_type: TIter
-      - name: end
-        return_type: TIter
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
   - python_name: TLorentzVector
     cpp_name: TLorentzVector
     methods:
@@ -2618,307 +1084,11 @@ classes:
         return_type: TVector2
       - name: BoostVector
         return_type: TVector3
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
+      - name: Transform
+        return_type: TLorentzVector
         arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TMemberInspector
-    cpp_name: TMemberInspector
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TMethod
-    cpp_name: TMethod
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: GetNargs
-        return_type: int
-      - name: GetNargsOpt
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TMethodArg
-    cpp_name: TMethodArg
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TMethodCall
-    cpp_name: TMethodCall
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TNamed
-    cpp_name: TNamed
-    methods:
-      - name: Sizeof
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TObjArray
-    cpp_name: TObjArray
-    is_container_of_cpp: TObject
-    is_container_of_python: TObject
-    methods:
-      - name: GetEntries
-        return_type: int
-      - name: GetEntriesFast
-        return_type: int
-      - name: GetEntriesUnsafe
-        return_type: int
-      - name: GetLast
-        return_type: int
-      - name: LowerBound
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: LastIndex
-        return_type: int
-      - name: Capacity
-        return_type: int
-      - name: GetSize
-        return_type: int
-      - name: GrowBy
-        return_type: int
-        arguments:
-          - name: delta
-            type: int
-      - name: begin
-        return_type: TIter
-      - name: end
-        return_type: TIter
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TObject
-    cpp_name: TObject
-    methods:
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TPad
-    cpp_name: TPad
-    methods:
-      - name: GetCrosshair
-        return_type: int
-      - name: GetCanvasID
-        return_type: int
-      - name: GetEvent
-        return_type: int
-      - name: GetEventX
-        return_type: int
-      - name: GetEventY
-        return_type: int
-      - name: GetNumber
-        return_type: int
-      - name: GetTickx
-        return_type: int
-      - name: GetTicky
-        return_type: int
-      - name: GetMaxPickDistance
-        return_type: int
-      - name: GetGLDevice
-        return_type: int
-      - name: GetLogx
-        return_type: int
-      - name: GetLogy
-        return_type: int
-      - name: GetLogz
-        return_type: int
-      - name: GetPadPaint
-        return_type: int
-      - name: GetPixmapID
-        return_type: int
-      - name: IncrementPaletteColor
-        return_type: int
-        arguments:
-          - name: i
-            type: int
-          - name: opt
-            type: TString
-      - name: NextPaletteColor
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-      - name: GetFrameBorderMode
-        return_type: int
-      - name: NumberOfSignals
-        return_type: int
-      - name: NumberOfConnections
-        return_type: int
-  - python_name: TPave
-    cpp_name: TPave
-    methods:
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-      - name: GetBorderSize
-        return_type: int
-      - name: GetShadowColor
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TPrincipal
-    cpp_name: TPrincipal
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TProcessID
-    cpp_name: TProcessID
-    methods:
-      - name: DecrementCount
-        return_type: int
-      - name: IncrementCount
-        return_type: int
-      - name: GetCount
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TQObject
-    cpp_name: TQObject
-    methods:
-      - name: NumberOfSignals
-        return_type: int
-      - name: NumberOfConnections
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TRealData
-    cpp_name: TRealData
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TRefTable
-    cpp_name: TRefTable
-    methods:
-      - name: Expand
-        return_type: int
-        arguments:
-          - name: pid
-            type: int
-          - name: newsize
-            type: int
-      - name: GetNumPIDs
-        return_type: int
-      - name: GetSize
-        return_type: int
-        arguments:
-          - name: pid
-            type: int
-      - name: GetN
-        return_type: int
-        arguments:
-          - name: pid
-            type: int
+          - name: noname_arg
+            type: TRotation
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -2933,8 +1103,41 @@ classes:
   - python_name: TRotation
     cpp_name: TRotation
     methods:
+      - name: Transform
+        return_type: TRotation
+        arguments:
+          - name: noname_arg
+            type: TRotation
       - name: Inverse
         return_type: TRotation
+      - name: Invert
+        return_type: TRotation
+      - name: RotateAxes
+        return_type: TRotation
+        arguments:
+          - name: newX
+            type: TVector3
+          - name: newY
+            type: TVector3
+          - name: newZ
+            type: TVector3
+      - name: SetToIdentity
+        return_type: TRotation
+      - name: SetXAxis
+        return_type: TRotation
+        arguments:
+          - name: axis
+            type: TVector3
+      - name: SetYAxis
+        return_type: TRotation
+        arguments:
+          - name: axis
+            type: TVector3
+      - name: SetZAxis
+        return_type: TRotation
+        arguments:
+          - name: axis
+            type: TVector3
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -2953,6 +1156,8 @@ classes:
         return_type: int
       - name: GetRowCount
         return_type: int
+      - name: Next
+        return_type: TSQLRow*
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -2978,269 +1183,6 @@ classes:
             type: int
           - name: py
             type: int
-  - python_name: TSeqCollection
-    cpp_name: TSeqCollection
-    is_container_of_cpp: TObject
-    is_container_of_python: TObject
-    methods:
-      - name: LastIndex
-        return_type: int
-      - name: GetLast
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Capacity
-        return_type: int
-      - name: GetEntries
-        return_type: int
-      - name: GetSize
-        return_type: int
-      - name: GrowBy
-        return_type: int
-        arguments:
-          - name: delta
-            type: int
-      - name: begin
-        return_type: TIter
-      - name: end
-        return_type: TIter
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TSpline
-    cpp_name: TSpline
-    methods:
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-      - name: GetNp
-        return_type: int
-      - name: GetNpx
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-  - python_name: TStreamerBasicType
-    cpp_name: TStreamerBasicType
-    methods:
-      - name: GetCounter
-        return_type: int
-      - name: GetSize
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: GetArrayDim
-        return_type: int
-      - name: GetArrayLength
-        return_type: int
-      - name: GetExecID
-        return_type: int
-      - name: GetMaxIndex
-        return_type: int
-        arguments:
-          - name: i
-            type: int
-      - name: GetNewType
-        return_type: int
-      - name: GetType
-        return_type: int
-      - name: GetOffset
-        return_type: int
-      - name: GetTObjectOffset
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TStreamerElement
-    cpp_name: TStreamerElement
-    methods:
-      - name: GetArrayDim
-        return_type: int
-      - name: GetArrayLength
-        return_type: int
-      - name: GetExecID
-        return_type: int
-      - name: GetMaxIndex
-        return_type: int
-        arguments:
-          - name: i
-            type: int
-      - name: GetSize
-        return_type: int
-      - name: GetNewType
-        return_type: int
-      - name: GetType
-        return_type: int
-      - name: GetOffset
-        return_type: int
-      - name: GetTObjectOffset
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TStreamerInfo
-    cpp_name: TStreamerInfo
-    methods:
-      - name: GetClassVersion
-        return_type: int
-      - name: GetElementOffset
-        return_type: int
-        arguments:
-          - name: id
-            type: int
-      - name: GetNdata
-        return_type: int
-      - name: GetNelement
-        return_type: int
-      - name: GetNumber
-        return_type: int
-      - name: GetLength
-        return_type: int
-        arguments:
-          - name: id
-            type: int
-      - name: GetNewType
-        return_type: int
-        arguments:
-          - name: id
-            type: int
-      - name: GetOnFileClassVersion
-        return_type: int
-      - name: GetSize
-        return_type: int
-      - name: GetSizeElements
-        return_type: int
-      - name: GetType
-        return_type: int
-        arguments:
-          - name: id
-            type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: IsRecovered
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TStreamerInfoActions.TActionSequence
-    cpp_name: TStreamerInfoActions::TActionSequence
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TStreamerInfoActions.TConfiguredAction
-    cpp_name: TStreamerInfoActions::TConfiguredAction
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TString
-    cpp_name: TString
-    methods:
-      - name: Sizeof
-        return_type: int
-      - name: Atoi
-        return_type: int
-      - name: CountChar
-        return_type: int
-        arguments:
-          - name: c
-            type: int
-      - name: Copy
-        return_type: TString
-      - name: MD5
-        return_type: TString
-      - name: Itoa
-        return_type: TString
-        arguments:
-          - name: value
-            type: int
-          - name: base
-            type: int
-      - name: ULLtoa
-        return_type: TString
-        arguments:
-          - name: value
-            type: int
-          - name: base
-            type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TSysEvtHandler
-    cpp_name: TSysEvtHandler
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-      - name: NumberOfSignals
-        return_type: int
-      - name: NumberOfConnections
-        return_type: int
   - python_name: TThread
     cpp_name: TThread
     methods:
@@ -3254,6 +1196,8 @@ classes:
         return_type: int
       - name: UnLock
         return_type: int
+      - name: Self
+        return_type: TThread*
       - name: SetCancelOn
         return_type: int
       - name: SetCancelOff
@@ -3284,192 +1228,6 @@ classes:
             type: int
           - name: py
             type: int
-  - python_name: TTime
-    cpp_name: TTime
-    methods:
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TTimer
-    cpp_name: TTimer
-    methods:
-      - name: GetTime
-        return_type: TTime
-      - name: GetAbsTime
-        return_type: TTime
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-      - name: NumberOfSignals
-        return_type: int
-      - name: NumberOfConnections
-        return_type: int
-  - python_name: TTree
-    cpp_name: TTree
-    methods:
-      - name: Debug
-        return_type: int
-      - name: Fill
-        return_type: int
-      - name: GetBranchStyle
-        return_type: int
-      - name: GetDefaultEntryOffsetLen
-        return_type: int
-      - name: GetEntryWithIndex
-        return_type: int
-        arguments:
-          - name: major
-            type: int
-          - name: minor
-            type: int
-      - name: GetFileNumber
-        return_type: int
-      - name: GetMakeClass
-        return_type: int
-      - name: GetNbranches
-        return_type: int
-      - name: GetPacketSize
-        return_type: int
-      - name: GetScanField
-        return_type: int
-      - name: GetTimerInterval
-        return_type: int
-      - name: GetTreeNumber
-        return_type: int
-      - name: GetUpdate
-        return_type: int
-      - name: StopCacheLearningPhase
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TTreeCache
-    cpp_name: TTreeCache
-    methods:
-      - name: GetEntryMin
-        return_type: int
-      - name: GetEntryMax
-        return_type: int
-      - name: GetLearnEntries
-        return_type: int
-      - name: SetBufferSize
-        return_type: int
-        arguments:
-          - name: buffersize
-            type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: GetBufferSize
-        return_type: int
-      - name: GetNseek
-        return_type: int
-      - name: GetNtot
-        return_type: int
-      - name: GetReadCalls
-        return_type: int
-      - name: GetNoCacheReadCalls
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TTreeFormula
-    cpp_name: TTreeFormula
-    methods:
-      - name: GetMultiplicity
-        return_type: int
-      - name: GetNcodes
-        return_type: int
-      - name: GetNdata
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: GetNdim
-        return_type: int
-      - name: GetNpar
-        return_type: int
-      - name: GetNumber
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TTreeFormulaManager
-    cpp_name: TTreeFormulaManager
-    methods:
-      - name: GetMultiplicity
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TUUID
-    cpp_name: TUUID
-    methods:
-      - name: GetHostAddress
-        return_type: TInetAddress
-      - name: GetTime
-        return_type: TDatime
-      - name: Sizeof
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TUrl
-    cpp_name: TUrl
-    methods:
-      - name: GetPort
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
   - python_name: TVector2
     cpp_name: TVector2
     methods:
@@ -3477,6 +1235,16 @@ classes:
         return_type: TVector2
       - name: Ort
         return_type: TVector2
+      - name: Proj
+        return_type: TVector2
+        arguments:
+          - name: v
+            type: TVector2
+      - name: Norm
+        return_type: TVector2
+        arguments:
+          - name: v
+            type: TVector2
       - name: ImplFileLine
         return_type: int
       - name: DeclFileLine
@@ -3497,6 +1265,16 @@ classes:
         return_type: TVector3
       - name: Orthogonal
         return_type: TVector3
+      - name: Cross
+        return_type: TVector3
+        arguments:
+          - name: noname_arg
+            type: TVector3
+      - name: Transform
+        return_type: TVector3
+        arguments:
+          - name: noname_arg
+            type: TRotation
       - name: XYvector
         return_type: TVector2
       - name: ImplFileLine
@@ -3510,234 +1288,165 @@ classes:
             type: int
           - name: py
             type: int
-  - python_name: TView
-    cpp_name: TView
+  - python_name: mutex
+    cpp_name: mutex
     methods:
-      - name: GetSystem
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TVirtualCollectionProxy
-    cpp_name: TVirtualCollectionProxy
+      - name: try_lock
+        return_type: bool
+  - python_name: std.vector_float_
+    cpp_name: std::vector<double>
+    is_container_of_cpp: double
+    is_container_of_python: float
     methods:
-      - name: GetCollectionType
+      - name: size
         return_type: int
-      - name: GetProperties
-        return_type: int
-  - python_name: TVirtualFFT
-    cpp_name: TVirtualFFT
+  - python_name: std.vector_int_
+    cpp_name: std::vector<int>
+    is_container_of_cpp: int
+    is_container_of_python: int
     methods:
-      - name: GetNdim
+      - name: size
         return_type: int
-      - name: GetSign
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TVirtualHistPainter
-    cpp_name: TVirtualHistPainter
+  - python_name: vector_ElementLink_DataVector_xAOD_CaloCluster_v1___
+    cpp_name: vector<ElementLink<DataVector<xAOD::CaloCluster_v1> > >
+    is_container_of_cpp: ElementLink<DataVector<xAOD::CaloCluster_v1>  >
+    is_container_of_python: ElementLink_DataVector_xAOD_CaloCluster_v1__
     methods:
-      - name: DistancetoPrimitive
+      - name: size
         return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TVirtualIndex
-    cpp_name: TVirtualIndex
+  - python_name: vector_ElementLink_DataVector_xAOD_IParticle___
+    cpp_name: vector<ElementLink<DataVector<xAOD::IParticle> > >
+    is_container_of_cpp: ElementLink<DataVector<xAOD::IParticle>  >
+    is_container_of_python: ElementLink_DataVector_xAOD_IParticle__
     methods:
-      - name: ImplFileLine
+      - name: size
         return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TVirtualPad
-    cpp_name: TVirtualPad
+  - python_name: vector_ElementLink_DataVector_xAOD_MuonSegment_v1___
+    cpp_name: vector<ElementLink<DataVector<xAOD::MuonSegment_v1> > >
+    is_container_of_cpp: ElementLink<DataVector<xAOD::MuonSegment_v1>  >
+    is_container_of_python: ElementLink_DataVector_xAOD_MuonSegment_v1__
     methods:
-      - name: GetCanvasID
+      - name: size
         return_type: int
-      - name: GetEvent
-        return_type: int
-      - name: GetEventX
-        return_type: int
-      - name: GetEventY
-        return_type: int
-      - name: GetNumber
-        return_type: int
-      - name: GetTickx
-        return_type: int
-      - name: GetTicky
-        return_type: int
-      - name: GetLogx
-        return_type: int
-      - name: GetLogy
-        return_type: int
-      - name: GetLogz
-        return_type: int
-      - name: GetPadPaint
-        return_type: int
-      - name: GetPixmapID
-        return_type: int
-      - name: IncrementPaletteColor
-        return_type: int
-        arguments:
-          - name: i
-            type: int
-          - name: opt
-            type: TString
-      - name: NextPaletteColor
-        return_type: int
-      - name: GetGLDevice
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-      - name: GetFrameBorderMode
-        return_type: int
-      - name: NumberOfSignals
-        return_type: int
-      - name: NumberOfConnections
-        return_type: int
-  - python_name: TVirtualPadPainter
-    cpp_name: TVirtualPadPainter
+  - python_name: vector_ElementLink_DataVector_xAOD_NeutralParticle_v1___
+    cpp_name: vector<ElementLink<DataVector<xAOD::NeutralParticle_v1> > >
+    is_container_of_cpp: ElementLink<DataVector<xAOD::NeutralParticle_v1>  >
+    is_container_of_python: ElementLink_DataVector_xAOD_NeutralParticle_v1__
     methods:
-      - name: ImplFileLine
+      - name: size
         return_type: int
-      - name: DeclFileLine
-        return_type: int
-  - python_name: TVirtualPerfStats
-    cpp_name: TVirtualPerfStats
+  - python_name: vector_ElementLink_DataVector_xAOD_PFO_v1___
+    cpp_name: vector<ElementLink<DataVector<xAOD::PFO_v1> > >
+    is_container_of_cpp: ElementLink<DataVector<xAOD::PFO_v1>  >
+    is_container_of_python: ElementLink_DataVector_xAOD_PFO_v1__
     methods:
-      - name: ImplFileLine
+      - name: size
         return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TVirtualStreamerInfo
-    cpp_name: TVirtualStreamerInfo
+  - python_name: vector_ElementLink_DataVector_xAOD_TauTrack_v1___
+    cpp_name: vector<ElementLink<DataVector<xAOD::TauTrack_v1> > >
+    is_container_of_cpp: ElementLink<DataVector<xAOD::TauTrack_v1>  >
+    is_container_of_python: ElementLink_DataVector_xAOD_TauTrack_v1__
     methods:
-      - name: GetClassVersion
+      - name: size
         return_type: int
-      - name: GetElementOffset
-        return_type: int
-        arguments:
-          - name: id
-            type: int
-      - name: GetOnFileClassVersion
-        return_type: int
-      - name: GetNumber
-        return_type: int
-      - name: GetSize
-        return_type: int
-      - name: IsRecovered
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: Sizeof
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TVirtualTreePlayer
-    cpp_name: TVirtualTreePlayer
+  - python_name: vector_ElementLink_DataVector_xAOD_TrackParticle_v1___
+    cpp_name: vector<ElementLink<DataVector<xAOD::TrackParticle_v1> > >
+    is_container_of_cpp: ElementLink<DataVector<xAOD::TrackParticle_v1>  >
+    is_container_of_python: ElementLink_DataVector_xAOD_TrackParticle_v1__
     methods:
-      - name: GetDimension
+      - name: size
         return_type: int
-      - name: GetNfill
-        return_type: int
-      - name: ImplFileLine
-        return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TVirtualViewer3D
-    cpp_name: TVirtualViewer3D
+  - python_name: vector_ElementLink_DataVector_xAOD_TruthParticle_v1___
+    cpp_name: vector<ElementLink<DataVector<xAOD::TruthParticle_v1> > >
+    is_container_of_cpp: ElementLink<DataVector<xAOD::TruthParticle_v1>  >
+    is_container_of_python: ElementLink_DataVector_xAOD_TruthParticle_v1__
     methods:
-      - name: ImplFileLine
+      - name: size
         return_type: int
-      - name: DeclFileLine
-        return_type: int
-      - name: DistancetoPrimitive
-        return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
-  - python_name: TWbox
-    cpp_name: TWbox
+  - python_name: vector_ElementLink_DataVector_xAOD_TruthVertex_v1___
+    cpp_name: vector<ElementLink<DataVector<xAOD::TruthVertex_v1> > >
+    is_container_of_cpp: ElementLink<DataVector<xAOD::TruthVertex_v1>  >
+    is_container_of_python: ElementLink_DataVector_xAOD_TruthVertex_v1__
     methods:
-      - name: GetDarkColor
+      - name: size
         return_type: int
-      - name: GetLightColor
+  - python_name: vector_ElementLink_DataVector_xAOD_Vertex_v1___
+    cpp_name: vector<ElementLink<DataVector<xAOD::Vertex_v1> > >
+    is_container_of_cpp: ElementLink<DataVector<xAOD::Vertex_v1>  >
+    is_container_of_python: ElementLink_DataVector_xAOD_Vertex_v1__
+    methods:
+      - name: size
         return_type: int
-      - name: ImplFileLine
+  - python_name: vector_ROOT_Fit_ParameterSettings_
+    cpp_name: vector<ROOT::Fit::ParameterSettings>
+    is_container_of_cpp: ROOT::Fit::ParameterSettings
+    is_container_of_python: ROOT.Fit.ParameterSettings
+    methods:
+      - name: size
         return_type: int
-      - name: DeclFileLine
+  - python_name: vector_float_
+    cpp_name: vector<double>
+    is_container_of_cpp: double
+    is_container_of_python: float
+    methods:
+      - name: size
         return_type: int
-      - name: DistancetoPrimitive
+  - python_name: vector_float_
+    cpp_name: vector<float>
+    is_container_of_cpp: float
+    is_container_of_python: float
+    methods:
+      - name: size
         return_type: int
-        arguments:
-          - name: px
-            type: int
-          - name: py
-            type: int
+  - python_name: vector_int_
+    cpp_name: vector<int>
+    is_container_of_cpp: int
+    is_container_of_python: int
+    methods:
+      - name: size
+        return_type: int
+  - python_name: vector_pair_float_float__
+    cpp_name: vector<pair<double,double> >
+    is_container_of_cpp: pair<double,double>
+    is_container_of_python: pair_float_float_
+    methods:
+      - name: size
+        return_type: int
+  - python_name: vector_vector_float__
+    cpp_name: vector<vector<float> >
+    is_container_of_cpp: vector<float>
+    is_container_of_python: vector_float_
+    methods:
+      - name: size
+        return_type: int
+  - python_name: vector_xAOD_CaloClusterBadChannelData_v1_
+    cpp_name: vector<xAOD::CaloClusterBadChannelData_v1>
+    is_container_of_cpp: xAOD::CaloClusterBadChannelData_v1
+    is_container_of_python: xAOD.CaloClusterBadChannelData_v1
+    methods:
+      - name: size
+        return_type: int
+  - python_name: vector_xAOD_EventInfo_v1_StreamTag_
+    cpp_name: vector<xAOD::EventInfo_v1::StreamTag>
+    is_container_of_cpp: xAOD::EventInfo_v1::StreamTag
+    is_container_of_python: xAOD.EventInfo_v1.StreamTag
+    methods:
+      - name: size
+        return_type: int
+  - python_name: vector_xAOD_EventInfo_v1_SubEvent_
+    cpp_name: vector<xAOD::EventInfo_v1::SubEvent>
+    is_container_of_cpp: xAOD::EventInfo_v1::SubEvent
+    is_container_of_python: xAOD.EventInfo_v1.SubEvent
+    methods:
+      - name: size
+        return_type: int
+  - python_name: vector_xAOD_JetConstituent_
+    cpp_name: vector<xAOD::JetConstituent>
+    is_container_of_cpp: xAOD::JetConstituent
+    is_container_of_python: xAOD.JetConstituent
+    methods:
+      - name: size
+        return_type: int
   - python_name: xAOD.BTagVertex_v1
     cpp_name: xAOD::BTagVertex_v1
     include_file: xAODBTagging/versions/BTagVertex_v1.h
@@ -3748,113 +1457,258 @@ classes:
         return_type: float
       - name: pv_compatibility
         return_type: float
+      - name: compToOtherSV
+        return_type: const vector<float>
+      - name: track_chi2
+        return_type: const vector<float>
+      - name: track_NDF
+        return_type: const vector<float>
+      - name: track_refPx
+        return_type: const vector<float>
+      - name: track_refPy
+        return_type: const vector<float>
+      - name: track_refPz
+        return_type: const vector<float>
+      - name: track_links
+        return_type: const vector<ElementLink<DataVector<xAOD::TrackParticle_v1> > >
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
   - python_name: xAOD.BTagging_v1
     cpp_name: xAOD::BTagging_v1
     include_file: xAODBTagging/versions/BTagging_v1.h
     methods:
+      - name: BTagging_v1
+        return_type: xAOD::BTagging_v1
       - name: SV0_significance3D
-        return_type: float
+        return_type: double
+      - name: SV0_TrackParticleLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TrackParticle_v1> > >
+      - name: SV0_TrackParticle
+        return_type: const xAOD::TrackParticle_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: nSV0_TrackParticles
+        return_type: int
       - name: SV1_pb
-        return_type: float
+        return_type: double
       - name: SV1_pc
-        return_type: float
+        return_type: double
       - name: SV1_pu
-        return_type: float
+        return_type: double
       - name: SV1_loglikelihoodratio
-        return_type: float
+        return_type: double
+      - name: SV1_TrackParticleLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TrackParticle_v1> > >
+      - name: SV1_TrackParticle
+        return_type: const xAOD::TrackParticle_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: nSV1_TrackParticles
+        return_type: int
       - name: IP2D_pb
-        return_type: float
+        return_type: double
       - name: IP2D_pc
-        return_type: float
+        return_type: double
       - name: IP2D_pu
-        return_type: float
+        return_type: double
       - name: IP2D_loglikelihoodratio
-        return_type: float
+        return_type: double
+      - name: IP2D_TrackParticleLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TrackParticle_v1> > >
+      - name: IP2D_TrackParticle
+        return_type: const xAOD::TrackParticle_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: nIP2D_TrackParticles
+        return_type: int
       - name: IP3D_pb
-        return_type: float
+        return_type: double
       - name: IP3D_pc
-        return_type: float
+        return_type: double
       - name: IP3D_pu
-        return_type: float
+        return_type: double
       - name: IP3D_loglikelihoodratio
-        return_type: float
+        return_type: double
+      - name: IP3D_TrackParticleLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TrackParticle_v1> > >
+      - name: IP3D_TrackParticle
+        return_type: const xAOD::TrackParticle_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: nIP3D_TrackParticles
+        return_type: int
       - name: SV1plusIP3D_discriminant
-        return_type: float
+        return_type: double
       - name: JetFitter_pb
-        return_type: float
+        return_type: double
       - name: JetFitter_pc
-        return_type: float
+        return_type: double
       - name: JetFitter_pu
-        return_type: float
+        return_type: double
       - name: JetFitter_loglikelihoodratio
-        return_type: float
+        return_type: double
       - name: MV1_discriminant
-        return_type: float
+        return_type: double
       - name: calcLLR
-        return_type: float
+        return_type: double
         arguments:
           - name: num
             type: float
           - name: den
             type: float
-  - python_name: xAOD.CaloCluster_v1
-    cpp_name: xAOD::CaloCluster_v1
-    include_file: xAODCaloEvent/versions/CaloCluster_v1.h
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+  - python_name: xAOD.CaloClusterBadChannelData_v1
+    cpp_name: xAOD::CaloClusterBadChannelData_v1
+    include_file: xAODCaloEvent/versions/CaloClusterBadChannelData_v1.h
     methods:
-      - name: pt
-        return_type: float
       - name: eta
         return_type: float
       - name: phi
         return_type: float
+      - name: badChannel
+        return_type: unsigned int
+  - python_name: xAOD.CaloCluster_v1
+    cpp_name: xAOD::CaloCluster_v1
+    include_file: xAODCaloEvent/versions/CaloCluster_v1.h
+    methods:
+      - name: CaloCluster_v1
+        return_type: xAOD::CaloCluster_v1
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
       - name: m
-        return_type: float
+        return_type: double
       - name: e
-        return_type: float
+        return_type: double
       - name: rapidity
-        return_type: float
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
       - name: et
+        return_type: double
+      - name: energyBE
         return_type: float
+        arguments:
+          - name: layer
+            type: int
+      - name: etaBE
+        return_type: float
+        arguments:
+          - name: layer
+            type: int
+      - name: phiBE
+        return_type: float
+        arguments:
+          - name: layer
+            type: int
       - name: samplingPattern
-        return_type: int
+        return_type: unsigned int
       - name: nSamples
-        return_type: int
+        return_type: unsigned int
+      - name: inBarrel
+        return_type: bool
+      - name: inEndcap
+        return_type: bool
       - name: getClusterEtaSize
-        return_type: int
+        return_type: unsigned int
       - name: getClusterPhiSize
+        return_type: unsigned int
+      - name: badChannelList
+        return_type: const vector<xAOD::CaloClusterBadChannelData_v1>
+      - name: getSisterCluster
+        return_type: const xAOD::CaloCluster_v1*
+      - name: index
         return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
   - python_name: xAOD.CaloTower_v1
     cpp_name: xAOD::CaloTower_v1
     include_file: xAODCaloEvent/versions/CaloTower_v1.h
     methods:
       - name: pt
-        return_type: float
+        return_type: double
       - name: eta
-        return_type: float
+        return_type: double
       - name: phi
-        return_type: float
+        return_type: double
       - name: rapidity
-        return_type: float
+        return_type: double
       - name: m
-        return_type: float
+        return_type: double
       - name: e
-        return_type: float
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
   - python_name: xAOD.DiTauJet_v1
     cpp_name: xAOD::DiTauJet_v1
     include_file: xAODTau/versions/DiTauJet_v1.h
     methods:
       - name: pt
-        return_type: float
+        return_type: double
       - name: eta
-        return_type: float
+        return_type: double
       - name: phi
-        return_type: float
+        return_type: double
       - name: e
-        return_type: float
+        return_type: double
       - name: m
-        return_type: float
+        return_type: double
       - name: rapidity
-        return_type: float
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: jetLink
+        return_type: const ElementLink<DataVector<xAOD::Jet_v1> >
+      - name: jet
+        return_type: const xAOD::Jet_v1*
       - name: subjetPt
         return_type: float
         arguments:
@@ -3882,82 +1736,222 @@ classes:
         arguments:
           - name: numSubjet
             type: int
+      - name: vertexLink
+        return_type: const ElementLink<DataVector<xAOD::Vertex_v1> >
+      - name: vertex
+        return_type: const xAOD::Vertex_v1*
+      - name: trackLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TrackParticle_v1> > >
+      - name: track
+        return_type: const xAOD::TrackParticle_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: nTracks
+        return_type: int
+      - name: otherTrackLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TrackParticle_v1> > >
+      - name: otherTrack
+        return_type: const xAOD::TrackParticle_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: nOtherTracks
+        return_type: int
+      - name: isoTrackLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TrackParticle_v1> > >
+      - name: isoTrack
+        return_type: const xAOD::TrackParticle_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: nIsoTracks
+        return_type: int
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
   - python_name: xAOD.Egamma_v1
     cpp_name: xAOD::Egamma_v1
     include_file: xAODEgamma/versions/Egamma_v1.h
     methods:
       - name: pt
-        return_type: float
+        return_type: double
       - name: eta
-        return_type: float
+        return_type: double
       - name: phi
-        return_type: float
+        return_type: double
       - name: m
-        return_type: float
+        return_type: double
       - name: e
-        return_type: float
+        return_type: double
       - name: rapidity
-        return_type: float
-      - name: OQ
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: nCaloClusters
         return_type: int
+      - name: caloCluster
+        return_type: const xAOD::CaloCluster_v1*
+        arguments:
+          - name: index
+            type: int
+      - name: caloClusterLink
+        return_type: const ElementLink<DataVector<xAOD::CaloCluster_v1> >
+        arguments:
+          - name: index
+            type: int
+      - name: caloClusterLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::CaloCluster_v1> > >
+      - name: ambiguousObject
+        return_type: const xAOD::Egamma_v1*
+      - name: isGoodOQ
+        return_type: bool
+        arguments:
+          - name: mask
+            type: int
+      - name: OQ
+        return_type: unsigned int
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
   - python_name: xAOD.Electron_v1
     cpp_name: xAOD::Electron_v1
     include_file: xAODEgamma/versions/Electron_v1.h
     methods:
       - name: charge
         return_type: float
-      - name: pt
-        return_type: float
-      - name: eta
-        return_type: float
-      - name: phi
-        return_type: float
-      - name: m
-        return_type: float
-      - name: e
-        return_type: float
-      - name: rapidity
-        return_type: float
-      - name: OQ
+      - name: nTrackParticles
         return_type: int
+      - name: trackParticle
+        return_type: const xAOD::TrackParticle_v1*
+        arguments:
+          - name: index
+            type: int
+      - name: trackParticleLink
+        return_type: const ElementLink<DataVector<xAOD::TrackParticle_v1> >
+        arguments:
+          - name: index
+            type: int
+      - name: trackParticleLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TrackParticle_v1> > >
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: nCaloClusters
+        return_type: int
+      - name: caloCluster
+        return_type: const xAOD::CaloCluster_v1*
+        arguments:
+          - name: index
+            type: int
+      - name: caloClusterLink
+        return_type: const ElementLink<DataVector<xAOD::CaloCluster_v1> >
+        arguments:
+          - name: index
+            type: int
+      - name: caloClusterLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::CaloCluster_v1> > >
+      - name: ambiguousObject
+        return_type: const xAOD::Egamma_v1*
+      - name: isGoodOQ
+        return_type: bool
+        arguments:
+          - name: mask
+            type: int
+      - name: OQ
+        return_type: unsigned int
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
   - python_name: xAOD.EventInfo_v1
     cpp_name: xAOD::EventInfo_v1
     include_file: xAODEventInfo/versions/EventInfo_v1.h
     methods:
       - name: runNumber
-        return_type: int
+        return_type: unsigned int
       - name: eventNumber
-        return_type: int
+        return_type: unsigned long long
       - name: lumiBlock
-        return_type: int
+        return_type: unsigned int
       - name: timeStamp
-        return_type: int
+        return_type: unsigned int
       - name: timeStampNSOffset
-        return_type: int
+        return_type: unsigned int
       - name: bcid
-        return_type: int
+        return_type: unsigned int
       - name: detectorMask0
-        return_type: int
+        return_type: unsigned int
       - name: detectorMask1
-        return_type: int
+        return_type: unsigned int
       - name: detectorMask2
-        return_type: int
+        return_type: unsigned int
       - name: detectorMask3
-        return_type: int
+        return_type: unsigned int
       - name: mcChannelNumber
-        return_type: int
+        return_type: unsigned int
       - name: mcEventNumber
-        return_type: int
+        return_type: unsigned long long
+      - name: mcEventWeights
+        return_type: const vector<float>
+      - name: mcEventWeight
+        return_type: float
+        arguments:
+          - name: i
+            type: int
+      - name: hasMCEventWeights
+        return_type: bool
       - name: eventTypeBitmask
-        return_type: int
+        return_type: unsigned int
       - name: statusElement
-        return_type: int
+        return_type: unsigned int
       - name: extendedLevel1ID
-        return_type: int
+        return_type: unsigned int
+      - name: streamTags
+        return_type: const vector<xAOD::EventInfo_v1::StreamTag>
       - name: actualInteractionsPerCrossing
         return_type: float
       - name: averageInteractionsPerCrossing
         return_type: float
+      - name: subEvents
+        return_type: const vector<xAOD::EventInfo_v1::SubEvent>
       - name: beamPosX
         return_type: float
       - name: beamPosY
@@ -3977,63 +1971,124 @@ classes:
       - name: beamTiltYZ
         return_type: float
       - name: beamStatus
+        return_type: unsigned int
+      - name: index
         return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+  - python_name: xAOD.EventInfo_v1.StreamTag
+    cpp_name: xAOD::EventInfo_v1::StreamTag
+    methods:
+      - name: obeysLumiblock
+        return_type: bool
+  - python_name: xAOD.EventInfo_v1.SubEvent
+    cpp_name: xAOD::EventInfo_v1::SubEvent
+    methods:
+      - name: link
+        return_type: const ElementLink<DataVector<xAOD::EventInfo_v1> >
+      - name: ptr
+        return_type: const xAOD::EventInfo_v1*
   - python_name: xAOD.IParticle
     cpp_name: xAOD::IParticle
     include_file: xAODBase/IParticle.h
     methods:
       - name: pt
-        return_type: float
+        return_type: double
       - name: eta
-        return_type: float
+        return_type: double
       - name: phi
-        return_type: float
+        return_type: double
       - name: m
-        return_type: float
+        return_type: double
       - name: e
-        return_type: float
+        return_type: double
       - name: rapidity
-        return_type: float
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
   - python_name: xAOD.JetConstituent
     cpp_name: xAOD::JetConstituent
     methods:
       - name: pt
-        return_type: float
+        return_type: double
       - name: eta
-        return_type: float
+        return_type: double
       - name: phi
-        return_type: float
+        return_type: double
       - name: m
-        return_type: float
+        return_type: double
       - name: e
-        return_type: float
+        return_type: double
       - name: rapidity
-        return_type: float
+        return_type: double
+      - name: rawConstituent
+        return_type: const xAOD::IParticle*
+      - name: isTimelike
+        return_type: bool
+      - name: isSpacelike
+        return_type: bool
   - python_name: xAOD.JetConstituentVector
     cpp_name: xAOD::JetConstituentVector
-    is_container_of_cpp: xAOD::JetConstituent
+    is_container_of_cpp: xAOD::JetConstituent*
     is_container_of_python: xAOD.JetConstituent
     methods:
+      - name: isValid
+        return_type: bool
+      - name: empty
+        return_type: bool
+      - name: size
+        return_type: int
+      - name: at
+        return_type: xAOD::JetConstituent
+        arguments:
+          - name: i
+            type: int
       - name: front
-        return_type: xAOD.JetConstituent
+        return_type: xAOD::JetConstituent
       - name: back
-        return_type: xAOD.JetConstituent
+        return_type: xAOD::JetConstituent
+      - name: asSTLVector
+        return_type: vector<xAOD::JetConstituent>
   - python_name: xAOD.Jet_v1
     cpp_name: xAOD::Jet_v1
     include_file: xAODJet/versions/Jet_v1.h
     methods:
+      - name: Jet_v1
+        return_type: xAOD::Jet_v1
       - name: pt
-        return_type: float
+        return_type: double
       - name: eta
-        return_type: float
+        return_type: double
       - name: phi
-        return_type: float
+        return_type: double
       - name: m
-        return_type: float
+        return_type: double
       - name: e
-        return_type: float
+        return_type: double
       - name: rapidity
-        return_type: float
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
       - name: px
         return_type: float
       - name: py
@@ -4041,27 +2096,68 @@ classes:
       - name: pz
         return_type: float
       - name: getConstituents
-        return_type: xAOD.JetConstituentVector
+        return_type: xAOD::JetConstituentVector
+      - name: numConstituents
+        return_type: int
+      - name: rawConstituent
+        return_type: const xAOD::IParticle*
+        arguments:
+          - name: i
+            type: int
+      - name: constituentLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::IParticle> > >
+      - name: btagging
+        return_type: const xAOD::BTagging_v1*
+      - name: btaggingLink
+        return_type: const ElementLink<DataVector<xAOD::BTagging_v1> >
       - name: getSizeParameter
         return_type: float
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
   - python_name: xAOD.MissingET_v1
     cpp_name: xAOD::MissingET_v1
     include_file: xAODMissingET/versions/MissingET_v1.h
     methods:
       - name: mpx
-        return_type: float
+        return_type: double
       - name: mpy
-        return_type: float
+        return_type: double
       - name: met
-        return_type: float
+        return_type: double
       - name: phi
-        return_type: float
+        return_type: double
       - name: sumet
-        return_type: float
+        return_type: double
+      - name: nameHash
+        return_type: int
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
   - python_name: xAOD.MuonSegment_v1
     cpp_name: xAOD::MuonSegment_v1
     include_file: xAODMuon/versions/MuonSegment_v1.h
     methods:
+      - name: MuonSegment_v1
+        return_type: xAOD::MuonSegment_v1
       - name: x
         return_type: float
       - name: y
@@ -4092,40 +2188,106 @@ classes:
         return_type: int
       - name: nTrigEtaLayers
         return_type: int
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
   - python_name: xAOD.Muon_v1
     cpp_name: xAOD::Muon_v1
     include_file: xAODMuon/versions/Muon_v1.h
     methods:
       - name: pt
-        return_type: float
+        return_type: double
       - name: eta
-        return_type: float
+        return_type: double
       - name: phi
-        return_type: float
+        return_type: double
       - name: m
-        return_type: float
+        return_type: double
       - name: e
-        return_type: float
+        return_type: double
       - name: rapidity
-        return_type: float
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
       - name: charge
         return_type: float
+      - name: passesIDCuts
+        return_type: bool
+      - name: passesHighPtCuts
+        return_type: bool
+      - name: primaryTrackParticleLink
+        return_type: const ElementLink<DataVector<xAOD::TrackParticle_v1> >
+      - name: primaryTrackParticle
+        return_type: const xAOD::TrackParticle_v1*
+      - name: inDetTrackParticleLink
+        return_type: const ElementLink<DataVector<xAOD::TrackParticle_v1> >
+      - name: muonSpectrometerTrackParticleLink
+        return_type: const ElementLink<DataVector<xAOD::TrackParticle_v1> >
+      - name: combinedTrackParticleLink
+        return_type: const ElementLink<DataVector<xAOD::TrackParticle_v1> >
+      - name: extrapolatedMuonSpectrometerTrackParticleLink
+        return_type: const ElementLink<DataVector<xAOD::TrackParticle_v1> >
+      - name: msOnlyExtrapolatedMuonSpectrometerTrackParticleLink
+        return_type: const ElementLink<DataVector<xAOD::TrackParticle_v1> >
+      - name: clusterLink
+        return_type: const ElementLink<DataVector<xAOD::CaloCluster_v1> >
+      - name: cluster
+        return_type: const xAOD::CaloCluster_v1*
+      - name: muonSegmentLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::MuonSegment_v1> > >
+      - name: nMuonSegments
+        return_type: int
+      - name: muonSegment
+        return_type: const xAOD::MuonSegment_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: muonSegmentLink
+        return_type: const ElementLink<DataVector<xAOD::MuonSegment_v1> >
+        arguments:
+          - name: i
+            type: int
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
   - python_name: xAOD.NeutralParticle_v1
     cpp_name: xAOD::NeutralParticle_v1
     include_file: xAODTracking/versions/NeutralParticle_v1.h
     methods:
+      - name: NeutralParticle_v1
+        return_type: xAOD::NeutralParticle_v1
       - name: pt
-        return_type: float
+        return_type: double
       - name: eta
-        return_type: float
+        return_type: double
       - name: phi
-        return_type: float
+        return_type: double
       - name: m
-        return_type: float
+        return_type: double
       - name: e
-        return_type: float
+        return_type: double
       - name: rapidity
-        return_type: float
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
       - name: d0
         return_type: float
       - name: z0
@@ -4136,64 +2298,189 @@ classes:
         return_type: float
       - name: oneOverP
         return_type: float
+      - name: definingParametersCovMatrixVec
+        return_type: const vector<float>
       - name: vx
         return_type: float
       - name: vy
         return_type: float
       - name: vz
         return_type: float
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
   - python_name: xAOD.PFO_v1
     cpp_name: xAOD::PFO_v1
     include_file: xAODPFlow/versions/PFO_v1.h
     methods:
+      - name: PFO_v1
+        return_type: xAOD::PFO_v1
       - name: pt
-        return_type: float
+        return_type: double
       - name: eta
-        return_type: float
+        return_type: double
       - name: phi
-        return_type: float
+        return_type: double
       - name: m
-        return_type: float
+        return_type: double
       - name: e
-        return_type: float
+        return_type: double
       - name: rapidity
-        return_type: float
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: p4EM
+        return_type: const TLorentzVector
       - name: ptEM
-        return_type: float
+        return_type: double
       - name: etaEM
-        return_type: float
+        return_type: double
       - name: phiEM
-        return_type: float
+        return_type: double
       - name: mEM
-        return_type: float
+        return_type: double
       - name: eEM
-        return_type: float
+        return_type: double
       - name: bdtPi0Score
         return_type: float
       - name: centerMag
         return_type: float
+      - name: isCharged
+        return_type: bool
       - name: charge
         return_type: float
+      - name: cluster
+        return_type: const xAOD::CaloCluster_v1*
+        arguments:
+          - name: index
+            type: int
+      - name: track
+        return_type: const xAOD::TrackParticle_v1*
+        arguments:
+          - name: index
+            type: int
+      - name: vertex
+        return_type: const xAOD::Vertex_v1*
+      - name: setVertexLink
+        return_type: bool
+        arguments:
+          - name: theVertexLink
+            type: ElementLink_DataVector_xAOD_Vertex_v1__
+      - name: setTrackLink
+        return_type: bool
+        arguments:
+          - name: theTrack
+            type: ElementLink_DataVector_xAOD_TrackParticle_v1__
+      - name: setClusterLink
+        return_type: bool
+        arguments:
+          - name: theCluster
+            type: ElementLink_DataVector_xAOD_CaloCluster_v1__
+      - name: addClusterLink
+        return_type: bool
+        arguments:
+          - name: theCluster
+            type: ElementLink_DataVector_xAOD_CaloCluster_v1__
+      - name: GetVertexCorrectedFourVec
+        return_type: TLorentzVector
+        arguments:
+          - name: vertexToCorrectTo
+            type: xAOD.Vertex_v1
+      - name: GetVertexCorrectedEMFourVec
+        return_type: TLorentzVector
+        arguments:
+          - name: vertexToCorrectTo
+            type: xAOD.Vertex_v1
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
   - python_name: xAOD.Photon_v1
     cpp_name: xAOD::Photon_v1
     include_file: xAODEgamma/versions/Photon_v1.h
     methods:
+      - name: vertex
+        return_type: const xAOD::Vertex_v1*
+        arguments:
+          - name: index
+            type: int
+      - name: vertexLink
+        return_type: const ElementLink<DataVector<xAOD::Vertex_v1> >
+        arguments:
+          - name: index
+            type: int
+      - name: vertexLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::Vertex_v1> > >
+      - name: nVertices
+        return_type: int
       - name: conversionRadius
         return_type: float
       - name: pt
-        return_type: float
+        return_type: double
       - name: eta
-        return_type: float
+        return_type: double
       - name: phi
-        return_type: float
+        return_type: double
       - name: m
-        return_type: float
+        return_type: double
       - name: e
-        return_type: float
+        return_type: double
       - name: rapidity
-        return_type: float
-      - name: OQ
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: nCaloClusters
         return_type: int
+      - name: caloCluster
+        return_type: const xAOD::CaloCluster_v1*
+        arguments:
+          - name: index
+            type: int
+      - name: caloClusterLink
+        return_type: const ElementLink<DataVector<xAOD::CaloCluster_v1> >
+        arguments:
+          - name: index
+            type: int
+      - name: caloClusterLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::CaloCluster_v1> > >
+      - name: ambiguousObject
+        return_type: const xAOD::Egamma_v1*
+      - name: isGoodOQ
+        return_type: bool
+        arguments:
+          - name: mask
+            type: int
+      - name: OQ
+        return_type: unsigned int
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
   - python_name: xAOD.SlowMuon_v1
     cpp_name: xAOD::SlowMuon_v1
     include_file: xAODMuon/versions/SlowMuon_v1.h
@@ -4238,97 +2525,172 @@ classes:
         return_type: float
       - name: dEdxNClusters
         return_type: int
+      - name: muonLink
+        return_type: const ElementLink<DataVector<xAOD::Muon_v1> >
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
   - python_name: xAOD.TauJet_v3
     cpp_name: xAOD::TauJet_v3
     include_file: xAODTau/versions/TauJet_v3.h
     methods:
       - name: pt
-        return_type: float
+        return_type: double
       - name: eta
-        return_type: float
+        return_type: double
       - name: phi
-        return_type: float
+        return_type: double
       - name: e
-        return_type: float
+        return_type: double
       - name: m
-        return_type: float
+        return_type: double
       - name: rapidity
-        return_type: float
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
       - name: ptJetSeed
-        return_type: float
+        return_type: double
       - name: etaJetSeed
-        return_type: float
+        return_type: double
       - name: phiJetSeed
-        return_type: float
+        return_type: double
       - name: mJetSeed
-        return_type: float
+        return_type: double
       - name: ptDetectorAxis
-        return_type: float
+        return_type: double
       - name: etaDetectorAxis
-        return_type: float
+        return_type: double
       - name: phiDetectorAxis
-        return_type: float
+        return_type: double
       - name: mDetectorAxis
-        return_type: float
+        return_type: double
       - name: ptIntermediateAxis
-        return_type: float
+        return_type: double
       - name: etaIntermediateAxis
-        return_type: float
+        return_type: double
       - name: phiIntermediateAxis
-        return_type: float
+        return_type: double
       - name: mIntermediateAxis
-        return_type: float
+        return_type: double
       - name: ptTauEnergyScale
-        return_type: float
+        return_type: double
       - name: etaTauEnergyScale
-        return_type: float
+        return_type: double
       - name: phiTauEnergyScale
-        return_type: float
+        return_type: double
       - name: mTauEnergyScale
-        return_type: float
+        return_type: double
       - name: ptTauEtaCalib
-        return_type: float
+        return_type: double
       - name: etaTauEtaCalib
-        return_type: float
+        return_type: double
       - name: phiTauEtaCalib
-        return_type: float
+        return_type: double
       - name: mTauEtaCalib
-        return_type: float
+        return_type: double
       - name: ptPanTauCellBasedProto
-        return_type: float
+        return_type: double
       - name: etaPanTauCellBasedProto
-        return_type: float
+        return_type: double
       - name: phiPanTauCellBasedProto
-        return_type: float
+        return_type: double
       - name: mPanTauCellBasedProto
-        return_type: float
+        return_type: double
       - name: ptPanTauCellBased
-        return_type: float
+        return_type: double
       - name: etaPanTauCellBased
-        return_type: float
+        return_type: double
       - name: phiPanTauCellBased
-        return_type: float
+        return_type: double
       - name: mPanTauCellBased
-        return_type: float
+        return_type: double
       - name: ptTrigCaloOnly
-        return_type: float
+        return_type: double
       - name: etaTrigCaloOnly
-        return_type: float
+        return_type: double
       - name: phiTrigCaloOnly
-        return_type: float
+        return_type: double
       - name: mTrigCaloOnly
-        return_type: float
+        return_type: double
       - name: ptFinalCalib
-        return_type: float
+        return_type: double
       - name: etaFinalCalib
-        return_type: float
+        return_type: double
       - name: phiFinalCalib
-        return_type: float
+        return_type: double
       - name: mFinalCalib
-        return_type: float
+        return_type: double
       - name: charge
         return_type: float
       - name: ROIWord
+        return_type: unsigned int
+      - name: jetLink
+        return_type: const ElementLink<DataVector<xAOD::Jet_v1> >
+      - name: jet
+        return_type: const xAOD::Jet_v1*
+      - name: vertexLink
+        return_type: const ElementLink<DataVector<xAOD::Vertex_v1> >
+      - name: vertex
+        return_type: const xAOD::Vertex_v1*
+      - name: secondaryVertexLink
+        return_type: const ElementLink<DataVector<xAOD::Vertex_v1> >
+      - name: secondaryVertex
+        return_type: const xAOD::Vertex_v1*
+      - name: tauTrackLinksWithMask
+        return_type: const vector<ElementLink<DataVector<xAOD::TauTrack_v1> > >
+        arguments:
+          - name: noname_arg
+            type: int
+      - name: allTauTrackLinksNonConst
+        return_type: vector<ElementLink<DataVector<xAOD::TauTrack_v1> > >
+      - name: allTauTrackLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TauTrack_v1> > >
+      - name: trackWithMask
+        return_type: const xAOD::TauTrack_v1*
+        arguments:
+          - name: i
+            type: int
+          - name: mask
+            type: int
+          - name: container_index
+            type: int
+      - name: nTracksCharged
+        return_type: int
+      - name: nTracksIsolation
+        return_type: int
+      - name: nTracksWithMask
+        return_type: int
+        arguments:
+          - name: classification
+            type: int
+      - name: nAllTracks
+        return_type: int
+      - name: clusterLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::IParticle> > >
+      - name: cluster
+        return_type: const xAOD::IParticle*
+        arguments:
+          - name: i
+            type: int
+      - name: nClusters
+        return_type: int
+      - name: pi0Links
+        return_type: const vector<ElementLink<DataVector<xAOD::IParticle> > >
+      - name: pi0
+        return_type: const xAOD::IParticle*
+        arguments:
+          - name: i
+            type: int
+      - name: nPi0s
         return_type: int
       - name: trackFilterProngs
         return_type: int
@@ -4336,56 +2698,218 @@ classes:
         return_type: int
       - name: pi0ConeDR
         return_type: float
+      - name: hadronicPFOLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::PFO_v1> > >
+      - name: hadronicPFO
+        return_type: const xAOD::PFO_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: nHadronicPFOs
+        return_type: int
+      - name: shotPFOLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::PFO_v1> > >
+      - name: shotPFO
+        return_type: const xAOD::PFO_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: nShotPFOs
+        return_type: int
+      - name: chargedPFOLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::PFO_v1> > >
+      - name: chargedPFO
+        return_type: const xAOD::PFO_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: nChargedPFOs
+        return_type: int
+      - name: neutralPFOLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::PFO_v1> > >
+      - name: neutralPFO
+        return_type: const xAOD::PFO_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: nNeutralPFOs
+        return_type: int
+      - name: pi0PFOLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::PFO_v1> > >
+      - name: pi0PFO
+        return_type: const xAOD::PFO_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: nPi0PFOs
+        return_type: int
+      - name: protoChargedPFOLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::PFO_v1> > >
+      - name: protoChargedPFO
+        return_type: const xAOD::PFO_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: nProtoChargedPFOs
+        return_type: int
+      - name: protoNeutralPFOLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::PFO_v1> > >
+      - name: protoNeutralPFO
+        return_type: const xAOD::PFO_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: nProtoNeutralPFOs
+        return_type: int
+      - name: protoPi0PFOLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::PFO_v1> > >
+      - name: protoPi0PFO
+        return_type: const xAOD::PFO_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: nProtoPi0PFOs
+        return_type: int
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
   - python_name: xAOD.TauTrack_v1
     cpp_name: xAOD::TauTrack_v1
     include_file: xAODTau/versions/TauTrack_v1.h
     methods:
+      - name: TauTrack_v1
+        return_type: xAOD::TauTrack_v1
       - name: pt
-        return_type: float
+        return_type: double
       - name: eta
-        return_type: float
+        return_type: double
       - name: phi
-        return_type: float
+        return_type: double
       - name: e
-        return_type: float
+        return_type: double
       - name: m
-        return_type: float
+        return_type: double
       - name: rapidity
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: flagWithMask
+        return_type: bool
+        arguments:
+          - name: noname_arg
+            type: int
+      - name: z0sinThetaTJVA
         return_type: float
+        arguments:
+          - name: noname_arg
+            type: xAOD.IParticle
+      - name: rConv
+        return_type: float
+        arguments:
+          - name: noname_arg
+            type: xAOD.IParticle
+      - name: rConvII
+        return_type: float
+        arguments:
+          - name: noname_arg
+            type: xAOD.IParticle
+      - name: dRJetSeedAxis
+        return_type: float
+        arguments:
+          - name: noname_arg
+            type: xAOD.IParticle
+      - name: bdtScores
+        return_type: const vector<float>
+      - name: bdtScore
+        return_type: float
+        arguments:
+          - name: i
+            type: int
+      - name: nBdtScores
+        return_type: int
+      - name: trackLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TrackParticle_v1> > >
+      - name: track
+        return_type: const xAOD::TrackParticle_v1*
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
   - python_name: xAOD.TrackCaloCluster_v1
     cpp_name: xAOD::TrackCaloCluster_v1
     include_file: xAODPFlow/versions/TrackCaloCluster_v1.h
     methods:
       - name: pt
-        return_type: float
+        return_type: double
       - name: eta
-        return_type: float
+        return_type: double
       - name: phi
-        return_type: float
+        return_type: double
       - name: m
-        return_type: float
+        return_type: double
       - name: e
-        return_type: float
+        return_type: double
       - name: rapidity
-        return_type: float
+        return_type: double
       - name: taste
         return_type: int
+      - name: p4
+        return_type: const TLorentzVector
+      - name: trackParticleLink
+        return_type: const ElementLink<DataVector<xAOD::TrackParticle_v1> >
+      - name: trackParticle
+        return_type: const xAOD::TrackParticle_v1*
+      - name: iparticleLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::IParticle> > >
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
   - python_name: xAOD.TrackParticle_v1
     cpp_name: xAOD::TrackParticle_v1
     include_file: xAODTracking/versions/TrackParticle_v1.h
     methods:
+      - name: TrackParticle_v1
+        return_type: xAOD::TrackParticle_v1
       - name: pt
-        return_type: float
+        return_type: double
       - name: eta
-        return_type: float
+        return_type: double
       - name: phi
-        return_type: float
+        return_type: double
       - name: m
-        return_type: float
+        return_type: double
       - name: e
-        return_type: float
+        return_type: double
       - name: rapidity
-        return_type: float
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
       - name: charge
         return_type: float
       - name: d0
@@ -4398,12 +2922,16 @@ classes:
         return_type: float
       - name: qOverP
         return_type: float
+      - name: definingParametersCovMatrixVec
+        return_type: const vector<float>
       - name: vx
         return_type: float
       - name: vy
         return_type: float
       - name: vz
         return_type: float
+      - name: numberOfParameters
+        return_type: int
       - name: parameterX
         return_type: float
         arguments:
@@ -4441,29 +2969,161 @@ classes:
       - name: beamlineTiltY
         return_type: float
       - name: hitPattern
-        return_type: int
+        return_type: unsigned int
       - name: chiSquared
         return_type: float
       - name: numberDoF
         return_type: float
+      - name: vertexLink
+        return_type: const ElementLink<DataVector<xAOD::Vertex_v1> >
+      - name: vertex
+        return_type: const xAOD::Vertex_v1*
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+  - python_name: xAOD.TruthEventBase_v1
+    cpp_name: xAOD::TruthEventBase_v1
+    include_file: xAODTruth/versions/TruthEventBase_v1.h
+    methods:
+      - name: truthParticleLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TruthParticle_v1> > >
+      - name: nTruthParticles
+        return_type: int
+      - name: truthParticleLink
+        return_type: const ElementLink<DataVector<xAOD::TruthParticle_v1> >
+        arguments:
+          - name: index
+            type: int
+      - name: truthParticle
+        return_type: const xAOD::TruthParticle_v1*
+        arguments:
+          - name: index
+            type: int
+      - name: truthVertexLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TruthVertex_v1> > >
+      - name: nTruthVertices
+        return_type: int
+      - name: truthVertexLink
+        return_type: const ElementLink<DataVector<xAOD::TruthVertex_v1> >
+        arguments:
+          - name: index
+            type: int
+      - name: truthVertex
+        return_type: const xAOD::TruthVertex_v1*
+        arguments:
+          - name: index
+            type: int
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
   - python_name: xAOD.TruthEvent_v1
     cpp_name: xAOD::TruthEvent_v1
     include_file: xAODTruth/versions/TruthEvent_v1.h
     methods:
+      - name: weights
+        return_type: const vector<float>
       - name: crossSection
         return_type: float
       - name: crossSectionError
         return_type: float
+      - name: pdfInfo
+        return_type: xAOD::TruthEvent_v1::PdfInfo
+      - name: signalProcessVertex
+        return_type: const xAOD::TruthVertex_v1*
+      - name: signalProcessVertexLink
+        return_type: const ElementLink<DataVector<xAOD::TruthVertex_v1> >
+      - name: beamParticle1Link
+        return_type: const ElementLink<DataVector<xAOD::TruthParticle_v1> >
+      - name: beamParticle2Link
+        return_type: const ElementLink<DataVector<xAOD::TruthParticle_v1> >
+      - name: truthParticleLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TruthParticle_v1> > >
+      - name: nTruthParticles
+        return_type: int
+      - name: truthParticleLink
+        return_type: const ElementLink<DataVector<xAOD::TruthParticle_v1> >
+        arguments:
+          - name: index
+            type: int
+      - name: truthParticle
+        return_type: const xAOD::TruthParticle_v1*
+        arguments:
+          - name: index
+            type: int
+      - name: truthVertexLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TruthVertex_v1> > >
+      - name: nTruthVertices
+        return_type: int
+      - name: truthVertexLink
+        return_type: const ElementLink<DataVector<xAOD::TruthVertex_v1> >
+        arguments:
+          - name: index
+            type: int
+      - name: truthVertex
+        return_type: const xAOD::TruthVertex_v1*
+        arguments:
+          - name: index
+            type: int
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+  - python_name: xAOD.TruthEvent_v1.PdfInfo
+    cpp_name: xAOD::TruthEvent_v1::PdfInfo
+    include_file: xAODTruth/versions/TruthEvent_v1.h
+    methods:
+      - name: valid
+        return_type: bool
   - python_name: xAOD.TruthMetaData_v1
     cpp_name: xAOD::TruthMetaData_v1
     include_file: xAODTruth/versions/TruthMetaData_v1.h
     methods:
       - name: mcChannelNumber
+        return_type: unsigned int
+      - name: index
         return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
   - python_name: xAOD.TruthParticle_v1
     cpp_name: xAOD::TruthParticle_v1
     include_file: xAODTruth/versions/TruthParticle_v1.h
     methods:
+      - name: TruthParticle_v1
+        return_type: xAOD::TruthParticle_v1
       - name: pdgId
         return_type: int
       - name: absPdgId
@@ -4472,22 +3132,50 @@ classes:
         return_type: int
       - name: status
         return_type: int
+      - name: hasProdVtx
+        return_type: bool
+      - name: prodVtx
+        return_type: const xAOD::TruthVertex_v1*
+      - name: prodVtxLink
+        return_type: const ElementLink<DataVector<xAOD::TruthVertex_v1> >
+      - name: hasDecayVtx
+        return_type: bool
+      - name: decayVtx
+        return_type: const xAOD::TruthVertex_v1*
+      - name: decayVtxLink
+        return_type: const ElementLink<DataVector<xAOD::TruthVertex_v1> >
+      - name: nParents
+        return_type: int
+      - name: parent
+        return_type: const xAOD::TruthParticle_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: nChildren
+        return_type: int
+      - name: child
+        return_type: const xAOD::TruthParticle_v1*
+        arguments:
+          - name: i
+            type: int
       - name: pt
-        return_type: float
+        return_type: double
       - name: eta
-        return_type: float
+        return_type: double
       - name: phi
-        return_type: float
+        return_type: double
       - name: m
-        return_type: float
+        return_type: double
       - name: e
-        return_type: float
+        return_type: double
       - name: rapidity
-        return_type: float
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
       - name: abseta
-        return_type: float
+        return_type: double
       - name: absrapidity
-        return_type: float
+        return_type: double
       - name: px
         return_type: float
       - name: py
@@ -4495,17 +3183,135 @@ classes:
       - name: pz
         return_type: float
       - name: charge
-        return_type: float
+        return_type: double
       - name: threeCharge
         return_type: int
+      - name: isCharged
+        return_type: bool
+      - name: isNeutral
+        return_type: bool
+      - name: isPhoton
+        return_type: bool
+      - name: isLepton
+        return_type: bool
+      - name: isChLepton
+        return_type: bool
+      - name: isElectron
+        return_type: bool
+      - name: isMuon
+        return_type: bool
+      - name: isTau
+        return_type: bool
+      - name: isNeutrino
+        return_type: bool
+      - name: isHadron
+        return_type: bool
+      - name: isMeson
+        return_type: bool
+      - name: isBaryon
+        return_type: bool
+      - name: hasStrange
+        return_type: bool
+      - name: hasCharm
+        return_type: bool
+      - name: hasBottom
+        return_type: bool
+      - name: isLightMeson
+        return_type: bool
+      - name: isLightBaryon
+        return_type: bool
+      - name: isLightHadron
+        return_type: bool
+      - name: isHeavyMeson
+        return_type: bool
+      - name: isHeavyBaryon
+        return_type: bool
+      - name: isHeavyHadron
+        return_type: bool
+      - name: isBottomMeson
+        return_type: bool
+      - name: isBottomBaryon
+        return_type: bool
+      - name: isBottomHadron
+        return_type: bool
+      - name: isCharmMeson
+        return_type: bool
+      - name: isCharmBaryon
+        return_type: bool
+      - name: isCharmHadron
+        return_type: bool
+      - name: isStrangeMeson
+        return_type: bool
+      - name: isStrangeBaryon
+        return_type: bool
+      - name: isStrangeHadron
+        return_type: bool
+      - name: isQuark
+        return_type: bool
+      - name: isParton
+        return_type: bool
+      - name: isTop
+        return_type: bool
+      - name: isW
+        return_type: bool
+      - name: isZ
+        return_type: bool
+      - name: isHiggs
+        return_type: bool
+      - name: isResonance
+        return_type: bool
+      - name: isGenSpecific
+        return_type: bool
+      - name: isBSM
+        return_type: bool
+      - name: polarization
+        return_type: xAOD::TruthParticle_v1::Polarization
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+  - python_name: xAOD.TruthParticle_v1.Polarization
+    cpp_name: xAOD::TruthParticle_v1::Polarization
+    include_file: xAODTruth/versions/TruthParticle_v1.h
+    methods:
+      - name: valid
+        return_type: bool
   - python_name: xAOD.TruthVertex_v1
     cpp_name: xAOD::TruthVertex_v1
     include_file: xAODTruth/versions/TruthVertex_v1.h
     methods:
+      - name: TruthVertex_v1
+        return_type: xAOD::TruthVertex_v1
       - name: id
         return_type: int
       - name: barcode
         return_type: int
+      - name: incomingParticleLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TruthParticle_v1> > >
+      - name: nIncomingParticles
+        return_type: int
+      - name: incomingParticle
+        return_type: const xAOD::TruthParticle_v1*
+        arguments:
+          - name: index
+            type: int
+      - name: outgoingParticleLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TruthParticle_v1> > >
+      - name: nOutgoingParticles
+        return_type: int
+      - name: outgoingParticle
+        return_type: const xAOD::TruthParticle_v1*
+        arguments:
+          - name: index
+            type: int
       - name: x
         return_type: float
       - name: y
@@ -4520,17 +3326,79 @@ classes:
         return_type: float
       - name: t
         return_type: float
+      - name: v4
+        return_type: const TLorentzVector
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
   - python_name: xAOD.Vertex_v1
     cpp_name: xAOD::Vertex_v1
     include_file: xAODTracking/versions/Vertex_v1.h
     methods:
+      - name: Vertex_v1
+        return_type: xAOD::Vertex_v1
       - name: x
         return_type: float
       - name: y
         return_type: float
       - name: z
         return_type: float
+      - name: covariance
+        return_type: const vector<float>
       - name: chiSquared
         return_type: float
       - name: numberDoF
         return_type: float
+      - name: trackParticleLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TrackParticle_v1> > >
+      - name: trackWeights
+        return_type: const vector<float>
+      - name: neutralParticleLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::NeutralParticle_v1> > >
+      - name: neutralWeights
+        return_type: const vector<float>
+      - name: trackParticle
+        return_type: const xAOD::TrackParticle_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: trackWeight
+        return_type: float
+        arguments:
+          - name: i
+            type: int
+      - name: nTrackParticles
+        return_type: int
+      - name: neutralParticle
+        return_type: const xAOD::NeutralParticle_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: neutralWeight
+        return_type: float
+        arguments:
+          - name: i
+            type: int
+      - name: nNeutralParticles
+        return_type: int
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
