@@ -20,7 +20,7 @@ def run():
 
     package_name = "func_adl_servicex_xaodr21"
 
-    collections, classes = load_yaml(args.yaml_type_file)
+    collections, classes, metadata = load_yaml(args.yaml_type_file)
 
     # Fix up the collection types
     all_class_names = {c.name for c in classes}
@@ -38,6 +38,7 @@ def run():
         "sx_dataset_name": "SXDSAtlasxAODR21",
         "backend_default_name": "xaod_r21",
         "collections": collections,
+        "metadata": metadata,
     }
 
     template_path = Path("./template")

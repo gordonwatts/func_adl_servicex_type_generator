@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import List, Tuple
+from typing import Any, Dict, List, Tuple
 
 import yaml
 
@@ -7,8 +7,11 @@ from func_adl_servicex_type_generator.class_utils import class_split_namespace
 from func_adl_servicex_type_generator.data_model import (
     class_info,
     collection_info,
+    extra_parameter,
+    metadata_info,
     method_arg_info,
     method_info,
+    parameter_action,
 )
 
 
@@ -38,7 +41,28 @@ def method_loader(methods: List[dict]) -> List[method_info]:
     return result
 
 
-def load_yaml(config_path: Path) -> Tuple[List[collection_info], List[class_info]]:
+def load_parameters(params: List[Dict[str, Any]]) -> List[extra_parameter]:
+    "Load extra parameters from the file yaml"
+    return [
+        extra_parameter(
+            name=p["name"],
+            type=p["type"],
+            default_value=p["default_value"],
+            actions=[
+                parameter_action(
+                    value=a["value"],
+                    md_names=a["metadata_names"],
+                )
+                for a in p["actions"]
+            ],
+        )
+        for p in params
+    ]
+
+
+def load_yaml(
+    config_path: Path,
+) -> Tuple[List[collection_info], List[class_info], Dict[str, metadata_info]]:
     """Return data from a loaded info file
 
     Args:
@@ -51,6 +75,7 @@ def load_yaml(config_path: Path) -> Tuple[List[collection_info], List[class_info
 
     data_collections = data["collections"]
     data_classes = data["classes"]
+    data_metadata = data["metadata"]
 
     collections = [
         collection_info(
@@ -64,6 +89,9 @@ def load_yaml(config_path: Path) -> Tuple[List[collection_info], List[class_info
             if ("include_file" in c) and (len(c["include_file"]) > 0)
             else [],
             link_libraries=c["link_libraries"],
+            parameters=[]
+            if "extra_parameters" not in c
+            else load_parameters(c["extra_parameters"]),
         )
         for c in data_collections
     ]
@@ -86,4 +114,6 @@ def load_yaml(config_path: Path) -> Tuple[List[collection_info], List[class_info
         for c in data_classes
     ]
 
-    return (collections, classes)
+    metadata = {m["name"]: metadata_info(data=m["data"]) for m in data_metadata}
+
+    return (collections, classes, metadata)

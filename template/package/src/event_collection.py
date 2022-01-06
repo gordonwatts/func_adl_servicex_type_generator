@@ -1,7 +1,8 @@
 from __future__ import annotations
-from typing import Iterable, Tuple, TypeVar
+from typing import Any, Dict, Iterable, List, Tuple, TypeVar, Union
 from func_adl import ObjectStream
 import ast
+import copy
 import {{ package_name }}
 
 # The map for collection definitions in ATLAS
@@ -21,14 +22,113 @@ _collection_map = {
 {%- endfor %}
 }
 
+_param_metadata : Dict[str, Dict[str, Any]] = {
+{%- for n_md in metadata.keys() %}
+    '{{ n_md }}': {{ metadata[n_md].data[0] }},
+{%- endfor %}
+}
+
+PType = TypeVar('PType')
+
+
+def _get_param(call_ast: ast.Call, arg_index: int, arg_name: str, default_value: PType) -> PType:
+    'Fetch the argument from the arg list'
+    if len(call_ast.args) > arg_index:
+        return ast.literal_eval(call_ast.args[arg_index])
+    elif arg_name in call_ast.keywords:
+        return ast.literal_eval(call_ast.keywords[arg_name])
+    else:
+        return default_value
+
+
+MDReplType = TypeVar('MDReplType', bound=Union[str, List[str]])
+
+
+
+def _replace_md_value(v: MDReplType, p_name: str, new_value: str) -> MDReplType:
+    'Replace one MD item'
+    if isinstance(v, str):
+        return v.replace('{' + p_name + '}', str(new_value))
+    else:
+        return [x.replace('{' + p_name + '}', str(new_value)) for x in v]
+
+
+
+def _resolve_md_params(md: Dict[str, Any], param_values: Dict[str, Any]):
+    'Do parameter subst in the metadata'
+    for k, v in param_values.items():
+        result = {}
+        for mk_key, mk_value in md.items():
+            new_value = _replace_md_value(mk_value, k, v)
+            if new_value != mk_value:
+                result[mk_key] = new_value
+        if len(result) > 0:
+            md = dict(md)
+            md.update(result)
+            md['name'] = f"{md['name']}_{v}"
+    return md
+
 T = TypeVar('T')
+
+
+class _process_extra_arguments:
+    'Static class that will deal with the extra arguments for each collection'
+
+{%- for item in collections %}{% if item.parameters|length > 0 %}
+    @staticmethod
+    def process_{{ item.name }}(bank_name: str, s: ObjectStream[T], a: ast.Call) -> Tuple[str, ObjectStream[T], ast.AST]:
+        param_values = {}
+        i_param = 0
+        {%- for p in item.parameters %}
+        i_param += 1
+        param_values['{{ p.name }}'] = _get_param(a, i_param, "{{ p.name }}", {{ p.default_value }})
+        assert isinstance(param_values['{{ p.name }}'], {{ p.type}}), f'Parameter {{ p.name }} must be of type {{ p.type }}, not {type(param_values["{{ p.name }}"])}'
+        {%- endfor %}
+        param_values['bank_name'] = bank_name
+
+        md_name_mapping: Dict[str, str] = {}
+        md_list: List[Dict[str, Any]] = []
+        {%- for p in item.parameters %}
+        {%- for a in p.actions %}
+        if param_values['{{ p.name }}'] == {{ a.value }}:
+            {%- for md in a.md_names %}
+            old_md = _param_metadata['{{ md }}']
+            md = _resolve_md_params(old_md, param_values)
+            md_list.append(md)
+            md_name_mapping[old_md['name']] = md['name']
+            {%- endfor %}
+        {%- endfor %}
+        {%- endfor %}
+
+        for md in md_list:
+            if 'depends_on' in md:
+                md['depends_on'] = [md_name_mapping[x] for x in md['depends_on']]
+            s = s.MetaData(md)
+
+        return bank_name, s, a
+{%- endif %}{% endfor %}
+
 
 def _add_collection_metadata(s: ObjectStream[T], a: ast.Call) -> Tuple[ObjectStream[T], ast.AST]:
     '''Add metadata for a collection to the func_adl stream if we know about it
     '''
+    # Unpack the call as needed
     assert isinstance(a.func, ast.Attribute)
-    if a.func.attr in _collection_map:
-        s_update = s.MetaData(_collection_map[a.func.attr])
+    collection_name = a.func.attr
+    collection_bank = ast.literal_eval(a.args[0])
+
+    # If it has extra arguments, we need to process those.
+    arg_processor = getattr(_process_extra_arguments, f'process_{collection_name}', None)
+    if arg_processor is not None:
+        new_a = copy.deepcopy(a)
+        new_bank, s, a = arg_processor(collection_bank, s, new_a)
+        a.args = [ast.Constant(new_bank)]
+
+
+    # Finally, add the collection defining metadata so the backend
+    # knows about this collection and how to access it.
+    if collection_name in _collection_map:
+        s_update = s.MetaData(_collection_map[collection_name])
         return s_update, a
     else:
         return s, a
@@ -41,6 +141,8 @@ class Event:
 
 
 {%- for item in collections %}
-    def {{ item.name }}(self, name: str) -> {{ item.collection_type }}:
+    def {{ item.name }}(self, name: str
+{%- for arg in item.parameters %}, {{ arg.name }}: {{ arg.type }} = {{ arg.default_value }}{% endfor -%}
+    ) -> {{ item.collection_type }}:
         ...
 {%- endfor -%}

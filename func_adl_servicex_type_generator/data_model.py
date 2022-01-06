@@ -1,5 +1,31 @@
 from dataclasses import dataclass, field
-from typing import List, Optional
+from typing import Dict, List, Optional
+
+
+@dataclass
+class parameter_action:
+    # The value that triggers this action
+    value: str
+
+    # The list of metadata to load
+    md_names: List[str]
+
+
+@dataclass
+class extra_parameter:
+    """Extra parameters for the class"""
+
+    # The name of the extra parameter
+    name: str
+
+    # The type of the extra parameter
+    type: str
+
+    # Default value for the extra parameter
+    default_value: str
+
+    # Actions to run for values of this parameter
+    actions: List[parameter_action]
 
 
 @dataclass
@@ -33,6 +59,9 @@ class collection_info:
 
     # The name of the library (['xAODMuon'])
     link_libraries: List[str]
+
+    # Extra parameters to control other actions we code in here
+    parameters: List[extra_parameter]
 
 
 @dataclass
@@ -90,3 +119,10 @@ class class_info:
 
     # Other classes we emulate
     behaviors: List[str] = field(default_factory=list)
+
+
+@dataclass
+class metadata_info:
+    """Holds the data for a metadata item"""
+
+    data: Dict[str, List[str]]

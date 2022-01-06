@@ -3,7 +3,7 @@ from func_adl_servicex_type_generator.loader import load_yaml
 
 
 def test_load_full_file():
-    collections, classes = load_yaml(Path("./tests/xaod_r21_1.yaml"))
+    collections, classes, md = load_yaml(Path("./tests/xaod_r21_1.yaml"))
 
     collection_dict = {c.name: c for c in collections}
     classes_dict = {c.name: c for c in classes}
@@ -12,6 +12,7 @@ def test_load_full_file():
     assert "xAOD.Jet_v1" in classes_dict
 
     di_jets = collection_dict["DiTauJets"]
+    jets = collection_dict["Jets"]
     jets_class = classes_dict["xAOD.Jet_v1"]
     btagging = classes_dict["xAOD.BTagging_v1"]
     truth = classes_dict["xAOD.TruthParticle_v1"]
@@ -47,9 +48,23 @@ def test_load_full_file():
     assert len(element_link.behaviors) == 1
     assert element_link.behaviors[0] == "xAOD::BTagging_v1**"
 
+    assert "sys_error_tool" in md
+    m_sys = md["sys_error_tool"]
+    assert isinstance(m_sys.data, list)
+
+    assert len(jets.parameters) == 1
+    jets_p = jets.parameters[0]
+    assert jets_p.name == "calibrated"
+    assert jets_p.type == "bool"
+    assert jets_p.default_value == True
+    assert len(jets_p.actions) == 1
+    jets_a = jets_p.actions[0]
+    assert jets_a.value == True
+    assert jets_a.md_names == ["sys_error_tool", "pileup_tool", "jet_corrections"]
+
 
 def test_load_container_types():
-    _, classes = load_yaml(Path("./tests/xaod_r21_1.yaml"))
+    _, classes, _ = load_yaml(Path("./tests/xaod_r21_1.yaml"))
     classes_dict = {c.name: c for c in classes}
 
     non_container = classes_dict["xAOD.Jet_v1"]
@@ -58,5 +73,5 @@ def test_load_container_types():
     assert non_container.cpp_container_type is None
     assert non_container.python_container_type is None
 
-    assert container.cpp_container_type == "xAOD::JetConstituent"
+    assert container.cpp_container_type == "xAOD::JetConstituent*"
     assert container.python_container_type == "xAOD.JetConstituent"

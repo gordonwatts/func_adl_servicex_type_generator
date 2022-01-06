@@ -5,8 +5,10 @@ import pytest
 from func_adl_servicex_type_generator.data_model import (
     class_info,
     collection_info,
+    extra_parameter,
     method_arg_info,
     method_info,
+    parameter_action,
 )
 from func_adl_servicex_type_generator.package import (
     template_package_scaffolding,
@@ -59,6 +61,7 @@ def test_template_collection_with_object(tmp_path, template_path):
                 "DataVector<Jet>",
                 ["xAODJet/Jet.h"],
                 ["xAODJet"],
+                [],
             ),
         ],
     }
@@ -81,6 +84,88 @@ def test_template_collection_with_object(tmp_path, template_path):
     assert "'include_files': ['xAODJet/Jet.h',]" in text
 
 
+def test_template_collection_with_extra_args(tmp_path, template_path):
+    """Run a full integration test, including doing the poetry install."""
+    data = {
+        "package_name": "func_adl_servicex_xaodr21",
+        "package_version": "1.0.22.2.187",
+        "package_info_description": "xAOD R21 22.2.187",
+        "sx_dataset_name": "SXDSAtlasxAODR21",
+        "backend_default_name": "xaod_r21",
+        "collections": [
+            collection_info(
+                "Jets",
+                "Iterable[Jet]",
+                "Jet",
+                "Jet",
+                "Jet",
+                "DataVector<Jet>",
+                ["xAODJet/Jet.h"],
+                ["xAODJet"],
+                [extra_parameter("calibrated", "bool", "True", [])],
+            ),
+        ],
+        "metadata": {},
+    }
+
+    assert template_path.exists()
+    output_path = tmp_path / "my_package"
+
+    template_package_scaffolding(data, template_path, output_path)
+
+    # Look at the output file and see if it contains what we expect
+    assert (output_path / data["package_name"] / "event_collection.py").exists()
+
+    evt_col_path = output_path / data["package_name"] / "event_collection.py"
+    text = evt_col_path.read_text()
+    assert "def Jets(self, name: str, calibrated: bool = True) -> Iterable[Jet]" in text
+    assert "def process_Jets" in text
+
+
+def test_template_collection_with_md(tmp_path, template_path):
+    """Run a full integration test, including doing the poetry install."""
+    data = {
+        "package_name": "func_adl_servicex_xaodr21",
+        "package_version": "1.0.22.2.187",
+        "package_info_description": "xAOD R21 22.2.187",
+        "sx_dataset_name": "SXDSAtlasxAODR21",
+        "backend_default_name": "xaod_r21",
+        "collections": [
+            collection_info(
+                "Jets",
+                "Iterable[Jet]",
+                "Jet",
+                "Jet",
+                "Jet",
+                "DataVector<Jet>",
+                ["xAODJet/Jet.h"],
+                ["xAODJet"],
+                [
+                    extra_parameter(
+                        "calibrated",
+                        "bool",
+                        "True",
+                        [parameter_action("True", ["md_doit"])],
+                    )
+                ],
+            ),
+        ],
+        "metadata": {},
+    }
+
+    assert template_path.exists()
+    output_path = tmp_path / "my_package"
+
+    template_package_scaffolding(data, template_path, output_path)
+
+    # Look at the output file and see if it contains what we expect
+    assert (output_path / data["package_name"] / "event_collection.py").exists()
+
+    evt_col_path = output_path / data["package_name"] / "event_collection.py"
+    text = evt_col_path.read_text()
+    assert "s = s.MetaData(_param_metadata['md_doit'])" in text
+
+
 def test_template_collection_no_include(tmp_path, template_path):
     """Run a full integration test, including doing the poetry install."""
     data = {
@@ -91,7 +176,15 @@ def test_template_collection_no_include(tmp_path, template_path):
         "backend_default_name": "xaod_r21",
         "collections": [
             collection_info(
-                "Jets", "Iterable[Jet]", "Jet", "Jet", "Jet", "DataVector<Jet>", [], []
+                "Jets",
+                "Iterable[Jet]",
+                "Jet",
+                "Jet",
+                "Jet",
+                "DataVector<Jet>",
+                [],
+                [],
+                [],
             ),
         ],
     }
@@ -116,7 +209,7 @@ def test_template_collection_not_collection(tmp_path, template_path):
         "backend_default_name": "xaod_r21",
         "collections": [
             collection_info(
-                "Jets", "Iterable[Jet]", "Jet", "Jet", "Jet", "Jet", [], []
+                "Jets", "Iterable[Jet]", "Jet", "Jet", "Jet", "Jet", [], [], []
             ),
         ],
     }
@@ -148,6 +241,7 @@ def test_template_collection_with_namespace(tmp_path, template_path):
                 "xAOD::Jet",
                 "DataVector<xAOD::Jet>",
                 ["xAODJet/Jet.h"],
+                [],
                 [],
             ),
         ],
@@ -182,6 +276,7 @@ def test_template_poetry_integration(tmp_path, template_path):
                 "Jet",
                 "DataVector<Jet>",
                 ["xAODJet/Jet.h"],
+                [],
                 [],
             ),
         ],
