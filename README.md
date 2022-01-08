@@ -57,7 +57,7 @@ This is currently a package that is planned. The development path is as follows:
   * Tracks
   * etc.
 * [ ] Support R22
-* [ ] First release of package
+* [ ] First release of package (documentation on how to run and build, pushing type info to pypi, making it easy to use, etc.)
 * [ ] For version 2 plan out support for a flat ROOT `TTree` file.
 
 ## Development
