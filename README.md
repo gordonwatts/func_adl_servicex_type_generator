@@ -47,11 +47,13 @@ This is currently a package that is planned. The development path is as follows:
 * [x] Access truth particle arrays from their parent collection articles
 * [x] Do something that requires a separate include file to access an object (include file injection).
 * [ ] Add support for arbitrary injection of other packages in the ATLAS C++ backend (e.g. corrections). Use `Jets` to develop this.
+* [ ] Provide default bank names for Jets (the PFlow jets, I suppose).
+* [ ] Understand how to do specialized corrections (e.g. morriond, etc.)
 * [ ] Support getting a single systematic error or nominal.
-* [ ] Add support for `Jet::getAttribute`, which is a C++ code-behind function
 * [ ] Figure out how to deal with multiple systematic errors requested at the same time, in different parts of a query.
 * [ ] Do correction for `MissingET`, the most complex correction, perhaps.
-* [ ] Use _common knowledge_ to get the first set of collections and implement those:
+* [ ] Add support for `Jet::getAttribute`, which is a C++ code-behind function
+* [ ] Use _common knowledge_ (CP groups) to get the first set of collections and implement those:
   * Tracks
   * etc.
 * [ ] Support R22
