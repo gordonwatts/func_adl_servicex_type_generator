@@ -168,6 +168,211 @@ def test_template_collection_with_md(tmp_path, template_path):
     assert "            old_md = _param_metadata['md_doit']" in text
 
 
+def test_paction_bool_true(tmp_path, template_path):
+    """Run a full integration test, including doing the poetry install."""
+    data = {
+        "package_name": "func_adl_servicex_xaodr21",
+        "package_version": "1.0.22.2.187",
+        "package_info_description": "xAOD R21 22.2.187",
+        "sx_dataset_name": "SXDSAtlasxAODR21",
+        "backend_default_name": "xaod_r21",
+        "collections": [
+            collection_info(
+                "Jets",
+                "Iterable[Jet]",
+                "Jet",
+                "Jet",
+                "Jet",
+                "DataVector<Jet>",
+                ["xAODJet/Jet.h"],
+                ["xAODJet"],
+                [
+                    extra_parameter(
+                        "calibrated",
+                        "bool",
+                        "True",
+                        [parameter_action("True", ["md_doit"], "my_bank")],
+                    )
+                ],
+            ),
+        ],
+        "metadata": {},
+    }
+
+    assert template_path.exists()
+    output_path = tmp_path / "my_package"
+
+    template_package_scaffolding(data, template_path, output_path)
+
+    evt_col_path = output_path / data["package_name"] / "event_collection.py"
+    text = evt_col_path.read_text()
+    assert "match_param_value(param_values['calibrated'], True)" in text
+
+
+def test_paction_bool_any(tmp_path, template_path):
+    """Run a full integration test, including doing the poetry install."""
+    data = {
+        "package_name": "func_adl_servicex_xaodr21",
+        "package_version": "1.0.22.2.187",
+        "package_info_description": "xAOD R21 22.2.187",
+        "sx_dataset_name": "SXDSAtlasxAODR21",
+        "backend_default_name": "xaod_r21",
+        "collections": [
+            collection_info(
+                "Jets",
+                "Iterable[Jet]",
+                "Jet",
+                "Jet",
+                "Jet",
+                "DataVector<Jet>",
+                ["xAODJet/Jet.h"],
+                ["xAODJet"],
+                [
+                    extra_parameter(
+                        "calibrated",
+                        "bool",
+                        "True",
+                        [parameter_action("'*Any*'", ["md_doit"], "my_bank")],
+                    )
+                ],
+            ),
+        ],
+        "metadata": {},
+    }
+
+    assert template_path.exists()
+    output_path = tmp_path / "my_package"
+
+    template_package_scaffolding(data, template_path, output_path)
+
+    evt_col_path = output_path / data["package_name"] / "event_collection.py"
+    text = evt_col_path.read_text()
+    assert "match_param_value(param_values['calibrated'], '*Any*')" in text
+
+
+def test_paction_bool_none(tmp_path, template_path):
+    """Run a full integration test, including doing the poetry install."""
+    data = {
+        "package_name": "func_adl_servicex_xaodr21",
+        "package_version": "1.0.22.2.187",
+        "package_info_description": "xAOD R21 22.2.187",
+        "sx_dataset_name": "SXDSAtlasxAODR21",
+        "backend_default_name": "xaod_r21",
+        "collections": [
+            collection_info(
+                "Jets",
+                "Iterable[Jet]",
+                "Jet",
+                "Jet",
+                "Jet",
+                "DataVector<Jet>",
+                ["xAODJet/Jet.h"],
+                ["xAODJet"],
+                [
+                    extra_parameter(
+                        "calibrated",
+                        "bool",
+                        "True",
+                        [parameter_action("'*None*'", ["md_doit"], "my_bank")],
+                    )
+                ],
+            ),
+        ],
+        "metadata": {},
+    }
+
+    assert template_path.exists()
+    output_path = tmp_path / "my_package"
+
+    template_package_scaffolding(data, template_path, output_path)
+
+    evt_col_path = output_path / data["package_name"] / "event_collection.py"
+    text = evt_col_path.read_text()
+    assert "match_param_value(param_values['calibrated'], '*None*')" in text
+
+
+def test_paction_int(tmp_path, template_path):
+    """Run a full integration test, including doing the poetry install."""
+    data = {
+        "package_name": "func_adl_servicex_xaodr21",
+        "package_version": "1.0.22.2.187",
+        "package_info_description": "xAOD R21 22.2.187",
+        "sx_dataset_name": "SXDSAtlasxAODR21",
+        "backend_default_name": "xaod_r21",
+        "collections": [
+            collection_info(
+                "Jets",
+                "Iterable[Jet]",
+                "Jet",
+                "Jet",
+                "Jet",
+                "DataVector<Jet>",
+                ["xAODJet/Jet.h"],
+                ["xAODJet"],
+                [
+                    extra_parameter(
+                        "calibrated",
+                        "int",
+                        "True",
+                        [parameter_action("55", ["md_doit"], "my_bank")],
+                    )
+                ],
+            ),
+        ],
+        "metadata": {},
+    }
+
+    assert template_path.exists()
+    output_path = tmp_path / "my_package"
+
+    template_package_scaffolding(data, template_path, output_path)
+
+    evt_col_path = output_path / data["package_name"] / "event_collection.py"
+    text = evt_col_path.read_text()
+    assert "match_param_value(param_values['calibrated'], 55)" in text
+
+
+def test_paction_str(tmp_path, template_path):
+    """Run a full integration test, including doing the poetry install."""
+    data = {
+        "package_name": "func_adl_servicex_xaodr21",
+        "package_version": "1.0.22.2.187",
+        "package_info_description": "xAOD R21 22.2.187",
+        "sx_dataset_name": "SXDSAtlasxAODR21",
+        "backend_default_name": "xaod_r21",
+        "collections": [
+            collection_info(
+                "Jets",
+                "Iterable[Jet]",
+                "Jet",
+                "Jet",
+                "Jet",
+                "DataVector<Jet>",
+                ["xAODJet/Jet.h"],
+                ["xAODJet"],
+                [
+                    extra_parameter(
+                        "calibrated",
+                        "str",
+                        "True",
+                        [parameter_action("'55'", ["md_doit"], "my_bank")],
+                    )
+                ],
+            ),
+        ],
+        "metadata": {},
+    }
+
+    assert template_path.exists()
+    output_path = tmp_path / "my_package"
+
+    template_package_scaffolding(data, template_path, output_path)
+
+    evt_col_path = output_path / data["package_name"] / "event_collection.py"
+    text = evt_col_path.read_text()
+    assert "match_param_value(param_values['calibrated'], '55')" in text
+
+
 def test_template_collection_no_include(tmp_path, template_path):
     """Run a full integration test, including doing the poetry install."""
     data = {

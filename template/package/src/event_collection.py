@@ -83,6 +83,17 @@ def _resolve_md_params(md: Dict[str, Any], param_values: Dict[str, Any]):
 T = TypeVar('T')
 
 
+def match_param_value(value, to_match) -> bool:
+    'Match a parameter with special values'
+    if isinstance(to_match, str):
+        if to_match == "*None*":
+            return value is None
+        if to_match == "*Any*":
+            return True
+    
+    return value == to_match
+
+
 class _process_extra_arguments:
     'Static class that will deal with the extra arguments for each collection'
 
@@ -94,15 +105,17 @@ class _process_extra_arguments:
         {%- for p in item.parameters %}
         i_param += 1
         param_values['{{ p.name }}'] = _get_param(a, i_param, "{{ p.name }}", {{ p.default_value }})
-        assert isinstance(param_values['{{ p.name }}'], {{ p.type}}), f'Parameter {{ p.name }} must be of type {{ p.type }}, not {type(param_values["{{ p.name }}"])}'
+        # assert isinstance(param_values['{{ p.name }}'], {{ p.type }}), f'Parameter {{ p.name }} must be of type {{ p.type }}, not {type(param_values["{{ p.name }}"])}'
         {%- endfor %}
         param_values['bank_name'] = bank_name
 
         md_name_mapping: Dict[str, str] = {}
         md_list: List[Dict[str, Any]] = []
         {%- for p in item.parameters %}
+        p_matched = False
         {%- for a in p.actions %}
-        if param_values['{{ p.name }}'] == {{ a.value }}:
+        if not p_matched and match_param_value(param_values['{{ p.name }}'], {{ a.value }}):
+            p_matched = True
             {%- for md in a.md_names %}
             old_md = _param_metadata['{{ md }}']
             md = _resolve_md_params(old_md, param_values)
@@ -115,7 +128,8 @@ class _process_extra_arguments:
 
         for md in md_list:
             if 'depends_on' in md:
-                md['depends_on'] = [md_name_mapping[x] for x in md['depends_on']]
+                md = dict(md) # Make a copy so we don't mess up downstream queries
+                md['depends_on'] = [(md_name_mapping[x] if x in md_name_mapping else x) for x in md['depends_on']]
             s = s.MetaData(md)
 
         return bank_name, s, a
