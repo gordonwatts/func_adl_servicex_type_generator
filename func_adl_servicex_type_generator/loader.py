@@ -52,6 +52,7 @@ def load_parameters(params: List[Dict[str, Any]]) -> List[extra_parameter]:
                 parameter_action(
                     value=a["value"],
                     md_names=a["metadata_names"],
+                    bank_rename=a["bank_rename"],
                 )
                 for a in p["actions"]
             ],

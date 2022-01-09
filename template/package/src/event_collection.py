@@ -33,12 +33,17 @@ PType = TypeVar('PType')
 
 def _get_param(call_ast: ast.Call, arg_index: int, arg_name: str, default_value: PType) -> PType:
     'Fetch the argument from the arg list'
+    # Look for it as a positional argument
     if len(call_ast.args) > arg_index:
         return ast.literal_eval(call_ast.args[arg_index])
-    elif arg_name in call_ast.keywords:
-        return ast.literal_eval(call_ast.keywords[arg_name])
-    else:
-        return default_value
+
+    # Look for it as a keyword argument
+    kw_args = [kwa for kwa in call_ast.keywords if kwa.arg == arg_name]
+    if len(kw_args) > 0:
+        return ast.literal_eval(kw_args[0].value)
+    
+    # We can't find it - return the default value.
+    return default_value
 
 
 MDReplType = TypeVar('MDReplType', bound=Union[str, List[str]])
@@ -52,6 +57,13 @@ def _replace_md_value(v: MDReplType, p_name: str, new_value: str) -> MDReplType:
     else:
         return [x.replace('{' + p_name + '}', str(new_value)) for x in v]
 
+
+def _replace_param_values(source: MDReplType, param_values: Dict[str, Any]) -> MDReplType:
+    'Replace parameter types in a string or list of strings'
+    result = source
+    for k, v in param_values.items():
+        result = _replace_md_value(result, k, v)
+    return result
 
 
 def _resolve_md_params(md: Dict[str, Any], param_values: Dict[str, Any]):
@@ -97,6 +109,7 @@ class _process_extra_arguments:
             md_list.append(md)
             md_name_mapping[old_md['name']] = md['name']
             {%- endfor %}
+            bank_name = _replace_param_values('{{a.bank_rename}}', param_values)
         {%- endfor %}
         {%- endfor %}
 

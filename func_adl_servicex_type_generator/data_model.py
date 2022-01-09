@@ -10,6 +10,9 @@ class parameter_action:
     # The list of metadata to load
     md_names: List[str]
 
+    # How to rename the bank we are looking at
+    bank_rename: str
+
 
 @dataclass
 class extra_parameter:

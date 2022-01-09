@@ -29,6 +29,7 @@ def test_template_package(tmp_path, template_path):
         "sx_dataset_name": "SXDSAtlasxAODR21",
         "backend_default_name": "xaod_r21",
         "collections": [],
+        "metadata": {},
     }
     assert template_path.exists()
     output_path = tmp_path / "my_package"
@@ -64,6 +65,7 @@ def test_template_collection_with_object(tmp_path, template_path):
                 [],
             ),
         ],
+        "metadata": {},
     }
 
     assert template_path.exists()
@@ -145,7 +147,7 @@ def test_template_collection_with_md(tmp_path, template_path):
                         "calibrated",
                         "bool",
                         "True",
-                        [parameter_action("True", ["md_doit"])],
+                        [parameter_action("True", ["md_doit"], "my_bank")],
                     )
                 ],
             ),
@@ -163,7 +165,7 @@ def test_template_collection_with_md(tmp_path, template_path):
 
     evt_col_path = output_path / data["package_name"] / "event_collection.py"
     text = evt_col_path.read_text()
-    assert "s = s.MetaData(_param_metadata['md_doit'])" in text
+    assert "            old_md = _param_metadata['md_doit']" in text
 
 
 def test_template_collection_no_include(tmp_path, template_path):
@@ -187,6 +189,7 @@ def test_template_collection_no_include(tmp_path, template_path):
                 [],
             ),
         ],
+        "metadata": {},
     }
 
     assert template_path.exists()
@@ -212,6 +215,7 @@ def test_template_collection_not_collection(tmp_path, template_path):
                 "Jets", "Iterable[Jet]", "Jet", "Jet", "Jet", "Jet", [], [], []
             ),
         ],
+        "metadata": {},
     }
 
     assert template_path.exists()
@@ -245,6 +249,7 @@ def test_template_collection_with_namespace(tmp_path, template_path):
                 [],
             ),
         ],
+        "metadata": {},
     }
 
     output_path = tmp_path / "my_package"
@@ -280,6 +285,7 @@ def test_template_poetry_integration(tmp_path, template_path):
                 [],
             ),
         ],
+        "metadata": {},
     }
 
     assert template_path.exists()
