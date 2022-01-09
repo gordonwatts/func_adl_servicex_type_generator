@@ -143,6 +143,21 @@ collections:
     include_file: xAODJet/JetContainer.h
     link_libraries:
       - xAODJet
+    extra_parameters:
+      - name: calibration
+        type: str
+        default_value: "'NOSYS'"
+        actions:
+          - value: "'*None*'"
+            metadata_names:
+              []
+            bank_rename: "{bank_name}"
+          - value: "'*Any*'"
+            metadata_names:
+              - sys_error_tool
+              - pileup_tool
+              - jet_corrections
+            bank_rename: "{bank_name}Calib_{calibration}"
   - collection_name: IParticles
     cpp_item_type: xAOD::IParticle
     python_item_type: xAOD.IParticle
@@ -3402,3 +3417,59 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+metadata:
+  - name: sys_error_tool
+    data:
+      - metadata_type: add_job_script
+        name: sys_error_tool
+        script:
+          - "# pulled from:https://gitlab.cern.ch/atlas/athena/-/blob/21.2/PhysicsAnalysis/Algorithms/JetAnalysisAlgorithms/python/JetAnalysisAlgorithmsTest.py "
+          - "# Set up the systematics loader/handler service:"
+          - "from AnaAlgorithm.DualUseConfig import createService"
+          - "from AnaAlgorithm.AlgSequence import AlgSequence"
+          - "calibrationAlgSeq = AlgSequence()"
+          - "sysService = createService( 'CP::SystematicsSvc', 'SystematicsSvc', sequence = calibrationAlgSeq )"
+          - "# Just run nominal for now"
+          - "# sysService.sigmaRecommended = 1"
+          - "sysService.systematicsList = ['{calibration}']"
+          - "# Add sequence to job"
+  - name: pileup_tool
+    data:
+      - metadata_type: add_job_script
+        name: pileup_tool
+        script:
+          - "from AsgAnalysisAlgorithms.PileupAnalysisSequence import makePileupAnalysisSequence"
+          - "from AsgAnalysisAlgorithms.AsgAnalysisAlgorithmsTest import pileupConfigFiles"
+          - "prwfiles, lumicalcfiles = pileupConfigFiles('mc')"
+          - "# Can't use pwrfiles, lumicalcfiles b.c. they are on cvms and docker does not have those."
+          - "# pileupSequence = makePileupAnalysisSequence( 'mc', userPileupConfigs=prwfiles, userLumicalcFiles=lumicalcfiles)"
+          - "pileupSequence = makePileupAnalysisSequence( 'mc' )"
+          - "pileupSequence.configure( inputName = {}, outputName = {} )"
+          - "# print( pileupSequence ) # For debugging"
+          - "calibrationAlgSeq += pileupSequence"
+        depends_on: 
+          - sys_error_tool
+  - name: jet_corrections
+    data:
+      - metadata_type: add_job_script
+        name: jet_corrections
+        script:
+          - "jetContainer = '{bank_name}'"
+          - "from JetAnalysisAlgorithms.JetAnalysisSequence import makeJetAnalysisSequence"
+          - "jetSequence = makeJetAnalysisSequence( 'mc', jetContainer)"
+          - "jetSequence.configure( inputName = jetContainer, outputName = '{bank_name}_Base_%SYS%' )"
+          - "calibrationAlgSeq += jetSequence"
+          - "# print( jetSequence ) # For debugging"
+          - ""
+          - "# Include, and then set up the jet analysis algorithm sequence:"
+          - "from JetAnalysisAlgorithms.JetJvtAnalysisSequence import makeJetJvtAnalysisSequence"
+          - "jvtSequence = makeJetJvtAnalysisSequence( 'mc', jetContainer, enableCutflow=True )"
+          - "jvtSequence.configure( inputName = {'jets'      : '{bank_name}_Base_%SYS%' },"
+          - "                       outputName = { 'jets'      : '{bank_name}Calib_%SYS%' },"
+          - "                       )"
+          - "calibrationAlgSeq += jvtSequence"
+          - "# print( jvtSequence ) # For debugging"
+          - "calibrationAlgSeq.addSelfToJob( job )"
+          - "print(job) # for debugging"
+        depends_on:
+          - 'pileup_tool'
