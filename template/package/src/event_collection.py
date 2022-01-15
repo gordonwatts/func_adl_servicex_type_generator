@@ -113,12 +113,19 @@ class _process_extra_arguments:
         md_list: List[Dict[str, Any]] = []
         {%- for p in item.parameters %}
         p_matched = False
+        last_md_name = None
         {%- for a in p.actions %}
         if not p_matched and match_param_value(param_values['{{ p.name }}'], {{ a.value }}):
             p_matched = True
             {%- for md in a.md_names %}
             old_md = _param_metadata['{{ md }}']
             md = _resolve_md_params(old_md, param_values)
+            if 'depends_on' in md:
+                if '*PREVIOUS*' in md['depends_on']:
+                    md['depends_on'] = [x for x in md['depends_on'] if x != '*PREVIOUS*']
+                    if last_md_name is not None:
+                        md['depends_on'].append(last_md_name)
+            last_md_name = md['name']
             md_list.append(md)
             md_name_mapping[old_md['name']] = md['name']
             {%- endfor %}
