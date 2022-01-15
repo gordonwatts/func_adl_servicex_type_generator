@@ -48,16 +48,21 @@ This is currently a package that is planned. The development path is as follows:
 * [x] Do something that requires a separate include file to access an object (include file injection).
 * [x] Add support for arbitrary injection of other packages in the ATLAS C++ backend (e.g. corrections). Use `Jets` to develop this.
 * [x] Support getting a single systematic error or nominal.
-* [ ] Figure out how to deal with multiple systematic errors requested at the same time, in different parts of a query.
 * [ ] Do correction for `MissingET`, the most complex correction, perhaps.
 * [ ] Add support for `Jet::getAttribute`, which is a C++ code-behind function
 * [ ] Use _common knowledge_ (CP groups) to get the first set of collections and implement those:
-  * Tracks
+  * [ ] Muons
+  * [ ] Electrons, Photons
+  * [ ] Taus, DiTaus
+  * [ ] BTagging
+  * [ ] Tracks
+  * [ ] Trigger
   * etc.
 * [ ] Support R22
 * [ ] First release of package (documentation on how to run and build, pushing type info to pypi, making it easy to use, etc.)
 * [ ] For version 2 plan out support for a flat ROOT `TTree` file.
 * [ ] Understand how to do specialized corrections (e.g. morriond, etc.) - where the recommendations are different from the release
+* [ ] Figure out how to deal with multiple systematic errors requested at the same time, in different parts of a query (waiting for combiner predicates in the underlying func_adl).
 
 ## Development
 
