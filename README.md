@@ -56,6 +56,7 @@ This is currently a package that is planned. The development path is as follows:
   * [ ] Taus, DiTaus
   * [ ] BTagging
   * [ ] Tracks
+  * [ ] Primary Vertices
   * [ ] Trigger
   * etc.
 * [ ] Support R22
