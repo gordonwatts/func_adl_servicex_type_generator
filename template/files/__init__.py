@@ -1,5 +1,7 @@
-from typing import Any
-
+from typing import Any, TYPE_CHECKING
+{%- if module_stub == "" %}
+from .sx_dataset import {{ sx_dataset_name }}
+{%- endif %}
 
 class _load_me:
     """Python's type resolution system demands that types be already loaded
@@ -22,3 +24,20 @@ class _load_me:
 
             self._loaded = importlib.import_module(self._name)
         return getattr(self._loaded, __name)
+
+
+# Class loads. We do this to both enable type checking and also
+# get around potential circular references in the C++ data model.
+if not TYPE_CHECKING:
+    {%- for class_name in class_imports %}
+    {{class_name}} = _load_me("{{package_name}}{{module_stub}}.{{ class_name }}")
+    {%- endfor %}
+else:
+    {%- for class_name in class_imports %}
+    from . import {{class_name}}
+    {%- endfor %}
+
+# Include sub-namespace items
+{%- for sub_namespace in sub_namespaces %}
+from . import {{sub_namespace}}
+{%- endfor %}

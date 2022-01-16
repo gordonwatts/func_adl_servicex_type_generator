@@ -540,7 +540,7 @@ def test_class_simple(tmp_path, template_path):
     assert (tmp_path / "__init__.py").exists()
 
     init_text = (tmp_path / "__init__.py").read_text()
-    assert "jets = _load_me('package.jets')" in init_text
+    assert 'jets = _load_me("package.jets")' in init_text
 
 
 def test_class_alias(tmp_path, template_path):
@@ -575,7 +575,7 @@ def test_class_namespace(tmp_path, template_path):
 
     assert (tmp_path / "xAOD" / "__init__.py").exists()
     init_text = (tmp_path / "xAOD" / "__init__.py").read_text()
-    assert "jets = _load_me('package.xAOD.jets')" in init_text
+    assert 'jets = _load_me("package.xAOD.jets")' in init_text
 
     assert (tmp_path / "__init__.py").exists()
     init_text = (tmp_path / "__init__.py").read_text()

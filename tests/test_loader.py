@@ -54,14 +54,19 @@ def test_load_full_file():
 
     assert len(jets.parameters) == 1
     jets_p = jets.parameters[0]
-    assert jets_p.name == "calibrated"
-    assert jets_p.type == "bool"
-    assert jets_p.default_value is True
-    assert len(jets_p.actions) == 1
-    jets_a = jets_p.actions[0]
-    assert jets_a.value is True
-    assert jets_a.md_names == ["sys_error_tool", "pileup_tool", "jet_corrections"]
-    assert jets_a.bank_rename == "{bank_name}_NOSYS"
+    assert jets_p.name == "calibration"
+    assert jets_p.type == "str"
+    assert jets_p.default_value == "'NOSYS'"
+    assert len(jets_p.actions) == 2
+    jets_a = jets_p.actions[1]
+    assert jets_a.value == "'*Any*'"
+    assert jets_a.md_names == [
+        "sys_error_tool",
+        "pileup_tool",
+        "jet_corrections",
+        "add_calibration_to_job",
+    ]
+    assert jets_a.bank_rename == "{bank_name}Calib_{calibration}"
 
 
 def test_load_container_types():

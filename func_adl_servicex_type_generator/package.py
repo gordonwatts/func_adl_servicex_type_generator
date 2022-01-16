@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional
+from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
 from .class_utils import package_qualified_class
 
 import shutil
@@ -242,6 +242,13 @@ def write_out_classes(
     py_all_classes_dict = {c.name: c for c in all_classes}
     cpp_all_classes_dict = {c.cpp_name: c for c in all_classes}
 
+    # We need to do two passes. This is because the __init__ template. First pass
+    # we write out the classes and accumulate information, and the second pass we just
+    # write the __init__ files.
+
+    class_load_info: Dict[Path, Tuple[str, List[str]]] = {}
+    sub_module_load_info: Dict[Path, Set[str]] = {}
+
     for c in all_classes:
         # We do not write out aliases...
         if c.is_alias:
@@ -252,30 +259,21 @@ def write_out_classes(
         class_file = project_src_path / class_ns_as_path(c_ns) / f"{c_name.lower()}.py"
         class_file.parent.mkdir(parents=True, exist_ok=True)
 
+        # Gather info for the __init__ file: classes and sub-modules
+        if class_file.parent not in class_load_info:
+            ns = "" if c_ns == "" else f".{c_ns}"
+            class_load_info[class_file.parent] = (ns, [])
+        class_load_info[class_file.parent][1].append(c_name.lower())
+
         dir_path = class_file.parent
         ns_name = ""
         while dir_path != project_src_path.parent:
-            init_path = dir_path / "__init__.py"
-            if not init_path.exists():
-                with init_path.open("wt") as out:
-                    out.write(init_template_file.render())
-                    out.write("\n")  # Get around whitespace trimming
+            if dir_path not in sub_module_load_info:
+                sub_module_load_info[dir_path] = set()
             if ns_name != "":
-                import_line = f"from . import {ns_name}"
-                init_text = init_path.read_text()
-                if import_line not in init_text:
-                    with init_path.open("a") as out:
-                        out.write(import_line)
-                        out.write("\n")
+                sub_module_load_info[dir_path].add(ns_name)
             ns_name = dir_path.name
             dir_path = dir_path.parent
-
-        with (class_file.parent / "__init__.py").open("at") as out_to:
-            ns = "" if c_ns == "" else f".{c_ns}"
-            out_to.write(
-                f"{c_name.lower()} = _load_me('{package_name}{ns}.{c_name.lower()}')\n"
-            )
-        # jet_v1 = _load_me('func_adl_servicex_xaodr21.xAOD.jet_v1')
 
         # Get the imports we need at the top of the file
         import_statements = []
@@ -349,3 +347,27 @@ def write_out_classes(
             for line in text.splitlines():
                 out.write(line)
                 out.write("\n")
+
+    # Write out the __init__ files
+    init_paths = set(class_load_info.keys()) | set(sub_module_load_info.keys())
+    for p in init_paths:
+        c_imports = []
+        m_stub = ""
+        if p in class_load_info:
+            m_stub, c_imports = class_load_info[p]
+
+        sub_ns = []
+        if p in sub_module_load_info:
+            sub_ns = sub_module_load_info[p]
+
+        with (p / "__init__.py").open("wt") as out:
+            out.write(
+                init_template_file.render(
+                    class_imports=c_imports,
+                    module_stub=m_stub,
+                    sub_namespaces=sub_ns,
+                    package_name=package_name,
+                    sx_dataset_name="SXDSAtlasxAODR21",
+                )
+            )
+            # out.write("\n")  # Get around whitespace trimming
