@@ -131,6 +131,8 @@ def package_qualified_class(
             name_parts.append(name_parts[-1])
             name_parts[-2] = name_parts[-2].lower()
             return f"{package_name}.{'.'.join(name_parts)}"
+        if name == "Iterable":
+            return f"{package_name}.FADLStream"
         return name
 
     if class_name is None:

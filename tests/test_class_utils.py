@@ -66,21 +66,21 @@ def test_qualified_name_in_list():
 def test_qualified_name_template():
     assert (
         package_qualified_class("Iterable[hi]", "package", {"hi"})
-        == "Iterable[package.hi.hi]"
+        == "package.FADLStream[package.hi.hi]"
     )
 
 
 def test_qualified_name_template_upper():
     assert (
         package_qualified_class("Iterable[Hi]", "package", {"Hi"})
-        == "Iterable[package.hi.Hi]"
+        == "package.FADLStream[package.hi.Hi]"
     )
 
 
 def test_qualified_unknown_name_template():
     assert (
         package_qualified_class("Iterable[float]", "package", {"hi"})
-        == "Iterable[float]"
+        == "package.FADLStream[float]"
     )
 
 
@@ -94,14 +94,14 @@ def test_qualified_template_is_known():
 def test_qualified_name_double_template():
     assert (
         package_qualified_class("Iterable[Iterable[hi]]", "package", {"hi"})
-        == "Iterable[Iterable[package.hi.hi]]"
+        == "package.FADLStream[package.FADLStream[package.hi.hi]]"
     )
 
 
 def test_qualified_name_two_arg_template():
     assert (
         package_qualified_class("Iterable[hi,there]", "package", {"hi", "there"})
-        == "Iterable[package.hi.hi, package.there.there]"
+        == "package.FADLStream[package.hi.hi, package.there.there]"
     )
 
 
