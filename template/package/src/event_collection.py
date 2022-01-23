@@ -24,7 +24,20 @@ _collection_map = {
 
 _param_metadata : Dict[str, Dict[str, Any]] = {
 {%- for n_md in metadata.keys() %}
-    '{{ n_md }}': {{ metadata[n_md].data[0] }},
+    '{{ n_md }}': {
+    {%- for md_key in metadata[n_md].data[0].keys() %}
+        '{{ md_key }}': 
+            {%- if metadata[n_md].data[0][md_key] is string -%}
+            "{{ metadata[n_md].data[0][md_key] }}",
+            {%- else -%}
+            [
+                {%- for ln in metadata[n_md].data[0][md_key] %}
+                "{{ ln }}",
+                {%- endfor %}
+            ],
+            {%- endif -%}
+    {%- endfor %}
+    },
 {%- endfor %}
 }
 
@@ -122,6 +135,7 @@ class _process_extra_arguments:
             md = _resolve_md_params(old_md, param_values)
             if 'depends_on' in md:
                 if '*PREVIOUS*' in md['depends_on']:
+                    md = dict(md)
                     md['depends_on'] = [x for x in md['depends_on'] if x != '*PREVIOUS*']
                     if last_md_name is not None:
                         md['depends_on'].append(last_md_name)
