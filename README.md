@@ -51,9 +51,11 @@ This is currently a package that is planned. The development path is as follows:
 * [ ] Do correction for `MissingET`, the most complex correction, perhaps.
 * [ ] Add support for `Jet::getAttribute`, which is a C++ code-behind function
 * [ ] Use _common knowledge_ (CP groups) to get the first set of collections and implement those:
-  * [ ] Muons
-  * [ ] Electrons, Photons
-  * [ ] Taus, DiTaus
+  * [x] Muons
+  * [x] Electrons
+  * [ ] Photons
+  * [ ] Taus
+  * [ ] DiTaus
   * [ ] BTagging
   * [x] Tracks
   * [x] Primary Vertices
