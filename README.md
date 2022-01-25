@@ -53,7 +53,6 @@ This is currently a package that is planned. The development path is as follows:
 * [ ] Use _common knowledge_ (CP groups) to get the first set of collections and implement those:
   * [x] Muons
   * [x] Electrons
-  * [ ] Photons
   * [ ] Taus
   * [ ] DiTaus
   * [ ] BTagging
@@ -65,6 +64,10 @@ This is currently a package that is planned. The development path is as follows:
 * [ ] First release of package (documentation on how to run and build, pushing type info to pypi, making it easy to use, etc.)
 * [ ] For version 2 plan out support for a flat ROOT `TTree` file.
 * [ ] Figure out how to deal with multiple systematic errors requested at the same time, in different parts of a query (waiting for combiner predicates in the underlying func_adl).
+
+Deferred to later (they are now in github issues in the `xaod_usage` project):
+
+- Photons (head of 21.1 can't run on DAOD_PHYS at the moment)
 
 ## Development
 
