@@ -48,22 +48,20 @@ This is currently a package that is planned. The development path is as follows:
 * [x] Do something that requires a separate include file to access an object (include file injection).
 * [x] Add support for arbitrary injection of other packages in the ATLAS C++ backend (e.g. corrections). Use `Jets` to develop this.
 * [x] Support getting a single systematic error or nominal.
-* [ ] Do correction for `MissingET`, the most complex correction, perhaps.
-* [ ] Add support for `Jet::getAttribute`, which is a C++ code-behind function
 * [ ] Use _common knowledge_ (CP groups) to get the first set of collections and implement those:
   * [x] Muons
   * [x] Electrons
-  * [ ] Taus
+  * [x] Taus
   * [ ] DiTaus
   * [ ] BTagging
   * [x] Tracks
   * [x] Primary Vertices
+  * [ ] MissingET
   * [ ] Trigger
   * etc.
+* [ ] Add support for `Jet::getAttribute`, which is a C++ code-behind function
 * [ ] Support R22
 * [ ] First release of package (documentation on how to run and build, pushing type info to pypi, making it easy to use, etc.)
-* [ ] For version 2 plan out support for a flat ROOT `TTree` file.
-* [ ] Figure out how to deal with multiple systematic errors requested at the same time, in different parts of a query (waiting for combiner predicates in the underlying func_adl).
 
 Deferred to later (they are now in github issues in the `xaod_usage` project):
 
