@@ -52,7 +52,6 @@ This is currently a package that is planned. The development path is as follows:
   * [x] Muons
   * [x] Electrons
   * [x] Taus
-  * [ ] DiTaus
   * [ ] BTagging
   * [x] Tracks
   * [x] Primary Vertices
@@ -66,6 +65,7 @@ This is currently a package that is planned. The development path is as follows:
 Deferred to later (they are now in github issues in the `xaod_usage` project):
 
 - Photons (head of 21.1 can't run on DAOD_PHYS at the moment)
+- DiTau Jets (head of 21.1 can't run on DAOD_PHYS at the moment)
 
 ## Development
 
