@@ -52,7 +52,7 @@ def test_load_full_file():
     m_sys = md["sys_error_tool"]
     assert isinstance(m_sys.data, list)
 
-    assert len(jets.parameters) == 1
+    assert len(jets.parameters) == 2
     jets_p = jets.parameters[0]
     assert jets_p.name == "calibration"
     assert jets_p.type == "str"
