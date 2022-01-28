@@ -3,10 +3,10 @@ from func_adl_servicex_type_generator.loader import load_yaml
 
 
 def test_load_full_file():
-    collections, classes, md = load_yaml(Path("./tests/xaod_r21_1.yaml"))
+    data = load_yaml(Path("./tests/xaod_r21_1.yaml"))
 
-    collection_dict = {c.name: c for c in collections}
-    classes_dict = {c.name: c for c in classes}
+    collection_dict = {c.name: c for c in data.collections}
+    classes_dict = {c.name: c for c in data.classes}
 
     assert "DiTauJets" in collection_dict
     assert "xAOD.Jet_v1" in classes_dict
@@ -48,8 +48,8 @@ def test_load_full_file():
     assert len(element_link.behaviors) == 1
     assert element_link.behaviors[0] == "xAOD::BTagging_v1**"
 
-    assert "sys_error_tool" in md
-    m_sys = md["sys_error_tool"]
+    assert "sys_error_tool" in data.metadata
+    m_sys = data.metadata["sys_error_tool"]
     assert isinstance(m_sys.data, list)
 
     assert len(jets.parameters) == 2
@@ -68,10 +68,19 @@ def test_load_full_file():
     ]
     assert jets_a.bank_rename == "{bank_name}Calib_{calibration}"
 
+    assert len(data.files) > 0
+    trigger_list = [f for f in data.files if f.file_name == "trigger.py"]
+    assert len(trigger_list) == 1
+    trigger = trigger_list[0]
+
+    assert len(trigger.init_lines) == 1
+    assert len(trigger.contents) > 0
+    assert trigger.contents[0].startswith("#")
+
 
 def test_load_container_types():
-    _, classes, _ = load_yaml(Path("./tests/xaod_r21_1.yaml"))
-    classes_dict = {c.name: c for c in classes}
+    data = load_yaml(Path("./tests/xaod_r21_1.yaml"))
+    classes_dict = {c.name: c for c in data.classes}
 
     non_container = classes_dict["xAOD.Jet_v1"]
     container = classes_dict["xAOD.JetConstituentVector"]

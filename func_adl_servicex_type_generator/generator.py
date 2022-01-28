@@ -1,3 +1,4 @@
+import itertools
 from pathlib import Path
 import argparse
 from func_adl_servicex_type_generator.class_utils import package_qualified_class
@@ -20,33 +21,39 @@ def run():
 
     package_name = "func_adl_servicex_xaodr21"
 
-    collections, classes, metadata = load_yaml(args.yaml_type_file)
+    data = load_yaml(args.yaml_type_file)
 
     # Fix up the collection types
-    all_class_names = {c.name for c in classes}
-    for c in collections:
+    all_class_names = {c.name for c in data.classes}
+    for c in data.collections:
         new_c = package_qualified_class(
             c.collection_type, package_name, all_class_names
         )
         assert new_c is not None
         c.collection_type = new_c
 
-    data = {
+    template_data = {
         "package_name": package_name,
         "package_version": "1.0.22.2.187",
         "package_info_description": "xAOD R21 22.2.187",
         "sx_dataset_name": "SXDSAtlasxAODR21",
         "backend_default_name": "xaod_r21",
-        "collections": collections,
-        "metadata": metadata,
+        "collections": data.collections,
+        "metadata": data.metadata,
     }
 
     template_path = Path("./template")
     assert template_path.exists()
-    output_path = Path(f"../{data['package_name']}")
+    output_path = Path(f"../{template_data['package_name']}")
 
-    template_package_scaffolding(data, template_path, output_path)
+    template_package_scaffolding(template_data, template_path, output_path, data.files)
+
+    base_init_lines = list(itertools.chain(*[f.init_lines for f in data.files]))
 
     write_out_classes(
-        classes, template_path, output_path / data["package_name"], package_name
+        data.classes,
+        template_path,
+        output_path / template_data["package_name"],
+        package_name,
+        base_init_lines=base_init_lines,
     )

@@ -6,6 +6,7 @@ from func_adl_servicex_type_generator.data_model import (
     class_info,
     collection_info,
     extra_parameter,
+    file_info,
     method_arg_info,
     method_info,
     parameter_action,
@@ -34,7 +35,7 @@ def test_template_package(tmp_path, template_path):
     assert template_path.exists()
     output_path = tmp_path / "my_package"
 
-    template_package_scaffolding(data, template_path, output_path)
+    template_package_scaffolding(data, template_path, output_path, [])
 
     # Make sure basics are there
     assert output_path.exists()
@@ -42,6 +43,35 @@ def test_template_package(tmp_path, template_path):
 
     # Make sure the src file has the proper package name now
     assert (output_path / data["package_name"]).exists()
+
+
+def test_template_package_extra_file(tmp_path: Path, template_path):
+    data = {
+        "package_name": "func_adl_servicex_xaodr21",
+        "package_version": "1.0.22.2.187",
+        "package_info_description": "xAOD R21 22.2.187",
+        "sx_dataset_name": "SXDSAtlasxAODR21",
+        "backend_default_name": "xaod_r21",
+        "collections": [],
+        "metadata": {},
+    }
+    assert template_path.exists()
+    output_path = tmp_path / "my_package"
+
+    files = [
+        file_info(
+            file_name="junk.py",
+            init_lines=["line1", "line2"],
+            contents=["line3", "line4"],
+        )
+    ]
+
+    template_package_scaffolding(data, template_path, output_path, files)
+
+    f_path = output_path / str(data["package_name"]) / "junk.py"
+    assert f_path.exists()
+    text = f_path.read_text()
+    assert text == "line3\nline4\n"
 
 
 def test_template_collection_with_object(tmp_path, template_path):
@@ -71,7 +101,7 @@ def test_template_collection_with_object(tmp_path, template_path):
     assert template_path.exists()
     output_path = tmp_path / "my_package"
 
-    template_package_scaffolding(data, template_path, output_path)
+    template_package_scaffolding(data, template_path, output_path, [])
 
     # Look at the output file and see if it contains what we expect
     assert (output_path / data["package_name"] / "event_collection.py").exists()
@@ -113,7 +143,7 @@ def test_template_collection_with_extra_args(tmp_path, template_path):
     assert template_path.exists()
     output_path = tmp_path / "my_package"
 
-    template_package_scaffolding(data, template_path, output_path)
+    template_package_scaffolding(data, template_path, output_path, [])
 
     # Look at the output file and see if it contains what we expect
     assert (output_path / data["package_name"] / "event_collection.py").exists()
@@ -158,7 +188,7 @@ def test_template_collection_with_md(tmp_path, template_path):
     assert template_path.exists()
     output_path = tmp_path / "my_package"
 
-    template_package_scaffolding(data, template_path, output_path)
+    template_package_scaffolding(data, template_path, output_path, [])
 
     # Look at the output file and see if it contains what we expect
     assert (output_path / data["package_name"] / "event_collection.py").exists()
@@ -202,7 +232,7 @@ def test_paction_bool_true(tmp_path, template_path):
     assert template_path.exists()
     output_path = tmp_path / "my_package"
 
-    template_package_scaffolding(data, template_path, output_path)
+    template_package_scaffolding(data, template_path, output_path, [])
 
     evt_col_path = output_path / data["package_name"] / "event_collection.py"
     text = evt_col_path.read_text()
@@ -243,7 +273,7 @@ def test_paction_bool_any(tmp_path, template_path):
     assert template_path.exists()
     output_path = tmp_path / "my_package"
 
-    template_package_scaffolding(data, template_path, output_path)
+    template_package_scaffolding(data, template_path, output_path, [])
 
     evt_col_path = output_path / data["package_name"] / "event_collection.py"
     text = evt_col_path.read_text()
@@ -284,7 +314,7 @@ def test_paction_bool_none(tmp_path, template_path):
     assert template_path.exists()
     output_path = tmp_path / "my_package"
 
-    template_package_scaffolding(data, template_path, output_path)
+    template_package_scaffolding(data, template_path, output_path, [])
 
     evt_col_path = output_path / data["package_name"] / "event_collection.py"
     text = evt_col_path.read_text()
@@ -325,7 +355,7 @@ def test_paction_int(tmp_path, template_path):
     assert template_path.exists()
     output_path = tmp_path / "my_package"
 
-    template_package_scaffolding(data, template_path, output_path)
+    template_package_scaffolding(data, template_path, output_path, [])
 
     evt_col_path = output_path / data["package_name"] / "event_collection.py"
     text = evt_col_path.read_text()
@@ -366,7 +396,7 @@ def test_paction_str(tmp_path, template_path):
     assert template_path.exists()
     output_path = tmp_path / "my_package"
 
-    template_package_scaffolding(data, template_path, output_path)
+    template_package_scaffolding(data, template_path, output_path, [])
 
     evt_col_path = output_path / data["package_name"] / "event_collection.py"
     text = evt_col_path.read_text()
@@ -400,7 +430,7 @@ def test_template_collection_no_include(tmp_path, template_path):
     assert template_path.exists()
     output_path = tmp_path / "my_package"
 
-    template_package_scaffolding(data, template_path, output_path)
+    template_package_scaffolding(data, template_path, output_path, [])
 
     evt_col_path = output_path / data["package_name"] / "event_collection.py"
     text = evt_col_path.read_text()
@@ -426,7 +456,7 @@ def test_template_collection_not_collection(tmp_path, template_path):
     assert template_path.exists()
     output_path = tmp_path / "my_package"
 
-    template_package_scaffolding(data, template_path, output_path)
+    template_package_scaffolding(data, template_path, output_path, [])
 
     evt_col_path = output_path / data["package_name"] / "event_collection.py"
     text = evt_col_path.read_text()
@@ -458,7 +488,7 @@ def test_template_collection_with_namespace(tmp_path, template_path):
     }
 
     output_path = tmp_path / "my_package"
-    template_package_scaffolding(data, template_path, output_path)
+    template_package_scaffolding(data, template_path, output_path, [])
 
     # Look at the output file and see if it contains what we expect
     evt_col_file = output_path / data["package_name"] / "event_collection.py"
@@ -496,7 +526,7 @@ def test_template_poetry_integration(tmp_path, template_path):
     assert template_path.exists()
     output_path = tmp_path / "my_package"
 
-    template_package_scaffolding(data, template_path, output_path)
+    template_package_scaffolding(data, template_path, output_path, [])
 
     # Make sure basics are there
     assert output_path.exists()

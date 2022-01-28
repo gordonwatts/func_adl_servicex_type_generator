@@ -129,3 +129,15 @@ class metadata_info:
     """Holds the data for a metadata item"""
 
     data: Dict[str, List[str]]
+
+
+@dataclass
+class file_info:
+    # The output name to write the file to
+    file_name: str
+
+    # Init lines to add to the __init__.py file at top level
+    init_lines: List[str]
+
+    # The lines to dump into the file
+    contents: List[str]

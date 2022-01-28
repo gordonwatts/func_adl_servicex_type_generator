@@ -1,21 +1,22 @@
+import os
+import shutil
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
-from .class_utils import package_qualified_class
-
-import shutil
 
 import jinja2
+
 from func_adl_servicex_type_generator.class_utils import (
     class_ns_as_path,
     class_split_namespace,
 )
+from func_adl_servicex_type_generator.data_model import class_info, file_info
 
-from func_adl_servicex_type_generator.data_model import class_info
+from .class_utils import package_qualified_class
 
 
 def template_package_scaffolding(
-    data: Dict[str, Any], template_path: Path, output_path: Path
+    data: Dict[str, Any], template_path: Path, output_path: Path, files: List[file_info]
 ):
     """Generate the package scaffolding:
 
@@ -27,6 +28,7 @@ def template_package_scaffolding(
                                generate the package
         output_path:           Location where we want to write the generated
                                package
+        files:                 List of files to write out
     """
     # Load up the template structure and environment
     loader = jinja2.FileSystemLoader(str(template_path / "package"))
@@ -63,6 +65,14 @@ def template_package_scaffolding(
             if dest.exists():
                 dest.unlink()
             f.rename(dest)
+
+    # Write out all the files
+    for f in files:
+        with open(dest_path / f.file_name, "w") as f_out:
+            for line in f.contents:
+                if line is not None:
+                    f_out.write(line)
+                f_out.write("\n")
 
 
 @dataclass
@@ -220,6 +230,7 @@ def write_out_classes(
     template_path: Path,
     project_src_path: Path,
     package_name: str,
+    base_init_lines: List[str] = [],
 ):
     """Write out the templates for all classes
 
@@ -368,6 +379,7 @@ def write_out_classes(
                     sub_namespaces=sub_ns,
                     package_name=package_name,
                     sx_dataset_name="SXDSAtlasxAODR21",
+                    base_init_lines=base_init_lines,
                 )
             )
             # out.write("\n")  # Get around whitespace trimming

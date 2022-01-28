@@ -1,5 +1,6 @@
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List
 
 import yaml
 
@@ -8,6 +9,7 @@ from func_adl_servicex_type_generator.data_model import (
     class_info,
     collection_info,
     extra_parameter,
+    file_info,
     metadata_info,
     method_arg_info,
     method_info,
@@ -61,9 +63,26 @@ def load_parameters(params: List[Dict[str, Any]]) -> List[extra_parameter]:
     ]
 
 
+@dataclass
+class LoadedData:
+    "Data loaded from the yaml file"
+
+    # List of collections
+    collections: List[collection_info]
+
+    # List of classes
+    classes: List[class_info]
+
+    # Metadata Info
+    metadata: Dict[str, metadata_info]
+
+    # Files we read back
+    files: List[file_info]
+
+
 def load_yaml(
     config_path: Path,
-) -> Tuple[List[collection_info], List[class_info], Dict[str, metadata_info]]:
+) -> LoadedData:
     """Return data from a loaded info file
 
     Args:
@@ -77,6 +96,7 @@ def load_yaml(
     data_collections = data["collections"]
     data_classes = data["classes"]
     data_metadata = data["metadata"]
+    data_files = data["files"]
 
     collections = [
         collection_info(
@@ -117,4 +137,11 @@ def load_yaml(
 
     metadata = {m["name"]: metadata_info(data=m["data"]) for m in data_metadata}
 
-    return (collections, classes, metadata)
+    files = [
+        file_info(
+            file_name=f["name"], init_lines=f["init_lines"], contents=f["contents"]
+        )
+        for f in data_files
+    ]
+
+    return LoadedData(collections, classes, metadata, files)

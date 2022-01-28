@@ -2,6 +2,10 @@ from typing import Any, TYPE_CHECKING
 {%- if module_stub == "" %}
 from .sx_dataset import {{ sx_dataset_name }}
 from .func_adl_iterable import FADLStream
+
+{%- for line in base_init_lines %}
+{{ line }}
+{%- endfor %}
 {%- endif %}
 
 class _load_me:
