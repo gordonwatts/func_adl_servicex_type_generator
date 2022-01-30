@@ -60,7 +60,7 @@ This is currently a package that is planned. The development path is as follows:
 * Technical Debt Cleanup
   * [ ] Use python decorators for all class methods and classes themselves
   * [ ] Make sure the type propagations works inside the lambda functions for Select, Where, etc.
-  * [ ] Fix the trigger object matching
+  * [x] Fix the trigger object matching
 * [ ] Support R22
 * [ ] First release of package (documentation on how to run and build, pushing type info to pypi, making it easy to use, etc.)
 
