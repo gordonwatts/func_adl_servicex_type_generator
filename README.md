@@ -59,6 +59,7 @@ This is currently a package that is planned. The development path is as follows:
 * [ ] Add support for `Jet::getAttribute`, which is a C++ code-behind function, but likely it is a method
 * Technical Debt Cleanup
   * [ ] Use python decorators for all class methods and classes themselves
+  * [ ] Track changes to the ast inside nested functions (a default argument to a function inside a select)
   * [ ] Make sure the type propagations works inside the lambda functions for Select, Where, etc.
   * [x] Fix the trigger object matching
 * [ ] Support R22
