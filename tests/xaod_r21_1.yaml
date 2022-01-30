@@ -23,6 +23,32 @@ collections:
     include_file: xAODMuon/MuonContainer.h
     link_libraries:
       - xAODMuon
+    extra_parameters:
+      - name: calibration
+        type: str
+        default_value: "'NOSYS'"
+        actions:
+          - value: "'*None*'"
+            metadata_names:
+              []
+            bank_rename: "{bank_name}"
+          - value: "'*Any*'"
+            metadata_names:
+              - sys_error_tool
+              - pileup_tool
+              - muon_corrections
+              - add_calibration_to_job
+            bank_rename: "{bank_name}Calib_{working_point}{isolation}_{calibration}"
+      - name: working_point
+        type: str
+        default_value: "'Medium'"
+        actions:
+          []
+      - name: isolation
+        type: str
+        default_value: "'NonIso'"
+        actions:
+          []
   - collection_name: TauJets
     cpp_item_type: xAOD::TauJet_v3
     python_item_type: xAOD.TauJet_v3
@@ -31,6 +57,27 @@ collections:
     include_file: xAODTau/TauJetContainer.h
     link_libraries:
       - xAODTau
+    extra_parameters:
+      - name: calibration
+        type: str
+        default_value: "'NOSYS'"
+        actions:
+          - value: "'*None*'"
+            metadata_names:
+              []
+            bank_rename: "{bank_name}"
+          - value: "'*Any*'"
+            metadata_names:
+              - sys_error_tool
+              - pileup_tool
+              - tau_corrections
+              - add_calibration_to_job
+            bank_rename: "{bank_name}_{working_point}_{calibration}"
+      - name: working_point
+        type: str
+        default_value: "'Tight'"
+        actions:
+          []
   - collection_name: TauTracks
     cpp_item_type: xAOD::TauTrack_v1
     python_item_type: xAOD.TauTrack_v1
@@ -47,6 +94,27 @@ collections:
     include_file: xAODTau/DiTauJetContainer.h
     link_libraries:
       - xAODTau
+    extra_parameters:
+      - name: calibration
+        type: str
+        default_value: "'NOSYS'"
+        actions:
+          - value: "'*None*'"
+            metadata_names:
+              []
+            bank_rename: "{bank_name}"
+          - value: "'*Any*'"
+            metadata_names:
+              - sys_error_tool
+              - pileup_tool
+              - ditau_corrections
+              - add_calibration_to_job
+            bank_rename: "{bank_name}_{working_point}_{calibration}"
+      - name: working_point
+        type: str
+        default_value: "'Tight'"
+        actions:
+          []
   - collection_name: CaloClusters
     cpp_item_type: xAOD::CaloCluster_v1
     python_item_type: xAOD.CaloCluster_v1
@@ -95,7 +163,7 @@ collections:
     include_file: xAODTruth/TruthParticleContainer.h
     link_libraries:
       - xAODTruth
-  - collection_name: TruthVertexs
+  - collection_name: TruthVertices
     cpp_item_type: xAOD::TruthVertex_v1
     python_item_type: xAOD.TruthVertex_v1
     cpp_container_type: DataVector<xAOD::TruthVertex_v1>
@@ -111,7 +179,7 @@ collections:
     include_file: xAODTruth/TruthEventContainer.h
     link_libraries:
       - xAODTruth
-  - collection_name: BTagVertexs
+  - collection_name: BTagVertices
     cpp_item_type: xAOD::BTagVertex_v1
     python_item_type: xAOD.BTagVertex_v1
     cpp_container_type: DataVector<xAOD::BTagVertex_v1>
@@ -157,7 +225,13 @@ collections:
               - sys_error_tool
               - pileup_tool
               - jet_corrections
+              - add_calibration_to_job
             bank_rename: "{bank_name}Calib_{calibration}"
+      - name: truth_jets
+        type: str
+        default_value: "'AntiKt4TruthDressedWZJets'"
+        actions:
+          []
   - collection_name: IParticles
     cpp_item_type: xAOD::IParticle
     python_item_type: xAOD.IParticle
@@ -174,6 +248,32 @@ collections:
     include_file: xAODEgamma/ElectronContainer.h
     link_libraries:
       - xAODEgamma
+    extra_parameters:
+      - name: calibration
+        type: str
+        default_value: "'NOSYS'"
+        actions:
+          - value: "'*None*'"
+            metadata_names:
+              []
+            bank_rename: "{bank_name}"
+          - value: "'*Any*'"
+            metadata_names:
+              - sys_error_tool
+              - pileup_tool
+              - electron_corrections
+              - add_calibration_to_job
+            bank_rename: "{bank_name}_{working_point}_{isolation}_{calibration}"
+      - name: working_point
+        type: str
+        default_value: "'MediumLHElectron'"
+        actions:
+          []
+      - name: isolation
+        type: str
+        default_value: "'NonIso'"
+        actions:
+          []
   - collection_name: Photons
     cpp_item_type: xAOD::Photon_v1
     python_item_type: xAOD.Photon_v1
@@ -182,6 +282,32 @@ collections:
     include_file: xAODEgamma/PhotonContainer.h
     link_libraries:
       - xAODEgamma
+    extra_parameters:
+      - name: calibration
+        type: str
+        default_value: "'NOSYS'"
+        actions:
+          - value: "'*None*'"
+            metadata_names:
+              []
+            bank_rename: "{bank_name}"
+          - value: "'*Any*'"
+            metadata_names:
+              - sys_error_tool
+              - pileup_tool
+              - photon_corrections
+              - add_calibration_to_job
+            bank_rename: "{bank_name}_{working_point}_{isolation}_{calibration}"
+      - name: working_point
+        type: str
+        default_value: "'Tight'"
+        actions:
+          []
+      - name: isolation
+        type: str
+        default_value: "'NonIso'"
+        actions:
+          []
   - collection_name: Egammas
     cpp_item_type: xAOD::Egamma_v1
     python_item_type: xAOD.Egamma_v1
@@ -214,7 +340,7 @@ collections:
     include_file: xAODTracking/TrackParticleContainer.h
     link_libraries:
       - xAODTracking
-  - collection_name: Vertexs
+  - collection_name: Vertices
     cpp_item_type: xAOD::Vertex_v1
     python_item_type: xAOD.Vertex_v1
     cpp_container_type: DataVector<xAOD::Vertex_v1>
@@ -3417,6 +3543,149 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+files:
+  - name: trigger.py
+    init_lines:
+      - from .trigger import tdt_chain_fired
+      - from .trigger import tmt_match_object
+    contents:
+      - "# Temp file to develop the code we need to run as the TDT"
+      - "from typing import Tuple, TypeVar"
+      - "from func_adl import func_adl_callable, ObjectStream"
+      - "import ast"
+      - ""
+      - "T = TypeVar(\"T\")"
+      - ""
+      - ""
+      - "def _add_decision_tool(s: ObjectStream[T]) -> ObjectStream[T]:"
+      - "    'Add code block for a decision tool initialization'"
+      - "    return s.MetaData("
+      - "        {"
+      - "            \"metadata_type\": \"inject_code\","
+      - "            \"name\": \"trigger_decision_tool\","
+      - "            \"header_includes\": ["
+      - "                \"TrigConfInterfaces/ITrigConfigTool.h\","
+      - "                \"TrigDecisionTool/TrigDecisionTool.h\","
+      - "                \"AsgTools/AnaToolHandle.h\","
+      - "            ],"
+      - "            \"private_members\": ["
+      - "                \"asg::AnaToolHandle<TrigConf::ITrigConfigTool> m_trigConf;\","
+      - "                \"asg::AnaToolHandle<Trig::TrigDecisionTool> m_trigDec;\","
+      - "            ],"
+      - "            \"instance_initialization\": ["
+      - "                'm_trigConf(\"TrigConf::xAODConfigTool/xAODConfigTool\")',"
+      - "                'm_trigDec(\"Trig::TrigDecisionTool/TrigDecisionTool\")',"
+      - "            ],"
+      - "            \"initialize_lines\": ["
+      - "                \"ANA_CHECK (m_trigConf.initialize());\","
+      - "                'ANA_CHECK (m_trigDec.setProperty(\"ConfigTool\", m_trigConf.getHandle()));',"
+      - "                'ANA_CHECK (m_trigDec.setProperty(\"TrigDecisionKey\", \"xTrigDecision\"));',"
+      - "                \"ANA_CHECK (m_trigDec.initialize());\","
+      - "            ],"
+      - "            \"link_libraries\": [\"TrigDecisionToolLib\", \"TrigConfInterfaces\"],"
+      - "        }"
+      - "    )"
+      - ""
+      - ""
+      - "def _add_match_tool(s: ObjectStream[T]) -> ObjectStream[T]:"
+      - "    new_s = s.MetaData("
+      - "        {"
+      - "            \"metadata_type\": \"inject_code\","
+      - "            \"name\": \"trigger_match_tool\","
+      - "            \"private_members\": ["
+      - "                \"asg::AnaToolHandle<Trig::IMatchingTool> m_tmt;\","
+      - "            ],"
+      - "            \"header_includes\": ["
+      - "                \"TriggerMatchingTool/MatchingTool.h\","
+      - "            ],"
+      - "            \"instance_initialization\": ["
+      - "                'm_tmt(\"Trig::MatchingTool\")',"
+      - "            ],"
+      - "            \"initialize_lines\": ["
+      - "                'ANA_CHECK(m_tmt.setProperty(\"TrigDecisionTool\", m_trigDec.getHandle()));',"
+      - "                'ANA_CHECK(m_tmt.initialize());',"
+      - "            ],"
+      - "            \"link_libraries\": [\"TriggerMatchingToolLib\"],"
+      - "        }"
+      - "    )"
+      - "    return _add_decision_tool(new_s)"
+      - ""
+      - ""
+      - "def _tdt_chain_fired_processor("
+      - "    s: ObjectStream[T], a: ast.Call"
+      - ") -> Tuple[ObjectStream[T], ast.Call]:"
+      - "    \"\"\"Configure the backend to run the Trigger Decision Tool!"
+      - ""
+      - "    Args:"
+      - "        s (ObjectStream[T]): The stream func_adl is working on - and we can add meta data to.Tuple"
+      - "        a (ast.Call): The callsite in case we need to modify it"
+      - ""
+      - "    Returns:"
+      - "        Tuple[ObjectStream[T], ast.Call]: Update stream and call site."
+      - "    \"\"\""
+      - "    # Make sure the TDT is declared and send the code"
+      - "    # for this particular function"
+      - "    new_s = s.MetaData("
+      - "        {"
+      - "            \"metadata_type\": \"add_cpp_function\","
+      - "            \"name\": \"tdt_chain_fired\","
+      - "            \"include_files\": [],"
+      - "            \"arguments\": [\"triggers\"],"
+      - "            \"code\": [\"auto result = m_trigDec->isPassed(triggers,TrigDefs::Physics);\"],"
+      - "            \"result_name\": \"result\","
+      - "            \"return_type\": \"bool\","
+      - "        }"
+      - "    )"
+      - ""
+      - "    return _add_decision_tool(new_s), a"
+      - ""
+      - ""
+      - "def _tmt_match_object_processor(s: ObjectStream[T], a: ast.Call) -> Tuple[ObjectStream[T], ast.Call]:"
+      - "    new_s = s.MetaData("
+      - "        {"
+      - "            \"metadata_type\": \"add_cpp_function\","
+      - "            \"name\": \"tmt_match_object\","
+      - "            \"include_files\": [],"
+      - "            \"arguments\": [\"trigger\", \"offline_object\", \"dr\"],"
+      - "            \"code\": ["
+      - "                \"std::vector<const xAOD::IParticle*> myParticles\","
+      - "                \"myParticles.push_back(offline_object);\","
+      - "                \"auto result = m_tmt->match(myParticles, trigger , dr);\","
+      - "                ],"
+      - "            \"result_name\": \"result\","
+      - "            \"return_type\": \"bool\","
+      - "        })"
+      - ""
+      - "    return (_add_match_tool(new_s), a)"
+      - ""
+      - ""
+      - "@func_adl_callable(_tdt_chain_fired_processor)"
+      - "def tdt_chain_fired(triggers: str) -> bool:"
+      - "    \"\"\"Returns true if the event has any of the trigger chain names that have"
+      - "    fired. Uses the ATLAS Trigger Decision Tool to query the event."
+      - ""
+      - "    Args:"
+      - "        triggers (str): String specifying the triggers to check for. This is passed directly to the"
+      - "        ATLAS TriggerDecisionTool, so can include any valid wildcards."
+      - ""
+      - "    Returns:"
+      - "        bool: True if the TDT says this chain has fired on this event, false other wise."
+      - "    \"\"\""
+      - "    ..."
+      - ""
+      - "@func_adl_callable(_tmt_match_object_processor)"
+      - "def tmt_match_object(trigger: str, offline_object, dr: float = 0.7) -> bool:"
+      - "    '''Returns true if the `offline_object` is a close match to the trigger"
+      - "    object. Close match is done as a function of $\\Delta R < `dr`$."
+      - ""
+      - "    Args:"
+      - "        trigger (str): Trigger name"
+      - "        offline_object ([type]): The offline object (like an electron)"
+      - ""
+      - "    Returns:"
+      - "        bool: True if the match is good."
+      - "    '''"
+      - "    ..."
 metadata:
   - name: sys_error_tool
     data:
@@ -3429,8 +3698,6 @@ metadata:
           - "from AnaAlgorithm.AlgSequence import AlgSequence"
           - "calibrationAlgSeq = AlgSequence()"
           - "sysService = createService( 'CP::SystematicsSvc', 'SystematicsSvc', sequence = calibrationAlgSeq )"
-          - "# Just run nominal for now"
-          - "# sysService.sigmaRecommended = 1"
           - "sysService.systematicsList = ['{calibration}']"
           - "# Add sequence to job"
   - name: pileup_tool
@@ -3458,8 +3725,10 @@ metadata:
           - "from JetAnalysisAlgorithms.JetAnalysisSequence import makeJetAnalysisSequence"
           - "jetSequence = makeJetAnalysisSequence( 'mc', jetContainer)"
           - "jetSequence.configure( inputName = jetContainer, outputName = '{bank_name}_Base_%SYS%' )"
+          - "jetSequence.JvtEfficiencyAlg.truthJetCollection = '{truth_jets}'"
+          - "jetSequence.ForwardJvtEfficiencyAlg.truthJetCollection = '{truth_jets}'"
           - "calibrationAlgSeq += jetSequence"
-          - "# print( jetSequence ) # For debugging"
+          - "print( jetSequence ) # For debugging"
           - ""
           - "# Include, and then set up the jet analysis algorithm sequence:"
           - "from JetAnalysisAlgorithms.JetJvtAnalysisSequence import makeJetJvtAnalysisSequence"
@@ -3468,8 +3737,81 @@ metadata:
           - "                       outputName = { 'jets'      : '{bank_name}Calib_%SYS%' },"
           - "                       )"
           - "calibrationAlgSeq += jvtSequence"
-          - "# print( jvtSequence ) # For debugging"
+          - "print( jvtSequence ) # For debugging"
+        depends_on:
+          - 'pileup_tool'
+  - name: muon_corrections
+    data:
+      - metadata_type: add_job_script
+        name: muon_corrections
+        script:
+          - "muon_container = '{bank_name}'"
+          - "from MuonAnalysisAlgorithms.MuonAnalysisSequence import makeMuonAnalysisSequence"
+          - "muonSequence = makeMuonAnalysisSequence('mc', workingPoint='{working_point}.{isolation}', postfix = '{working_point}_{isolation}')"
+          - "muonSequence.configure( inputName = muon_container,"
+          - "                        outputName = muon_container + 'Calib_{working_point}{isolation}_%SYS%' )"
+          - "calibrationAlgSeq += muonSequence"
+          - "print( muonSequence ) # For debugging"
+        depends_on:
+          - 'pileup_tool'
+  - name: photon_corrections
+    data:
+      - metadata_type: add_job_script
+        name: electron_corrections
+        script:
+          - "from EgammaAnalysisAlgorithms.PhotonAnalysisSequence import makePhotonAnalysisSequence"
+          - "photonSequence = makePhotonAnalysisSequence( 'mc', '{working_point}.{isolation}', postfix = '{working_point}_{isolation}')"
+          - "photonSequence.configure( inputName = '{bank_name}',"
+          - "                            outputName = '{bank_name}_{working_point}_{isolation}_%SYS%' )"
+          - "calibrationAlgSeq += photonSequence"
+          - "print( photonSequence ) # For debugging"
+        depends_on:
+          - 'pileup_tool'
+  - name: electron_corrections
+    data:
+      - metadata_type: add_job_script
+        name: electron_corrections
+        script:
+          - "from EgammaAnalysisAlgorithms.ElectronAnalysisSequence import makeElectronAnalysisSequence"
+          - "electronSequence = makeElectronAnalysisSequence( 'mc', '{working_point}.{isolation}', postfix = '{working_point}_{isolation}')"
+          - "electronSequence.configure( inputName = '{bank_name}',"
+          - "                            outputName = '{bank_name}_{working_point}_{isolation}_%SYS%' )"
+          - "calibrationAlgSeq += electronSequence"
+          - "print( electronSequence ) # For debugging"
+        depends_on:
+          - 'pileup_tool'
+  - name: tau_corrections
+    data:
+      - metadata_type: add_job_script
+        name: tau_corrections
+        script:
+          - "from TauAnalysisAlgorithms.TauAnalysisSequence import makeTauAnalysisSequence"
+          - "tauSequence = makeTauAnalysisSequence( 'mc', '{working_point}', postfix = '{working_point}', rerunTruthMatching=False)"
+          - "tauSequence.configure( inputName = '{bank_name}',"
+          - "                       outputName = '{bank_name}_{working_point}_%SYS%' )"
+          - "calibrationAlgSeq += tauSequence"
+          - "print( tauSequence ) # For debugging"
+        depends_on:
+          - 'pileup_tool'
+  - name: ditau_corrections
+    data:
+      - metadata_type: add_job_script
+        name: ditau_corrections
+        script:
+          - "from TauAnalysisAlgorithms.DiTauAnalysisSequence import makeDiTauAnalysisSequence"
+          - "diTauSequence = makeDiTauAnalysisSequence( 'mc', '{working_point}', postfix = '{working_point}')"
+          - "diTauSequence.configure( inputName = '{bank_name}',"
+          - "                       outputName = '{bank_name}_{working_point}_%SYS%' )"
+          - "calibrationAlgSeq += diTauSequence"
+          - "print( diTauSequence ) # For debugging"
+        depends_on:
+          - 'pileup_tool'
+  - name: add_calibration_to_job
+    data:
+      - metadata_type: add_job_script
+        name: add_calibration_to_job
+        script:
           - "calibrationAlgSeq.addSelfToJob( job )"
           - "print(job) # for debugging"
         depends_on:
-          - 'pileup_tool'
+          - '*PREVIOUS*'
