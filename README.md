@@ -48,15 +48,14 @@ This is currently a package that is planned. The development path is as follows:
 * [x] Do something that requires a separate include file to access an object (include file injection).
 * [x] Add support for arbitrary injection of other packages in the ATLAS C++ backend (e.g. corrections). Use `Jets` to develop this.
 * [x] Support getting a single systematic error or nominal.
-* [ ] Use _common knowledge_ (CP groups) to get the first set of collections and implement those:
+* [x] Use _common knowledge_ (CP groups) to get the first set of collections and implement those:
   * [x] Muons
   * [x] Electrons
   * [x] Taus
   * [x] Tracks
   * [x] Primary Vertices
   * [x] MissingET (basics)
-  * [ ] Trigger
-  * etc.
+  * [x] Trigger
 * [ ] Add support for `Jet::getAttribute`, which is a C++ code-behind function
 * [ ] Support R22
 * [ ] First release of package (documentation on how to run and build, pushing type info to pypi, making it easy to use, etc.)
@@ -67,6 +66,8 @@ Deferred to later (they are now in github issues in the `xaod_usage` project):
 * DiTau Jets (head of 21.1 can't run on DAOD_PHYS at the moment)
 * Rebuilding MissingET is put off till later because it is complex and I do not understand it!
 * BTagging is C++ code that will be written inline, likely, so added as a todo for later.
+* Trigger matching isn't working in 21.2
+* Overlap removal hasn't been tackled yet
 
 ## Development
 
