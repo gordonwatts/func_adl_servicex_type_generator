@@ -36,6 +36,7 @@ def _add_method_metadata(s: ObjectStream[T], a: ast.Call) -> Tuple[ObjectStream[
 {%- if include_file != "" %}
         s_update = s_update.MetaData({
             'metadata_type': 'inject_code',
+            'name': '{{ include_file }}',
             'body_includes': ["{{ include_file }}"],
         })
 {%- endif %}
