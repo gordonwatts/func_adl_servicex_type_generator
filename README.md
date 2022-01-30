@@ -56,7 +56,10 @@ This is currently a package that is planned. The development path is as follows:
   * [x] Primary Vertices
   * [x] MissingET (basics)
   * [x] Trigger
-* [ ] Add support for `Jet::getAttribute`, which is a C++ code-behind function
+* [ ] Add support for `Jet::getAttribute`, which is a C++ code-behind function, but likely it is a method
+* Technical Debt Cleanup
+  * [ ] Use python decorators for all class methods and classes themselves
+  * [ ] Make sure the type propagations works inside the lambda functions for Select, Where, etc.
 * [ ] Support R22
 * [ ] First release of package (documentation on how to run and build, pushing type info to pypi, making it easy to use, etc.)
 
