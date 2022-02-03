@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import Any, Dict, Iterable, List, Tuple, TypeVar, Union
-from func_adl import ObjectStream
+from func_adl import ObjectStream, func_adl_callback
 import ast
 import copy
 import {{ package_name }}
@@ -157,7 +157,7 @@ class _process_extra_arguments:
 {%- endif %}{% endfor %}
 
 
-def _add_collection_metadata(s: ObjectStream[T], a: ast.Call) -> Tuple[ObjectStream[T], ast.AST]:
+def _add_collection_metadata(s: ObjectStream[T], a: ast.Call) -> Tuple[ObjectStream[T], ast.Call]:
     '''Add metadata for a collection to the func_adl stream if we know about it
     '''
     # Unpack the call as needed
@@ -181,12 +181,10 @@ def _add_collection_metadata(s: ObjectStream[T], a: ast.Call) -> Tuple[ObjectStr
     else:
         return s, a
 
+@func_adl_callback(_add_collection_metadata)
 class Event:
     '''The top level event class. All data in the event is accessed from here
     '''
-
-    _func_adl_type_info = _add_collection_metadata
-
 
 {%- for item in collections %}
     def {{ item.name }}(self, name: str

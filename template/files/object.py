@@ -1,7 +1,7 @@
 from __future__ import annotations
 import ast
 from typing import Tuple, TypeVar, Iterable
-from func_adl import ObjectStream
+from func_adl import ObjectStream, func_adl_callback
 import {{ package_name }}
 
 _method_map = {
@@ -27,7 +27,7 @@ _method_map = {
 T = TypeVar('T')
 
 
-def _add_method_metadata(s: ObjectStream[T], a: ast.Call) -> Tuple[ObjectStream[T], ast.AST]:
+def _add_method_metadata(s: ObjectStream[T], a: ast.Call) -> Tuple[ObjectStream[T], ast.Call]:
     '''Add metadata for a collection to the func_adl stream if we know about it
     '''
     assert isinstance(a.func, ast.Attribute)
@@ -45,10 +45,9 @@ def _add_method_metadata(s: ObjectStream[T], a: ast.Call) -> Tuple[ObjectStream[
         return s, a
 
 
+@func_adl_callback(_add_method_metadata)
 class {{ class_name }} {% if inheritance_list|length > 0 %}({% for super_class in inheritance_list %}{{ super_class }}{% endfor %}){% endif %}:
     "A class"
-
-    _func_adl_type_info = _add_method_metadata
 
 {% for method in methods_info %}
     def {{ method.name }}(self
