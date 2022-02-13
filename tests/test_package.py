@@ -687,8 +687,8 @@ def test_class_as_container_include(tmp_path, template_path):
     assert (tmp_path / "xAOD" / "jets.py").exists()
     file_text = (tmp_path / "fork.py").read_text()
     jet_class = [ln for ln in file_text.split("\n") if "fork.hpp" in ln]
-    assert len(jet_class) == 1
-    assert "body_includes" in jet_class[0]
+    assert len(jet_class) == 2
+    assert "body_includes" in jet_class[1]
 
 
 def test_simple_method(tmp_path, template_path):

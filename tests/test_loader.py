@@ -73,7 +73,7 @@ def test_load_full_file():
     assert len(trigger_list) == 1
     trigger = trigger_list[0]
 
-    assert len(trigger.init_lines) == 1
+    assert len(trigger.init_lines) == 2
     assert len(trigger.contents) > 0
     assert trigger.contents[0].startswith("#")
 
