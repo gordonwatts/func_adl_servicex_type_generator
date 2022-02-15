@@ -61,8 +61,9 @@ This is currently a package that is planned. The development path is as follows:
   * [x] Track changes to the ast inside nested functions (a default argument to a function inside a select)
   * [x] Make sure the type propagations works inside the lambda functions for Select, Where, etc.
   * [x] Fix the trigger object matching
-  * [ ] Get rid of ctor generation (ops!)
-* [ ] Add support for `Jet::getAttribute`, which is a C++ code-behind function, but likely it is a method
+  * [x] Get rid of ctor generation (ops!)
+  * [ ] Add extra methods to make type checking in the jets demo correct
+* [x] Add support for `Jet::getAttribute`, which is a C++ code-behind function, but likely it is a method
 * [ ] Add support for decorator access
 * [ ] Support R22
 * [ ] First release of package (documentation on how to run and build, pushing type info to pypi, making it easy to use, etc.)
