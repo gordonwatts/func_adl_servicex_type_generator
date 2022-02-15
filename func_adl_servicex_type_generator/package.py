@@ -1,4 +1,3 @@
-import os
 import shutil
 from dataclasses import dataclass
 from pathlib import Path
@@ -10,9 +9,29 @@ from func_adl_servicex_type_generator.class_utils import (
     class_ns_as_path,
     class_split_namespace,
 )
-from func_adl_servicex_type_generator.data_model import class_info, file_info
+from func_adl_servicex_type_generator.data_model import (
+    class_info,
+    file_info,
+    method_info,
+)
 
 from .class_utils import package_qualified_class
+
+
+# from jinja2 import contextfilter, Markup
+
+
+@jinja2.contextfilter  # type: ignore
+def subrender_filter(context, value):
+    _template = context.eval_ctx.environment.from_string(value)
+    result = _template.render(**context)
+    if context.eval_ctx.autoescape:
+        result = jinja2.Markup(result)  # type: ignore
+    return result
+
+
+def prep_jinja2_env(env: jinja2.Environment):
+    env.filters["subrender"] = subrender_filter
 
 
 def template_package_scaffolding(
@@ -33,6 +52,7 @@ def template_package_scaffolding(
     # Load up the template structure and environment
     loader = jinja2.FileSystemLoader(str(template_path / "package"))
     env = jinja2.Environment(loader=loader)
+    prep_jinja2_env(env)
 
     # Remove the package if it was there before
     if output_path.exists():
@@ -222,6 +242,9 @@ def py_type_from_cpp(
     if py_type is not None:
         return py_type
 
+    if len(cpp_class_name) == 1:
+        return cpp_class_name
+
     raise RuntimeError(f"Unknown C++ type {cpp_class_name}")
 
 
@@ -246,6 +269,8 @@ def write_out_classes(
     # Load up the template structure and environment
     loader = jinja2.FileSystemLoader(str(template_path / "files"))
     env = jinja2.Environment(loader=loader)
+    prep_jinja2_env(env)
+
     class_template_file = env.get_template("object.py")
     init_template_file = env.get_template("__init__.py")
 
@@ -302,7 +327,7 @@ def write_out_classes(
                 )
 
         # Methods from this class
-        def generate_methods(methods, deref_count: int = 0):
+        def generate_methods(methods: List[method_info], deref_count: int = 0):
             r = [
                 {
                     "fully_qualified_name": normalize_cpp_type(c.cpp_name),
@@ -320,6 +345,9 @@ def write_out_classes(
                         )
                     ),
                     "arguments": m.arguments,
+                    "param_call_args": m.param_arguments,
+                    "param_helper_class": m.param_helper,
+                    "param_type_cb": m.param_type_cb,
                 }
                 for m in methods
             ]

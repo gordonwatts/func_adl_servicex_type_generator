@@ -37,6 +37,16 @@ def method_loader(methods: List[dict]) -> List[method_info]:
                 ]
                 if "arguments" in d
                 else [],
+                param_arguments=[
+                    method_arg_info(a["name"], None, a["type"])
+                    for a in d["parameter_arguments"]
+                ]
+                if "parameter_arguments" in d
+                else [],
+                param_helper=d["param_helper"] if "param_helper" in d else None,
+                param_type_cb=d["param_type_callback"]
+                if "param_type_callback" in d
+                else None,
             )
         )
 

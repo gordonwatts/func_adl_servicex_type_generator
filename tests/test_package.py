@@ -706,6 +706,8 @@ def test_simple_method(tmp_path, template_path):
                     name="pt",
                     return_type="float",
                     arguments=[],
+                    param_arguments=[],
+                    param_helper=None,
                 )
             ],
             None,
@@ -736,6 +738,8 @@ def test_method_with_behavior(tmp_path, template_path):
                     name="pt1",
                     return_type="float",
                     arguments=[],
+                    param_arguments=[],
+                    param_helper=None,
                 )
             ],
             None,
@@ -751,6 +755,8 @@ def test_method_with_behavior(tmp_path, template_path):
                     name="pt2",
                     return_type="float",
                     arguments=[],
+                    param_arguments=[],
+                    param_helper=None,
                 )
             ],
             None,
@@ -782,6 +788,8 @@ def test_method_with_behavior_deref(tmp_path, template_path):
                     name="pt1",
                     return_type="float",
                     arguments=[],
+                    param_arguments=[],
+                    param_helper=None,
                 )
             ],
             None,
@@ -797,6 +805,8 @@ def test_method_with_behavior_deref(tmp_path, template_path):
                     name="pt2",
                     return_type="float",
                     arguments=[],
+                    param_arguments=[],
+                    param_helper=None,
                 )
             ],
             None,
@@ -826,6 +836,8 @@ def test_simple_method_ptr(tmp_path, template_path):
                     name="pt",
                     return_type="float*",
                     arguments=[],
+                    param_arguments=[],
+                    param_helper=None,
                 )
             ],
             None,
@@ -856,6 +868,8 @@ def test_simple_method_return_type_cleaning(tmp_path, template_path):
                     name="pt",
                     return_type="vector<DataVector<xAOD::Jet_v1>  >",
                     arguments=[],
+                    param_arguments=[],
+                    param_helper=None,
                 )
             ],
             None,
@@ -929,6 +943,8 @@ def test_simple_method_with_args(tmp_path, template_path):
                     name="pt",
                     return_type="float",
                     arguments=[method_arg_info("err", None, "float")],
+                    param_arguments=[],
+                    param_helper=None,
                 )
             ],
             None,
@@ -942,6 +958,35 @@ def test_simple_method_with_args(tmp_path, template_path):
     assert "pt(self, err: float) -> float:" in (
         (tmp_path / "xAOD" / "jets.py").read_text()
     )
+
+
+def test_method_with_param_args(tmp_path, template_path):
+    """Write out a very simple top level class with a method."""
+    classes = [
+        class_info(
+            "xAOD.Jets",
+            "xAOD::Jets",
+            [
+                method_info(
+                    name="pt",
+                    return_type="float",
+                    arguments=[method_arg_info("err", None, "float")],
+                    param_arguments=[method_arg_info("rtn_type", None, "cpp_type[U]")],
+                    param_helper="fetcher",
+                )
+            ],
+            None,
+            None,
+            "jet.hpp",
+        )
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package")
+
+    all_text = (tmp_path / "xAOD" / "jets.py").read_text()
+
+    assert "@property" in all_text
+    assert "def pt(self) -> package.fetcher[float]:" in all_text
 
 
 # def test_method_reference_rtn_type(tmp_path, template_path):

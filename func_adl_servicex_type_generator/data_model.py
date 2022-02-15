@@ -94,6 +94,15 @@ class method_info:
     # Arguments for the method
     arguments: List[method_arg_info]
 
+    # Parameterized function arguments
+    param_arguments: List[method_arg_info]
+
+    # param helper object when we are a parameterized function.
+    param_helper: Optional[str]
+
+    # The parameter helper object for a callback
+    param_type_cb: Optional[str] = None
+
 
 @dataclass
 class class_info:
