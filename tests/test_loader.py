@@ -39,7 +39,7 @@ def test_load_full_file():
     assert attr_methods[0].return_type == "U"
     assert len(attr_methods[0].param_arguments) == 1
     assert attr_methods[0].param_arguments[0].arg_type == "cpp_type[U]"
-    assert attr_methods[0].param_helper == "index_type_forwarder"
+    assert attr_methods[0].param_helper == "type_support.index_type_forwarder"
 
     calc_llr = [m for m in btagging.methods if m.name == "calcLLR"]
     assert len(calc_llr) == 1

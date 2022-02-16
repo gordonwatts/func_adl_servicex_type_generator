@@ -23,6 +23,9 @@ from .class_utils import package_qualified_class
 
 @jinja2.contextfilter  # type: ignore
 def subrender_filter(context, value):
+    if value is None:
+        return value
+
     _template = context.eval_ctx.environment.from_string(value)
     result = _template.render(**context)
     if context.eval_ctx.autoescape:
