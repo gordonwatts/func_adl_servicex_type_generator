@@ -63,9 +63,11 @@ This is currently a package that is planned. The development path is as follows:
   * [x] Fix the trigger object matching
   * [x] Get rid of ctor generation (ops!)
   * [ ] Add extra methods to make type checking in the jets demo correct
+  * [ ] Add missing Where, etc., so predicate type checking works in all demos
 * [x] Add support for `Jet::getAttribute`, which is a C++ code-behind function, but likely it is a method
 * [ ] Add support for decorator access
 * [ ] Support R22
+* [ ] Clean up all marked TODO's in the code base - either issues or delete them.
 * [ ] First release of package (documentation on how to run and build, pushing type info to pypi, making it easy to use, etc.)
 
 Deferred to later (they are now in github issues in the `xaod_usage` project):
