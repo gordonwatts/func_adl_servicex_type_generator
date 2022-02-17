@@ -619,6 +619,12 @@ classes:
         return_type: ROOT::Math::Minimizer*
       - name: MinimizerOptions
         return_type: ROOT::Math::MinimizerOptions
+      - name: MinimizerType
+        return_type: const string
+      - name: MinimizerAlgoType
+        return_type: const string
+      - name: MinimizerName
+        return_type: string
       - name: NormalizeErrors
         return_type: bool
       - name: ParabErrors
@@ -655,6 +661,8 @@ classes:
   - python_name: ROOT.Fit.FitResult
     cpp_name: ROOT::Fit::FitResult
     methods:
+      - name: MinimizerType
+        return_type: const string
       - name: IsValid
         return_type: bool
       - name: IsEmpty
@@ -708,6 +716,11 @@ classes:
             type: int
       - name: ParError
         return_type: double
+        arguments:
+          - name: i
+            type: int
+      - name: ParName
+        return_type: string
         arguments:
           - name: i
             type: int
@@ -775,6 +788,11 @@ classes:
             type: float
           - name: confLevel
             type: float
+      - name: Index
+        return_type: int
+        arguments:
+          - name: name
+            type: str
       - name: NormalizedErrors
         return_type: bool
       - name: IsParameterBound
@@ -796,6 +814,11 @@ classes:
             type: float
           - name: upper
             type: float
+      - name: GetParameterName
+        return_type: string
+        arguments:
+          - name: ipar
+            type: int
   - python_name: ROOT.Fit.ParameterSettings
     cpp_name: ROOT::Fit::ParameterSettings
     methods:
@@ -817,6 +840,8 @@ classes:
         return_type: bool
       - name: IsDoubleBound
         return_type: bool
+      - name: Name
+        return_type: const string
   - python_name: ROOT.Math.IBaseParam
     cpp_name: ROOT::Math::IBaseParam
     methods:
@@ -824,6 +849,11 @@ classes:
         return_type: const double*
       - name: NPar
         return_type: unsigned int
+      - name: ParameterName
+        return_type: string
+        arguments:
+          - name: i
+            type: int
   - python_name: ROOT.Math.IOptions
     cpp_name: ROOT::Math::IOptions
     methods:
@@ -832,8 +862,67 @@ classes:
   - python_name: ROOT.Math.Minimizer
     cpp_name: ROOT::Math::Minimizer
     methods:
-      - name: Minimizer
-        return_type: ROOT::Math::Minimizer
+      - name: SetVariable
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: name
+            type: str
+          - name: val
+            type: float
+          - name: step
+            type: float
+      - name: SetLowerLimitedVariable
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: name
+            type: str
+          - name: val
+            type: float
+          - name: step
+            type: float
+          - name: lower
+            type: float
+      - name: SetUpperLimitedVariable
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: name
+            type: str
+          - name: val
+            type: float
+          - name: step
+            type: float
+          - name: upper
+            type: float
+      - name: SetLimitedVariable
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: name
+            type: str
+          - name: val
+            type: float
+          - name: step
+            type: float
+          - name: lower
+            type: float
+          - name: upper
+            type: float
+      - name: SetFixedVariable
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: name
+            type: str
+          - name: val
+            type: float
       - name: SetVariableValue
         return_type: bool
         arguments:
@@ -1001,6 +1090,16 @@ classes:
             type: float
           - name: xj
             type: float
+      - name: VariableName
+        return_type: string
+        arguments:
+          - name: ivar
+            type: int
+      - name: VariableIndex
+        return_type: int
+        arguments:
+          - name: name
+            type: str
       - name: PrintLevel
         return_type: int
       - name: MaxFunctionCalls
@@ -1024,6 +1123,10 @@ classes:
   - python_name: ROOT.Math.MinimizerOptions
     cpp_name: ROOT::Math::MinimizerOptions
     methods:
+      - name: DefaultMinimizerType
+        return_type: const string
+      - name: DefaultMinimizerAlgo
+        return_type: const string
       - name: DefaultErrorDef
         return_type: double
       - name: DefaultTolerance
@@ -1056,6 +1159,10 @@ classes:
         return_type: double
       - name: ExtraOptions
         return_type: const ROOT::Math::IOptions*
+      - name: MinimizerType
+        return_type: const string
+      - name: MinimizerAlgorithm
+        return_type: const string
   - python_name: ROOT.TSchemaRule
     cpp_name: ROOT::TSchemaRule
     methods:
@@ -1448,6 +1555,28 @@ classes:
     methods:
       - name: size
         return_type: int
+  - python_name: str
+    cpp_name: string
+    is_container_of_cpp: __gnu_cxx::__normal_iterator<char*,string>
+    is_container_of_python: __gnu_cxx.__normal_iterator_char_str_
+    methods:
+      - name: empty
+        return_type: bool
+      - name: append
+        return_type: string
+        arguments:
+          - name: __str
+            type: str
+      - name: assign
+        return_type: string
+        arguments:
+          - name: __str
+            type: str
+      - name: compare
+        return_type: int
+        arguments:
+          - name: __str
+            type: str
   - python_name: vector_ElementLink_DataVector_xAOD_CaloCluster_v1___
     cpp_name: vector<ElementLink<DataVector<xAOD::CaloCluster_v1> > >
     is_container_of_cpp: ElementLink<DataVector<xAOD::CaloCluster_v1>  >
@@ -1553,6 +1682,20 @@ classes:
     methods:
       - name: size
         return_type: int
+  - python_name: vector_pair_str_str__
+    cpp_name: vector<pair<string,string> >
+    is_container_of_cpp: pair<string,string>
+    is_container_of_python: pair_str_str_
+    methods:
+      - name: size
+        return_type: int
+  - python_name: vector_str_
+    cpp_name: vector<string>
+    is_container_of_cpp: string
+    is_container_of_python: str
+    methods:
+      - name: size
+        return_type: int
   - python_name: vector_vector_float__
     cpp_name: vector<vector<float> >
     is_container_of_cpp: vector<float>
@@ -1628,8 +1771,6 @@ classes:
     cpp_name: xAOD::BTagging_v1
     include_file: xAODBTagging/versions/BTagging_v1.h
     methods:
-      - name: BTagging_v1
-        return_type: xAOD::BTagging_v1
       - name: SV0_significance3D
         return_type: double
       - name: SV0_TrackParticleLinks
@@ -1704,6 +1845,45 @@ classes:
         return_type: double
       - name: MV1_discriminant
         return_type: double
+      - name: loglikelihoodratio
+        return_type: bool
+        arguments:
+          - name: taggername
+            type: str
+          - name: value
+            type: float
+          - name: signal
+            type: str
+          - name: bckgd
+            type: str
+      - name: MVx_discriminant
+        return_type: bool
+        arguments:
+          - name: taggername
+            type: str
+          - name: value
+            type: float
+      - name: pu
+        return_type: bool
+        arguments:
+          - name: taggername
+            type: str
+          - name: value
+            type: float
+      - name: pb
+        return_type: bool
+        arguments:
+          - name: taggername
+            type: str
+          - name: value
+            type: float
+      - name: pc
+        return_type: bool
+        arguments:
+          - name: taggername
+            type: str
+          - name: value
+            type: float
       - name: calcLLR
         return_type: double
         arguments:
@@ -1737,8 +1917,6 @@ classes:
     cpp_name: xAOD::CaloCluster_v1
     include_file: xAODCaloEvent/versions/CaloCluster_v1.h
     methods:
-      - name: CaloCluster_v1
-        return_type: xAOD::CaloCluster_v1
       - name: pt
         return_type: double
       - name: eta
@@ -1961,6 +2139,13 @@ classes:
             type: int
       - name: OQ
         return_type: unsigned int
+      - name: likelihoodValue
+        return_type: bool
+        arguments:
+          - name: value
+            type: float
+          - name: LHValue
+            type: str
       - name: index
         return_type: int
       - name: usingPrivateStore
@@ -2030,6 +2215,13 @@ classes:
             type: int
       - name: OQ
         return_type: unsigned int
+      - name: likelihoodValue
+        return_type: bool
+        arguments:
+          - name: value
+            type: float
+          - name: LHValue
+            type: str
       - name: index
         return_type: int
       - name: usingPrivateStore
@@ -2128,11 +2320,17 @@ classes:
   - python_name: xAOD.EventInfo_v1.StreamTag
     cpp_name: xAOD::EventInfo_v1::StreamTag
     methods:
+      - name: name
+        return_type: const string
+      - name: type
+        return_type: const string
       - name: obeysLumiblock
         return_type: bool
   - python_name: xAOD.EventInfo_v1.SubEvent
     cpp_name: xAOD::EventInfo_v1::SubEvent
     methods:
+      - name: typeName
+        return_type: const string
       - name: link
         return_type: const ElementLink<DataVector<xAOD::EventInfo_v1> >
       - name: ptr
@@ -2214,8 +2412,6 @@ classes:
     cpp_name: xAOD::Jet_v1
     include_file: xAODJet/versions/Jet_v1.h
     methods:
-      - name: Jet_v1
-        return_type: xAOD::Jet_v1
       - name: pt
         return_type: double
       - name: eta
@@ -2265,6 +2461,16 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: getAttribute
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: attribute_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('getAttribute', s, a, param_1)"
   - python_name: xAOD.MissingET_v1
     cpp_name: xAOD::MissingET_v1
     include_file: xAODMissingET/versions/MissingET_v1.h
@@ -2279,6 +2485,8 @@ classes:
         return_type: double
       - name: sumet
         return_type: double
+      - name: name
+        return_type: const string
       - name: nameHash
         return_type: int
       - name: index
@@ -2297,8 +2505,6 @@ classes:
     cpp_name: xAOD::MuonSegment_v1
     include_file: xAODMuon/versions/MuonSegment_v1.h
     methods:
-      - name: MuonSegment_v1
-        return_type: xAOD::MuonSegment_v1
       - name: x
         return_type: float
       - name: y
@@ -2413,8 +2619,6 @@ classes:
     cpp_name: xAOD::NeutralParticle_v1
     include_file: xAODTracking/versions/NeutralParticle_v1.h
     methods:
-      - name: NeutralParticle_v1
-        return_type: xAOD::NeutralParticle_v1
       - name: pt
         return_type: double
       - name: eta
@@ -2463,8 +2667,6 @@ classes:
     cpp_name: xAOD::PFO_v1
     include_file: xAODPFlow/versions/PFO_v1.h
     methods:
-      - name: PFO_v1
-        return_type: xAOD::PFO_v1
       - name: pt
         return_type: double
       - name: eta
@@ -2610,6 +2812,13 @@ classes:
             type: int
       - name: OQ
         return_type: unsigned int
+      - name: likelihoodValue
+        return_type: bool
+        arguments:
+          - name: value
+            type: float
+          - name: LHValue
+            type: str
       - name: index
         return_type: int
       - name: usingPrivateStore
@@ -2927,8 +3136,6 @@ classes:
     cpp_name: xAOD::TauTrack_v1
     include_file: xAODTau/versions/TauTrack_v1.h
     methods:
-      - name: TauTrack_v1
-        return_type: xAOD::TauTrack_v1
       - name: pt
         return_type: double
       - name: eta
@@ -3035,8 +3242,6 @@ classes:
     cpp_name: xAOD::TrackParticle_v1
     include_file: xAODTracking/versions/TrackParticle_v1.h
     methods:
-      - name: TrackParticle_v1
-        return_type: xAOD::TrackParticle_v1
       - name: pt
         return_type: double
       - name: eta
@@ -3247,6 +3452,20 @@ classes:
     methods:
       - name: mcChannelNumber
         return_type: unsigned int
+      - name: weightNames
+        return_type: const vector<string>
+      - name: lhefGenerator
+        return_type: const string
+      - name: generators
+        return_type: const string
+      - name: evgenProcess
+        return_type: const string
+      - name: evgenTune
+        return_type: const string
+      - name: hardPDF
+        return_type: const string
+      - name: softPDF
+        return_type: const string
       - name: index
         return_type: int
       - name: usingPrivateStore
@@ -3263,8 +3482,6 @@ classes:
     cpp_name: xAOD::TruthParticle_v1
     include_file: xAODTruth/versions/TruthParticle_v1.h
     methods:
-      - name: TruthParticle_v1
-        return_type: xAOD::TruthParticle_v1
       - name: pdgId
         return_type: int
       - name: absPdgId
@@ -3429,8 +3646,6 @@ classes:
     cpp_name: xAOD::TruthVertex_v1
     include_file: xAODTruth/versions/TruthVertex_v1.h
     methods:
-      - name: TruthVertex_v1
-        return_type: xAOD::TruthVertex_v1
       - name: id
         return_type: int
       - name: barcode
@@ -3485,8 +3700,6 @@ classes:
     cpp_name: xAOD::Vertex_v1
     include_file: xAODTracking/versions/Vertex_v1.h
     methods:
-      - name: Vertex_v1
-        return_type: xAOD::Vertex_v1
       - name: x
         return_type: float
       - name: y
@@ -3589,24 +3802,23 @@ files:
       - ""
       - "def _add_match_tool(s: ObjectStream[T]) -> ObjectStream[T]:"
       - "    new_s = s.MetaData("
-      - "        {"
-      - "            \"metadata_type\": \"inject_code\","
-      - "            \"name\": \"trigger_match_tool\","
-      - "            \"private_members\": ["
-      - "                \"asg::AnaToolHandle<Trig::IMatchingTool> m_tmt;\","
-      - "            ],"
-      - "            \"header_includes\": ["
-      - "                \"TriggerMatchingTool/MatchingTool.h\","
-      - "            ],"
-      - "            \"instance_initialization\": ["
-      - "                'm_tmt(\"Trig::MatchingTool\")',"
-      - "            ],"
-      - "            \"initialize_lines\": ["
-      - "                'ANA_CHECK(m_tmt.setProperty(\"TrigDecisionTool\", m_trigDec.getHandle()));',"
-      - "                'ANA_CHECK(m_tmt.initialize());',"
-      - "            ],"
-      - "            \"link_libraries\": [\"TriggerMatchingToolLib\"],"
-      - "        }"
+      - "            {"
+      - "                \"metadata_type\": \"inject_code\","
+      - "                \"name\": \"trigger_match_tool\","
+      - "                \"private_members\": ["
+      - "                    \"asg::AnaToolHandle<Trig::IMatchingTool> m_tmt;\","
+      - "                ],"
+      - "                \"header_includes\": ["
+      - "                    \"TriggerMatchingTool/MatchFromCompositeTool.h\","
+      - "                ],"
+      - "                \"instance_initialization\": ["
+      - "                    'm_tmt(\"Trig::MatchFromCompositeTool\")',"
+      - "                ],"
+      - "                \"initialize_lines\": ["
+      - "                    'ANA_CHECK(m_tmt.initialize());',"
+      - "                ],"
+      - "                \"link_libraries\": [\"TriggerMatchingToolLib\"],"
+      - "            }"
       - "    )"
       - "    return _add_decision_tool(new_s)"
       - ""
@@ -3686,6 +3898,87 @@ files:
       - "        bool: True if the match is good."
       - "    '''"
       - "    ..."
+  - "name": "type_support.py"
+    "init_lines":
+      - "from .type_support import cpp_float, cpp_double, cpp_vfloat"
+      - "from . import type_support"
+    "contents":
+      - "from typing import Callable, Generic, Iterable, Optional, Tuple, Type, TypeVar"
+      - "from func_adl import ObjectStream"
+      - "import ast"
+      - ""
+      - "T = TypeVar('T')"
+      - ""
+      - "class cpp_type(Generic[T]):"
+      - "    'Used to indicate C++ types in template arguments'"
+      - "    def __init__ (self, cpp_base_type: str, python_base_type: Type, cpp_collection_type: Optional[str] = None):"
+      - "        '''For a particular type"
+      - "        '''"
+      - "        self._cpp_type = cpp_base_type"
+      - "        self._python_type = python_base_type"
+      - "        self._cpp_collection_type = cpp_collection_type"
+      - ""
+      - "    @property"
+      - "    def cpp_type(self) -> str:"
+      - "        return self._cpp_type"
+      - ""
+      - "    @property"
+      - "    def python_type(self) -> Type:"
+      - "        return self._python_type"
+      - ""
+      - "    @property"
+      - "    def is_collection(self) -> bool:"
+      - "        return self._cpp_collection_type is not None"
+      - ""
+      - "    @property"
+      - "    def actual_cpp_type(self) -> str:"
+      - "        if self._cpp_collection_type is None:"
+      - "            return self.cpp_type"
+      - "        else:"
+      - "            return self._cpp_collection_type"
+      - ""
+      - "    @property"
+      - "    def actual_cpp_type_norm(self) -> str:"
+      - "        return self.actual_cpp_type.replace('::', '_').replace('<', '_').replace('>', '_')"
+      - ""
+      - ""
+      - "cpp_float = cpp_type[float](\"float\", float)"
+      - "cpp_double = cpp_type[float](\"double\", float)"
+      - "cpp_vfloat = cpp_type[Iterable[float]](\"float\", float, \"std::vector<float>\")"
+      - ""
+      - ""
+      - "# TODO: 3.10 and this should be a ParamSpec, not a TypeVar."
+      - "ParamValue = TypeVar('ParamValue')"
+      - ""
+      - ""
+      - "class index_type_forwarder(Generic[ParamValue]):"
+      - "    def __getitem__(self, typ: cpp_type[T]) -> Callable[[ParamValue], T]:"
+      - "        ..."
+      - ""
+      - "    def __call__(self, typ: cpp_type[T]) -> Callable[[ParamValue], T]:"
+      - "        ..."
+      - ""
+      - ""
+      - "def cpp_generic_1arg_callback(method_name: str, s: ObjectStream[T], a: ast.Call, param_1: cpp_type) -> Tuple[ObjectStream[T], ast.Call, Type]:"
+      - "    'We deal with generic function return types'"
+      - ""
+      - "    new_s = s.MetaData({"
+      - "        'metadata_type': \"add_cpp_function\","
+      - "        'name': f'{method_name}_{param_1.actual_cpp_type_norm}',"
+      - "        'arguments': ['moment_name'],"
+      - "        'code': [f'auto result = obj_j->{method_name}<{param_1.actual_cpp_type}>(moment_name);'],"
+      - "        'instance_object': 'xAOD::Jet_v1',"
+      - "        'method_object': 'obj_j',"
+      - "        'return_type': param_1.cpp_type,"
+      - "        'return_is_collection': param_1.is_collection,"
+      - "        'include_files': [],"
+      - "    })"
+      - ""
+      - "    import copy"
+      - "    new_a = copy.copy(a)"
+      - "    new_a.func = ast.Attribute(a.func.value, f'{method_name}_{param_1.actual_cpp_type_norm}', a.func.ctx)"
+      - ""
+      - "    return new_s, new_a, param_1.python_type"
 metadata:
   - name: sys_error_tool
     data:
