@@ -63,7 +63,7 @@ This is currently a package that is planned. The development path is as follows:
   * [x] Fix the trigger object matching
   * [x] Get rid of ctor generation (ops!)
   * [x] Add extra methods to make method resolution in jets work properly
-  * [ ] Add missing Where, etc., so predicate type checking works in all demos
+  * [x] Add missing Where, etc., so predicate type checking works in all demos
   * [ ] Once calibrations fixed, make sure calibration=None (if value) is allowed by type checker
 * [x] Add support for `Jet::getAttribute`, which is a C++ code-behind function, but likely it is a method
 * [ ] Add support for decorator access
