@@ -66,9 +66,8 @@ This is currently a package that is planned. The development path is as follows:
   * [x] Add missing Where, etc., so predicate type checking works in all demos
   * [ ] Once calibrations fixed, make sure calibration=None (if value) is allowed by type checker
 * [x] Add support for `Jet::getAttribute`, which is a C++ code-behind function, but likely it is a method
-* [ ] Add support for decorator access
+* [x] Add support for decorator access
 * [ ] Fix up calibration model
-* [ ] Support R22
 * [ ] Clean up all marked TODO's in the code base - either issues or delete them.
 * [ ] Make sure black, pytest are run for check in
 * [ ] First release of package (documentation on how to run and build, pushing type info to pypi, making it easy to use, etc.)
