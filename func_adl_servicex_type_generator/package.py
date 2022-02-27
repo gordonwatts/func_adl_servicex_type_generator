@@ -91,7 +91,9 @@ def template_package_scaffolding(
 
     # Write out all the files
     for f in files:
-        with open(dest_path / f.file_name, "w") as f_out:
+        output_file_path = dest_path / Path(f.file_name)
+        output_file_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(output_file_path, "w") as f_out:
             for line in f.contents:
                 if line is not None:
                     f_out.write(line)

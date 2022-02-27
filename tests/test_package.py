@@ -74,6 +74,35 @@ def test_template_package_extra_file(tmp_path: Path, template_path):
     assert text == "line3\nline4\n"
 
 
+def test_template_package_extra_file_in_subdir(tmp_path: Path, template_path):
+    data = {
+        "package_name": "func_adl_servicex_xaodr21",
+        "package_version": "1.0.22.2.187",
+        "package_info_description": "xAOD R21 22.2.187",
+        "sx_dataset_name": "SXDSAtlasxAODR21",
+        "backend_default_name": "xaod_r21",
+        "collections": [],
+        "metadata": {},
+    }
+    assert template_path.exists()
+    output_path = tmp_path / "my_package"
+
+    files = [
+        file_info(
+            file_name="templates/junk.py",
+            init_lines=["line1", "line2"],
+            contents=["line3", "line4"],
+        )
+    ]
+
+    template_package_scaffolding(data, template_path, output_path, files)
+
+    f_path = output_path / str(data["package_name"]) / "templates" / "junk.py"
+    assert f_path.exists()
+    text = f_path.read_text()
+    assert text == "line3\nline4\n"
+
+
 def test_template_collection_with_object(tmp_path, template_path):
     """Run a full integration test, including doing the poetry install."""
     data = {
