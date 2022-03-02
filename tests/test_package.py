@@ -9,6 +9,7 @@ from func_adl_servicex_type_generator.data_model import (
     file_info,
     method_arg_info,
     method_info,
+    normal_parameter,
     parameter_action,
 )
 from func_adl_servicex_type_generator.package import (
@@ -122,6 +123,8 @@ def test_template_collection_with_object(tmp_path, template_path):
                 ["xAODJet/Jet.h"],
                 ["xAODJet"],
                 [],
+                [],
+                "",
             ),
         ],
         "metadata": {},
@@ -163,7 +166,9 @@ def test_template_collection_with_extra_args(tmp_path, template_path):
                 "DataVector<Jet>",
                 ["xAODJet/Jet.h"],
                 ["xAODJet"],
+                [normal_parameter("name", "str", None)],
                 [extra_parameter("calibrated", "bool", "True", [])],
+                "",
             ),
         ],
         "metadata": {},
@@ -201,6 +206,7 @@ def test_template_collection_with_md(tmp_path, template_path):
                 "DataVector<Jet>",
                 ["xAODJet/Jet.h"],
                 ["xAODJet"],
+                [],
                 [
                     extra_parameter(
                         "calibrated",
@@ -209,6 +215,7 @@ def test_template_collection_with_md(tmp_path, template_path):
                         [parameter_action("True", ["md_doit"], "my_bank")],
                     )
                 ],
+                "",
             ),
         ],
         "metadata": {},
@@ -245,6 +252,7 @@ def test_paction_bool_true(tmp_path, template_path):
                 "DataVector<Jet>",
                 ["xAODJet/Jet.h"],
                 ["xAODJet"],
+                [],
                 [
                     extra_parameter(
                         "calibrated",
@@ -253,6 +261,7 @@ def test_paction_bool_true(tmp_path, template_path):
                         [parameter_action("True", ["md_doit"], "my_bank")],
                     )
                 ],
+                "",
             ),
         ],
         "metadata": {},
@@ -286,6 +295,7 @@ def test_paction_bool_any(tmp_path, template_path):
                 "DataVector<Jet>",
                 ["xAODJet/Jet.h"],
                 ["xAODJet"],
+                [],
                 [
                     extra_parameter(
                         "calibrated",
@@ -294,6 +304,7 @@ def test_paction_bool_any(tmp_path, template_path):
                         [parameter_action("'*Any*'", ["md_doit"], "my_bank")],
                     )
                 ],
+                "",
             ),
         ],
         "metadata": {},
@@ -327,6 +338,7 @@ def test_paction_bool_none(tmp_path, template_path):
                 "DataVector<Jet>",
                 ["xAODJet/Jet.h"],
                 ["xAODJet"],
+                [],
                 [
                     extra_parameter(
                         "calibrated",
@@ -335,6 +347,7 @@ def test_paction_bool_none(tmp_path, template_path):
                         [parameter_action("'*None*'", ["md_doit"], "my_bank")],
                     )
                 ],
+                "",
             ),
         ],
         "metadata": {},
@@ -368,6 +381,7 @@ def test_paction_int(tmp_path, template_path):
                 "DataVector<Jet>",
                 ["xAODJet/Jet.h"],
                 ["xAODJet"],
+                [],
                 [
                     extra_parameter(
                         "calibrated",
@@ -376,6 +390,7 @@ def test_paction_int(tmp_path, template_path):
                         [parameter_action("55", ["md_doit"], "my_bank")],
                     )
                 ],
+                "",
             ),
         ],
         "metadata": {},
@@ -409,6 +424,7 @@ def test_paction_str(tmp_path, template_path):
                 "DataVector<Jet>",
                 ["xAODJet/Jet.h"],
                 ["xAODJet"],
+                [],
                 [
                     extra_parameter(
                         "calibrated",
@@ -417,6 +433,7 @@ def test_paction_str(tmp_path, template_path):
                         [parameter_action("'55'", ["md_doit"], "my_bank")],
                     )
                 ],
+                "",
             ),
         ],
         "metadata": {},
@@ -451,6 +468,8 @@ def test_template_collection_no_include(tmp_path, template_path):
                 [],
                 [],
                 [],
+                [],
+                "",
             ),
         ],
         "metadata": {},
@@ -476,7 +495,7 @@ def test_template_collection_not_collection(tmp_path, template_path):
         "backend_default_name": "xaod_r21",
         "collections": [
             collection_info(
-                "Jets", "Iterable[Jet]", "Jet", "Jet", "Jet", "Jet", [], [], []
+                "Jets", "Iterable[Jet]", "Jet", "Jet", "Jet", "Jet", [], [], [], [], ""
             ),
         ],
         "metadata": {},
@@ -511,6 +530,8 @@ def test_template_collection_with_namespace(tmp_path, template_path):
                 ["xAODJet/Jet.h"],
                 [],
                 [],
+                [],
+                "",
             ),
         ],
         "metadata": {},
@@ -547,6 +568,8 @@ def test_template_poetry_integration(tmp_path, template_path):
                 ["xAODJet/Jet.h"],
                 [],
                 [],
+                [],
+                "",
             ),
         ],
         "metadata": {},

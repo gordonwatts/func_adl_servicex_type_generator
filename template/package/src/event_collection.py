@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Any, Dict, Iterable, List, Tuple, TypeVar, Union
+from typing import Any, Dict, Iterable, List, Tuple, TypeVar, Union, Optional
 from func_adl import ObjectStream, func_adl_callback
 import ast
 import copy
@@ -110,12 +110,12 @@ def match_param_value(value, to_match) -> bool:
 class _process_extra_arguments:
     'Static class that will deal with the extra arguments for each collection'
 
-{%- for item in collections %}{% if item.parameters|length > 0 %}
+{%- for item in collections %}{% if item.extra_parameters|length > 0 %}
     @staticmethod
     def process_{{ item.name }}(bank_name: str, s: ObjectStream[T], a: ast.Call) -> Tuple[str, ObjectStream[T], ast.AST]:
         param_values = {}
         i_param = 0
-        {%- for p in item.parameters %}
+        {%- for p in item.extra_parameters %}
         i_param += 1
         param_values['{{ p.name }}'] = _get_param(a, i_param, "{{ p.name }}", {{ p.default_value }})
         # assert isinstance(param_values['{{ p.name }}'], {{ p.type }}), f'Parameter {{ p.name }} must be of type {{ p.type }}, not {type(param_values["{{ p.name }}"])}'
@@ -124,7 +124,7 @@ class _process_extra_arguments:
 
         md_name_mapping: Dict[str, str] = {}
         md_list: List[Dict[str, Any]] = []
-        {%- for p in item.parameters %}
+        {%- for p in item.extra_parameters %}
         p_matched = False
         last_md_name = None
         {%- for a in p.actions %}
@@ -163,14 +163,14 @@ def _add_collection_metadata(s: ObjectStream[T], a: ast.Call) -> Tuple[ObjectStr
     # Unpack the call as needed
     assert isinstance(a.func, ast.Attribute)
     collection_name = a.func.attr
-    collection_bank = ast.literal_eval(a.args[0])
+    # collection_bank = ast.literal_eval(a.args[0])
 
-    # If it has extra arguments, we need to process those.
-    arg_processor = getattr(_process_extra_arguments, f'process_{collection_name}', None)
-    if arg_processor is not None:
-        new_a = copy.deepcopy(a)
-        new_bank, s, a = arg_processor(collection_bank, s, new_a)
-        a.args = [ast.Constant(new_bank)]
+    # # If it has extra arguments, we need to process those.
+    # arg_processor = getattr(_process_extra_arguments, f'process_{collection_name}', None)
+    # if arg_processor is not None:
+    #     new_a = copy.deepcopy(a)
+    #     new_bank, s, a = arg_processor(collection_bank, s, new_a)
+    #     a.args = [ast.Constant(new_bank)]
 
 
     # Finally, add the collection defining metadata so the backend
@@ -181,14 +181,19 @@ def _add_collection_metadata(s: ObjectStream[T], a: ast.Call) -> Tuple[ObjectStr
     else:
         return s, a
 
+
 @func_adl_callback(_add_collection_metadata)
 class Event:
     '''The top level event class. All data in the event is accessed from here
     '''
 
-{%- for item in collections %}
-    def {{ item.name }}(self, name: str
-{%- for arg in item.parameters %}, {{ arg.name }}: {{ arg.type }} = {{ arg.default_value }}{% endfor -%}
+{% for item in collections %}
+{% if item.method_callback|length > 0 %}
+    @func_adl_callback({{item.method_callback|subrender }}){% endif %}
+    def {{ item.name }}(self
+{%- for arg in item.parameters %}, {{ arg.name }}: {{ arg.type }}{% if arg.default_value != None %} = {{ arg.default_value }}{% endif %}{% endfor -%}
+{%- for arg in item.extra_parameters %}, {{ arg.name }}: {{ arg.type }} = {{ arg.default_value }}{% endfor -%}
     ) -> {{ item.collection_type }}:
         ...
+
 {%- endfor -%}

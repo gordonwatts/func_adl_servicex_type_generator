@@ -32,6 +32,21 @@ class extra_parameter:
 
 
 @dataclass
+class normal_parameter:
+    """Extra parameters for the class"""
+
+    # The name of the extra parameter
+    name: str
+
+    # The type of the extra parameter
+    type: str
+
+    # Default value for the extra parameter
+    # If it is "None" then there is no default
+    default_value: Optional[str]
+
+
+@dataclass
 class collection_info:
     """Data class holds onto the info we need for
     a collection we are emitting.
@@ -63,8 +78,14 @@ class collection_info:
     # The name of the library (['xAODMuon'])
     link_libraries: List[str]
 
+    # Regular, expected, parameters
+    parameters: List[normal_parameter]
+
     # Extra parameters to control other actions we code in here
-    parameters: List[extra_parameter]
+    extra_parameters: List[extra_parameter]
+
+    # If there is a particular collection callback for this method.
+    method_callback: str
 
 
 @dataclass

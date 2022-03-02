@@ -13,6 +13,7 @@ from func_adl_servicex_type_generator.data_model import (
     metadata_info,
     method_arg_info,
     method_info,
+    normal_parameter,
     parameter_action,
 )
 
@@ -53,7 +54,19 @@ def method_loader(methods: List[dict]) -> List[method_info]:
     return result
 
 
-def load_parameters(params: List[Dict[str, Any]]) -> List[extra_parameter]:
+def load_parameters(params: List[Dict[str, Any]]) -> List[normal_parameter]:
+    "Load extra parameters from the file yaml"
+    return [
+        normal_parameter(
+            name=p["name"],
+            type=p["type"],
+            default_value=p["default_value"] if "default_value" in p else None,
+        )
+        for p in params
+    ]
+
+
+def load_parameters_extra(params: List[Dict[str, Any]]) -> List[extra_parameter]:
     "Load extra parameters from the file yaml"
     return [
         extra_parameter(
@@ -121,8 +134,12 @@ def load_yaml(
             else [],
             link_libraries=c["link_libraries"],
             parameters=[]
+            if "parameters" not in c
+            else load_parameters(c["parameters"]),
+            extra_parameters=[]
             if "extra_parameters" not in c
-            else load_parameters(c["extra_parameters"]),
+            else load_parameters_extra(c["extra_parameters"]),
+            method_callback=c["method_callback"] if "method_callback" in c else "",
         )
         for c in data_collections
     ]

@@ -12,7 +12,7 @@ def test_load_full_file():
     assert "xAOD.Jet_v1" in classes_dict
 
     di_jets = collection_dict["DiTauJets"]
-    jets = collection_dict["Jets"]
+    # jets = collection_dict["Jets"]
     jets_class = classes_dict["xAOD.Jet_v1"]
     btagging = classes_dict["xAOD.BTagging_v1"]
     truth = classes_dict["xAOD.TruthParticle_v1"]
@@ -60,21 +60,21 @@ def test_load_full_file():
     m_sys = data.metadata["sys_error_tool"]
     assert isinstance(m_sys.data, list)
 
-    assert len(jets.parameters) == 2
-    jets_p = jets.parameters[0]
-    assert jets_p.name == "calibration"
-    assert jets_p.type == "str"
-    assert jets_p.default_value == "'NOSYS'"
-    assert len(jets_p.actions) == 2
-    jets_a = jets_p.actions[1]
-    assert jets_a.value == "'*Any*'"
-    assert jets_a.md_names == [
-        "sys_error_tool",
-        "pileup_tool",
-        "jet_corrections",
-        "add_calibration_to_job",
-    ]
-    assert jets_a.bank_rename == "{bank_name}Calib_{calibration}"
+    # assert len(jets.parameters) == 2
+    # jets_p = jets.parameters[0]
+    # assert jets_p.name == "calibration"
+    # assert jets_p.type == "str"
+    # assert jets_p.default_value == "'NOSYS'"
+    # assert len(jets_p.actions) == 2
+    # jets_a = jets_p.actions[1]
+    # assert jets_a.value == "'*Any*'"
+    # assert jets_a.md_names == [
+    #     "sys_error_tool",
+    #     "pileup_tool",
+    #     "jet_corrections",
+    #     "add_calibration_to_job",
+    # ]
+    # assert jets_a.bank_rename == "{bank_name}Calib_{calibration}"
 
     assert len(data.files) > 0
     trigger_list = [f for f in data.files if f.file_name == "trigger.py"]
