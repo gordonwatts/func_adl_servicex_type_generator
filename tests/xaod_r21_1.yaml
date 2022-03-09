@@ -7,6 +7,9 @@ collections:
     include_file: xAODMuon/SlowMuonContainer.h
     link_libraries:
       - xAODMuon
+    parameters:
+      - name: name
+        type: str
   - collection_name: MuonSegments
     cpp_item_type: xAOD::MuonSegment_v1
     python_item_type: xAOD.MuonSegment_v1
@@ -15,6 +18,9 @@ collections:
     include_file: xAODMuon/MuonSegmentContainer.h
     link_libraries:
       - xAODMuon
+    parameters:
+      - name: name
+        type: str
   - collection_name: Muons
     cpp_item_type: xAOD::Muon_v1
     python_item_type: xAOD.Muon_v1
@@ -23,32 +29,14 @@ collections:
     include_file: xAODMuon/MuonContainer.h
     link_libraries:
       - xAODMuon
-    extra_parameters:
-      - name: calibration
-        type: str
-        default_value: "'NOSYS'"
-        actions:
-          - value: "'*None*'"
-            metadata_names:
-              []
-            bank_rename: "{bank_name}"
-          - value: "'*Any*'"
-            metadata_names:
-              - sys_error_tool
-              - pileup_tool
-              - muon_corrections
-              - add_calibration_to_job
-            bank_rename: "{bank_name}Calib_{working_point}{isolation}_{calibration}"
-      - name: working_point
-        type: str
-        default_value: "'Medium'"
-        actions:
-          []
-      - name: isolation
-        type: str
-        default_value: "'NonIso'"
-        actions:
-          []
+    method_callback: "lambda s, a: {{package_name}}.calibration_support.fixup_collection_call(s, a, 'muon_collection')"
+    parameters:
+      - name: calibrated_collection
+        type: Optional[str]
+        default_value: None
+      - name: uncalibrated_collection
+        type: Optional[str]
+        default_value: None
   - collection_name: TauJets
     cpp_item_type: xAOD::TauJet_v3
     python_item_type: xAOD.TauJet_v3
@@ -57,27 +45,14 @@ collections:
     include_file: xAODTau/TauJetContainer.h
     link_libraries:
       - xAODTau
-    extra_parameters:
-      - name: calibration
-        type: str
-        default_value: "'NOSYS'"
-        actions:
-          - value: "'*None*'"
-            metadata_names:
-              []
-            bank_rename: "{bank_name}"
-          - value: "'*Any*'"
-            metadata_names:
-              - sys_error_tool
-              - pileup_tool
-              - tau_corrections
-              - add_calibration_to_job
-            bank_rename: "{bank_name}_{working_point}_{calibration}"
-      - name: working_point
-        type: str
-        default_value: "'Tight'"
-        actions:
-          []
+    method_callback: "lambda s, a: {{package_name}}.calibration_support.fixup_collection_call(s, a, 'tau_collection')"
+    parameters:
+      - name: calibrated_collection
+        type: Optional[str]
+        default_value: None
+      - name: uncalibrated_collection
+        type: Optional[str]
+        default_value: None
   - collection_name: TauTracks
     cpp_item_type: xAOD::TauTrack_v1
     python_item_type: xAOD.TauTrack_v1
@@ -86,6 +61,9 @@ collections:
     include_file: xAODTau/TauTrackContainer.h
     link_libraries:
       - xAODTau
+    parameters:
+      - name: name
+        type: str
   - collection_name: DiTauJets
     cpp_item_type: xAOD::DiTauJet_v1
     python_item_type: xAOD.DiTauJet_v1
@@ -123,6 +101,9 @@ collections:
     include_file: xAODCaloEvent/CaloClusterContainer.h
     link_libraries:
       - xAODCaloEvent
+    parameters:
+      - name: name
+        type: str
   - collection_name: CaloTowers
     cpp_item_type: xAOD::CaloTower_v1
     python_item_type: xAOD.CaloTower_v1
@@ -131,6 +112,9 @@ collections:
     include_file: xAODCaloEvent/CaloTowerContainer.h
     link_libraries:
       - xAODCaloEvent
+    parameters:
+      - name: name
+        type: str
   - collection_name: TrackCaloClusters
     cpp_item_type: xAOD::TrackCaloCluster_v1
     python_item_type: xAOD.TrackCaloCluster_v1
@@ -139,6 +123,9 @@ collections:
     include_file: xAODPFlow/TrackCaloClusterContainer.h
     link_libraries:
       - xAODPFlow
+    parameters:
+      - name: name
+        type: str
   - collection_name: PFOs
     cpp_item_type: xAOD::PFO_v1
     python_item_type: xAOD.PFO_v1
@@ -147,6 +134,9 @@ collections:
     include_file: xAODPFlow/PFOContainer.h
     link_libraries:
       - xAODPFlow
+    parameters:
+      - name: name
+        type: str
   - collection_name: TruthMetaDatas
     cpp_item_type: xAOD::TruthMetaData_v1
     python_item_type: xAOD.TruthMetaData_v1
@@ -155,6 +145,9 @@ collections:
     include_file: xAODTruth/TruthMetaDataContainer.h
     link_libraries:
       - xAODTruth
+    parameters:
+      - name: name
+        type: str
   - collection_name: TruthParticles
     cpp_item_type: xAOD::TruthParticle_v1
     python_item_type: xAOD.TruthParticle_v1
@@ -163,6 +156,9 @@ collections:
     include_file: xAODTruth/TruthParticleContainer.h
     link_libraries:
       - xAODTruth
+    parameters:
+      - name: name
+        type: str
   - collection_name: TruthVertices
     cpp_item_type: xAOD::TruthVertex_v1
     python_item_type: xAOD.TruthVertex_v1
@@ -171,6 +167,9 @@ collections:
     include_file: xAODTruth/TruthVertexContainer.h
     link_libraries:
       - xAODTruth
+    parameters:
+      - name: name
+        type: str
   - collection_name: TruthEvents
     cpp_item_type: xAOD::TruthEvent_v1
     python_item_type: xAOD.TruthEvent_v1
@@ -179,6 +178,9 @@ collections:
     include_file: xAODTruth/TruthEventContainer.h
     link_libraries:
       - xAODTruth
+    parameters:
+      - name: name
+        type: str
   - collection_name: BTagVertices
     cpp_item_type: xAOD::BTagVertex_v1
     python_item_type: xAOD.BTagVertex_v1
@@ -187,6 +189,9 @@ collections:
     include_file: xAODBTagging/BTagVertexContainer.h
     link_libraries:
       - xAODBTagging
+    parameters:
+      - name: name
+        type: str
   - collection_name: BTaggings
     cpp_item_type: xAOD::BTagging_v1
     python_item_type: xAOD.BTagging_v1
@@ -195,6 +200,9 @@ collections:
     include_file: xAODBTagging/BTaggingContainer.h
     link_libraries:
       - xAODBTagging
+    parameters:
+      - name: name
+        type: str
   - collection_name: MissingET
     cpp_item_type: xAOD::MissingET_v1
     python_item_type: xAOD.MissingET_v1
@@ -203,6 +211,14 @@ collections:
     include_file: xAODMissingET/MissingETContainer.h
     link_libraries:
       - xAODMissingET
+    method_callback: "lambda s, a: {{package_name}}.calibration_support.fixup_collection_call(s, a, 'met_collection')"
+    parameters:
+      - name: calibrated_collection
+        type: Optional[str]
+        default_value: None
+      - name: uncalibrated_collection
+        type: Optional[str]
+        default_value: None
   - collection_name: Jets
     cpp_item_type: xAOD::Jet_v1
     python_item_type: xAOD.Jet_v1
@@ -211,27 +227,14 @@ collections:
     include_file: xAODJet/JetContainer.h
     link_libraries:
       - xAODJet
-    extra_parameters:
-      - name: calibration
-        type: str
-        default_value: "'NOSYS'"
-        actions:
-          - value: "'*None*'"
-            metadata_names:
-              []
-            bank_rename: "{bank_name}"
-          - value: "'*Any*'"
-            metadata_names:
-              - sys_error_tool
-              - pileup_tool
-              - jet_corrections
-              - add_calibration_to_job
-            bank_rename: "{bank_name}Calib_{calibration}"
-      - name: truth_jets
-        type: str
-        default_value: "'AntiKt4TruthDressedWZJets'"
-        actions:
-          []
+    method_callback: "lambda s, a: {{package_name}}.calibration_support.fixup_collection_call(s, a, 'jet_collection')"
+    parameters:
+      - name: calibrated_collection
+        type: Optional[str]
+        default_value: None
+      - name: uncalibrated_collection
+        type: Optional[str]
+        default_value: None
   - collection_name: IParticles
     cpp_item_type: xAOD::IParticle
     python_item_type: xAOD.IParticle
@@ -240,6 +243,9 @@ collections:
     include_file: xAODBase/IParticleContainer.h
     link_libraries:
       - xAODBase
+    parameters:
+      - name: name
+        type: str
   - collection_name: Electrons
     cpp_item_type: xAOD::Electron_v1
     python_item_type: xAOD.Electron_v1
@@ -248,32 +254,14 @@ collections:
     include_file: xAODEgamma/ElectronContainer.h
     link_libraries:
       - xAODEgamma
-    extra_parameters:
-      - name: calibration
-        type: str
-        default_value: "'NOSYS'"
-        actions:
-          - value: "'*None*'"
-            metadata_names:
-              []
-            bank_rename: "{bank_name}"
-          - value: "'*Any*'"
-            metadata_names:
-              - sys_error_tool
-              - pileup_tool
-              - electron_corrections
-              - add_calibration_to_job
-            bank_rename: "{bank_name}_{working_point}_{isolation}_{calibration}"
-      - name: working_point
-        type: str
-        default_value: "'MediumLHElectron'"
-        actions:
-          []
-      - name: isolation
-        type: str
-        default_value: "'NonIso'"
-        actions:
-          []
+    method_callback: "lambda s, a: {{package_name}}.calibration_support.fixup_collection_call(s, a, 'electron_collection')"
+    parameters:
+      - name: calibrated_collection
+        type: Optional[str]
+        default_value: None
+      - name: uncalibrated_collection
+        type: Optional[str]
+        default_value: None
   - collection_name: Photons
     cpp_item_type: xAOD::Photon_v1
     python_item_type: xAOD.Photon_v1
@@ -282,32 +270,14 @@ collections:
     include_file: xAODEgamma/PhotonContainer.h
     link_libraries:
       - xAODEgamma
-    extra_parameters:
-      - name: calibration
-        type: str
-        default_value: "'NOSYS'"
-        actions:
-          - value: "'*None*'"
-            metadata_names:
-              []
-            bank_rename: "{bank_name}"
-          - value: "'*Any*'"
-            metadata_names:
-              - sys_error_tool
-              - pileup_tool
-              - photon_corrections
-              - add_calibration_to_job
-            bank_rename: "{bank_name}_{working_point}_{isolation}_{calibration}"
-      - name: working_point
-        type: str
-        default_value: "'Tight'"
-        actions:
-          []
-      - name: isolation
-        type: str
-        default_value: "'NonIso'"
-        actions:
-          []
+    method_callback: "lambda s, a: {{package_name}}.calibration_support.fixup_collection_call(s, a, 'photon_collection')"
+    parameters:
+      - name: calibrated_collection
+        type: Optional[str]
+        default_value: None
+      - name: uncalibrated_collection
+        type: Optional[str]
+        default_value: None
   - collection_name: Egammas
     cpp_item_type: xAOD::Egamma_v1
     python_item_type: xAOD.Egamma_v1
@@ -316,6 +286,9 @@ collections:
     include_file: xAODEgamma/EgammaContainer.h
     link_libraries:
       - xAODEgamma
+    parameters:
+      - name: name
+        type: str
   - collection_name: EventInfos
     cpp_item_type: xAOD::EventInfo_v1
     python_item_type: xAOD.EventInfo_v1
@@ -324,6 +297,9 @@ collections:
     include_file: xAODEventInfo/EventInfoContainer.h
     link_libraries:
       - xAODEventInfo
+    parameters:
+      - name: name
+        type: str
   - collection_name: NeutralParticles
     cpp_item_type: xAOD::NeutralParticle_v1
     python_item_type: xAOD.NeutralParticle_v1
@@ -332,6 +308,9 @@ collections:
     include_file: xAODTracking/NeutralParticleContainer.h
     link_libraries:
       - xAODTracking
+    parameters:
+      - name: name
+        type: str
   - collection_name: TrackParticles
     cpp_item_type: xAOD::TrackParticle_v1
     python_item_type: xAOD.TrackParticle_v1
@@ -340,6 +319,9 @@ collections:
     include_file: xAODTracking/TrackParticleContainer.h
     link_libraries:
       - xAODTracking
+    parameters:
+      - name: name
+        type: str
   - collection_name: Vertices
     cpp_item_type: xAOD::Vertex_v1
     python_item_type: xAOD.Vertex_v1
@@ -348,6 +330,9 @@ collections:
     include_file: xAODTracking/VertexContainer.h
     link_libraries:
       - xAODTracking
+    parameters:
+      - name: name
+        type: str
   - collection_name: EventInfo
     cpp_item_type: xAOD::EventInfo_v1
     python_item_type: xAOD.EventInfo_v1
@@ -356,6 +341,9 @@ collections:
     include_file: xAODEventInfo/versions/EventInfo_v1.h
     link_libraries:
       - xAODEventInfo
+    parameters:
+      - name: name
+        type: str
 classes:
   - python_name: ElementLink_DataVector_xAOD_BTagging_v1__
     cpp_name: ElementLink<DataVector<xAOD::BTagging_v1> >
@@ -1767,6 +1755,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.BTagging_v1
     cpp_name: xAOD::BTagging_v1
     include_file: xAODBTagging/versions/BTagging_v1.h
@@ -1903,6 +1911,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.CaloClusterBadChannelData_v1
     cpp_name: xAOD::CaloClusterBadChannelData_v1
     include_file: xAODCaloEvent/versions/CaloClusterBadChannelData_v1.h
@@ -1976,6 +2004,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.CaloTower_v1
     cpp_name: xAOD::CaloTower_v1
     include_file: xAODCaloEvent/versions/CaloTower_v1.h
@@ -2006,6 +2054,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.DiTauJet_v1
     cpp_name: xAOD::DiTauJet_v1
     include_file: xAODTau/versions/DiTauJet_v1.h
@@ -2098,6 +2166,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.Egamma_v1
     cpp_name: xAOD::Egamma_v1
     include_file: xAODEgamma/versions/Egamma_v1.h
@@ -2158,6 +2246,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.Electron_v1
     cpp_name: xAOD::Electron_v1
     include_file: xAODEgamma/versions/Electron_v1.h
@@ -2234,6 +2342,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.EventInfo_v1
     cpp_name: xAOD::EventInfo_v1
     include_file: xAODEventInfo/versions/EventInfo_v1.h
@@ -2317,6 +2445,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.EventInfo_v1.StreamTag
     cpp_name: xAOD::EventInfo_v1::StreamTag
     methods:
@@ -2365,6 +2513,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.JetConstituent
     cpp_name: xAOD::JetConstituent
     methods:
@@ -2471,6 +2639,26 @@ classes:
             type: cpp_type[U]
         param_helper: type_support.index_type_forwarder
         param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('getAttribute', s, a, param_1)"
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.MissingET_v1
     cpp_name: xAOD::MissingET_v1
     include_file: xAODMissingET/versions/MissingET_v1.h
@@ -2501,6 +2689,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.MuonSegment_v1
     cpp_name: xAOD::MuonSegment_v1
     include_file: xAODMuon/versions/MuonSegment_v1.h
@@ -2547,6 +2755,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.Muon_v1
     cpp_name: xAOD::Muon_v1
     include_file: xAODMuon/versions/Muon_v1.h
@@ -2615,6 +2843,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.NeutralParticle_v1
     cpp_name: xAOD::NeutralParticle_v1
     include_file: xAODTracking/versions/NeutralParticle_v1.h
@@ -2663,6 +2911,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.PFO_v1
     cpp_name: xAOD::PFO_v1
     include_file: xAODPFlow/versions/PFO_v1.h
@@ -2755,6 +3023,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.Photon_v1
     cpp_name: xAOD::Photon_v1
     include_file: xAODEgamma/versions/Photon_v1.h
@@ -2831,6 +3119,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.SlowMuon_v1
     cpp_name: xAOD::SlowMuon_v1
     include_file: xAODMuon/versions/SlowMuon_v1.h
@@ -2889,6 +3197,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.TauJet_v3
     cpp_name: xAOD::TauJet_v3
     include_file: xAODTau/versions/TauJet_v3.h
@@ -3132,6 +3460,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.TauTrack_v1
     cpp_name: xAOD::TauTrack_v1
     include_file: xAODTau/versions/TauTrack_v1.h
@@ -3200,6 +3548,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.TrackCaloCluster_v1
     cpp_name: xAOD::TrackCaloCluster_v1
     include_file: xAODPFlow/versions/TrackCaloCluster_v1.h
@@ -3238,6 +3606,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.TrackParticle_v1
     cpp_name: xAOD::TrackParticle_v1
     include_file: xAODTracking/versions/TrackParticle_v1.h
@@ -3336,6 +3724,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.TruthEventBase_v1
     cpp_name: xAOD::TruthEventBase_v1
     include_file: xAODTruth/versions/TruthEventBase_v1.h
@@ -3380,6 +3788,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.TruthEvent_v1
     cpp_name: xAOD::TruthEvent_v1
     include_file: xAODTruth/versions/TruthEvent_v1.h
@@ -3440,6 +3868,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.TruthEvent_v1.PdfInfo
     cpp_name: xAOD::TruthEvent_v1::PdfInfo
     include_file: xAODTruth/versions/TruthEvent_v1.h
@@ -3478,6 +3926,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.TruthParticle_v1
     cpp_name: xAOD::TruthParticle_v1
     include_file: xAODTruth/versions/TruthParticle_v1.h
@@ -3636,6 +4104,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.TruthParticle_v1.Polarization
     cpp_name: xAOD::TruthParticle_v1::Polarization
     include_file: xAODTruth/versions/TruthParticle_v1.h
@@ -3696,6 +4184,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
   - python_name: xAOD.Vertex_v1
     cpp_name: xAOD::Vertex_v1
     include_file: xAODTracking/versions/Vertex_v1.h
@@ -3756,6 +4264,26 @@ classes:
         return_type: bool
       - name: clearDecorations
         return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
 files:
   - name: trigger.py
     init_lines:
@@ -3900,7 +4428,7 @@ files:
       - "    ..."
   - "name": "type_support.py"
     "init_lines":
-      - "from .type_support import cpp_float, cpp_double, cpp_vfloat"
+      - "from .type_support import cpp_float, cpp_double, cpp_vfloat, cpp_string"
       - "from . import type_support"
     "contents":
       - "from typing import Callable, Generic, Iterable, Optional, Tuple, Type, TypeVar"
@@ -3944,6 +4472,7 @@ files:
       - ""
       - "cpp_float = cpp_type[float](\"float\", float)"
       - "cpp_double = cpp_type[float](\"double\", float)"
+      - "cpp_string = cpp_type[float](\"std::string\", float)"
       - "cpp_vfloat = cpp_type[Iterable[float]](\"float\", float, \"std::vector<float>\")"
       - ""
       - ""
@@ -3979,6 +4508,473 @@ files:
       - "    new_a.func = ast.Attribute(a.func.value, f'{method_name}_{param_1.actual_cpp_type_norm}', a.func.ctx)"
       - ""
       - "    return new_s, new_a, param_1.python_type"
+  - "name": "calibration_support.py"
+    "init_lines":
+      - "from .calibration_support import CalibrationEventConfig, calib_tools"
+    "contents":
+      - "import ast"
+      - "import copy"
+      - "import re"
+      - "from dataclasses import dataclass"
+      - "from pathlib import Path"
+      - "from typing import Optional, Tuple, TypeVar"
+      - ""
+      - "import jinja2"
+      - "from func_adl import ObjectStream"
+      - "from func_adl.ast.meta_data import lookup_query_metadata"
+      - ""
+      - ""
+      - "@dataclass"
+      - "class CalibrationEventConfig:"
+      - "    # Name of the jet collection to calibrate and use by default"
+      - "    jet_collection: str"
+      - ""
+      - "    # Name of the truth jets to be used for the jet calibration"
+      - "    jet_calib_truth_collection: str"
+      - ""
+      - "    ########### Electrons"
+      - "    # Name of the electron collection to calibrate and use by default"
+      - "    electron_collection: str"
+      - ""
+      - "    # The working point (e.g. xxx)"
+      - "    electron_working_point: str"
+      - ""
+      - "    # The isolation (e.g. xxxx)"
+      - "    electron_isolation: str"
+      - ""
+      - "    ########### Photons"
+      - "    # Name of the photon collection to calibrate and use by default."
+      - "    photon_collection: str"
+      - ""
+      - "    # The working point (e.g. xxx)"
+      - "    photon_working_point: str"
+      - ""
+      - "    # The isolation (e.g. xxxx)"
+      - "    photon_isolation: str"
+      - ""
+      - "    ########### Muons"
+      - "    # Name of the muon collection to calibration and use by default."
+      - "    muon_collection: str"
+      - ""
+      - "    # The working point (e.g. xxx)"
+      - "    muon_working_point: str"
+      - ""
+      - "    # The isolation (e.g. xxxx)"
+      - "    muon_isolation: str"
+      - ""
+      - "    ########### Taus"
+      - "    # Name of the tau collection to calibrate and use by default."
+      - "    tau_collection: str"
+      - ""
+      - "    # The working point (e.g. xxxx)"
+      - "    tau_working_point: str"
+      - ""
+      - "    ###### Other Config Options"
+      - "    perform_overlap_removal: bool"
+      - ""
+      - ""
+      - "T = TypeVar('T')"
+      - ""
+      - ""
+      - "class calib_tools:"
+      - "    '''Helper functions to work with a query's calibration configuration.'''"
+      - ""
+      - "    _default_calibration: Optional[CalibrationEventConfig] = None"
+      - ""
+      - "    _default_sys_error: Optional[str] = 'NOSYS'"
+      - ""
+      - "    @classmethod"
+      - "    def reset_config(cls):"
+      - "        '''Reset calibration config to the default."
+      - ""
+      - "        * This is configured for working with R21 DAOD_PHYS samples."
+      - ""
+      - "        '''"
+      - "        cls._default_calibration = CalibrationEventConfig("
+      - "        jet_collection=\"AntiKt4EMPFlowJets\","
+      - "        jet_calib_truth_collection=\"AntiKt4TruthDressedWZJets\","
+      - "        electron_collection=\"Electrons\","
+      - "        electron_working_point=\"MediumLHElectron\","
+      - "        electron_isolation=\"NonIso\","
+      - "        photon_collection=\"Photons\","
+      - "        photon_working_point=\"Tight\","
+      - "        photon_isolation=\"FixedCutTight\","
+      - "        muon_collection=\"Muons\","
+      - "        muon_working_point=\"Medium\","
+      - "        muon_isolation=\"NonIso\","
+      - "        tau_collection=\"TauJets\","
+      - "        tau_working_point=\"Tight\","
+      - "        perform_overlap_removal=True,"
+      - "    )"
+      - ""
+      - "    @classmethod"
+      - "    def _setup(cls):"
+      - "        if cls._default_calibration is None:"
+      - "            cls.reset_config()"
+      - ""
+      - "    @classmethod"
+      - "    def set_default_config(cls, config: CalibrationEventConfig):"
+      - "        'Store a copy of a new default config for use in all future queries.'"
+      - "        cls._default_calibration = copy.copy(config)"
+      - ""
+      - "    @classmethod"
+      - "    @property"
+      - "    def default_config(cls) -> CalibrationEventConfig:"
+      - "        'Return a copy of the current default calibration configuration.'"
+      - "        cls._setup()"
+      - "        assert cls._default_calibration is not None"
+      - "        return copy.copy(cls._default_calibration)"
+      - ""
+      - "    @classmethod"
+      - "    def query_update(cls, query: ObjectStream[T], calib_config: Optional[CalibrationEventConfig] = None, **kwargs) -> ObjectStream[T]:"
+      - "        '''Add metadata to a query to indicate a change in the calibration configuration for the query."
+      - ""
+      - "        Args:"
+      - "            query (ObjectStream[T]): The query to update."
+      - ""
+      - "            calib_config (Optional[CalibrationEventConfig]): The new calibration configuration to use. If specified"
+      - "                will override all calibration configuration options in the query."
+      - ""
+      - "            jet_collection, ...: Use any property name from the `CalibrationEventConfig` class to override that particular"
+      - "                options for this query. You may specify as many of them as you like."
+      - ""
+      - "        Returns:"
+      - "            ObjectStream[T]: The updated query."
+      - ""
+      - "        Notes:"
+      - ""
+      - "            * This function can be chained - resolution works by looking at the most recent `query_update` in the query."
+      - "            * This function works by storing a complete `CalibrationEventConfig` object, updated as requested, in the query. So"
+      - "                even if you just update `jet_collection`, changing the `default_config` after calling this will have no effect."
+      - "        '''"
+      - ""
+      - "        # Get a base calibration config we can modify (e.g. a copy)"
+      - "        config = calib_config"
+      - "        if config is None:"
+      - "            config = calib_tools.query_get(query)"
+      - ""
+      - "        # Now, modify by any arguments we were given"
+      - "        for k, v in kwargs.items():"
+      - "            if hasattr(config, k):"
+      - "                setattr(config, k, v)"
+      - "            else:"
+      - "                raise ValueError(f'Unknown calibration config option: {k} in `query_update`')"
+      - ""
+      - "        # Place it in the query stream for later use"
+      - "        return query.QMetaData({"
+      - "            'calibration': config"
+      - "        })"
+      - ""
+      - ""
+      - "    @classmethod"
+      - "    def query_get(cls, query:ObjectStream[T]) -> CalibrationEventConfig:"
+      - "        '''Return a copy of the calibration if the query were issued at this point."
+      - ""
+      - "        Args:"
+      - "            query (ObjectStream[T]): The query to inspect."
+      - ""
+      - "        Returns:"
+      - "            CalibrationEventConfig: The calibration configuration for the query."
+      - "        '''"
+      - "        r = lookup_query_metadata(query, 'calibration')"
+      - "        if r is None:"
+      - "            return calib_tools.default_config"
+      - "        else:"
+      - "            return copy.copy(r)"
+      - ""
+      - "    @classmethod"
+      - "    @property"
+      - "    def default_sys_error(cls) -> str:"
+      - "        '''Return the default systematic error'''"
+      - "        if cls._default_sys_error is None:"
+      - "            return 'NOSYS'"
+      - "        return cls._default_sys_error"
+      - ""
+      - "    @classmethod"
+      - "    def set_default_sys_error(cls, value: str):"
+      - "        '''Set the default systematic error'''"
+      - "        cls._default_sys_error = value"
+      - ""
+      - "    @classmethod"
+      - "    def reset_sys_error(cls):"
+      - "        '''Reset to 'NOSYS' the default systematic error'''"
+      - "        cls._default_sys_error = 'NOSYS'"
+      - ""
+      - "    @classmethod"
+      - "    def query_sys_error(cls, query: ObjectStream[T], sys_error: str) -> ObjectStream[T]:"
+      - "        '''Add metadata to a query to indicate a change in the systematic error for the events."
+      - ""
+      - "        Args:"
+      - "            query (ObjectStream[T]): The query to update."
+      - ""
+      - "            sys_error (str): The systematic error to fetch. Only a single one is possible at any time. The sys error names"
+      - "                are the same as used by the common CP algorithms."
+      - ""
+      - "        Returns:"
+      - "            ObjectStream[T]: The updated query."
+      - ""
+      - "        Notes:"
+      - ""
+      - "            * This function can be chained - resolution works by looking at the most recent `query_sys_error` in the query."
+      - "        '''"
+      - "        return query.QMetaData({"
+      - "            'calibration_sys_error': sys_error"
+      - "        })"
+      - ""
+      - ""
+      - "_g_jinja2_env: Optional[jinja2.Environment] = None"
+      - ""
+      - ""
+      - "def template_configure() -> jinja2.Environment:"
+      - "    '''Configure the jinja2 template"
+      - "    '''"
+      - "    global _g_jinja2_env"
+      - "    if _g_jinja2_env is None:"
+      - "        template_path = Path(__file__).parent / \"templates\""
+      - "        loader = jinja2.FileSystemLoader(str(template_path))"
+      - "        _g_jinja2_env = jinja2.Environment(loader=loader)"
+      - "    return _g_jinja2_env"
+      - ""
+      - ""
+      - "_g_metadata_names_no_overlap = {"
+      - "    'jet_collection': [\"sys_error_tool\", \"pileup_tool\", \"corrections_jet\", \"add_calibration_to_job\"],"
+      - "    'electron_collection': [\"sys_error_tool\", \"pileup_tool\", \"corrections_electron\", \"add_calibration_to_job\"],"
+      - "    'muon_collection': [\"sys_error_tool\", \"pileup_tool\", \"corrections_muon\", \"add_calibration_to_job\"],"
+      - "    'photon_collection': [\"sys_error_tool\", \"pileup_tool\", \"corrections_photon\", \"add_calibration_to_job\"],"
+      - "    'tau_collection': [\"sys_error_tool\", \"pileup_tool\", \"corrections_tau\", \"add_calibration_to_job\"],"
+      - "    'met_collection': [\"sys_error_tool\", \"pileup_tool\", \"corrections_jet\", \"corrections_muon\", \"corrections_electron\", \"corrections_met\", \"add_calibration_to_job\"],"
+      - "}"
+      - ""
+      - "_g_metadata_names_overlap = {"
+      - "    'jet_collection': [\"sys_error_tool\", \"pileup_tool\", \"corrections_jet\", \"corrections_muon\", \"corrections_electron\", \"corrections_photon\", \"corrections_tau\", \"corrections_overlap\", \"add_calibration_to_job\"],"
+      - "    'electron_collection': [\"sys_error_tool\", \"pileup_tool\", \"corrections_jet\", \"corrections_muon\", \"corrections_electron\", \"corrections_photon\", \"corrections_tau\", \"corrections_overlap\", \"add_calibration_to_job\"],"
+      - "    'muon_collection': [\"sys_error_tool\", \"pileup_tool\", \"corrections_jet\", \"corrections_muon\", \"corrections_electron\", \"corrections_photon\", \"corrections_tau\", \"corrections_overlap\", \"add_calibration_to_job\"],"
+      - "    'photon_collection': [\"sys_error_tool\", \"pileup_tool\", \"corrections_jet\", \"corrections_muon\", \"corrections_electron\", \"corrections_photon\", \"corrections_tau\", \"corrections_overlap\", \"add_calibration_to_job\"],"
+      - "    'tau_collection': [\"sys_error_tool\", \"pileup_tool\", \"corrections_jet\", \"corrections_muon\", \"corrections_electron\", \"corrections_photon\", \"corrections_tau\", \"corrections_overlap\", \"add_calibration_to_job\"],"
+      - "    'met_collection': [\"sys_error_tool\", \"pileup_tool\", \"corrections_jet\", \"corrections_muon\", \"corrections_electron\", \"corrections_met\", \"add_calibration_to_job\"],"
+      - "}"
+      - ""
+      - "def fixup_collection_call(s: ObjectStream[T], a: ast.Call, collection_attr_name: str) -> Tuple[ObjectStream[T], ast.Call]:"
+      - "    'Apply all the fixes to the collection call'"
+      - ""
+      - "    # Find the two arguments"
+      - "    uncalibrated_bank_name = None"
+      - "    calibrated_bank_name = None"
+      - ""
+      - "    if len(a.args) >= 1:"
+      - "        calibrated_bank_name = ast.literal_eval(a.args[0])"
+      - ""
+      - "    if len(a.args) >= 2:"
+      - "        uncalibrated_bank_name = ast.literal_eval(a.args[1])"
+      - ""
+      - "    for arg in a.keywords:"
+      - "        if arg.arg == 'calibrated_collection':"
+      - "            calibrated_bank_name = ast.literal_eval(arg.value)"
+      - "        if arg.arg == 'uncalibrated_collection':"
+      - "            uncalibrated_bank_name = ast.literal_eval(arg.value)"
+      - ""
+      - "    if uncalibrated_bank_name is not None and calibrated_bank_name is not None:"
+      - "        raise ValueError(f\"Illegal to specify both `calibrated_collection` and `uncalibrated_collection` when accessing `collection_attr_name`.\")"
+      - ""
+      - "    new_s = s"
+      - "    if calibrated_bank_name is not None:"
+      - "        new_s = calib_tools.query_update(new_s, **{collection_attr_name: calibrated_bank_name})"
+      - ""
+      - "    # See if there is a systematic error we need to fetch"
+      - "    sys_error = lookup_query_metadata(new_s, 'calibration_sys_error')"
+      - "    if sys_error is None:"
+      - "        sys_error = calib_tools.default_sys_error"
+      - ""
+      - "    # Uncalibrated collection is pretty easy - nothing to do here!"
+      - "    if uncalibrated_bank_name is not None:"
+      - "        output_collection_name = uncalibrated_bank_name"
+      - "    else:"
+      - ""
+      - "        # Get the most up to date configuration for this run."
+      - "        calibration_info = calib_tools.query_get(new_s)"
+      - ""
+      - "        # Next, load up all the meta-data for this collection."
+      - "        j_env = template_configure()"
+      - "        dependent_md_name = None"
+      - "        output_collection_name = None"
+      - "        md_to_transmit = _g_metadata_names_overlap[collection_attr_name] if calibration_info.perform_overlap_removal else _g_metadata_names_no_overlap[collection_attr_name]"
+      - "        for md_name in md_to_transmit:"
+      - "            md_template = j_env.get_template(f\"{md_name}.py\")"
+      - "            text = md_template.render(calib=calibration_info, sys_error=sys_error)"
+      - "            md_text = {"
+      - "                \"metadata_type\": \"add_job_script\","
+      - "                \"name\": md_name,"
+      - "                \"script\": text.splitlines()"
+      - "            }"
+      - "            if dependent_md_name is not None:"
+      - "                md_text[\"depends_on\"] = [dependent_md_name]"
+      - ""
+      - "            new_s = new_s.MetaData(md_text)"
+      - ""
+      - "            dependent_md_name = md_name"
+      - ""
+      - "            # Have we found the output collection name?"
+      - "            found = re.search(f\"# Output {collection_attr_name} = (.+)(\\\\s|$)\", text)"
+      - "            if found is not None:"
+      - "                output_collection_name = found.group(1)"
+      - ""
+      - "    if output_collection_name is None:"
+      - "        raise RuntimeError(f\"Could not find output collection name in templates for collection '{collection_attr_name} - xAOD job options templates are malformed.\")"
+      - ""
+      - "    # Finally, rewrite the call to fetch the collection with the actual collection name we want"
+      - "    # to fetch."
+      - "    new_call = copy.copy(a)"
+      - "    new_call.args = [ast.parse(f\"'{output_collection_name}'\").body[0].value]  # type: ignore"
+      - ""
+      - "    return new_s, new_call"
+  - "name": "templates/sys_error_tool.py"
+    "init_lines":
+      []
+    "contents":
+      - "# pulled from:https://gitlab.cern.ch/atlas/athena/-/blob/21.2/PhysicsAnalysis/Algorithms/JetAnalysisAlgorithms/python/JetAnalysisAlgorithmsTest.py"
+      - "# Set up the systematics loader/handler service:"
+      - "from AnaAlgorithm.DualUseConfig import createService"
+      - "from AnaAlgorithm.AlgSequence import AlgSequence"
+      - "calibrationAlgSeq = AlgSequence()"
+      - "sysService = createService( 'CP::SystematicsSvc', 'SystematicsSvc', sequence = calibrationAlgSeq )"
+      - "sysService.systematicsList = ['{{ sys_error }}']"
+      - "# Add sequence to job"
+  - "name": "templates/pileup_tool.py"
+    "init_lines":
+      []
+    "contents":
+      - "from AsgAnalysisAlgorithms.PileupAnalysisSequence import makePileupAnalysisSequence"
+      - "from AsgAnalysisAlgorithms.AsgAnalysisAlgorithmsTest import pileupConfigFiles"
+      - "prwfiles, lumicalcfiles = pileupConfigFiles('mc')"
+      - "# Can't use pwrfiles, lumicalcfiles b.c. they are on cvms and docker does not have those."
+      - "# pileupSequence = makePileupAnalysisSequence( 'mc', userPileupConfigs=prwfiles, userLumicalcFiles=lumicalcfiles)"
+      - "pileupSequence = makePileupAnalysisSequence( 'mc' )"
+      - "pileupSequence.configure( inputName = {}, outputName = {} )"
+      - "# print( pileupSequence ) # For debugging"
+      - "calibrationAlgSeq += pileupSequence"
+  - "name": "templates/corrections_jet.py"
+    "init_lines":
+      []
+    "contents":
+      - "jetContainer = '{{calib.jet_collection}}'"
+      - "from JetAnalysisAlgorithms.JetAnalysisSequence import makeJetAnalysisSequence"
+      - "jetSequence = makeJetAnalysisSequence( 'mc', jetContainer)"
+      - "jetSequence.configure( inputName = jetContainer, outputName = jetContainer + '_Base_%SYS%' )"
+      - "jetSequence.JvtEfficiencyAlg.truthJetCollection = '{{calib.jet_calib_truth_collection}}'"
+      - "jetSequence.ForwardJvtEfficiencyAlg.truthJetCollection = '{{calib.jet_calib_truth_collection}}'"
+      - "calibrationAlgSeq += jetSequence"
+      - "print( jetSequence ) # For debugging"
+      - "# Include, and then set up the jet analysis algorithm sequence:"
+      - "from JetAnalysisAlgorithms.JetJvtAnalysisSequence import makeJetJvtAnalysisSequence"
+      - "jvtSequence = makeJetJvtAnalysisSequence( 'mc', jetContainer, enableCutflow=True )"
+      - "jvtSequence.configure( inputName = {'jets'      : jetContainer + '_Base_%SYS%' },"
+      - "                       outputName = { 'jets'      : jetContainer + 'Calib_%SYS%' },"
+      - "                       )"
+      - "calibrationAlgSeq += jvtSequence"
+      - "print( jvtSequence ) # For debugging"
+      - "output_jet_container = \"{{calib.jet_collection}}Calib_%SYS%\""
+      - "# Output jet_collection = {{calib.jet_collection}}Calib_{{ sys_error }}"
+  - "name": "templates/corrections_electron.py"
+    "init_lines":
+      []
+    "contents":
+      - "from EgammaAnalysisAlgorithms.ElectronAnalysisSequence import makeElectronAnalysisSequence"
+      - "electronSequence = makeElectronAnalysisSequence( 'mc', '{{calib.electron_working_point}}.{{calib.electron_isolation}}', postfix = '{{calib.electron_working_point}}_{{calib.electron_isolation}}')"
+      - "electronSequence.configure( inputName = '{{calib.electron_collection}}',"
+      - "                            outputName = '{{calib.electron_collection}}_{{calib.electron_working_point}}_{{calib.electron_isolation}}_%SYS%' )"
+      - "calibrationAlgSeq += electronSequence"
+      - "print( electronSequence ) # For debugging"
+      - "output_electron_container = \"{{calib.electron_collection}}_{{calib.electron_working_point}}_{{calib.electron_isolation}}_%SYS%\""
+      - "# Output electron_collection = {{calib.electron_collection}}_{{calib.electron_working_point}}_{{calib.electron_isolation}}_{{ sys_error }}"
+  - "name": "templates/corrections_photon.py"
+    "init_lines":
+      []
+    "contents":
+      - "#TODO: Get photon corrections working. It does not seem possible in R21 and on PHYS_DAOD."
+      - "# If you remove the fudge tool, then the photon eff tool has trouble."
+      - "# If you remove that, then the sequence has trouble. Needs more work."
+      - "# from EgammaAnalysisAlgorithms.PhotonAnalysisSequence import makePhotonAnalysisSequence"
+      - "# photonSequence = makePhotonAnalysisSequence( 'mc', '{{calib.photon_working_point}}.{{calib.photon_isolation}}', postfix = '{{calib.photon_working_point}}_{{calib.photon_isolation}}')"
+      - "# photonSequence.configure( inputName = '{{calib.photon_collection}}',"
+      - "#                             outputName = '{{calib.photon_collection}}_{{calib.photon_working_point}}_{{calib.photon_isolation}}_%SYS%' )"
+      - "# print( photonSequence ) # For debugging"
+      - "# attr = getattr(photonSequence, 'PhotonShowerShapeFudgeAlg_Tight_FixedCutTight')"
+      - "# del attr"
+      - "# del photonSequence.PhotonShowerShapeFudgeAlg_Tight_FixedCutTight"
+      - "# del photonSequence.PhotonIsolationCorrectionAlg_Tight_FixedCutTight"
+      - "# calibrationAlgSeq += photonSequence"
+      - "# Output photon_collection = {{calib.photon_collection}}"
+  - "name": "templates/corrections_muon.py"
+    "init_lines":
+      []
+    "contents":
+      - "muon_container = '{{calib.muon_collection}}'"
+      - "from MuonAnalysisAlgorithms.MuonAnalysisSequence import makeMuonAnalysisSequence"
+      - "muonSequence = makeMuonAnalysisSequence('mc', workingPoint='{{calib.muon_working_point}}.{{calib.muon_isolation}}', postfix = '{{calib.muon_working_point}}_{{calib.muon_isolation}}')"
+      - "muonSequence.configure( inputName = muon_container,"
+      - "                        outputName = muon_container + 'Calib_{{calib.muon_working_point}}{{calib.muon_isolation}}_%SYS%' )"
+      - "calibrationAlgSeq += muonSequence"
+      - "print( muonSequence ) # For debugging"
+      - "output_muon_container = \"{{calib.muon_collection}}Calib_{{calib.muon_working_point}}{{calib.muon_isolation}}_%SYS%\""
+      - "# Output muon_collection = {{calib.muon_collection}}Calib_{{calib.muon_working_point}}{{calib.muon_isolation}}_{{ sys_error }}"
+  - "name": "templates/corrections_tau.py"
+    "init_lines":
+      []
+    "contents":
+      - "from TauAnalysisAlgorithms.TauAnalysisSequence import makeTauAnalysisSequence"
+      - "tauSequence = makeTauAnalysisSequence( 'mc', '{{calib.tau_working_point}}', postfix = '{{calib.tau_working_point}}', rerunTruthMatching=False)"
+      - "tauSequence.configure( inputName = '{{calib.tau_collection}}',"
+      - "                       outputName = '{{calib.tau_collection}}_{{calib.tau_working_point}}_%SYS%' )"
+      - "calibrationAlgSeq += tauSequence"
+      - "print( tauSequence ) # For debugging"
+      - "# Output tau_collection = {{calib.tau_collection}}_{{calib.tau_working_point}}_{{ sys_error }}"
+  - "name": "templates/corrections_overlap.py"
+    "init_lines":
+      []
+    "contents":
+      - "from AsgAnalysisAlgorithms.OverlapAnalysisSequence import makeOverlapAnalysisSequence"
+      - "overlapSequence = makeOverlapAnalysisSequence('mc')"
+      - "overlapSequence.configure("
+      - "    inputName = {"
+      - "        'electrons' : '{{calib.electron_collection}}_{{calib.working_point}}_{{calib.isolation}}_%SYS%',"
+      - "        'photons'   : '{{calib.photon_collection}}',"
+      - "        'muons'     : '{{calib.muon_collection}}Calib_{{calib.muon_working_point}}{{calib.muon_isolation}}_%SYS%',"
+      - "        'jets'      : '{{calib.jet_collection}}Calib_%SYS%',"
+      - "        'taus'      : '{{calib.tau_collection}}_{{calib.tau_working_point}}_%SYS%'"
+      - "    },"
+      - "    outputName = {"
+      - "        'electrons' : '{{calib.electron_collection}}_{{calib.working_point}}_{{calib.isolation}}_OR_%SYS%',"
+      - "        'photons'   : '{{calib.photon_collection}}_OR_%SYS%',"
+      - "        'muons'     : '{{calib.muon_collection}}Calib_{{calib.muon_working_point}}{{calib.muon_isolation}}_OR_%SYS%',"
+      - "        'jets'      : '{{calib.jet_collection}}Calib_OR_%SYS%',"
+      - "        'taus'      : '{{calib.tau_collection}}_{{calib.tau_working_point}}_OR_%SYS%'"
+      - "    })"
+      - "calibrationAlgSeq += overlapSequence"
+      - "# Output electron_collection = {{calib.electron_collection}}_{{working_point}}_{{isolation}}_OR_{{ sys_error }}"
+      - "# Output photon_collection = {{calib.photon_collection}}_OR_{{ ssy_error }}"
+      - "# Output muon_collection = {{calib.muon_collection}}Calib_{{calib.muon_working_point}}{{calib.muon_isolation}}_OR_{{ sys_error }}"
+      - "# Output jet_collection = {{calib.jet_collection}}Calib_OR_{{ sys_error }}"
+      - "# Output tau_collection = {{calib.tau_collection}}_{{calib.tau_working_point}}_OR_{{ sys_error }}"
+  - "name": "templates/corrections_met.py"
+    "init_lines":
+      []
+    "contents":
+      - "from MetAnalysisAlgorithms.MetAnalysisSequence import makeMetAnalysisSequence"
+      - "met_jetContainer = '{{calib.jet_collection}}'"
+      - "metSequence = makeMetAnalysisSequence('mc', metSuffix = met_jetContainer[:-4] )"
+      - "metSequence.configure( inputName = { 'jets'      : output_jet_container,"
+      - "                                        'muons'     : output_muon_container,"
+      - "                                        'electrons' : output_electron_container },"
+      - "                        outputName = 'AnalysisMET_%SYS%' )"
+      - "print(metSequence)  # For debugging"
+      - "calibrationAlgSeq += metSequence"
+      - "# Output met_collection = AnalysisMET_{{ sys_error }}"
+  - "name": "templates/add_calibration_to_job.py"
+    "init_lines":
+      []
+    "contents":
+      - "calibrationAlgSeq.addSelfToJob( job )"
+      - "print(job) # for debugging"
 metadata:
   - name: sys_error_tool
     data:
@@ -4009,79 +5005,55 @@ metadata:
           - "calibrationAlgSeq += pileupSequence"
         depends_on: 
           - sys_error_tool
-  - name: jet_corrections
+  - name: common_corrections
     data:
       - metadata_type: add_job_script
-        name: jet_corrections
+        name: common_corrections
         script:
-          - "jetContainer = '{bank_name}'"
+          - "jetContainer = '{calib.jet_collection}'"
           - "from JetAnalysisAlgorithms.JetAnalysisSequence import makeJetAnalysisSequence"
           - "jetSequence = makeJetAnalysisSequence( 'mc', jetContainer)"
-          - "jetSequence.configure( inputName = jetContainer, outputName = '{bank_name}_Base_%SYS%' )"
-          - "jetSequence.JvtEfficiencyAlg.truthJetCollection = '{truth_jets}'"
-          - "jetSequence.ForwardJvtEfficiencyAlg.truthJetCollection = '{truth_jets}'"
+          - "jetSequence.configure( inputName = jetContainer, outputName = jetContainer + '_Base_%SYS%' )"
+          - "jetSequence.JvtEfficiencyAlg.truthJetCollection = '{calib.jet_calib_truth_collection}'"
+          - "jetSequence.ForwardJvtEfficiencyAlg.truthJetCollection = '{calib.jet_calib_truth_collection}'"
           - "calibrationAlgSeq += jetSequence"
           - "print( jetSequence ) # For debugging"
           - ""
           - "# Include, and then set up the jet analysis algorithm sequence:"
           - "from JetAnalysisAlgorithms.JetJvtAnalysisSequence import makeJetJvtAnalysisSequence"
           - "jvtSequence = makeJetJvtAnalysisSequence( 'mc', jetContainer, enableCutflow=True )"
-          - "jvtSequence.configure( inputName = {'jets'      : '{bank_name}_Base_%SYS%' },"
-          - "                       outputName = { 'jets'      : '{bank_name}Calib_%SYS%' },"
+          - "jvtSequence.configure( inputName = {'jets'      : jetContainer + '_Base_%SYS%' },"
+          - "                       outputName = { 'jets'      : jetContainer + 'Calib_%SYS%' },"
           - "                       )"
           - "calibrationAlgSeq += jvtSequence"
           - "print( jvtSequence ) # For debugging"
-        depends_on:
-          - 'pileup_tool'
-  - name: muon_corrections
-    data:
-      - metadata_type: add_job_script
-        name: muon_corrections
-        script:
-          - "muon_container = '{bank_name}'"
+          - "#"
+          - "muon_container = '{calib.muon_collection}'"
           - "from MuonAnalysisAlgorithms.MuonAnalysisSequence import makeMuonAnalysisSequence"
-          - "muonSequence = makeMuonAnalysisSequence('mc', workingPoint='{working_point}.{isolation}', postfix = '{working_point}_{isolation}')"
+          - "muonSequence = makeMuonAnalysisSequence('mc', workingPoint='{calib.muon_working_point}.{calib.muon_isolation}', postfix = '{calib.muon_working_point}_{calib.muon_isolation}')"
           - "muonSequence.configure( inputName = muon_container,"
-          - "                        outputName = muon_container + 'Calib_{working_point}{isolation}_%SYS%' )"
+          - "                        outputName = muon_container + 'Calib_{calib.muon_working_point}{calib.muon_isolation}_%SYS%' )"
           - "calibrationAlgSeq += muonSequence"
           - "print( muonSequence ) # For debugging"
-        depends_on:
-          - 'pileup_tool'
-  - name: photon_corrections
-    data:
-      - metadata_type: add_job_script
-        name: electron_corrections
-        script:
-          - "from EgammaAnalysisAlgorithms.PhotonAnalysisSequence import makePhotonAnalysisSequence"
-          - "photonSequence = makePhotonAnalysisSequence( 'mc', '{working_point}.{isolation}', postfix = '{working_point}_{isolation}')"
-          - "photonSequence.configure( inputName = '{bank_name}',"
-          - "                            outputName = '{bank_name}_{working_point}_{isolation}_%SYS%' )"
-          - "calibrationAlgSeq += photonSequence"
-          - "print( photonSequence ) # For debugging"
-        depends_on:
-          - 'pileup_tool'
-  - name: electron_corrections
-    data:
-      - metadata_type: add_job_script
-        name: electron_corrections
-        script:
+          - "#"
           - "from EgammaAnalysisAlgorithms.ElectronAnalysisSequence import makeElectronAnalysisSequence"
           - "electronSequence = makeElectronAnalysisSequence( 'mc', '{working_point}.{isolation}', postfix = '{working_point}_{isolation}')"
-          - "electronSequence.configure( inputName = '{bank_name}',"
-          - "                            outputName = '{bank_name}_{working_point}_{isolation}_%SYS%' )"
+          - "electronSequence.configure( inputName = '{calib.electron_collection}',"
+          - "                            outputName = '{calib.electron_collection}_{working_point}_{isolation}_%SYS%' )"
           - "calibrationAlgSeq += electronSequence"
           - "print( electronSequence ) # For debugging"
-        depends_on:
-          - 'pileup_tool'
-  - name: tau_corrections
-    data:
-      - metadata_type: add_job_script
-        name: tau_corrections
-        script:
+          - "#"
+          - "from EgammaAnalysisAlgorithms.PhotonAnalysisSequence import makePhotonAnalysisSequence"
+          - "photonSequence = makePhotonAnalysisSequence( 'mc', '{calib.photon_working_point}.{calib.photon_isolation}', postfix = '{calib.photon_working_point}_{calib.photon_isolation}')"
+          - "photonSequence.configure( inputName = '{calib.photon_collection}',"
+          - "                            outputName = '{calib.photon_collection}_{calib.photon_working_point}_{calib.photon_isolation}_%SYS%' )"
+          - "calibrationAlgSeq += photonSequence"
+          - "print( photonSequence ) # For debugging"
+          - "#"
           - "from TauAnalysisAlgorithms.TauAnalysisSequence import makeTauAnalysisSequence"
-          - "tauSequence = makeTauAnalysisSequence( 'mc', '{working_point}', postfix = '{working_point}', rerunTruthMatching=False)"
-          - "tauSequence.configure( inputName = '{bank_name}',"
-          - "                       outputName = '{bank_name}_{working_point}_%SYS%' )"
+          - "tauSequence = makeTauAnalysisSequence( 'mc', '{calib.tau_working_point}', postfix = '{calib.tau_working_point}', rerunTruthMatching=False)"
+          - "tauSequence.configure( inputName = '{calib.tau_collection}',"
+          - "                       outputName = '{calib.tau_collection}_{calib.tau_working_point}_%SYS%' )"
           - "calibrationAlgSeq += tauSequence"
           - "print( tauSequence ) # For debugging"
         depends_on:
