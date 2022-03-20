@@ -10,4 +10,4 @@ class {{ sx_dataset_name }}(ServiceXSourceCPPBase[Event]):
         """
         Create a servicex dataset sequence from a servicex dataset.
         """
-        super().__init__(sx, backend)
+        super().__init__(sx, backend, item_type=Event)
