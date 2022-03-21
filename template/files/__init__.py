@@ -6,6 +6,10 @@ from .func_adl_iterable import FADLStream
 {%- for line in base_init_lines %}
 {{ line }}
 {%- endfor %}
+
+{%- for v_info in base_variables %}
+{{ v_info.name }} = "{{ v_info.value }}"
+{%- endfor %}
 {%- endif %}
 
 class _load_me:

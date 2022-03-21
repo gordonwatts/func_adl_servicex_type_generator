@@ -11,15 +11,21 @@ from func_adl_servicex_type_generator.package import (
 
 
 def run():
+    package_name = "func_adl_servicex_xaodr21"
+
     parser = argparse.ArgumentParser(description="Generate python package")
     parser.add_argument(
         "yaml_type_file",
         type=Path,
         help="The yaml file that contains the type info",
     )
+    parser.add_argument(
+        "--output_directory",
+        type=Path,
+        help="The output directory for the generated python package",
+        default=Path(f"../{package_name}"),
+    )
     args = parser.parse_args()
-
-    package_name = "func_adl_servicex_xaodr21"
 
     data = load_yaml(args.yaml_type_file)
 
@@ -34,8 +40,8 @@ def run():
 
     template_data = {
         "package_name": package_name,
-        "package_version": "1.0.22.2.187",
-        "package_info_description": "xAOD R21 22.2.187",
+        "package_version": f"1.1.0.{data.config['atlas_release']}",
+        "package_info_description": f"xAOD R21 {data.config['atlas_release']}",
         "sx_dataset_name": "SXDSAtlasxAODR21",
         "backend_default_name": "xaod_r21",
         "collections": data.collections,
@@ -44,7 +50,7 @@ def run():
 
     template_path = Path("./template")
     assert template_path.exists()
-    output_path = Path(f"../{template_data['package_name']}")
+    output_path = args.output_directory
 
     template_package_scaffolding(template_data, template_path, output_path, data.files)
 
@@ -56,4 +62,5 @@ def run():
         output_path / template_data["package_name"],
         package_name,
         base_init_lines=base_init_lines,
+        config_vars=data.config,
     )

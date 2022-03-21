@@ -21,7 +21,7 @@ from .class_utils import package_qualified_class
 # from jinja2 import contextfilter, Markup
 
 
-@jinja2.contextfilter  # type: ignore
+@jinja2.pass_context  # type: ignore
 def subrender_filter(context, value):
     if value is None:
         return value
@@ -35,6 +35,13 @@ def subrender_filter(context, value):
 
 def prep_jinja2_env(env: jinja2.Environment):
     env.filters["subrender"] = subrender_filter
+
+
+@dataclass
+class config_info:
+    "Config variables to be written out"
+    name: str
+    value: str
 
 
 def template_package_scaffolding(
@@ -259,6 +266,7 @@ def write_out_classes(
     project_src_path: Path,
     package_name: str,
     base_init_lines: List[str] = [],
+    config_vars: Dict[str, str] = {},
 ):
     """Write out the templates for all classes
 
@@ -413,6 +421,7 @@ def write_out_classes(
                     package_name=package_name,
                     sx_dataset_name="SXDSAtlasxAODR21",
                     base_init_lines=base_init_lines,
+                    base_variables=[config_info(k, v) for k, v in config_vars.items()],
                 )
             )
             # out.write("\n")  # Get around whitespace trimming

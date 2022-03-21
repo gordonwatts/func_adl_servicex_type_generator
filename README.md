@@ -16,8 +16,23 @@ Produce a analysis-focused python package that:
 After `pip install`ing this package, the following command will write out a package in the parent directory:
 
 ```bash
-sx_type_gen <path-to-type-yaml-file>
+sx_type_gen <path-to-type-yaml-file> [--output_directory <dir-for-output>]
 ```
+
+## Building a new type package for a new AnalysisBase Release
+
+You'll need to setup:
+
+* The `func-adl-types-atlas` package will need to be checked out
+* This package, `func_adl_servicex_type_generator` will need to be `pip install`ed
+
+Then follow these steps:
+
+1. Build the type file for a given atlas release: `func-adl-types-atlas\scripts\build_xaod_edm.ps1 21.2.184 184.yaml`
+1. Build the package `sx_type_gen 184.yaml --output_directory <dir>`.
+1. Publish the package. Use a shell that has `poetry` installed
+   * `poetry build`
+   * `poetry publish`
 
 ## How this works
 
@@ -67,7 +82,7 @@ This is currently a package that is planned. The development path is as follows:
   * [ ] Once calibrations fixed, make sure calibration=None (if value) is allowed by type checker
 * [x] Add support for `Jet::getAttribute`, which is a C++ code-behind function, but likely it is a method
 * [x] Add support for decorator access
-* [ ] Fix up calibration model
+* [x] Fix up calibration model
 * [ ] Clean up all marked TODO's in the code base - either issues or delete them.
 * [ ] Make sure black, pytest are run for check in
 * [ ] First release of package (documentation on how to run and build, pushing type info to pypi, making it easy to use, etc.)

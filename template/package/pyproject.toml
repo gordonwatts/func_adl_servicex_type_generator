@@ -3,10 +3,11 @@ name = "{{ package_name }}"
 version = "{{ package_version }}"
 description = "func-adl typed datasets for Servicex for {{ package_info_description }}"
 authors = ["Gordon Watts <gwatts@uw.edu>"]
+readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.10"
-func_adl_servicex = {version = "^1.2-beta.2", allow-prereleases = true}
+func_adl_servicex = {version = "^2.0-beta.1", allow-prereleases = true}
 
 [tool.poetry.dev-dependencies]
 

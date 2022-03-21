@@ -4972,6 +4972,8 @@ files:
     "contents":
       - "calibrationAlgSeq.addSelfToJob( job )"
       - "print(job) # for debugging"
+"config":
+  "atlas_release": "21.2.184"
 metadata:
   - name: sys_error_tool
     data:

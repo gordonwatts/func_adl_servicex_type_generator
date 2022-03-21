@@ -102,6 +102,9 @@ class LoadedData:
     # Files we read back
     files: List[file_info]
 
+    # Config
+    config: Dict[str, str]
+
 
 def load_yaml(
     config_path: Path,
@@ -171,4 +174,6 @@ def load_yaml(
         for f in data_files
     ]
 
-    return LoadedData(collections, classes, metadata, files)
+    config = data["config"]
+
+    return LoadedData(collections, classes, metadata, files, config)

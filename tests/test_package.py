@@ -625,6 +625,24 @@ def test_class_simple(tmp_path, template_path):
     assert 'jets = _load_me("package.jets")' in init_text
 
 
+def test_class_with_init_config(tmp_path, template_path):
+    """Write out a very simple top level class.
+
+    Args:
+        tmp_path ([type]): [description]
+    """
+    classes = [
+        class_info("Jets", "Jets", [], None, None, "jet.hpp"),
+    ]
+
+    write_out_classes(
+        classes, template_path, tmp_path, "package", config_vars={"atlas": "1.1.1"}
+    )
+
+    init_text = (tmp_path / "__init__.py").read_text()
+    assert 'atlas = "1.1.1"' in init_text
+
+
 def test_class_alias(tmp_path, template_path):
     """Write out a very simple top level class.
 
