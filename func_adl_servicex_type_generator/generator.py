@@ -40,7 +40,7 @@ def run():
 
     template_data = {
         "package_name": package_name,
-        "package_version": f"1.1.0.{data.config['atlas_release']}",
+        "package_version": f"1.1.1.{data.config['atlas_release']}",
         "package_info_description": f"xAOD R21 {data.config['atlas_release']}",
         "sx_dataset_name": "SXDSAtlasxAODR21",
         "backend_default_name": "xaod_r21",
