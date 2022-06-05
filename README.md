@@ -19,6 +19,8 @@ After `pip install`ing this package, the following command will write out a pack
 sx_type_gen <path-to-type-yaml-file> [--output_directory <dir-for-output>]
 ```
 
+Note that output package name and version are set in the `generator.py` file.
+
 ## Building a new type package for a new AnalysisBase Release
 
 You'll need to setup:
