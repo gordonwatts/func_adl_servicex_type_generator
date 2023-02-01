@@ -145,6 +145,8 @@ _g_cpp_to_py_type_map = {
     "float": "float",
     "int": "int",
     "unsigned int": "int",
+    "short": "int",
+    "unsigned short": "int",
     "unsigned long long": "int",
     "long long": "int",
     "long": "int",
