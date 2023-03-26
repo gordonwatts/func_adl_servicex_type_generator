@@ -48,7 +48,8 @@ def run():
         "metadata": data.metadata,
     }
 
-    template_path = Path("./template")
+    template_path = Path(__file__).parent / ".." / "template"
+    print(template_path)
     assert template_path.exists()
     output_path = args.output_directory
 
