@@ -12,6 +12,7 @@
         "pyright",
         "pytest",
         "servicex",
+        "subrender",
         "SXDS",
         "xaod",
         "xaodr"
