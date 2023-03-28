@@ -592,7 +592,11 @@ def test_template_poetry_integration(tmp_path, template_path):
         class_info("Jet", "Jet", [], None, None, "jet.hpp"),
     ]
     write_out_classes(
-        classes, template_path, output_path / data["package_name"], data["package_name"]
+        classes,
+        template_path,
+        output_path / data["package_name"],
+        data["package_name"],
+        "21",
     )
 
     # Make sure poetry is comfortable with this file
@@ -601,10 +605,6 @@ def test_template_poetry_integration(tmp_path, template_path):
         f'powershell -command "cd {output_path}; {python_location} -m poetry check"'
     )
     assert r == 0
-    # r = os.system(
-    #     f'powershell -command "cd {output_path}; {python_location} -m poetry env remove"'
-    # )
-    # assert r != 0
 
 
 def test_class_simple(tmp_path, template_path):
@@ -617,13 +617,32 @@ def test_class_simple(tmp_path, template_path):
         class_info("Jets", "Jets", [], None, None, "jet.hpp"),
     ]
 
-    write_out_classes(classes, template_path, tmp_path, "package")
+    write_out_classes(classes, template_path, tmp_path, "package", "22")
 
     assert (tmp_path / "jets.py").exists()
     assert (tmp_path / "__init__.py").exists()
 
     init_text = (tmp_path / "__init__.py").read_text()
     assert 'jets = _load_me("package.jets")' in init_text
+
+
+def test_class_simple_release_different(tmp_path, template_path):
+    """Write out a very simple top level class.
+
+    Args:
+        tmp_path ([type]): [description]
+    """
+    classes = [
+        class_info("Jets", "Jets", [], None, None, "jet.hpp"),
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package", "101")
+
+    assert (tmp_path / "jets.py").exists()
+    assert (tmp_path / "__init__.py").exists()
+
+    init_text = (tmp_path / "__init__.py").read_text()
+    assert "SXDSAtlasxAODR101" in init_text
 
 
 def test_class_with_init_config(tmp_path, template_path):
@@ -637,7 +656,12 @@ def test_class_with_init_config(tmp_path, template_path):
     ]
 
     write_out_classes(
-        classes, template_path, tmp_path, "package", config_vars={"atlas": "1.1.1"}
+        classes,
+        template_path,
+        tmp_path,
+        "package",
+        "22",
+        config_vars={"atlas": "1.1.1"},
     )
 
     init_text = (tmp_path / "__init__.py").read_text()
@@ -655,7 +679,7 @@ def test_class_alias(tmp_path, template_path):
         class_info("Jets1", "Jets1", [], None, None, "jet1.hpp", True),
     ]
 
-    write_out_classes(classes, template_path, tmp_path, "package")
+    write_out_classes(classes, template_path, tmp_path, "package", "22")
 
     assert not (tmp_path / "jets1.py").exists()
 
@@ -670,7 +694,7 @@ def test_class_namespace(tmp_path, template_path):
         class_info("xAOD.Jets", "xAOD::Jets", [], None, None, "jet.hpp"),
     ]
 
-    write_out_classes(classes, template_path, tmp_path, "package")
+    write_out_classes(classes, template_path, tmp_path, "package", "22")
 
     assert (tmp_path / "xAOD" / "jets.py").exists()
 
@@ -694,7 +718,7 @@ def test_class_as_container(tmp_path, template_path):
         class_info("xAOD.Fork", "xAOD::Fork", [], None, None, "fork.hpp"),
     ]
 
-    write_out_classes(classes, template_path, tmp_path, "package")
+    write_out_classes(classes, template_path, tmp_path, "package", "22")
 
     assert (tmp_path / "xAOD" / "jets.py").exists()
     file_text = (tmp_path / "xAOD" / "jets.py").read_text()
@@ -713,7 +737,7 @@ def test_class_as_unknown_container(tmp_path, template_path):
         class_info("xAOD.Jets", "xAOD::Jets", [], "xAOD::Fork", "xAOD.Fork", "jet.hpp"),
     ]
 
-    write_out_classes(classes, template_path, tmp_path, "package")
+    write_out_classes(classes, template_path, tmp_path, "package", "22")
 
     assert (tmp_path / "xAOD" / "jets.py").exists()
     file_text = (tmp_path / "xAOD" / "jets.py").read_text()
@@ -733,7 +757,7 @@ def test_class_as_container_no_ns(tmp_path, template_path):
         class_info("Fork", "Fork", [], None, None, "fork.hpp"),
     ]
 
-    write_out_classes(classes, template_path, tmp_path, "package")
+    write_out_classes(classes, template_path, tmp_path, "package", "22")
 
     assert (tmp_path / "xAOD" / "jets.py").exists()
     file_text = (tmp_path / "xAOD" / "jets.py").read_text()
@@ -753,7 +777,7 @@ def test_class_as_container_include(tmp_path, template_path):
         class_info("Fork", "Fork", [], None, None, "fork.hpp"),
     ]
 
-    write_out_classes(classes, template_path, tmp_path, "package")
+    write_out_classes(classes, template_path, tmp_path, "package", "22")
 
     assert (tmp_path / "xAOD" / "jets.py").exists()
     file_text = (tmp_path / "fork.py").read_text()
@@ -787,7 +811,7 @@ def test_simple_method(tmp_path, template_path):
         )
     ]
 
-    write_out_classes(classes, template_path, tmp_path, "package")
+    write_out_classes(classes, template_path, tmp_path, "package", "22")
 
     all_text = (tmp_path / "xAOD" / "jets.py").read_text()
     assert "pt(self) -> float:" in all_text
@@ -836,7 +860,7 @@ def test_method_with_behavior(tmp_path, template_path):
         ),
     ]
 
-    write_out_classes(classes, template_path, tmp_path, "package")
+    write_out_classes(classes, template_path, tmp_path, "package", "22")
 
     all_text = (tmp_path / "xAOD" / "jets.py").read_text()
     assert "pt1(self) -> float:" in all_text
@@ -886,7 +910,7 @@ def test_method_with_behavior_deref(tmp_path, template_path):
         ),
     ]
 
-    write_out_classes(classes, template_path, tmp_path, "package")
+    write_out_classes(classes, template_path, tmp_path, "package", "22")
 
     all_text = (tmp_path / "xAOD" / "jets.py").read_text()
     assert "'deref_count': 2" in all_text
@@ -917,7 +941,7 @@ def test_simple_method_ptr(tmp_path, template_path):
         )
     ]
 
-    write_out_classes(classes, template_path, tmp_path, "package")
+    write_out_classes(classes, template_path, tmp_path, "package", "22")
 
     all_text = (tmp_path / "xAOD" / "jets.py").read_text()
     assert "pt(self) -> float:" in all_text
@@ -957,7 +981,7 @@ def test_simple_method_return_type_cleaning(tmp_path, template_path):
         ),
     ]
 
-    write_out_classes(classes, template_path, tmp_path, "package")
+    write_out_classes(classes, template_path, tmp_path, "package", "22")
 
     all_text = (tmp_path / "xAOD" / "jets.py").read_text()
     assert "'return_type': 'vector<DataVector<xAOD::Jet_v1>>'" in all_text
@@ -1024,7 +1048,7 @@ def test_simple_method_with_args(tmp_path, template_path):
         )
     ]
 
-    write_out_classes(classes, template_path, tmp_path, "package")
+    write_out_classes(classes, template_path, tmp_path, "package", "22")
 
     assert "pt(self, err: float) -> float:" in (
         (tmp_path / "xAOD" / "jets.py").read_text()
@@ -1052,7 +1076,7 @@ def test_method_with_param_args(tmp_path, template_path):
         )
     ]
 
-    write_out_classes(classes, template_path, tmp_path, "package")
+    write_out_classes(classes, template_path, tmp_path, "package", "22")
 
     all_text = (tmp_path / "xAOD" / "jets.py").read_text()
 

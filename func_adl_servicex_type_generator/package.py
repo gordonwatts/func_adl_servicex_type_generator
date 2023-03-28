@@ -18,9 +18,6 @@ from func_adl_servicex_type_generator.data_model import (
 from .class_utils import package_qualified_class
 
 
-# from jinja2 import contextfilter, Markup
-
-
 @jinja2.pass_context  # type: ignore
 def subrender_filter(context, value):
     if value is None:
@@ -267,6 +264,7 @@ def write_out_classes(
     template_path: Path,
     project_src_path: Path,
     package_name: str,
+    release_series: str,
     base_init_lines: List[str] = [],
     config_vars: Dict[str, str] = {},
 ):
@@ -280,6 +278,7 @@ def write_out_classes(
         project_src_path (Path): The root of the package source directory
             (top level __init__.py file location)
         project_name (str): Name of package for use in import statements
+        release_series (str): Which release is this (22, or 21, etc.)
     """
     # Load up the template structure and environment
     loader = jinja2.FileSystemLoader(str(template_path / "files"))
@@ -421,7 +420,7 @@ def write_out_classes(
                     module_stub=m_stub,
                     sub_namespaces=sub_ns,
                     package_name=package_name,
-                    sx_dataset_name="SXDSAtlasxAODR21",
+                    sx_dataset_name=f"SXDSAtlasxAODR{release_series}",
                     base_init_lines=base_init_lines,
                     base_variables=[config_info(k, v) for k, v in config_vars.items()],
                 )

@@ -139,3 +139,16 @@ def package_qualified_class(
         return None
 
     return process_by_namespace(class_name, _remove_namespace)
+
+
+def split_release(release: str) -> Tuple[int, int, int]:
+    """Returns a string release split into integer numbers
+
+    Args:
+        release (str): The release name, like 22.2.147
+
+    Returns:
+        Tuple[int, int, int]: Returns a tuple, like (22, 2, 147).
+    """
+    numbers = release.split(".")
+    return tuple(int(i) for i in numbers)
