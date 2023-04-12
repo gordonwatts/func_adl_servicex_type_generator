@@ -112,3 +112,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Since we keep changing the compiler path.
+.vscode/c_cpp_properties.json
