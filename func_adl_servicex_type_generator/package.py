@@ -71,6 +71,10 @@ def template_package_scaffolding(
     # Generate import statements for the collection classes
     template_data = dict(data)
 
+    # Fix up the sx_dataset
+    if not isinstance(template_data["sx_dataset_name"], list):
+        template_data["sx_dataset_name"] = [(template_data["sx_dataset_name"], "")]
+
     # Generate the package
     for t in loader.list_templates():
         template = env.get_template(t)

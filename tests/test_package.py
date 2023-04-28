@@ -607,6 +607,55 @@ def test_template_poetry_integration(tmp_path, template_path):
     assert r == 0
 
 
+def test_template_single_sx_dataset(tmp_path, template_path):
+    data = {
+        "package_name": "func_adl_servicex_xaodr21",
+        "package_version": "1.0.22.2.187",
+        "package_info_description": "xAOD R21 22.2.187",
+        "sx_dataset_name": "SXDSAtlasxAODR21",
+        "backend_default_name": "xaod_r21",
+        "collections": [],
+        "metadata": {},
+    }
+    assert template_path.exists()
+    output_path = tmp_path / "my_package"
+
+    template_package_scaffolding(data, template_path, output_path, [])
+
+    sx_dataset = output_path / "func_adl_servicex_xaodr21" / "sx_dataset.py"
+    assert sx_dataset.exists()
+
+    # Make sure it has only one dataset in it.
+    text = sx_dataset.read_text()
+    assert "class SXDSAtlasxAODR21(" in text
+
+
+def test_template_single_sx_flavors(tmp_path, template_path):
+    data = {
+        "package_name": "func_adl_servicex_xaodr21",
+        "package_version": "1.0.22.2.187",
+        "package_info_description": "xAOD R21 22.2.187",
+        "sx_dataset_name": [("SXDSAtlasxAODR21", ""), ("SXDSAtlasxAODR21PHYS", "PHYS")],
+        "backend_default_name": "xaod_r21",
+        "collections": [],
+        "metadata": {},
+    }
+    assert template_path.exists()
+    output_path = tmp_path / "my_package"
+
+    template_package_scaffolding(data, template_path, output_path, [])
+
+    sx_dataset = output_path / "func_adl_servicex_xaodr21" / "sx_dataset.py"
+    assert sx_dataset.exists()
+
+    # Make sure it has only one dataset in it.
+    text = sx_dataset.read_text()
+    assert "class SXDSAtlasxAODR21(" in text
+    assert "class SXDSAtlasxAODR21PHYS(" in text
+    assert 'default_config("PHYS")' in text
+    assert 'default_config("")' not in text
+
+
 def test_class_simple(tmp_path, template_path):
     """Write out a very simple top level class.
 
