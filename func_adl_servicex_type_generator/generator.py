@@ -44,11 +44,18 @@ def run():
         assert new_c is not None
         c.collection_type = new_c
 
+    # Build up all the dataset types we are going to support
+    dataset_object_basename = f"SXDSAtlasxAODR{release_tuple[0]}"
+    dataset_types = [(dataset_object_basename, "")] + [
+        (dataset_object_basename + ds_type, ds_type)
+        for ds_type in data.config["dataset_types"]
+    ]
+
     template_data = {
         "package_name": package_name,
         "package_version": f"1.1.5.{release_name}",
         "package_info_description": f"xAOD R{release_tuple[0]} {data.config['atlas_release']}",
-        "sx_dataset_name": f"SXDSAtlasxAODR{release_tuple[0]}",
+        "sx_dataset_name": dataset_types,
         "backend_default_name": f"xaod_r{release_tuple[0]}",
         "collections": data.collections,
         "metadata": data.metadata,
