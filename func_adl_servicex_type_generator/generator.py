@@ -11,8 +11,6 @@ from func_adl_servicex_type_generator.package import (
 
 
 def run():
-    package_name = "func_adl_servicex_xaodr21"
-
     parser = argparse.ArgumentParser(description="Generate python package")
     parser.add_argument(
         "yaml_type_file",
@@ -23,11 +21,22 @@ def run():
         "--output_directory",
         type=Path,
         help="The output directory for the generated python package",
-        default=Path(f"../{package_name}"),
+        default=None,
     )
     args = parser.parse_args()
 
+    # Load in the base data
     data = load_yaml(args.yaml_type_file)
+
+    # Try to get a package name
+    release_series = data.config["atlas_release"].split(".")[0]
+    package_name = f"func_adl_servicex_xaodr{release_series}"
+
+    output_directory = (
+        args.output_directory
+        if args.output_directory is not None
+        else Path(f"../{package_name}")
+    )
 
     # Fix up the collection types
     all_class_names = {c.name for c in data.classes}
@@ -41,16 +50,16 @@ def run():
     template_data = {
         "package_name": package_name,
         "package_version": f"1.1.4.{data.config['atlas_release']}",
-        "package_info_description": f"xAOD R21 {data.config['atlas_release']}",
-        "sx_dataset_name": "SXDSAtlasxAODR21",
-        "backend_default_name": "xaod_r21",
+        "package_info_description": f"xAOD R{release_series} {data.config['atlas_release']}",
+        "sx_dataset_name": f"SXDSAtlasxAODR{release_series}",
+        "backend_default_name": f"atlasr{release_series}",
         "collections": data.collections,
         "metadata": data.metadata,
     }
 
     template_path = Path(__file__).parent / ".." / "template"
     assert template_path.exists()
-    output_path = args.output_directory
+    output_path = output_directory
 
     template_package_scaffolding(template_data, template_path, output_path, data.files)
 
@@ -61,6 +70,7 @@ def run():
         template_path,
         output_path / template_data["package_name"],
         package_name,
+        release_series,
         base_init_lines=base_init_lines,
         config_vars=data.config,
     )

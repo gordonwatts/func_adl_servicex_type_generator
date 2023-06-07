@@ -1,3 +1,4 @@
+import logging
 import shutil
 from dataclasses import dataclass
 from pathlib import Path
@@ -79,6 +80,7 @@ def template_package_scaffolding(
         template = env.get_template(t)
         output_file = output_path / t
         output_file.parent.mkdir(parents=True, exist_ok=True)
+        logging.info(f"Rendering {output_file}")
         with output_file.open("wt") as out:
             for line in template.render(template_data).splitlines():
                 out.write(line)
@@ -267,6 +269,7 @@ def write_out_classes(
     template_path: Path,
     project_src_path: Path,
     package_name: str,
+    release_series: str,
     base_init_lines: List[str] = [],
     config_vars: Dict[str, str] = {},
 ):
@@ -421,7 +424,7 @@ def write_out_classes(
                     module_stub=m_stub,
                     sub_namespaces=sub_ns,
                     package_name=package_name,
-                    sx_dataset_name="SXDSAtlasxAODR21",
+                    sx_dataset_name=f"SXDSAtlasxAODR{release_series}",
                     base_init_lines=base_init_lines,
                     base_variables=[config_info(k, v) for k, v in config_vars.items()],
                 )
