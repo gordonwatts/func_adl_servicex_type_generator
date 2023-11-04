@@ -1,11 +1,12 @@
+import argparse
 import itertools
 from pathlib import Path
-import argparse
+from typing import Optional
+
 from func_adl_servicex_type_generator.class_utils import (
     package_qualified_class,
     split_release,
 )
-
 from func_adl_servicex_type_generator.loader import load_yaml
 from func_adl_servicex_type_generator.package import (
     template_package_scaffolding,
@@ -28,12 +29,26 @@ def run():
     )
     args = parser.parse_args()
 
-    data = load_yaml(args.yaml_type_file)
+    generate_package(args.yaml_type_file, args.output_directory)
+    return 0
+
+
+def generate_package(yaml_type_file: Path, output_directory: Optional[Path]):
+    # Load in the base data
+    data = load_yaml(yaml_type_file)
 
     # Extract release info
     release_name = data.config["atlas_release"]
     release_tuple = split_release(release_name)
     package_name = f"func_adl_servicex_xaodr{release_tuple[0]}"
+
+    # Try to get a package name
+    release_series = release_tuple[0]
+    package_name = f"func_adl_servicex_xaodr{release_series}"
+
+    output_directory = (
+        output_directory if output_directory is not None else Path(f"../{package_name}")
+    )
 
     # Fix up the collection types
     all_class_names = {c.name for c in data.classes}
@@ -54,16 +69,16 @@ def run():
     template_data = {
         "package_name": package_name,
         "package_version": f"1.1.5.{release_name}",
-        "package_info_description": f"xAOD R{release_tuple[0]} {data.config['atlas_release']}",
+        "package_info_description": f"xAOD R{release_tuple[0]} {data.config['atlas_release']}",  # noqa
         "sx_dataset_name": dataset_types,
-        "backend_default_name": f"xaod_r{release_tuple[0]}",
+        "backend_default_name": f"atlasr{release_tuple[0]}",
         "collections": data.collections,
         "metadata": data.metadata,
     }
 
     template_path = Path(__file__).parent / ".." / "template"
     assert template_path.exists()
-    output_path = args.output_directory
+    output_path = output_directory
 
     template_package_scaffolding(template_data, template_path, output_path, data.files)
 
