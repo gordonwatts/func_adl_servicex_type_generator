@@ -33,5 +33,9 @@
         ".vscode/*.py",
         "template"
     ],
-    "cmake.configureOnOpen": false
+    "cmake.configureOnOpen": false,
+    "flake8.args": [
+        "--max-line-length",
+        "99"
+    ]
 }

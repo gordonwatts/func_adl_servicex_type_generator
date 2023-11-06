@@ -22,6 +22,11 @@ def run():
         help="The yaml file that contains the type info",
     )
     parser.add_argument(
+        "--version",
+        type=str,
+        help="The version of the package to generate (1.1.0b2 or 1.1.0, etc.)",
+    )
+    parser.add_argument(
         "--output_directory",
         type=Path,
         help="The output directory for the generated python package",
@@ -29,11 +34,13 @@ def run():
     )
     args = parser.parse_args()
 
-    generate_package(args.yaml_type_file, args.output_directory)
+    generate_package(args.yaml_type_file, args.version, args.output_directory)
     return 0
 
 
-def generate_package(yaml_type_file: Path, output_directory: Optional[Path]):
+def generate_package(
+    yaml_type_file: Path, version: str, output_directory: Optional[Path]
+):
     # Load in the base data
     data = load_yaml(yaml_type_file)
 
@@ -41,6 +48,21 @@ def generate_package(yaml_type_file: Path, output_directory: Optional[Path]):
     release_name = data.config["atlas_release"]
     release_tuple = split_release(release_name)
     package_name = f"func_adl_servicex_xaodr{release_tuple[0]}"
+
+    # Extract the version info. Look for any non alphabet characters and split
+    # the version string by that.
+    assert version is not None
+    if version[0] == "v":
+        version = version[1:]
+    if "b" in version:
+        version_base, pre_version = version.split("b")
+        pre_version = "b" + pre_version
+    elif "a" in version:
+        version_base, pre_version = version.split("a")
+        pre_version = "a" + pre_version
+    else:
+        version_base = version
+        pre_version = ""
 
     # Try to get a package name
     release_series = release_tuple[0]
@@ -68,7 +90,7 @@ def generate_package(yaml_type_file: Path, output_directory: Optional[Path]):
 
     template_data = {
         "package_name": package_name,
-        "package_version": f"1.1.5.{release_name}",
+        "package_version": f"{version_base}.{release_name}{pre_version}",
         "package_info_description": f"xAOD R{release_tuple[0]} {data.config['atlas_release']}",  # noqa
         "sx_dataset_name": dataset_types,
         "backend_default_name": f"atlasr{release_tuple[0]}",
