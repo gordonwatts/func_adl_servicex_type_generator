@@ -126,6 +126,28 @@ class method_info:
 
 
 @dataclass
+class enum_value_info:
+    """Holds the data for an enum value"""
+
+    # The name of the enum value
+    name: str
+
+    # The value of the enum
+    value: int
+
+
+@dataclass
+class enum_info:
+    """Holds the data for an enum we are emitting"""
+
+    # The fully qualified name of the enum (python)
+    name: str
+
+    # Values
+    values: List[enum_value_info]
+
+
+@dataclass
 class class_info:
     """Holds the data for a particular class we are emitting"""
 
@@ -152,6 +174,9 @@ class class_info:
 
     # Other classes we emulate
     behaviors: List[str] = field(default_factory=list)
+
+    # The list of enums we have
+    enums: List[enum_info] = field(default_factory=list)
 
 
 @dataclass

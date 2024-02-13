@@ -82,3 +82,20 @@ def test_load_container_types():
 
     assert container.cpp_container_type == "xAOD::JetConstituent*"
     assert container.python_container_type == "xAOD.JetConstituent"
+
+
+def test_load_with_enums():
+    data = load_yaml(Path("./tests/xaod_r21_small.yaml"))
+    classes_dict = {c.name: c for c in data.classes}
+
+    assert "xAOD.CaloCluster_v1" in classes_dict
+
+    calo_cluster = classes_dict["xAOD.CaloCluster_v1"]
+
+    assert len(calo_cluster.enums) == 3
+
+    enum = calo_cluster.enums[0]
+    assert enum.name == "ClusterSize"
+    assert len(enum.values) == 18
+    assert "Topo_633" in [v.name for v in enum.values]
+    assert 12 == [v.value for v in enum.values if v.name == "Topo_633"][0]

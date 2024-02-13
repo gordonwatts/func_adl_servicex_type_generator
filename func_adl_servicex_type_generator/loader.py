@@ -8,6 +8,8 @@ from func_adl_servicex_type_generator.class_utils import class_split_namespace
 from func_adl_servicex_type_generator.data_model import (
     class_info,
     collection_info,
+    enum_info,
+    enum_value_info,
     extra_parameter,
     file_info,
     metadata_info,
@@ -33,21 +35,26 @@ def method_loader(methods: List[dict]) -> List[method_info]:
             method_info(
                 name=d["name"],
                 return_type=d["return_type"],
-                arguments=[
-                    method_arg_info(a["name"], None, a["type"]) for a in d["arguments"]
-                ]
-                if "arguments" in d
-                else [],
-                param_arguments=[
-                    method_arg_info(a["name"], None, a["type"])
-                    for a in d["parameter_arguments"]
-                ]
-                if "parameter_arguments" in d
-                else [],
+                arguments=(
+                    [
+                        method_arg_info(a["name"], None, a["type"])
+                        for a in d["arguments"]
+                    ]
+                    if "arguments" in d
+                    else []
+                ),
+                param_arguments=(
+                    [
+                        method_arg_info(a["name"], None, a["type"])
+                        for a in d["parameter_arguments"]
+                    ]
+                    if "parameter_arguments" in d
+                    else []
+                ),
                 param_helper=d["param_helper"] if "param_helper" in d else None,
-                param_type_cb=d["param_type_callback"]
-                if "param_type_callback" in d
-                else None,
+                param_type_cb=(
+                    d["param_type_callback"] if "param_type_callback" in d else None
+                ),
             )
         )
 
@@ -63,6 +70,19 @@ def load_parameters(params: List[Dict[str, Any]]) -> List[normal_parameter]:
             default_value=p["default_value"] if "default_value" in p else None,
         )
         for p in params
+    ]
+
+
+def enum_loader(enums: List[Dict[str, Any]]) -> List[enum_info]:
+    "Load extra parameters from the file yaml"
+    return [
+        enum_info(
+            name=e["name"],
+            values=[
+                enum_value_info(name=v["name"], value=v["value"]) for v in e["values"]
+            ],
+        )
+        for e in enums
     ]
 
 
@@ -132,16 +152,20 @@ def load_yaml(
             collection_item_type_name=class_split_namespace(c["python_item_type"])[1],
             cpp_item_type=c["cpp_item_type"],
             cpp_collection_type=c["cpp_container_type"],
-            cpp_include_file=[c["include_file"]]
-            if ("include_file" in c) and (len(c["include_file"]) > 0)
-            else [],
+            cpp_include_file=(
+                [c["include_file"]]
+                if ("include_file" in c) and (len(c["include_file"]) > 0)
+                else []
+            ),
             link_libraries=c["link_libraries"],
-            parameters=[]
-            if "parameters" not in c
-            else load_parameters(c["parameters"]),
-            extra_parameters=[]
-            if "extra_parameters" not in c
-            else load_parameters_extra(c["extra_parameters"]),
+            parameters=(
+                [] if "parameters" not in c else load_parameters(c["parameters"])
+            ),
+            extra_parameters=(
+                []
+                if "extra_parameters" not in c
+                else load_parameters_extra(c["extra_parameters"])
+            ),
             method_callback=c["method_callback"] if "method_callback" in c else "",
         )
         for c in data_collections
@@ -152,15 +176,18 @@ def load_yaml(
             name=c["python_name"],
             cpp_name=c["cpp_name"],
             methods=method_loader(c["methods"]),
-            python_container_type=None
-            if "is_container_of_python" not in c
-            else c["is_container_of_python"],
-            cpp_container_type=None
-            if "is_container_of_cpp" not in c
-            else c["is_container_of_cpp"],
+            python_container_type=(
+                None
+                if "is_container_of_python" not in c
+                else c["is_container_of_python"]
+            ),
+            cpp_container_type=(
+                None if "is_container_of_cpp" not in c else c["is_container_of_cpp"]
+            ),
             include_file=c["include_file"] if "include_file" in c else "",
             is_alias=("is_alias" in c) and (c["is_alias"] == "True"),
             behaviors=c["also_behaves_like"] if "also_behaves_like" in c else [],
+            enums=enum_loader(c["enums"]) if "enums" in c else [],
         )
         for c in data_classes
     ]
