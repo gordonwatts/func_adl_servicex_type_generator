@@ -27,12 +27,6 @@
     "cSpell.enableFiletypes": [
         "!yaml"
     ],
-    "python.linting.flake8Enabled": true,
-    "python.linting.ignorePatterns": [
-        "**/site-packages/**/*.py",
-        ".vscode/*.py",
-        "template"
-    ],
     "cmake.configureOnOpen": false,
     "flake8.args": [
         "--max-line-length",
