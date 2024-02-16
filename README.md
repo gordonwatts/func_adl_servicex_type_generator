@@ -16,10 +16,28 @@ Produce a analysis-focused python package that:
 After `pip install`ing this package, the following command will write out a package in the parent directory:
 
 ```bash
-sx_type_gen <path-to-type-yaml-file> [--output_directory <dir-for-output>]
+sx_type_gen <path-to-type-yaml-file> --version 1.1.0b2 [--output_directory <dir-for-output>]
 ```
 
-Note that output package name and version are set in the `generator.py` file.
+Note that output package name is configured to be `func_adl_servicex_xaodrRXX` where XX comes
+from the input `yaml` file.
+
+Full set of options:
+
+```text
+usage: sx_type_gen [-h] [--version VERSION] [--output_directory OUTPUT_DIRECTORY] yaml_type_file
+
+Generate python package
+
+positional arguments:
+  yaml_type_file        The yaml file that contains the type info
+
+options:
+  -h, --help            show this help message and exit
+  --version VERSION     The version of the package to generate (1.1.0b2 or 1.1.0, etc.)
+  --output_directory OUTPUT_DIRECTORY
+                        The output directory for the generated python package
+```
 
 ## Building a new type package for a new AnalysisBase Release
 
@@ -31,7 +49,7 @@ You'll need to setup:
 Then follow these steps:
 
 1. Build the type file for a given atlas release: `func-adl-types-atlas\scripts\build_xaod_edm.ps1 21.2.184 184.yaml`
-1. Build the package `sx_type_gen 184.yaml --output_directory <dir>`.
+1. Build the package `sx_type_gen 184.yaml --version 1.X.XaX --output_directory <dir>`.
 1. Publish the package. Use a shell that has `poetry` installed
    * `poetry build`
    * `poetry publish`
@@ -53,7 +71,7 @@ Then the user:
 
 ## Status
 
-This is currently a package that is planned. The development path is as follows:
+This package is now in production. Below is a good list of features that were built, but should be removed eventually:
 
 * [x] Produce very simple ATLAS `xAOD` typed objects to access collections like `Jets`, etc, in a R21 xAOD (C++ backend). This should include a locally installable package (`pip install -e`).
 * [x] In a second package start developing a Jupyter notebook/book showing off the features for accessing the above collections
@@ -85,18 +103,7 @@ This is currently a package that is planned. The development path is as follows:
 * [x] Add support for `Jet::getAttribute`, which is a C++ code-behind function, but likely it is a method
 * [x] Add support for decorator access
 * [x] Fix up calibration model
-* [ ] Clean up all marked TODO's in the code base - either issues or delete them.
-* [ ] Make sure black, pytest are run for check in
-* [ ] First release of package (documentation on how to run and build, pushing type info to pypi, making it easy to use, etc.)
-
-Deferred to later (they are now in github issues in the `xaod_usage` project):
-
-* Photons (head of 21.1 can't run on DAOD_PHYS at the moment)
-* DiTau Jets (head of 21.1 can't run on DAOD_PHYS at the moment)
-* Rebuilding MissingET is put off till later because it is complex and I do not understand it!
-* BTagging is C++ code that will be written inline, likely, so added as a todo for later.
-* Trigger matching isn't working in 21.2
-* Overlap removal hasn't been tackled yet
+* [x] Enum's
 
 ## Development
 

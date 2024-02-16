@@ -1102,42 +1102,6 @@ def test_simple_method_return_type_cleaning(tmp_path, template_path):
     assert "'return_type': 'vector<DataVector<xAOD::Jet_v1>>'" in all_text
 
 
-# def test_simple_method_rtn_collection(tmp_path, template_path):
-#     """Write out a very simple top level class with a method.
-
-#     Args:
-#         tmp_path ([type]): [description]
-#     """
-#     classes = [
-#         class_info(
-#             "xAOD.Jets",
-#             "xAOD::Jets",
-#             [
-#                 method_info(
-#                     name="others",
-#                     return_type="VectorOfFloats",
-#                     return_is_pointer=False,
-#                     arguments=[],
-#                 )
-#             ],
-#             None,
-#             None,
-#             "jet.hpp",
-#         ),
-#         class_info(
-#             "VectorOfFloats", "VectorOfFloatsCPP", [], "double", "float", "vector.hpp"
-#         ),
-#     ]
-
-#     write_out_classes(classes, template_path, tmp_path, "package")
-
-#     jets_text = (tmp_path / "xAOD" / "jets.py").read_text()
-#     assert "others(self) -> package.VectorOfFloats:" in jets_text
-#     assert "'return_type_element': 'double'" in jets_text
-#     assert "'return_type_collection': 'VectorOfFloatsCPP'" in jets_text
-# TODO: Fix or remove
-
-
 def test_simple_method_with_args(tmp_path, template_path):
     """Write out a very simple top level class with a method.
 
@@ -1197,53 +1161,6 @@ def test_method_with_param_args(tmp_path, template_path):
 
     assert "@property" in all_text
     assert "def pt(self) -> package.fetcher[float]:" in all_text
-
-
-# def test_method_reference_rtn_type(tmp_path, template_path):
-#     """Write out a very simple top level class with a method.
-
-#     Args:
-#         tmp_path ([type]): [description]
-#     """
-#     classes = [
-#         class_info(
-#             "xAOD.Jets",
-#             "xAOD::Jets",
-#             [
-#                 method_info(
-#                     name="pt",
-#                     return_type="float",
-#                     return_is_pointer=False,
-#                     arguments=[],
-#                 )
-#             ],
-#             None,
-#             None,
-#             "jet.hpp",
-#         ),
-#         class_info(
-#             "xAOD.Taus",
-#             "xAOD::Taus",
-#             [
-#                 method_info(
-#                     name="pt",
-#                     return_type="xAOD.Jets",
-#                     return_is_pointer=False,
-#                     arguments=[],
-#                 )
-#             ],
-#             None,
-#             None,
-#             "tau.hpp",
-#         ),
-#     ]
-
-#     write_out_classes(classes, template_path, tmp_path, "package")
-
-#     tau_text = (tmp_path / "xAOD" / "taus.py").read_text()
-#     assert "import package" in tau_text
-#     assert "pt(self) -> package.xAOD.Jets:" in tau_text
-# TODO: Fix or remove
 
 
 def test_py_type_from_cpp_class_name():
