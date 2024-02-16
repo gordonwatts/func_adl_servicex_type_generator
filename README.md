@@ -104,7 +104,6 @@ This package is now in production. Below is a good list of features that were bu
 * [x] Add support for decorator access
 * [x] Fix up calibration model
 * [x] Enum's
-* [ ] Clean up all marked TODO's in the code base - either issues or delete them.
 
 ## Development
 
