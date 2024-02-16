@@ -17,7 +17,7 @@ def class_split_namespace(name: str) -> Tuple[str, str]:
     if last_dot == -1:
         return "", name
 
-    return name[:last_dot], name[last_dot + 1 :]
+    return name[:last_dot], name[last_dot + 1 :]  # noqa: E203
 
 
 def process_by_namespace(name: str, transform: Callable[[str], str]) -> str:
@@ -139,3 +139,16 @@ def package_qualified_class(
         return None
 
     return process_by_namespace(class_name, _remove_namespace)
+
+
+def split_release(release: str) -> Tuple[int, int, int]:
+    """Returns a string release split into integer numbers
+
+    Args:
+        release (str): The release name, like 22.2.147
+
+    Returns:
+        Tuple[int, int, int]: Returns a tuple, like (22, 2, 147).
+    """
+    numbers = release.split(".")
+    return (int(numbers[0]), int(numbers[1]), int(numbers[2]))

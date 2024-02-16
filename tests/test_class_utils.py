@@ -5,6 +5,7 @@ from func_adl_servicex_type_generator.class_utils import (
     package_qualified_class,
     process_by_namespace,
     remove_namespaces,
+    split_release,
 )
 
 
@@ -111,3 +112,7 @@ def test_pbn_simple():
 
 def test_pbn_ns():
     assert process_by_namespace("b[a]", lambda a: "hi") == "hi[hi]"
+
+
+def test_split_release():
+    assert split_release("22.2.147") == (22, 2, 147)

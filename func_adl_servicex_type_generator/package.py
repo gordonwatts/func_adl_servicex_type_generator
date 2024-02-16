@@ -19,9 +19,6 @@ from func_adl_servicex_type_generator.data_model import (
 from .class_utils import package_qualified_class
 
 
-# from jinja2 import contextfilter, Markup
-
-
 @jinja2.pass_context  # type: ignore
 def subrender_filter(context, value):
     if value is None:
@@ -74,6 +71,10 @@ def template_package_scaffolding(
 
     # Generate import statements for the collection classes
     template_data = dict(data)
+
+    # Fix up the sx_dataset
+    if not isinstance(template_data["sx_dataset_name"], list):
+        template_data["sx_dataset_name"] = [(template_data["sx_dataset_name"], "")]
 
     # Generate the package
     for t in loader.list_templates():
@@ -283,6 +284,7 @@ def write_out_classes(
         project_src_path (Path): The root of the package source directory
             (top level __init__.py file location)
         project_name (str): Name of package for use in import statements
+        release_series (str): Which release is this (22, or 21, etc.)
     """
     # Load up the template structure and environment
     loader = jinja2.FileSystemLoader(str(template_path / "files"))
