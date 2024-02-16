@@ -1,5 +1,31 @@
 {
+  "editor.formatOnSave": true,
+  "python.analysis.diagnosticMode": "workspace",
+  "python.analysis.typeCheckingMode": "basic",
+  "cSpell.enableFiletypes": ["!yaml"],
+  "cmake.configureOnOpen": false,
+  "flake8.args": ["--max-line-length", "99"]
+}
+=======
     "cSpell.words": [
+    "AODR",
+    "Atlasx",
+    "btagging",
+    "Calib",
+    "calo",
+    "DAOD",
+    "FADL",
+    "NOSYS",
+    "prereleases",
+    "pypi",
+    "pyright",
+    "pytest",
+    "servicex",
+    "subrender",
+    "SXDS",
+    "Topo",
+    "xaod",
+    "xaodr",
         "AODR",
         "Atlasx",
         "btagging",

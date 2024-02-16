@@ -262,6 +262,18 @@ def py_type_from_cpp(
     if len(cpp_class_name) == 1:
         return cpp_class_name
 
+    # Last resort, it is an enum. We need to strip the last name off, see if we can do the lookup.
+    # If so, check for the enum in the class.
+    last_space = cpp_class_name.rfind("::")
+    if last_space >= 0:
+        enum_name = cpp_class_name[last_space + 2 :]
+        enum_ns = cpp_class_name[:last_space]
+        py_type = cpp_class_dict.get(enum_ns, None)
+        if py_type is not None:
+            for e in py_type.enums:
+                if e.name == enum_name:
+                    return f"{py_type.name}.{e.name}"
+
     raise RuntimeError(f"Unknown C++ type {cpp_class_name}")
 
 
@@ -400,6 +412,7 @@ def write_out_classes(
             inheritance_list=inheritance_list,
             methods_info=methods,
             package_name=package_name,
+            enums_info=c.enums,
         )
 
         with class_file.open("wt") as out:

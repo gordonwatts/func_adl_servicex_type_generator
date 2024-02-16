@@ -1,0 +1,5513 @@
+collections:
+  - collection_name: Jets
+    cpp_item_type: xAOD::Jet_v1
+    python_item_type: xAOD.Jet_v1
+    cpp_container_type: DataVector<xAOD::Jet_v1>
+    python_container_type: Iterable[xAOD.Jet_v1]
+    include_file: xAODJet/JetContainer.h
+    link_libraries:
+      - xAODJet
+    method_callback: "lambda s, a: {{package_name}}.calibration_support.fixup_collection_call(s, a, 'jet_collection')"
+    parameters:
+      - name: collection
+        type: Optional[str]
+        default_value: None
+      - name: calibrate
+        type: Optional[bool]
+        default_value: True
+  - collection_name: Egammas
+    cpp_item_type: xAOD::Egamma_v1
+    python_item_type: xAOD.Egamma_v1
+    cpp_container_type: DataVector<xAOD::Egamma_v1>
+    python_container_type: Iterable[xAOD.Egamma_v1]
+    include_file: xAODEgamma/EgammaContainer.h
+    link_libraries:
+      - xAODEgamma
+    parameters:
+      - name: name
+        type: str
+  - collection_name: Electrons
+    cpp_item_type: xAOD::Electron_v1
+    python_item_type: xAOD.Electron_v1
+    cpp_container_type: DataVector<xAOD::Electron_v1>
+    python_container_type: Iterable[xAOD.Electron_v1]
+    include_file: xAODEgamma/ElectronContainer.h
+    link_libraries:
+      - xAODEgamma
+    method_callback: "lambda s, a: {{package_name}}.calibration_support.fixup_collection_call(s, a, 'electron_collection')"
+    parameters:
+      - name: collection
+        type: Optional[str]
+        default_value: None
+      - name: calibrate
+        type: Optional[bool]
+        default_value: True
+  - collection_name: Photons
+    cpp_item_type: xAOD::Photon_v1
+    python_item_type: xAOD.Photon_v1
+    cpp_container_type: DataVector<xAOD::Photon_v1>
+    python_container_type: Iterable[xAOD.Photon_v1]
+    include_file: xAODEgamma/PhotonContainer.h
+    link_libraries:
+      - xAODEgamma
+    method_callback: "lambda s, a: {{package_name}}.calibration_support.fixup_collection_call(s, a, 'photon_collection')"
+    parameters:
+      - name: collection
+        type: Optional[str]
+        default_value: None
+      - name: calibrate
+        type: Optional[bool]
+        default_value: True
+  - collection_name: EventInfos
+    cpp_item_type: xAOD::EventInfo_v1
+    python_item_type: xAOD.EventInfo_v1
+    cpp_container_type: DataVector<xAOD::EventInfo_v1>
+    python_container_type: Iterable[xAOD.EventInfo_v1]
+    include_file: xAODEventInfo/EventInfoContainer.h
+    link_libraries:
+      - xAODEventInfo
+    parameters:
+      - name: name
+        type: str
+  - collection_name: Vertices
+    cpp_item_type: xAOD::Vertex_v1
+    python_item_type: xAOD.Vertex_v1
+    cpp_container_type: DataVector<xAOD::Vertex_v1>
+    python_container_type: Iterable[xAOD.Vertex_v1]
+    include_file: xAODTracking/VertexContainer.h
+    link_libraries:
+      - xAODTracking
+    parameters:
+      - name: name
+        type: str
+  - collection_name: TrackParticles
+    cpp_item_type: xAOD::TrackParticle_v1
+    python_item_type: xAOD.TrackParticle_v1
+    cpp_container_type: DataVector<xAOD::TrackParticle_v1>
+    python_container_type: Iterable[xAOD.TrackParticle_v1]
+    include_file: xAODTracking/TrackParticleContainer.h
+    link_libraries:
+      - xAODTracking
+    parameters:
+      - name: name
+        type: str
+  - collection_name: NeutralParticles
+    cpp_item_type: xAOD::NeutralParticle_v1
+    python_item_type: xAOD.NeutralParticle_v1
+    cpp_container_type: DataVector<xAOD::NeutralParticle_v1>
+    python_container_type: Iterable[xAOD.NeutralParticle_v1]
+    include_file: xAODTracking/NeutralParticleContainer.h
+    link_libraries:
+      - xAODTracking
+    parameters:
+      - name: name
+        type: str
+  - collection_name: IParticles
+    cpp_item_type: xAOD::IParticle
+    python_item_type: xAOD.IParticle
+    cpp_container_type: DataVector<xAOD::IParticle>
+    python_container_type: Iterable[xAOD.IParticle]
+    include_file: xAODBase/IParticleContainer.h
+    link_libraries:
+      - xAODBase
+    parameters:
+      - name: name
+        type: str
+  - collection_name: Muons
+    cpp_item_type: xAOD::Muon_v1
+    python_item_type: xAOD.Muon_v1
+    cpp_container_type: DataVector<xAOD::Muon_v1>
+    python_container_type: Iterable[xAOD.Muon_v1]
+    include_file: xAODMuon/MuonContainer.h
+    link_libraries:
+      - xAODMuon
+    method_callback: "lambda s, a: {{package_name}}.calibration_support.fixup_collection_call(s, a, 'muon_collection')"
+    parameters:
+      - name: collection
+        type: Optional[str]
+        default_value: None
+      - name: calibrate
+        type: Optional[bool]
+        default_value: True
+  - collection_name: SlowMuons
+    cpp_item_type: xAOD::SlowMuon_v1
+    python_item_type: xAOD.SlowMuon_v1
+    cpp_container_type: DataVector<xAOD::SlowMuon_v1>
+    python_container_type: Iterable[xAOD.SlowMuon_v1]
+    include_file: xAODMuon/SlowMuonContainer.h
+    link_libraries:
+      - xAODMuon
+    parameters:
+      - name: name
+        type: str
+  - collection_name: MuonSegments
+    cpp_item_type: xAOD::MuonSegment_v1
+    python_item_type: xAOD.MuonSegment_v1
+    cpp_container_type: DataVector<xAOD::MuonSegment_v1>
+    python_container_type: Iterable[xAOD.MuonSegment_v1]
+    include_file: xAODMuon/MuonSegmentContainer.h
+    link_libraries:
+      - xAODMuon
+    parameters:
+      - name: name
+        type: str
+  - collection_name: MissingET
+    cpp_item_type: xAOD::MissingET_v1
+    python_item_type: xAOD.MissingET_v1
+    cpp_container_type: xAOD::MissingETContainer_v1
+    python_container_type: Iterable[xAOD.MissingET_v1]
+    include_file: xAODMissingET/MissingETContainer.h
+    link_libraries:
+      - xAODMissingET
+    method_callback: "lambda s, a: {{package_name}}.calibration_support.fixup_collection_call(s, a, 'met_collection')"
+    parameters:
+      - name: collection
+        type: Optional[str]
+        default_value: None
+      - name: calibrate
+        type: Optional[bool]
+        default_value: True
+  - collection_name: BTagVertices
+    cpp_item_type: xAOD::BTagVertex_v1
+    python_item_type: xAOD.BTagVertex_v1
+    cpp_container_type: DataVector<xAOD::BTagVertex_v1>
+    python_container_type: Iterable[xAOD.BTagVertex_v1]
+    include_file: xAODBTagging/BTagVertexContainer.h
+    link_libraries:
+      - xAODBTagging
+    parameters:
+      - name: name
+        type: str
+  - collection_name: BTaggings
+    cpp_item_type: xAOD::BTagging_v1
+    python_item_type: xAOD.BTagging_v1
+    cpp_container_type: DataVector<xAOD::BTagging_v1>
+    python_container_type: Iterable[xAOD.BTagging_v1]
+    include_file: xAODBTagging/BTaggingContainer.h
+    link_libraries:
+      - xAODBTagging
+    parameters:
+      - name: name
+        type: str
+  - collection_name: DiTauJets
+    cpp_item_type: xAOD::DiTauJet_v1
+    python_item_type: xAOD.DiTauJet_v1
+    cpp_container_type: DataVector<xAOD::DiTauJet_v1>
+    python_container_type: Iterable[xAOD.DiTauJet_v1]
+    include_file: xAODTau/DiTauJetContainer.h
+    link_libraries:
+      - xAODTau
+    extra_parameters:
+      - name: calibration
+        type: str
+        default_value: "'NOSYS'"
+        actions:
+          - value: "'*None*'"
+            metadata_names:
+              []
+            bank_rename: "{bank_name}"
+          - value: "'*Any*'"
+            metadata_names:
+              - sys_error_tool
+              - pileup_tool
+              - ditau_corrections
+              - add_calibration_to_job
+            bank_rename: "{bank_name}_{working_point}_{calibration}"
+      - name: working_point
+        type: str
+        default_value: "'Tight'"
+        actions:
+          []
+  - collection_name: TauJets
+    cpp_item_type: xAOD::TauJet_v3
+    python_item_type: xAOD.TauJet_v3
+    cpp_container_type: DataVector<xAOD::TauJet_v3>
+    python_container_type: Iterable[xAOD.TauJet_v3]
+    include_file: xAODTau/TauJetContainer.h
+    link_libraries:
+      - xAODTau
+    method_callback: "lambda s, a: {{package_name}}.calibration_support.fixup_collection_call(s, a, 'tau_collection')"
+    parameters:
+      - name: collection
+        type: Optional[str]
+        default_value: None
+      - name: calibrate
+        type: Optional[bool]
+        default_value: True
+  - collection_name: TauTracks
+    cpp_item_type: xAOD::TauTrack_v1
+    python_item_type: xAOD.TauTrack_v1
+    cpp_container_type: DataVector<xAOD::TauTrack_v1>
+    python_container_type: Iterable[xAOD.TauTrack_v1]
+    include_file: xAODTau/TauTrackContainer.h
+    link_libraries:
+      - xAODTau
+    parameters:
+      - name: name
+        type: str
+  - collection_name: TrackCaloClusters
+    cpp_item_type: xAOD::TrackCaloCluster_v1
+    python_item_type: xAOD.TrackCaloCluster_v1
+    cpp_container_type: DataVector<xAOD::TrackCaloCluster_v1>
+    python_container_type: Iterable[xAOD.TrackCaloCluster_v1]
+    include_file: xAODPFlow/TrackCaloClusterContainer.h
+    link_libraries:
+      - xAODPFlow
+    parameters:
+      - name: name
+        type: str
+  - collection_name: PFOs
+    cpp_item_type: xAOD::PFO_v1
+    python_item_type: xAOD.PFO_v1
+    cpp_container_type: DataVector<xAOD::PFO_v1>
+    python_container_type: Iterable[xAOD.PFO_v1]
+    include_file: xAODPFlow/PFOContainer.h
+    link_libraries:
+      - xAODPFlow
+    parameters:
+      - name: name
+        type: str
+  - collection_name: TruthVertices
+    cpp_item_type: xAOD::TruthVertex_v1
+    python_item_type: xAOD.TruthVertex_v1
+    cpp_container_type: DataVector<xAOD::TruthVertex_v1>
+    python_container_type: Iterable[xAOD.TruthVertex_v1]
+    include_file: xAODTruth/TruthVertexContainer.h
+    link_libraries:
+      - xAODTruth
+    parameters:
+      - name: name
+        type: str
+  - collection_name: TruthMetaDatas
+    cpp_item_type: xAOD::TruthMetaData_v1
+    python_item_type: xAOD.TruthMetaData_v1
+    cpp_container_type: DataVector<xAOD::TruthMetaData_v1>
+    python_container_type: Iterable[xAOD.TruthMetaData_v1]
+    include_file: xAODTruth/TruthMetaDataContainer.h
+    link_libraries:
+      - xAODTruth
+    parameters:
+      - name: name
+        type: str
+  - collection_name: TruthParticles
+    cpp_item_type: xAOD::TruthParticle_v1
+    python_item_type: xAOD.TruthParticle_v1
+    cpp_container_type: DataVector<xAOD::TruthParticle_v1>
+    python_container_type: Iterable[xAOD.TruthParticle_v1]
+    include_file: xAODTruth/TruthParticleContainer.h
+    link_libraries:
+      - xAODTruth
+    parameters:
+      - name: name
+        type: str
+  - collection_name: TruthEvents
+    cpp_item_type: xAOD::TruthEvent_v1
+    python_item_type: xAOD.TruthEvent_v1
+    cpp_container_type: DataVector<xAOD::TruthEvent_v1>
+    python_container_type: Iterable[xAOD.TruthEvent_v1]
+    include_file: xAODTruth/TruthEventContainer.h
+    link_libraries:
+      - xAODTruth
+    parameters:
+      - name: name
+        type: str
+  - collection_name: CaloClusters
+    cpp_item_type: xAOD::CaloCluster_v1
+    python_item_type: xAOD.CaloCluster_v1
+    cpp_container_type: DataVector<xAOD::CaloCluster_v1>
+    python_container_type: Iterable[xAOD.CaloCluster_v1]
+    include_file: xAODCaloEvent/CaloClusterContainer.h
+    link_libraries:
+      - xAODCaloEvent
+    parameters:
+      - name: name
+        type: str
+  - collection_name: CaloTowers
+    cpp_item_type: xAOD::CaloTower_v1
+    python_item_type: xAOD.CaloTower_v1
+    cpp_container_type: xAOD::CaloTowerContainer_v1
+    python_container_type: Iterable[xAOD.CaloTower_v1]
+    include_file: xAODCaloEvent/CaloTowerContainer.h
+    link_libraries:
+      - xAODCaloEvent
+    parameters:
+      - name: name
+        type: str
+  - collection_name: EventInfo
+    cpp_item_type: xAOD::EventInfo_v1
+    python_item_type: xAOD.EventInfo_v1
+    cpp_container_type: xAOD::EventInfo_v1
+    python_container_type: xAOD.EventInfo_v1
+    include_file: xAODEventInfo/versions/EventInfo_v1.h
+    link_libraries:
+      - xAODEventInfo
+    parameters:
+      - name: name
+        type: str
+classes:
+  - python_name: ElementLink_DataVector_xAOD_BTagging_v1__
+    cpp_name: ElementLink<DataVector<xAOD::BTagging_v1> >
+    also_behaves_like:
+      - xAOD::BTagging_v1**
+    methods:
+      - name: isValid
+        return_type: bool
+  - python_name: ElementLink_DataVector_xAOD_EventInfo_v1__
+    cpp_name: ElementLink<DataVector<xAOD::EventInfo_v1> >
+    also_behaves_like:
+      - xAOD::EventInfo_v1**
+    methods:
+      - name: isValid
+        return_type: bool
+  - python_name: ElementLink_DataVector_xAOD_IParticle__
+    cpp_name: ElementLink<DataVector<xAOD::IParticle> >
+    also_behaves_like:
+      - xAOD::IParticle**
+    methods:
+      - name: isValid
+        return_type: bool
+  - python_name: ElementLink_DataVector_xAOD_NeutralParticle_v1__
+    cpp_name: ElementLink<DataVector<xAOD::NeutralParticle_v1> >
+    also_behaves_like:
+      - xAOD::NeutralParticle_v1**
+    methods:
+      - name: isValid
+        return_type: bool
+  - python_name: ElementLink_DataVector_xAOD_TrackParticle_v1__
+    cpp_name: ElementLink<DataVector<xAOD::TrackParticle_v1> >
+    also_behaves_like:
+      - xAOD::TrackParticle_v1**
+    methods:
+      - name: isValid
+        return_type: bool
+  - python_name: ElementLink_DataVector_xAOD_TruthParticle_v1__
+    cpp_name: ElementLink<DataVector<xAOD::TruthParticle_v1> >
+    also_behaves_like:
+      - xAOD::TruthParticle_v1**
+    methods:
+      - name: isValid
+        return_type: bool
+  - python_name: ElementLink_DataVector_xAOD_TruthVertex_v1__
+    cpp_name: ElementLink<DataVector<xAOD::TruthVertex_v1> >
+    also_behaves_like:
+      - xAOD::TruthVertex_v1**
+    methods:
+      - name: isValid
+        return_type: bool
+  - python_name: ElementLink_DataVector_xAOD_Vertex_v1__
+    cpp_name: ElementLink<DataVector<xAOD::Vertex_v1> >
+    also_behaves_like:
+      - xAOD::Vertex_v1**
+    methods:
+      - name: isValid
+        return_type: bool
+  - python_name: ROOT.Detail.TSchemaRuleSet
+    cpp_name: ROOT::Detail::TSchemaRuleSet
+    enums:
+      - name: EConsistencyCheck
+        values:
+          - name: kNoCheck
+            value: 0
+          - name: kCheckAll
+            value: 1
+          - name: kCheckConflict
+            value: 2
+    methods:
+      - name: GetClassVersion
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: DistancetoPrimitive
+        return_type: int
+        arguments:
+          - name: px
+            type: int
+          - name: py
+            type: int
+  - python_name: ROOT.Detail.TSchemaRuleSet.TMatches
+    cpp_name: ROOT::Detail::TSchemaRuleSet::TMatches
+    is_container_of_cpp: __gnu_cxx::__normal_iterator<const ROOT::TSchemaRule**,vector<const ROOT::TSchemaRule*> >
+    is_container_of_python: __gnu_cxx.__normal_iterator_ROOT_TSchemaRule_vector_ROOT_TSchemaRule__
+    methods:
+      - name: empty
+        return_type: bool
+      - name: data
+        return_type: const ROOT::TSchemaRule*
+  - python_name: ROOT.Fit.BinData
+    cpp_name: ROOT::Fit::BinData
+    enums:
+      - name: ErrorType
+        values:
+          - name: kNoError
+            value: 0
+          - name: kValueError
+            value: 1
+          - name: kCoordError
+            value: 2
+          - name: kAsymError
+            value: 3
+    methods:
+      - name: HaveCoordErrors
+        return_type: bool
+      - name: HaveAsymErrors
+        return_type: bool
+      - name: LogTransform
+        return_type: ROOT::Fit::BinData
+      - name: Value
+        return_type: double
+        arguments:
+          - name: ipoint
+            type: int
+      - name: ValuePtr
+        return_type: const double*
+        arguments:
+          - name: ipoint
+            type: int
+      - name: ErrorPtr
+        return_type: const double*
+        arguments:
+          - name: ipoint
+            type: int
+      - name: Error
+        return_type: double
+        arguments:
+          - name: ipoint
+            type: int
+      - name: InvError
+        return_type: double
+        arguments:
+          - name: ipoint
+            type: int
+      - name: GetPoint
+        return_type: const double*
+        arguments:
+          - name: ipoint
+            type: int
+          - name: value
+            type: float
+      - name: GetCoordErrorComponent
+        return_type: double
+        arguments:
+          - name: ipoint
+            type: int
+          - name: icoord
+            type: int
+      - name: CoordErrors
+        return_type: const double*
+        arguments:
+          - name: ipoint
+            type: int
+      - name: GetPointError
+        return_type: const double*
+        arguments:
+          - name: ipoint
+            type: int
+          - name: errvalue
+            type: float
+      - name: GetBinUpEdgeComponent
+        return_type: double
+        arguments:
+          - name: ipoint
+            type: int
+          - name: icoord
+            type: int
+      - name: BinUpEdge
+        return_type: const double*
+        arguments:
+          - name: ipoint
+            type: int
+      - name: HasBinEdges
+        return_type: bool
+      - name: RefVolume
+        return_type: double
+      - name: GetErrorType
+        return_type: ROOT::Fit::BinData::ErrorType
+      - name: SumOfContent
+        return_type: double
+      - name: SumOfError2
+        return_type: double
+      - name: IsWeighted
+        return_type: bool
+      - name: GetCoordComponent
+        return_type: const double*
+        arguments:
+          - name: ipoint
+            type: int
+          - name: icoord
+            type: int
+      - name: Coords
+        return_type: const double*
+        arguments:
+          - name: ipoint
+            type: int
+      - name: NPoints
+        return_type: unsigned int
+      - name: Size
+        return_type: unsigned int
+      - name: NDim
+        return_type: unsigned int
+      - name: Range
+        return_type: const ROOT::Fit::DataRange
+  - python_name: ROOT.Fit.DataRange
+    cpp_name: ROOT::Fit::DataRange
+    methods:
+      - name: NDim
+        return_type: unsigned int
+      - name: Size
+        return_type: unsigned int
+        arguments:
+          - name: icoord
+            type: int
+      - name: IsSet
+        return_type: bool
+      - name: IsInside
+        return_type: bool
+        arguments:
+          - name: x
+            type: float
+          - name: icoord
+            type: int
+  - python_name: ROOT.Fit.FitConfig
+    cpp_name: ROOT::Fit::FitConfig
+    methods:
+      - name: ParSettings
+        return_type: const ROOT::Fit::ParameterSettings
+        arguments:
+          - name: i
+            type: int
+      - name: ParamsSettings
+        return_type: const vector<ROOT::Fit::ParameterSettings>
+      - name: NPar
+        return_type: unsigned int
+      - name: ParamsValues
+        return_type: vector<double>
+      - name: CreateMinimizer
+        return_type: ROOT::Math::Minimizer*
+      - name: MinimizerOptions
+        return_type: ROOT::Math::MinimizerOptions
+      - name: MinimizerType
+        return_type: const string
+      - name: MinimizerAlgoType
+        return_type: const string
+      - name: MinimizerName
+        return_type: string
+      - name: NormalizeErrors
+        return_type: bool
+      - name: ParabErrors
+        return_type: bool
+      - name: MinosErrors
+        return_type: bool
+      - name: UpdateAfterFit
+        return_type: bool
+      - name: UseWeightCorrection
+        return_type: bool
+  - python_name: ROOT.Fit.FitData
+    cpp_name: ROOT::Fit::FitData
+    methods:
+      - name: GetCoordComponent
+        return_type: const double*
+        arguments:
+          - name: ipoint
+            type: int
+          - name: icoord
+            type: int
+      - name: Coords
+        return_type: const double*
+        arguments:
+          - name: ipoint
+            type: int
+      - name: NPoints
+        return_type: unsigned int
+      - name: Size
+        return_type: unsigned int
+      - name: NDim
+        return_type: unsigned int
+      - name: Range
+        return_type: const ROOT::Fit::DataRange
+  - python_name: ROOT.Fit.FitResult
+    cpp_name: ROOT::Fit::FitResult
+    methods:
+      - name: MinimizerType
+        return_type: const string
+      - name: IsValid
+        return_type: bool
+      - name: IsEmpty
+        return_type: bool
+      - name: MinFcnValue
+        return_type: double
+      - name: NCalls
+        return_type: unsigned int
+      - name: Edm
+        return_type: double
+      - name: NTotalParameters
+        return_type: unsigned int
+      - name: NPar
+        return_type: unsigned int
+      - name: NFreeParameters
+        return_type: unsigned int
+      - name: Status
+        return_type: int
+      - name: CovMatrixStatus
+        return_type: int
+      - name: FittedBinData
+        return_type: const ROOT::Fit::BinData*
+      - name: Chi2
+        return_type: double
+      - name: Ndf
+        return_type: unsigned int
+      - name: Prob
+        return_type: double
+      - name: Errors
+        return_type: const vector<double>
+      - name: GetErrors
+        return_type: const double*
+      - name: Parameters
+        return_type: const vector<double>
+      - name: GetParams
+        return_type: const double*
+      - name: Value
+        return_type: double
+        arguments:
+          - name: i
+            type: int
+      - name: Parameter
+        return_type: double
+        arguments:
+          - name: i
+            type: int
+      - name: Error
+        return_type: double
+        arguments:
+          - name: i
+            type: int
+      - name: ParError
+        return_type: double
+        arguments:
+          - name: i
+            type: int
+      - name: ParName
+        return_type: string
+        arguments:
+          - name: i
+            type: int
+      - name: HasMinosError
+        return_type: bool
+        arguments:
+          - name: i
+            type: int
+      - name: LowerError
+        return_type: double
+        arguments:
+          - name: i
+            type: int
+      - name: UpperError
+        return_type: double
+        arguments:
+          - name: i
+            type: int
+      - name: GlobalCC
+        return_type: double
+        arguments:
+          - name: i
+            type: int
+      - name: CovMatrix
+        return_type: double
+        arguments:
+          - name: i
+            type: int
+          - name: j
+            type: int
+      - name: Correlation
+        return_type: double
+        arguments:
+          - name: i
+            type: int
+          - name: j
+            type: int
+      - name: Scan
+        return_type: bool
+        arguments:
+          - name: ipar
+            type: int
+          - name: npoints
+            type: int
+          - name: pntsx
+            type: float
+          - name: pntsy
+            type: float
+          - name: xmin
+            type: float
+          - name: xmax
+            type: float
+      - name: Contour
+        return_type: bool
+        arguments:
+          - name: ipar
+            type: int
+          - name: jpar
+            type: int
+          - name: npoints
+            type: int
+          - name: pntsx
+            type: float
+          - name: pntsy
+            type: float
+          - name: confLevel
+            type: float
+      - name: Index
+        return_type: int
+        arguments:
+          - name: name
+            type: str
+      - name: NormalizedErrors
+        return_type: bool
+      - name: IsParameterBound
+        return_type: bool
+        arguments:
+          - name: ipar
+            type: int
+      - name: IsParameterFixed
+        return_type: bool
+        arguments:
+          - name: ipar
+            type: int
+      - name: ParameterBounds
+        return_type: bool
+        arguments:
+          - name: ipar
+            type: int
+          - name: lower
+            type: float
+          - name: upper
+            type: float
+      - name: GetParameterName
+        return_type: string
+        arguments:
+          - name: ipar
+            type: int
+  - python_name: ROOT.Fit.ParameterSettings
+    cpp_name: ROOT::Fit::ParameterSettings
+    methods:
+      - name: Value
+        return_type: double
+      - name: StepSize
+        return_type: double
+      - name: LowerLimit
+        return_type: double
+      - name: UpperLimit
+        return_type: double
+      - name: IsFixed
+        return_type: bool
+      - name: HasLowerLimit
+        return_type: bool
+      - name: HasUpperLimit
+        return_type: bool
+      - name: IsBound
+        return_type: bool
+      - name: IsDoubleBound
+        return_type: bool
+      - name: Name
+        return_type: const string
+  - python_name: ROOT.Math.IBaseParam
+    cpp_name: ROOT::Math::IBaseParam
+    methods:
+      - name: Parameters
+        return_type: const double*
+      - name: NPar
+        return_type: unsigned int
+      - name: ParameterName
+        return_type: string
+        arguments:
+          - name: i
+            type: int
+  - python_name: ROOT.Math.IOptions
+    cpp_name: ROOT::Math::IOptions
+    methods:
+      - name: Clone
+        return_type: ROOT::Math::IOptions*
+  - python_name: ROOT.Math.Minimizer
+    cpp_name: ROOT::Math::Minimizer
+    methods:
+      - name: SetVariable
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: name
+            type: str
+          - name: val
+            type: float
+          - name: step
+            type: float
+      - name: SetLowerLimitedVariable
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: name
+            type: str
+          - name: val
+            type: float
+          - name: step
+            type: float
+          - name: lower
+            type: float
+      - name: SetUpperLimitedVariable
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: name
+            type: str
+          - name: val
+            type: float
+          - name: step
+            type: float
+          - name: upper
+            type: float
+      - name: SetLimitedVariable
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: name
+            type: str
+          - name: val
+            type: float
+          - name: step
+            type: float
+          - name: lower
+            type: float
+          - name: upper
+            type: float
+      - name: SetFixedVariable
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: name
+            type: str
+          - name: val
+            type: float
+      - name: SetVariableValue
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: value
+            type: float
+      - name: SetVariableValues
+        return_type: bool
+        arguments:
+          - name: x
+            type: float
+      - name: SetVariableStepSize
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: value
+            type: float
+      - name: SetVariableLowerLimit
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: lower
+            type: float
+      - name: SetVariableUpperLimit
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: upper
+            type: float
+      - name: SetVariableLimits
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: lower
+            type: float
+          - name: upper
+            type: float
+      - name: FixVariable
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+      - name: ReleaseVariable
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+      - name: IsFixedVariable
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+      - name: GetVariableSettings
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: pars
+            type: ROOT.Fit.ParameterSettings
+      - name: SetVariableInitialRange
+        return_type: bool
+        arguments:
+          - name: noname_arg
+            type: int
+          - name: noname_arg_1
+            type: float
+          - name: noname_arg_2
+            type: float
+      - name: Minimize
+        return_type: bool
+      - name: MinValue
+        return_type: double
+      - name: X
+        return_type: const double*
+      - name: Edm
+        return_type: double
+      - name: MinGradient
+        return_type: const double*
+      - name: NCalls
+        return_type: unsigned int
+      - name: NIterations
+        return_type: unsigned int
+      - name: NDim
+        return_type: unsigned int
+      - name: NFree
+        return_type: unsigned int
+      - name: ProvidesError
+        return_type: bool
+      - name: Errors
+        return_type: const double*
+      - name: CovMatrix
+        return_type: double
+        arguments:
+          - name: ivar
+            type: int
+          - name: jvar
+            type: int
+      - name: GetCovMatrix
+        return_type: bool
+        arguments:
+          - name: covMat
+            type: float
+      - name: GetHessianMatrix
+        return_type: bool
+        arguments:
+          - name: hMat
+            type: float
+      - name: CovMatrixStatus
+        return_type: int
+      - name: Correlation
+        return_type: double
+        arguments:
+          - name: i
+            type: int
+          - name: j
+            type: int
+      - name: GlobalCC
+        return_type: double
+        arguments:
+          - name: ivar
+            type: int
+      - name: GetMinosError
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: errLow
+            type: float
+          - name: errUp
+            type: float
+          - name: option
+            type: int
+      - name: Hesse
+        return_type: bool
+      - name: Scan
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: nstep
+            type: int
+          - name: x
+            type: float
+          - name: y
+            type: float
+          - name: xmin
+            type: float
+          - name: xmax
+            type: float
+      - name: Contour
+        return_type: bool
+        arguments:
+          - name: ivar
+            type: int
+          - name: jvar
+            type: int
+          - name: npoints
+            type: int
+          - name: xi
+            type: float
+          - name: xj
+            type: float
+      - name: VariableName
+        return_type: string
+        arguments:
+          - name: ivar
+            type: int
+      - name: VariableIndex
+        return_type: int
+        arguments:
+          - name: name
+            type: str
+      - name: PrintLevel
+        return_type: int
+      - name: MaxFunctionCalls
+        return_type: unsigned int
+      - name: MaxIterations
+        return_type: unsigned int
+      - name: Tolerance
+        return_type: double
+      - name: Precision
+        return_type: double
+      - name: Strategy
+        return_type: int
+      - name: Status
+        return_type: int
+      - name: ErrorDef
+        return_type: double
+      - name: IsValidError
+        return_type: bool
+      - name: Options
+        return_type: ROOT::Math::MinimizerOptions
+  - python_name: ROOT.Math.MinimizerOptions
+    cpp_name: ROOT::Math::MinimizerOptions
+    methods:
+      - name: DefaultMinimizerType
+        return_type: const string
+      - name: DefaultMinimizerAlgo
+        return_type: const string
+      - name: DefaultErrorDef
+        return_type: double
+      - name: DefaultTolerance
+        return_type: double
+      - name: DefaultPrecision
+        return_type: double
+      - name: DefaultMaxFunctionCalls
+        return_type: int
+      - name: DefaultMaxIterations
+        return_type: int
+      - name: DefaultStrategy
+        return_type: int
+      - name: DefaultPrintLevel
+        return_type: int
+      - name: DefaultExtraOptions
+        return_type: ROOT::Math::IOptions*
+      - name: PrintLevel
+        return_type: int
+      - name: MaxFunctionCalls
+        return_type: unsigned int
+      - name: MaxIterations
+        return_type: unsigned int
+      - name: Strategy
+        return_type: int
+      - name: Tolerance
+        return_type: double
+      - name: Precision
+        return_type: double
+      - name: ErrorDef
+        return_type: double
+      - name: ExtraOptions
+        return_type: const ROOT::Math::IOptions*
+      - name: MinimizerType
+        return_type: const string
+      - name: MinimizerAlgorithm
+        return_type: const string
+  - python_name: ROOT.TSchemaRule
+    cpp_name: ROOT::TSchemaRule
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: DistancetoPrimitive
+        return_type: int
+        arguments:
+          - name: px
+            type: int
+          - name: py
+            type: int
+  - python_name: TComplex
+    cpp_name: TComplex
+    methods:
+      - name: I
+        return_type: TComplex
+      - name: One
+        return_type: TComplex
+      - name: Sqrt
+        return_type: TComplex
+        arguments:
+          - name: c
+            type: TComplex
+      - name: Exp
+        return_type: TComplex
+        arguments:
+          - name: c
+            type: TComplex
+      - name: Log
+        return_type: TComplex
+        arguments:
+          - name: c
+            type: TComplex
+      - name: Log2
+        return_type: TComplex
+        arguments:
+          - name: c
+            type: TComplex
+      - name: Log10
+        return_type: TComplex
+        arguments:
+          - name: c
+            type: TComplex
+      - name: Sin
+        return_type: TComplex
+        arguments:
+          - name: c
+            type: TComplex
+      - name: Cos
+        return_type: TComplex
+        arguments:
+          - name: c
+            type: TComplex
+      - name: Tan
+        return_type: TComplex
+        arguments:
+          - name: c
+            type: TComplex
+      - name: ASin
+        return_type: TComplex
+        arguments:
+          - name: c
+            type: TComplex
+      - name: ACos
+        return_type: TComplex
+        arguments:
+          - name: c
+            type: TComplex
+      - name: ATan
+        return_type: TComplex
+        arguments:
+          - name: c
+            type: TComplex
+      - name: SinH
+        return_type: TComplex
+        arguments:
+          - name: c
+            type: TComplex
+      - name: CosH
+        return_type: TComplex
+        arguments:
+          - name: c
+            type: TComplex
+      - name: TanH
+        return_type: TComplex
+        arguments:
+          - name: c
+            type: TComplex
+      - name: ASinH
+        return_type: TComplex
+        arguments:
+          - name: c
+            type: TComplex
+      - name: ACosH
+        return_type: TComplex
+        arguments:
+          - name: c
+            type: TComplex
+      - name: ATanH
+        return_type: TComplex
+        arguments:
+          - name: c
+            type: TComplex
+      - name: Power
+        return_type: TComplex
+        arguments:
+          - name: x
+            type: TComplex
+          - name: y
+            type: TComplex
+      - name: Finite
+        return_type: int
+        arguments:
+          - name: c
+            type: TComplex
+      - name: IsNaN
+        return_type: int
+        arguments:
+          - name: c
+            type: TComplex
+      - name: Min
+        return_type: TComplex
+        arguments:
+          - name: a
+            type: TComplex
+          - name: b
+            type: TComplex
+      - name: Max
+        return_type: TComplex
+        arguments:
+          - name: a
+            type: TComplex
+          - name: b
+            type: TComplex
+      - name: Normalize
+        return_type: TComplex
+        arguments:
+          - name: c
+            type: TComplex
+      - name: Conjugate
+        return_type: TComplex
+        arguments:
+          - name: c
+            type: TComplex
+      - name: Range
+        return_type: TComplex
+        arguments:
+          - name: lb
+            type: TComplex
+          - name: ub
+            type: TComplex
+          - name: c
+            type: TComplex
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+  - python_name: TLorentzVector
+    cpp_name: TLorentzVector
+    methods:
+      - name: Vect
+        return_type: TVector3
+      - name: EtaPhiVector
+        return_type: TVector2
+      - name: BoostVector
+        return_type: TVector3
+      - name: Transform
+        return_type: TLorentzVector
+        arguments:
+          - name: noname_arg
+            type: TRotation
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: DistancetoPrimitive
+        return_type: int
+        arguments:
+          - name: px
+            type: int
+          - name: py
+            type: int
+  - python_name: TRotation
+    cpp_name: TRotation
+    methods:
+      - name: Transform
+        return_type: TRotation
+        arguments:
+          - name: noname_arg
+            type: TRotation
+      - name: Inverse
+        return_type: TRotation
+      - name: Invert
+        return_type: TRotation
+      - name: RotateAxes
+        return_type: TRotation
+        arguments:
+          - name: newX
+            type: TVector3
+          - name: newY
+            type: TVector3
+          - name: newZ
+            type: TVector3
+      - name: SetToIdentity
+        return_type: TRotation
+      - name: SetXAxis
+        return_type: TRotation
+        arguments:
+          - name: axis
+            type: TVector3
+      - name: SetYAxis
+        return_type: TRotation
+        arguments:
+          - name: axis
+            type: TVector3
+      - name: SetZAxis
+        return_type: TRotation
+        arguments:
+          - name: axis
+            type: TVector3
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: DistancetoPrimitive
+        return_type: int
+        arguments:
+          - name: px
+            type: int
+          - name: py
+            type: int
+  - python_name: TSQLResult
+    cpp_name: TSQLResult
+    methods:
+      - name: GetFieldCount
+        return_type: int
+      - name: GetRowCount
+        return_type: int
+      - name: Next
+        return_type: TSQLRow*
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: DistancetoPrimitive
+        return_type: int
+        arguments:
+          - name: px
+            type: int
+          - name: py
+            type: int
+  - python_name: TSQLRow
+    cpp_name: TSQLRow
+    methods:
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: DistancetoPrimitive
+        return_type: int
+        arguments:
+          - name: px
+            type: int
+          - name: py
+            type: int
+  - python_name: TThread
+    cpp_name: TThread
+    enums:
+      - name: EPriority
+        values:
+          - name: kLowPriority
+            value: 0
+          - name: kNormalPriority
+            value: 1
+          - name: kHighPriority
+            value: 2
+      - name: EState
+        values:
+          - name: kInvalidState
+            value: 0
+          - name: kNewState
+            value: 1
+          - name: kRunningState
+            value: 2
+          - name: kTerminatedState
+            value: 3
+          - name: kFinishedState
+            value: 4
+          - name: kCancelingState
+            value: 5
+          - name: kCanceledState
+            value: 6
+          - name: kDeletingState
+            value: 7
+    methods:
+      - name: Kill
+        return_type: int
+      - name: GetPriority
+        return_type: TThread::EPriority
+      - name: GetState
+        return_type: TThread::EState
+      - name: Exists
+        return_type: int
+      - name: Lock
+        return_type: int
+      - name: TryLock
+        return_type: int
+      - name: UnLock
+        return_type: int
+      - name: Self
+        return_type: TThread*
+      - name: SetCancelOn
+        return_type: int
+      - name: SetCancelOff
+        return_type: int
+      - name: SetCancelAsynchronous
+        return_type: int
+      - name: SetCancelDeferred
+        return_type: int
+      - name: CancelPoint
+        return_type: int
+      - name: CleanUpPop
+        return_type: int
+        arguments:
+          - name: exe
+            type: int
+      - name: CleanUp
+        return_type: int
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: Sizeof
+        return_type: int
+      - name: DistancetoPrimitive
+        return_type: int
+        arguments:
+          - name: px
+            type: int
+          - name: py
+            type: int
+  - python_name: TVector2
+    cpp_name: TVector2
+    methods:
+      - name: Unit
+        return_type: TVector2
+      - name: Ort
+        return_type: TVector2
+      - name: Proj
+        return_type: TVector2
+        arguments:
+          - name: v
+            type: TVector2
+      - name: Norm
+        return_type: TVector2
+        arguments:
+          - name: v
+            type: TVector2
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: DistancetoPrimitive
+        return_type: int
+        arguments:
+          - name: px
+            type: int
+          - name: py
+            type: int
+  - python_name: TVector3
+    cpp_name: TVector3
+    methods:
+      - name: EtaPhiVector
+        return_type: TVector2
+      - name: Unit
+        return_type: TVector3
+      - name: Orthogonal
+        return_type: TVector3
+      - name: Cross
+        return_type: TVector3
+        arguments:
+          - name: noname_arg
+            type: TVector3
+      - name: Transform
+        return_type: TVector3
+        arguments:
+          - name: noname_arg
+            type: TRotation
+      - name: XYvector
+        return_type: TVector2
+      - name: ImplFileLine
+        return_type: int
+      - name: DeclFileLine
+        return_type: int
+      - name: DistancetoPrimitive
+        return_type: int
+        arguments:
+          - name: px
+            type: int
+          - name: py
+            type: int
+  - python_name: mutex
+    cpp_name: mutex
+    methods:
+      - name: try_lock
+        return_type: bool
+  - python_name: std.vector_float_
+    cpp_name: std::vector<double>
+    is_container_of_cpp: double
+    is_container_of_python: float
+    methods:
+      - name: size
+        return_type: int
+  - python_name: std.vector_int_
+    cpp_name: std::vector<int>
+    is_container_of_cpp: int
+    is_container_of_python: int
+    methods:
+      - name: size
+        return_type: int
+  - python_name: str
+    cpp_name: string
+    is_container_of_cpp: __gnu_cxx::__normal_iterator<char*,string>
+    is_container_of_python: __gnu_cxx.__normal_iterator_char_str_
+    methods:
+      - name: empty
+        return_type: bool
+      - name: append
+        return_type: string
+        arguments:
+          - name: __str
+            type: str
+      - name: assign
+        return_type: string
+        arguments:
+          - name: __str
+            type: str
+      - name: compare
+        return_type: int
+        arguments:
+          - name: __str
+            type: str
+  - python_name: vector_ElementLink_DataVector_xAOD_IParticle___
+    cpp_name: vector<ElementLink<DataVector<xAOD::IParticle> > >
+    is_container_of_cpp: ElementLink<DataVector<xAOD::IParticle>  >
+    is_container_of_python: ElementLink_DataVector_xAOD_IParticle__
+    methods:
+      - name: size
+        return_type: int
+  - python_name: vector_ElementLink_DataVector_xAOD_NeutralParticle_v1___
+    cpp_name: vector<ElementLink<DataVector<xAOD::NeutralParticle_v1> > >
+    is_container_of_cpp: ElementLink<DataVector<xAOD::NeutralParticle_v1>  >
+    is_container_of_python: ElementLink_DataVector_xAOD_NeutralParticle_v1__
+    methods:
+      - name: size
+        return_type: int
+  - python_name: vector_ElementLink_DataVector_xAOD_TrackParticle_v1___
+    cpp_name: vector<ElementLink<DataVector<xAOD::TrackParticle_v1> > >
+    is_container_of_cpp: ElementLink<DataVector<xAOD::TrackParticle_v1>  >
+    is_container_of_python: ElementLink_DataVector_xAOD_TrackParticle_v1__
+    methods:
+      - name: size
+        return_type: int
+  - python_name: vector_ElementLink_DataVector_xAOD_TruthParticle_v1___
+    cpp_name: vector<ElementLink<DataVector<xAOD::TruthParticle_v1> > >
+    is_container_of_cpp: ElementLink<DataVector<xAOD::TruthParticle_v1>  >
+    is_container_of_python: ElementLink_DataVector_xAOD_TruthParticle_v1__
+    methods:
+      - name: size
+        return_type: int
+  - python_name: vector_ElementLink_DataVector_xAOD_TruthVertex_v1___
+    cpp_name: vector<ElementLink<DataVector<xAOD::TruthVertex_v1> > >
+    is_container_of_cpp: ElementLink<DataVector<xAOD::TruthVertex_v1>  >
+    is_container_of_python: ElementLink_DataVector_xAOD_TruthVertex_v1__
+    methods:
+      - name: size
+        return_type: int
+  - python_name: vector_ROOT_Fit_ParameterSettings_
+    cpp_name: vector<ROOT::Fit::ParameterSettings>
+    is_container_of_cpp: ROOT::Fit::ParameterSettings
+    is_container_of_python: ROOT.Fit.ParameterSettings
+    methods:
+      - name: size
+        return_type: int
+  - python_name: vector_float_
+    cpp_name: vector<double>
+    is_container_of_cpp: double
+    is_container_of_python: float
+    methods:
+      - name: size
+        return_type: int
+  - python_name: vector_float_
+    cpp_name: vector<float>
+    is_container_of_cpp: float
+    is_container_of_python: float
+    methods:
+      - name: size
+        return_type: int
+  - python_name: vector_int_
+    cpp_name: vector<int>
+    is_container_of_cpp: int
+    is_container_of_python: int
+    methods:
+      - name: size
+        return_type: int
+  - python_name: vector_pair_float_float__
+    cpp_name: vector<pair<double,double> >
+    is_container_of_cpp: pair<double,double>
+    is_container_of_python: pair_float_float_
+    methods:
+      - name: size
+        return_type: int
+  - python_name: vector_pair_str_str__
+    cpp_name: vector<pair<string,string> >
+    is_container_of_cpp: pair<string,string>
+    is_container_of_python: pair_str_str_
+    methods:
+      - name: size
+        return_type: int
+  - python_name: vector_str_
+    cpp_name: vector<string>
+    is_container_of_cpp: string
+    is_container_of_python: str
+    methods:
+      - name: size
+        return_type: int
+  - python_name: vector_vector_float__
+    cpp_name: vector<vector<float> >
+    is_container_of_cpp: vector<float>
+    is_container_of_python: vector_float_
+    methods:
+      - name: size
+        return_type: int
+  - python_name: vector_xAOD_EventInfo_v1_StreamTag_
+    cpp_name: vector<xAOD::EventInfo_v1::StreamTag>
+    is_container_of_cpp: xAOD::EventInfo_v1::StreamTag
+    is_container_of_python: xAOD.EventInfo_v1.StreamTag
+    methods:
+      - name: size
+        return_type: int
+  - python_name: vector_xAOD_EventInfo_v1_SubEvent_
+    cpp_name: vector<xAOD::EventInfo_v1::SubEvent>
+    is_container_of_cpp: xAOD::EventInfo_v1::SubEvent
+    is_container_of_python: xAOD.EventInfo_v1.SubEvent
+    methods:
+      - name: size
+        return_type: int
+  - python_name: vector_xAOD_JetConstituent_
+    cpp_name: vector<xAOD::JetConstituent>
+    is_container_of_cpp: xAOD::JetConstituent
+    is_container_of_python: xAOD.JetConstituent
+    methods:
+      - name: size
+        return_type: int
+  - python_name: xAOD.BTagVertex_v1
+    cpp_name: xAOD::BTagVertex_v1
+    include_file: xAODBTagging/versions/BTagVertex_v1.h
+    methods:
+      - name: chi2
+        return_type: float
+      - name: NDF
+        return_type: float
+      - name: pv_compatibility
+        return_type: float
+      - name: compToOtherSV
+        return_type: const vector<float>
+      - name: track_chi2
+        return_type: const vector<float>
+      - name: track_NDF
+        return_type: const vector<float>
+      - name: track_refPx
+        return_type: const vector<float>
+      - name: track_refPy
+        return_type: const vector<float>
+      - name: track_refPz
+        return_type: const vector<float>
+      - name: track_links
+        return_type: const vector<ElementLink<DataVector<xAOD::TrackParticle_v1> > >
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.BTagging_v1
+    cpp_name: xAOD::BTagging_v1
+    include_file: xAODBTagging/versions/BTagging_v1.h
+    methods:
+      - name: SV0_significance3D
+        return_type: double
+      - name: SV0_TrackParticleLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TrackParticle_v1> > >
+      - name: SV0_TrackParticle
+        return_type: const xAOD::TrackParticle_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: nSV0_TrackParticles
+        return_type: int
+      - name: SV1_pb
+        return_type: double
+      - name: SV1_pc
+        return_type: double
+      - name: SV1_pu
+        return_type: double
+      - name: SV1_loglikelihoodratio
+        return_type: double
+      - name: SV1_TrackParticleLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TrackParticle_v1> > >
+      - name: SV1_TrackParticle
+        return_type: const xAOD::TrackParticle_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: nSV1_TrackParticles
+        return_type: int
+      - name: IP2D_pb
+        return_type: double
+      - name: IP2D_pc
+        return_type: double
+      - name: IP2D_pu
+        return_type: double
+      - name: IP2D_loglikelihoodratio
+        return_type: double
+      - name: IP2D_TrackParticleLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TrackParticle_v1> > >
+      - name: IP2D_TrackParticle
+        return_type: const xAOD::TrackParticle_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: nIP2D_TrackParticles
+        return_type: int
+      - name: IP3D_pb
+        return_type: double
+      - name: IP3D_pc
+        return_type: double
+      - name: IP3D_pu
+        return_type: double
+      - name: IP3D_loglikelihoodratio
+        return_type: double
+      - name: IP3D_TrackParticleLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TrackParticle_v1> > >
+      - name: IP3D_TrackParticle
+        return_type: const xAOD::TrackParticle_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: nIP3D_TrackParticles
+        return_type: int
+      - name: SV1plusIP3D_discriminant
+        return_type: double
+      - name: JetFitter_pb
+        return_type: double
+      - name: JetFitter_pc
+        return_type: double
+      - name: JetFitter_pu
+        return_type: double
+      - name: JetFitter_loglikelihoodratio
+        return_type: double
+      - name: MV1_discriminant
+        return_type: double
+      - name: loglikelihoodratio
+        return_type: bool
+        arguments:
+          - name: taggername
+            type: str
+          - name: value
+            type: float
+          - name: signal
+            type: str
+          - name: bckgd
+            type: str
+      - name: MVx_discriminant
+        return_type: bool
+        arguments:
+          - name: taggername
+            type: str
+          - name: value
+            type: float
+      - name: pu
+        return_type: bool
+        arguments:
+          - name: taggername
+            type: str
+          - name: value
+            type: float
+      - name: pb
+        return_type: bool
+        arguments:
+          - name: taggername
+            type: str
+          - name: value
+            type: float
+      - name: pc
+        return_type: bool
+        arguments:
+          - name: taggername
+            type: str
+          - name: value
+            type: float
+      - name: calcLLR
+        return_type: double
+        arguments:
+          - name: num
+            type: float
+          - name: den
+            type: float
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.CaloCluster_v1
+    cpp_name: xAOD::CaloCluster_v1
+    include_file: xAODCaloEvent/versions/CaloCluster_v1.h
+    enums:
+      - name: ClusterSize
+        values:
+          - name: SW_55ele
+            value: 1
+          - name: SW_35ele
+            value: 2
+          - name: SW_37ele
+            value: 3
+          - name: SW_55gam
+            value: 4
+          - name: SW_35gam
+            value: 5
+          - name: SW_37gam
+            value: 6
+          - name: SW_55Econv
+            value: 7
+          - name: SW_35Econv
+            value: 8
+          - name: SW_37Econv
+            value: 9
+          - name: SW_softe
+            value: 10
+          - name: Topo_420
+            value: 11
+          - name: Topo_633
+            value: 12
+          - name: SW_7_11
+            value: 13
+          - name: SuperCluster
+            value: 14
+          - name: Tower_01_01
+            value: 15
+          - name: Tower_005_005
+            value: 16
+          - name: Tower_fixed_area
+            value: 17
+          - name: CSize_Unknown
+            value: 99
+      - name: MomentType
+        values:
+          - name: FIRST_PHI
+            value: 101
+          - name: FIRST_ETA
+            value: 102
+          - name: SECOND_R
+            value: 201
+          - name: SECOND_LAMBDA
+            value: 202
+          - name: DELTA_PHI
+            value: 301
+          - name: DELTA_THETA
+            value: 302
+          - name: DELTA_ALPHA
+            value: 303
+          - name: CENTER_X
+            value: 401
+          - name: CENTER_Y
+            value: 402
+          - name: CENTER_Z
+            value: 403
+          - name: CENTER_MAG
+            value: 404
+          - name: CENTER_LAMBDA
+            value: 501
+          - name: LATERAL
+            value: 601
+          - name: LONGITUDINAL
+            value: 602
+          - name: ENG_FRAC_EM
+            value: 701
+          - name: ENG_FRAC_MAX
+            value: 702
+          - name: ENG_FRAC_CORE
+            value: 703
+          - name: FIRST_ENG_DENS
+            value: 804
+          - name: SECOND_ENG_DENS
+            value: 805
+          - name: ISOLATION
+            value: 806
+          - name: ENG_BAD_CELLS
+            value: 807
+          - name: N_BAD_CELLS
+            value: 808
+          - name: N_BAD_CELLS_CORR
+            value: 809
+          - name: BAD_CELLS_CORR_E
+            value: 813
+          - name: BADLARQ_FRAC
+            value: 821
+          - name: ENG_POS
+            value: 822
+          - name: SIGNIFICANCE
+            value: 823
+          - name: CELL_SIGNIFICANCE
+            value: 824
+          - name: CELL_SIG_SAMPLING
+            value: 825
+          - name: AVG_LAR_Q
+            value: 826
+          - name: AVG_TILE_Q
+            value: 827
+          - name: ENG_BAD_HV_CELLS
+            value: 828
+          - name: N_BAD_HV_CELLS
+            value: 829
+          - name: PTD
+            value: 830
+          - name: MASS
+            value: 831
+          - name: EM_PROBABILITY
+            value: 900
+          - name: HAD_WEIGHT
+            value: 901
+          - name: OOC_WEIGHT
+            value: 902
+          - name: DM_WEIGHT
+            value: 903
+          - name: TILE_CONFIDENCE_LEVEL
+            value: 904
+          - name: VERTEX_FRACTION
+            value: 1000
+          - name: NVERTEX_FRACTION
+            value: 1001
+          - name: ETACALOFRAME
+            value: 1100
+          - name: PHICALOFRAME
+            value: 1101
+          - name: ETA1CALOFRAME
+            value: 1102
+          - name: PHI1CALOFRAME
+            value: 1103
+          - name: ETA2CALOFRAME
+            value: 1104
+          - name: PHI2CALOFRAME
+            value: 1105
+          - name: ENG_CALIB_TOT
+            value: 10001
+          - name: ENG_CALIB_OUT_L
+            value: 10010
+          - name: ENG_CALIB_OUT_M
+            value: 10011
+          - name: ENG_CALIB_OUT_T
+            value: 10012
+          - name: ENG_CALIB_DEAD_L
+            value: 10020
+          - name: ENG_CALIB_DEAD_M
+            value: 10021
+          - name: ENG_CALIB_DEAD_T
+            value: 10022
+          - name: ENG_CALIB_EMB0
+            value: 10030
+          - name: ENG_CALIB_EME0
+            value: 10031
+          - name: ENG_CALIB_TILEG3
+            value: 10032
+          - name: ENG_CALIB_DEAD_TOT
+            value: 10040
+          - name: ENG_CALIB_DEAD_EMB0
+            value: 10041
+          - name: ENG_CALIB_DEAD_TILE0
+            value: 10042
+          - name: ENG_CALIB_DEAD_TILEG3
+            value: 10043
+          - name: ENG_CALIB_DEAD_EME0
+            value: 10044
+          - name: ENG_CALIB_DEAD_HEC0
+            value: 10045
+          - name: ENG_CALIB_DEAD_FCAL
+            value: 10046
+          - name: ENG_CALIB_DEAD_LEAKAGE
+            value: 10047
+          - name: ENG_CALIB_DEAD_UNCLASS
+            value: 10048
+          - name: ENG_CALIB_FRAC_EM
+            value: 10051
+          - name: ENG_CALIB_FRAC_HAD
+            value: 10052
+          - name: ENG_CALIB_FRAC_REST
+            value: 10053
+          - name: ENERGY_DigiHSTruth
+            value: 40101
+          - name: ETA_DigiHSTruth
+            value: 401024
+          - name: PHI_DigiHSTruth
+            value: 401034
+          - name: TIME_DigiHSTruth
+            value: 40104
+          - name: ENERGY_CALIB_DigiHSTruth
+            value: 40105
+          - name: ETA_CALIB_DigiHSTruth
+            value: 40106
+          - name: PHI_CALIB_DigiHSTruth
+            value: 40107
+          - name: TIME_CALIB_DigiHSTruth
+            value: 40108
+          - name: FIRST_PHI_DigiHSTruth
+            value: 50101
+          - name: FIRST_ETA_DigiHSTruth
+            value: 50102
+          - name: SECOND_R_DigiHSTruth
+            value: 50201
+          - name: SECOND_LAMBDA_DigiHSTruth
+            value: 50202
+          - name: DELTA_PHI_DigiHSTruth
+            value: 50301
+          - name: DELTA_THETA_DigiHSTruth
+            value: 50302
+          - name: DELTA_ALPHA_DigiHSTruth
+            value: 50303
+          - name: CENTER_X_DigiHSTruth
+            value: 50401
+          - name: CENTER_Y_DigiHSTruth
+            value: 50402
+          - name: CENTER_Z_DigiHSTruth
+            value: 50403
+          - name: CENTER_MAG_DigiHSTruth
+            value: 50404
+          - name: CENTER_LAMBDA_DigiHSTruth
+            value: 50501
+          - name: LATERAL_DigiHSTruth
+            value: 50601
+          - name: LONGITUDINAL_DigiHSTruth
+            value: 50602
+          - name: ENG_FRAC_EM_DigiHSTruth
+            value: 50701
+          - name: ENG_FRAC_MAX_DigiHSTruth
+            value: 50702
+          - name: ENG_FRAC_CORE_DigiHSTruth
+            value: 75003
+          - name: FIRST_ENG_DENS_DigiHSTruth
+            value: 50804
+          - name: SECOND_ENG_DENS_DigiHSTruth
+            value: 50805
+          - name: ISOLATION_DigiHSTruth
+            value: 50806
+          - name: ENG_BAD_CELLS_DigiHSTruth
+            value: 50807
+          - name: N_BAD_CELLS_DigiHSTruth
+            value: 50808
+          - name: N_BAD_CELLS_CORR_DigiHSTruth
+            value: 50809
+          - name: BAD_CELLS_CORR_E_DigiHSTruth
+            value: 50813
+          - name: BADLARQ_FRAC_DigiHSTruth
+            value: 50821
+          - name: ENG_POS_DigiHSTruth
+            value: 50822
+          - name: SIGNIFICANCE_DigiHSTruth
+            value: 50823
+          - name: CELL_SIGNIFICANCE_DigiHSTruth
+            value: 50824
+          - name: CELL_SIG_SAMPLING_DigiHSTruth
+            value: 50825
+          - name: AVG_LAR_Q_DigiHSTruth
+            value: 50826
+          - name: AVG_TILE_Q_DigiHSTruth
+            value: 50827
+          - name: ENG_BAD_HV_CELLS_DigiHSTruth
+            value: 50828
+          - name: N_BAD_HV_CELLS_DigiHSTruth
+            value: 50829
+          - name: EM_PROBABILITY_DigiHSTruth
+            value: 50900
+          - name: HAD_WEIGHT_DigiHSTruth
+            value: 50901
+          - name: OOC_WEIGHT_DigiHSTruth
+            value: 50902
+          - name: DM_WEIGHT_DigiHSTruth
+            value: 50903
+      - name: State
+        values:
+          - name: UNKNOWN
+            value: -1
+          - name: UNCALIBRATED
+            value: 0
+          - name: CALIBRATED
+            value: 1
+          - name: ALTCALIBRATED
+            value: 2
+          - name: NSTATES
+            value: 3
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.CaloTower_v1
+    cpp_name: xAOD::CaloTower_v1
+    include_file: xAODCaloEvent/versions/CaloTower_v1.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.DiTauJet_v1
+    cpp_name: xAOD::DiTauJet_v1
+    include_file: xAODTau/versions/DiTauJet_v1.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.Egamma_v1
+    cpp_name: xAOD::Egamma_v1
+    include_file: xAODEgamma/versions/Egamma_v1.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.Electron_v1
+    cpp_name: xAOD::Electron_v1
+    include_file: xAODEgamma/versions/Electron_v1.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.EventInfo_v1
+    cpp_name: xAOD::EventInfo_v1
+    include_file: xAODEventInfo/versions/EventInfo_v1.h
+    enums:
+      - name: EventType
+        values:
+          - name: IS_SIMULATION
+            value: 1
+          - name: IS_TESTBEAM
+            value: 2
+          - name: IS_CALIBRATION
+            value: 4
+      - name: PileUpType
+        values:
+          - name: Unknown
+            value: 99
+          - name: Signal
+            value: 0
+          - name: MinimumBias
+            value: 1
+          - name: Cavern
+            value: 2
+          - name: HaloGas
+            value: 3
+          - name: ZeroBias
+            value: 4
+      - name: EventFlagSubDet
+        values:
+          - name: Pixel
+            value: 0
+          - name: SCT
+            value: 1
+          - name: TRT
+            value: 2
+          - name: LAr
+            value: 3
+          - name: Tile
+            value: 4
+          - name: Muon
+            value: 5
+          - name: ForwardDet
+            value: 6
+          - name: Core
+            value: 7
+          - name: Background
+            value: 8
+          - name: Lumi
+            value: 9
+          - name: nDets
+            value: 10
+      - name: EventFlagErrorState
+        values:
+          - name: NotSet
+            value: 0
+          - name: Warning
+            value: 1
+          - name: Error
+            value: 2
+      - name: BackgroundEventFlag
+        values:
+          - name: MBTSTimeDiffHalo
+            value: 0
+          - name: MBTSTimeDiffCol
+            value: 1
+          - name: LArECTimeDiffHalo
+            value: 2
+          - name: LArECTimeDiffCol
+            value: 3
+          - name: PixMultiplicityHuge
+            value: 4
+          - name: PixSPNonEmpty
+            value: 5
+          - name: SCTMultiplicityHuge
+            value: 6
+          - name: SCTSPNonEmpty
+            value: 7
+          - name: CSCTimeDiffHalo
+            value: 8
+          - name: CSCTimeDiffCol
+            value: 9
+          - name: BCMTimeDiffHalo
+            value: 10
+          - name: BCMTimeDiffCol
+            value: 11
+          - name: MuonTimingCol
+            value: 12
+          - name: MuonTimingCosmic
+            value: 13
+          - name: MBTSBeamVeto
+            value: 14
+          - name: BCMBeamVeto
+            value: 15
+          - name: LUCIDBeamVeto
+            value: 16
+          - name: HaloMuonSegment
+            value: 17
+          - name: HaloClusterShape
+            value: 18
+          - name: HaloMuonOneSided
+            value: 19
+          - name: HaloMuonTwoSided
+            value: 20
+          - name: HaloTileClusterPattern
+            value: 21
+          - name: BeamGasPixel
+            value: 22
+          - name: CosmicStandAlone
+            value: 23
+          - name: CosmicStandAloneTight
+            value: 24
+          - name: CosmicCombined
+            value: 25
+          - name: CosmicCombinedTight
+            value: 26
+          - name: BkgdResvBit1
+            value: 27
+          - name: BkgdResvBit2
+            value: 28
+          - name: BkgdResvBit3
+            value: 29
+          - name: BkgdResvBit4
+            value: 30
+          - name: BkgdResvBit5
+            value: 31
+          - name: NBackgroundWords
+            value: 32
+    methods:
+      - name: runNumber
+        return_type: unsigned int
+      - name: eventNumber
+        return_type: unsigned long long
+      - name: lumiBlock
+        return_type: unsigned int
+      - name: timeStamp
+        return_type: unsigned int
+      - name: timeStampNSOffset
+        return_type: unsigned int
+      - name: bcid
+        return_type: unsigned int
+      - name: detectorMask0
+        return_type: unsigned int
+      - name: detectorMask1
+        return_type: unsigned int
+      - name: detectorMask2
+        return_type: unsigned int
+      - name: detectorMask3
+        return_type: unsigned int
+      - name: mcChannelNumber
+        return_type: unsigned int
+      - name: mcEventNumber
+        return_type: unsigned long long
+      - name: mcEventWeights
+        return_type: const vector<float>
+      - name: mcEventWeight
+        return_type: float
+        arguments:
+          - name: i
+            type: int
+      - name: hasMCEventWeights
+        return_type: bool
+      - name: eventTypeBitmask
+        return_type: unsigned int
+      - name: eventType
+        return_type: bool
+        arguments:
+          - name: type
+            type: xAOD.EventInfo_v1.EventType
+      - name: statusElement
+        return_type: unsigned int
+      - name: extendedLevel1ID
+        return_type: unsigned int
+      - name: streamTags
+        return_type: const vector<xAOD::EventInfo_v1::StreamTag>
+      - name: actualInteractionsPerCrossing
+        return_type: float
+      - name: averageInteractionsPerCrossing
+        return_type: float
+      - name: subEvents
+        return_type: const vector<xAOD::EventInfo_v1::SubEvent>
+      - name: eventFlags
+        return_type: unsigned int
+        arguments:
+          - name: subDet
+            type: xAOD.EventInfo_v1.EventFlagSubDet
+      - name: isEventFlagBitSet
+        return_type: bool
+        arguments:
+          - name: subDet
+            type: xAOD.EventInfo_v1.EventFlagSubDet
+          - name: bit
+            type: int
+      - name: setEventFlags
+        return_type: bool
+        arguments:
+          - name: subDet
+            type: xAOD.EventInfo_v1.EventFlagSubDet
+          - name: flags
+            type: int
+      - name: setEventFlagBit
+        return_type: bool
+        arguments:
+          - name: subDet
+            type: xAOD.EventInfo_v1.EventFlagSubDet
+          - name: bit
+            type: int
+          - name: set
+            type: bool
+      - name: errorState
+        return_type: xAOD::EventInfo_v1::EventFlagErrorState
+        arguments:
+          - name: subDet
+            type: xAOD.EventInfo_v1.EventFlagSubDet
+      - name: setErrorState
+        return_type: bool
+        arguments:
+          - name: subDet
+            type: xAOD.EventInfo_v1.EventFlagSubDet
+          - name: state
+            type: xAOD.EventInfo_v1.EventFlagErrorState
+      - name: beamPosX
+        return_type: float
+      - name: beamPosY
+        return_type: float
+      - name: beamPosZ
+        return_type: float
+      - name: beamPosSigmaX
+        return_type: float
+      - name: beamPosSigmaY
+        return_type: float
+      - name: beamPosSigmaZ
+        return_type: float
+      - name: beamPosSigmaXY
+        return_type: float
+      - name: beamTiltXZ
+        return_type: float
+      - name: beamTiltYZ
+        return_type: float
+      - name: beamStatus
+        return_type: unsigned int
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.EventInfo_v1.StreamTag
+    cpp_name: xAOD::EventInfo_v1::StreamTag
+    methods:
+      - name: name
+        return_type: const string
+      - name: type
+        return_type: const string
+      - name: obeysLumiblock
+        return_type: bool
+  - python_name: xAOD.EventInfo_v1.SubEvent
+    cpp_name: xAOD::EventInfo_v1::SubEvent
+    methods:
+      - name: type
+        return_type: xAOD::EventInfo_v1::PileUpType
+      - name: typeName
+        return_type: const string
+      - name: link
+        return_type: const ElementLink<DataVector<xAOD::EventInfo_v1> >
+      - name: ptr
+        return_type: const xAOD::EventInfo_v1*
+  - python_name: xAOD.IParticle
+    cpp_name: xAOD::IParticle
+    include_file: xAODBase/IParticle.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.JetAlgorithmType
+    cpp_name: xAOD::JetAlgorithmType
+    enums:
+      - name: ID
+        values:
+          - name: kt_algorithm
+            value: 0
+          - name: cambridge_algorithm
+            value: 1
+          - name: antikt_algorithm
+            value: 2
+          - name: genkt_algorithm
+            value: 3
+          - name: cambridge_for_passive_algorithm
+            value: 11
+          - name: genkt_for_passive_algorithm
+            value: 13
+          - name: ee_kt_algorithm
+            value: 50
+          - name: ee_genkt_algorithm
+            value: 53
+          - name: plugin_algorithm
+            value: 99
+          - name: undefined_jet_algorithm
+            value: 999
+    methods:
+      - name: algName
+        return_type: const string
+        arguments:
+          - name: id
+            type: xAOD.JetAlgorithmType.ID
+      - name: algId
+        return_type: xAOD::JetAlgorithmType::ID
+        arguments:
+          - name: n
+            type: str
+  - python_name: xAOD.JetConstituent
+    cpp_name: xAOD::JetConstituent
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: rawConstituent
+        return_type: const xAOD::IParticle*
+      - name: isTimelike
+        return_type: bool
+      - name: isSpacelike
+        return_type: bool
+  - python_name: xAOD.JetConstituentVector
+    cpp_name: xAOD::JetConstituentVector
+    is_container_of_cpp: xAOD::JetConstituent*
+    is_container_of_python: xAOD.JetConstituent
+    methods:
+      - name: isValid
+        return_type: bool
+      - name: empty
+        return_type: bool
+      - name: size
+        return_type: int
+      - name: at
+        return_type: xAOD::JetConstituent
+        arguments:
+          - name: i
+            type: int
+      - name: front
+        return_type: xAOD::JetConstituent
+      - name: back
+        return_type: xAOD::JetConstituent
+      - name: asSTLVector
+        return_type: vector<xAOD::JetConstituent>
+  - python_name: xAOD.JetInput
+    cpp_name: xAOD::JetInput
+    enums:
+      - name: Type
+        values:
+          - name: LCTopo
+            value: 0
+          - name: EMTopo
+            value: 1
+          - name: TopoTower
+            value: 2
+          - name: Tower
+            value: 3
+          - name: Truth
+            value: 4
+          - name: TruthWZ
+            value: 5
+          - name: Track
+            value: 6
+          - name: PFlow
+            value: 7
+          - name: LCPFlow
+            value: 8
+          - name: EMPFlow
+            value: 9
+          - name: EMCPFlow
+            value: 10
+          - name: Jet
+            value: 11
+          - name: LCTopoOrigin
+            value: 12
+          - name: EMTopoOrigin
+            value: 13
+          - name: TrackCaloCluster
+            value: 14
+          - name: UFO
+            value: 15
+          - name: UFOCHS
+            value: 16
+          - name: UFOCSSK
+            value: 17
+          - name: TruthDressedWZ
+            value: 18
+          - name: EMTopoOriginSK
+            value: 19
+          - name: EMTopoOriginCS
+            value: 20
+          - name: EMTopoOriginVor
+            value: 21
+          - name: EMTopoOriginCSSK
+            value: 22
+          - name: EMTopoOriginVorSK
+            value: 23
+          - name: LCTopoOriginSK
+            value: 24
+          - name: LCTopoOriginCS
+            value: 25
+          - name: LCTopoOriginVor
+            value: 26
+          - name: LCTopoOriginCSSK
+            value: 27
+          - name: LCTopoOriginVorSK
+            value: 28
+          - name: EMPFlowSK
+            value: 29
+          - name: EMPFlowCS
+            value: 30
+          - name: EMPFlowVor
+            value: 31
+          - name: EMPFlowCSSK
+            value: 32
+          - name: EMPFlowVorSK
+            value: 33
+          - name: HI
+            value: 34
+          - name: TruthCharged
+            value: 35
+          - name: EMTopoOriginTime
+            value: 36
+          - name: EMTopoOriginSKTime
+            value: 37
+          - name: EMTopoOriginCSSKTime
+            value: 38
+          - name: EMTopoOriginVorSKTime
+            value: 39
+          - name: EMPFlowTime
+            value: 40
+          - name: EMPFlowSKTime
+            value: 41
+          - name: EMPFlowCSSKTime
+            value: 42
+          - name: EMPFlowVorSKTime
+            value: 43
+          - name: PFlowCustomVtx
+            value: 44
+          - name: EMPFlowByVertex
+            value: 45
+          - name: Other
+            value: 100
+          - name: Uncategorized
+            value: 1000
+    methods:
+      - name: isValidConstitType
+        return_type: bool
+        arguments:
+          - name: t
+            type: xAOD.JetInput.Type
+      - name: typeName
+        return_type: const string
+        arguments:
+          - name: t
+            type: xAOD.JetInput.Type
+      - name: inputType
+        return_type: xAOD::JetInput::Type
+        arguments:
+          - name: n
+            type: str
+  - python_name: xAOD.Jet_v1
+    cpp_name: xAOD::Jet_v1
+    include_file: xAODJet/versions/Jet_v1.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: px
+        return_type: float
+      - name: py
+        return_type: float
+      - name: pz
+        return_type: float
+      - name: getConstituents
+        return_type: xAOD::JetConstituentVector
+      - name: numConstituents
+        return_type: int
+      - name: rawConstituent
+        return_type: const xAOD::IParticle*
+        arguments:
+          - name: i
+            type: int
+      - name: constituentLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::IParticle> > >
+      - name: btagging
+        return_type: const xAOD::BTagging_v1*
+      - name: btaggingLink
+        return_type: const ElementLink<DataVector<xAOD::BTagging_v1> >
+      - name: getSizeParameter
+        return_type: float
+      - name: getAlgorithmType
+        return_type: xAOD::JetAlgorithmType::ID
+      - name: getInputType
+        return_type: xAOD::JetInput::Type
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: getAttribute
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: attribute_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('getAttribute', s, a, param_1)"
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.MissingET_v1
+    cpp_name: xAOD::MissingET_v1
+    include_file: xAODMissingET/versions/MissingET_v1.h
+    methods:
+      - name: mpx
+        return_type: double
+      - name: mpy
+        return_type: double
+      - name: met
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: sumet
+        return_type: double
+      - name: name
+        return_type: const string
+      - name: nameHash
+        return_type: int
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.MuonSegment_v1
+    cpp_name: xAOD::MuonSegment_v1
+    include_file: xAODMuon/versions/MuonSegment_v1.h
+    methods:
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.Muon_v1
+    cpp_name: xAOD::Muon_v1
+    include_file: xAODMuon/versions/Muon_v1.h
+    enums:
+      - name: Author
+        values:
+          - name: unknown
+            value: 0
+          - name: MuidCo
+            value: 1
+          - name: STACO
+            value: 2
+          - name: MuTag
+            value: 3
+          - name: MuTagIMO
+            value: 4
+          - name: MuidSA
+            value: 5
+          - name: MuGirl
+            value: 6
+          - name: MuGirlLowBeta
+            value: 7
+          - name: CaloTag
+            value: 8
+          - name: CaloLikelihood
+            value: 9
+          - name: ExtrapolateMuonToIP
+            value: 10
+          - name: NumberOfMuonAuthors
+            value: 11
+      - name: MuonType
+        values:
+          - name: Combined
+            value: 0
+          - name: MuonStandAlone
+            value: 1
+          - name: SegmentTagged
+            value: 2
+          - name: CaloTagged
+            value: 3
+          - name: SiliconAssociatedForwardMuon
+            value: 4
+      - name: ParamDef
+        values:
+          - name: spectrometerFieldIntegral
+            value: 0
+          - name: scatteringCurvatureSignificance
+            value: 1
+          - name: scatteringNeighbourSignificance
+            value: 2
+          - name: momentumBalanceSignificance
+            value: 3
+          - name: segmentDeltaEta
+            value: 4
+          - name: segmentDeltaPhi
+            value: 5
+          - name: segmentChi2OverDoF
+            value: 6
+          - name: t0
+            value: 7
+          - name: beta
+            value: 8
+          - name: annBarrel
+            value: 9
+          - name: annEndCap
+            value: 10
+          - name: innAngle
+            value: 11
+          - name: midAngle
+            value: 12
+          - name: msInnerMatchChi2
+            value: 13
+          - name: msInnerMatchDOF
+            value: 14
+          - name: msOuterMatchChi2
+            value: 15
+          - name: msOuterMatchDOF
+            value: 16
+          - name: meanDeltaADCCountsMDT
+            value: 17
+          - name: CaloLRLikelihood
+            value: 18
+          - name: CaloMuonIDTag
+            value: 19
+          - name: FSR_CandidateEnergy
+            value: 20
+          - name: EnergyLoss
+            value: 21
+          - name: ParamEnergyLoss
+            value: 22
+          - name: MeasEnergyLoss
+            value: 23
+          - name: EnergyLossSigma
+            value: 24
+          - name: ParamEnergyLossSigmaPlus
+            value: 25
+          - name: ParamEnergyLossSigmaMinus
+            value: 26
+          - name: MeasEnergyLossSigma
+            value: 27
+      - name: Quality
+        values:
+          - name: Tight
+            value: 0
+          - name: Medium
+            value: 1
+          - name: Loose
+            value: 2
+          - name: VeryLoose
+            value: 3
+      - name: TrackParticleType
+        values:
+          - name: Primary
+            value: 0
+          - name: InnerDetectorTrackParticle
+            value: 1
+          - name: MuonSpectrometerTrackParticle
+            value: 2
+          - name: CombinedTrackParticle
+            value: 3
+          - name: ExtrapolatedMuonSpectrometerTrackParticle
+            value: 4
+          - name: MSOnlyExtrapolatedMuonSpectrometerTrackParticle
+            value: 5
+      - name: EnergyLossType
+        values:
+          - name: Parametrized
+            value: 0
+          - name: NotIsolated
+            value: 1
+          - name: MOP
+            value: 2
+          - name: Tail
+            value: 3
+          - name: FSRcandidate
+            value: 4
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.NeutralParticle_v1
+    cpp_name: xAOD::NeutralParticle_v1
+    include_file: xAODTracking/versions/NeutralParticle_v1.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: d0
+        return_type: float
+      - name: z0
+        return_type: float
+      - name: phi0
+        return_type: float
+      - name: theta
+        return_type: float
+      - name: oneOverP
+        return_type: float
+      - name: definingParametersCovMatrixVec
+        return_type: const vector<float>
+      - name: vx
+        return_type: float
+      - name: vy
+        return_type: float
+      - name: vz
+        return_type: float
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.PFO_v1
+    cpp_name: xAOD::PFO_v1
+    include_file: xAODPFlow/versions/PFO_v1.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.Photon_v1
+    cpp_name: xAOD::Photon_v1
+    include_file: xAODEgamma/versions/Photon_v1.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.SlowMuon_v1
+    cpp_name: xAOD::SlowMuon_v1
+    include_file: xAODMuon/versions/SlowMuon_v1.h
+    methods:
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.TauJet_v3
+    cpp_name: xAOD::TauJet_v3
+    include_file: xAODTau/versions/TauJet_v3.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.TauTrack_v1
+    cpp_name: xAOD::TauTrack_v1
+    include_file: xAODTau/versions/TauTrack_v1.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.TrackCaloCluster_v1
+    cpp_name: xAOD::TrackCaloCluster_v1
+    include_file: xAODPFlow/versions/TrackCaloCluster_v1.h
+    enums:
+      - name: Taste
+        values:
+          - name: Charged
+            value: 0
+          - name: Neutral
+            value: 1
+          - name: Combined
+            value: 2
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.TrackParticle_v1
+    cpp_name: xAOD::TrackParticle_v1
+    include_file: xAODTracking/versions/TrackParticle_v1.h
+    methods:
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: charge
+        return_type: float
+      - name: d0
+        return_type: float
+      - name: z0
+        return_type: float
+      - name: phi0
+        return_type: float
+      - name: theta
+        return_type: float
+      - name: qOverP
+        return_type: float
+      - name: definingParametersCovMatrixVec
+        return_type: const vector<float>
+      - name: vx
+        return_type: float
+      - name: vy
+        return_type: float
+      - name: vz
+        return_type: float
+      - name: numberOfParameters
+        return_type: int
+      - name: parameterX
+        return_type: float
+        arguments:
+          - name: index
+            type: int
+      - name: parameterY
+        return_type: float
+        arguments:
+          - name: index
+            type: int
+      - name: parameterZ
+        return_type: float
+        arguments:
+          - name: index
+            type: int
+      - name: parameterPX
+        return_type: float
+        arguments:
+          - name: index
+            type: int
+      - name: parameterPY
+        return_type: float
+        arguments:
+          - name: index
+            type: int
+      - name: parameterPZ
+        return_type: float
+        arguments:
+          - name: index
+            type: int
+      - name: radiusOfFirstHit
+        return_type: float
+      - name: beamlineTiltX
+        return_type: float
+      - name: beamlineTiltY
+        return_type: float
+      - name: hitPattern
+        return_type: unsigned int
+      - name: chiSquared
+        return_type: float
+      - name: numberDoF
+        return_type: float
+      - name: vertexLink
+        return_type: const ElementLink<DataVector<xAOD::Vertex_v1> >
+      - name: vertex
+        return_type: const xAOD::Vertex_v1*
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.TruthEventBase_v1
+    cpp_name: xAOD::TruthEventBase_v1
+    include_file: xAODTruth/versions/TruthEventBase_v1.h
+    methods:
+      - name: truthParticleLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TruthParticle_v1> > >
+      - name: nTruthParticles
+        return_type: int
+      - name: truthParticleLink
+        return_type: const ElementLink<DataVector<xAOD::TruthParticle_v1> >
+        arguments:
+          - name: index
+            type: int
+      - name: truthParticle
+        return_type: const xAOD::TruthParticle_v1*
+        arguments:
+          - name: index
+            type: int
+      - name: truthVertexLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TruthVertex_v1> > >
+      - name: nTruthVertices
+        return_type: int
+      - name: truthVertexLink
+        return_type: const ElementLink<DataVector<xAOD::TruthVertex_v1> >
+        arguments:
+          - name: index
+            type: int
+      - name: truthVertex
+        return_type: const xAOD::TruthVertex_v1*
+        arguments:
+          - name: index
+            type: int
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.TruthEvent_v1
+    cpp_name: xAOD::TruthEvent_v1
+    include_file: xAODTruth/versions/TruthEvent_v1.h
+    enums:
+      - name: PdfParam
+        values:
+          - name: PDGID1
+            value: 0
+          - name: PDGID2
+            value: 1
+          - name: PDFID1
+            value: 2
+          - name: PDFID2
+            value: 3
+          - name: X1
+            value: 4
+          - name: X2
+            value: 5
+          - name: SCALE
+            value: 6
+          - name: Q
+            value: 6
+          - name: PDF1
+            value: 7
+          - name: PDF2
+            value: 8
+          - name: XF1
+            value: 7
+          - name: XF2
+            value: 8
+      - name: HIParam
+        values:
+          - name: NCOLLHARD
+            value: 0
+          - name: NPARTPROJ
+            value: 1
+          - name: NPARTTARG
+            value: 2
+          - name: NCOLL
+            value: 3
+          - name: SPECTATORNEUTRONS
+            value: 4
+          - name: SPECTATORPROTONS
+            value: 5
+          - name: NNWOUNDEDCOLLISIONS
+            value: 6
+          - name: NWOUNDEDNCOLLISIONS
+            value: 7
+          - name: NWOUNDEDNWOUNDEDCOLLISIONS
+            value: 8
+          - name: IMPACTPARAMETER
+            value: 9
+          - name: EVENTPLANEANGLE
+            value: 10
+          - name: ECCENTRICITY
+            value: 11
+          - name: SIGMAINELNN
+            value: 12
+          - name: CENTRALITY
+            value: 13
+    methods:
+      - name: weights
+        return_type: const vector<float>
+      - name: crossSection
+        return_type: float
+      - name: crossSectionError
+        return_type: float
+      - name: pdfInfoParameter
+        return_type: bool
+        arguments:
+          - name: value
+            type: int
+          - name: parameter
+            type: xAOD.TruthEvent_v1.PdfParam
+      - name: setPdfInfoParameter
+        return_type: bool
+        arguments:
+          - name: value
+            type: int
+          - name: parameter
+            type: xAOD.TruthEvent_v1.PdfParam
+      - name: pdfInfo
+        return_type: xAOD::TruthEvent_v1::PdfInfo
+      - name: heavyIonParameter
+        return_type: bool
+        arguments:
+          - name: value
+            type: int
+          - name: parameter
+            type: xAOD.TruthEvent_v1.HIParam
+      - name: setHeavyIonParameter
+        return_type: bool
+        arguments:
+          - name: value
+            type: int
+          - name: parameter
+            type: xAOD.TruthEvent_v1.HIParam
+      - name: signalProcessVertex
+        return_type: const xAOD::TruthVertex_v1*
+      - name: signalProcessVertexLink
+        return_type: const ElementLink<DataVector<xAOD::TruthVertex_v1> >
+      - name: beamParticle1Link
+        return_type: const ElementLink<DataVector<xAOD::TruthParticle_v1> >
+      - name: beamParticle2Link
+        return_type: const ElementLink<DataVector<xAOD::TruthParticle_v1> >
+      - name: truthParticleLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TruthParticle_v1> > >
+      - name: nTruthParticles
+        return_type: int
+      - name: truthParticleLink
+        return_type: const ElementLink<DataVector<xAOD::TruthParticle_v1> >
+        arguments:
+          - name: index
+            type: int
+      - name: truthParticle
+        return_type: const xAOD::TruthParticle_v1*
+        arguments:
+          - name: index
+            type: int
+      - name: truthVertexLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TruthVertex_v1> > >
+      - name: nTruthVertices
+        return_type: int
+      - name: truthVertexLink
+        return_type: const ElementLink<DataVector<xAOD::TruthVertex_v1> >
+        arguments:
+          - name: index
+            type: int
+      - name: truthVertex
+        return_type: const xAOD::TruthVertex_v1*
+        arguments:
+          - name: index
+            type: int
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.TruthEvent_v1.PdfInfo
+    cpp_name: xAOD::TruthEvent_v1::PdfInfo
+    include_file: xAODTruth/versions/TruthEvent_v1.h
+    methods:
+      - name: valid
+        return_type: bool
+  - python_name: xAOD.TruthMetaData_v1
+    cpp_name: xAOD::TruthMetaData_v1
+    include_file: xAODTruth/versions/TruthMetaData_v1.h
+    methods:
+      - name: mcChannelNumber
+        return_type: unsigned int
+      - name: weightNames
+        return_type: const vector<string>
+      - name: lhefGenerator
+        return_type: const string
+      - name: generators
+        return_type: const string
+      - name: evgenProcess
+        return_type: const string
+      - name: evgenTune
+        return_type: const string
+      - name: hardPDF
+        return_type: const string
+      - name: softPDF
+        return_type: const string
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.TruthParticle_v1
+    cpp_name: xAOD::TruthParticle_v1
+    include_file: xAODTruth/versions/TruthParticle_v1.h
+    enums:
+      - name: PolParam
+        values:
+          - name: polarizationPhi
+            value: 0
+          - name: polarizationTheta
+            value: 1
+    methods:
+      - name: pdgId
+        return_type: int
+      - name: absPdgId
+        return_type: int
+      - name: barcode
+        return_type: int
+      - name: status
+        return_type: int
+      - name: hasProdVtx
+        return_type: bool
+      - name: prodVtx
+        return_type: const xAOD::TruthVertex_v1*
+      - name: prodVtxLink
+        return_type: const ElementLink<DataVector<xAOD::TruthVertex_v1> >
+      - name: hasDecayVtx
+        return_type: bool
+      - name: decayVtx
+        return_type: const xAOD::TruthVertex_v1*
+      - name: decayVtxLink
+        return_type: const ElementLink<DataVector<xAOD::TruthVertex_v1> >
+      - name: nParents
+        return_type: int
+      - name: parent
+        return_type: const xAOD::TruthParticle_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: nChildren
+        return_type: int
+      - name: child
+        return_type: const xAOD::TruthParticle_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: pt
+        return_type: double
+      - name: eta
+        return_type: double
+      - name: phi
+        return_type: double
+      - name: m
+        return_type: double
+      - name: e
+        return_type: double
+      - name: rapidity
+        return_type: double
+      - name: p4
+        return_type: const TLorentzVector
+      - name: abseta
+        return_type: double
+      - name: absrapidity
+        return_type: double
+      - name: px
+        return_type: float
+      - name: py
+        return_type: float
+      - name: pz
+        return_type: float
+      - name: charge
+        return_type: double
+      - name: threeCharge
+        return_type: int
+      - name: isCharged
+        return_type: bool
+      - name: isNeutral
+        return_type: bool
+      - name: isPhoton
+        return_type: bool
+      - name: isLepton
+        return_type: bool
+      - name: isChLepton
+        return_type: bool
+      - name: isElectron
+        return_type: bool
+      - name: isMuon
+        return_type: bool
+      - name: isTau
+        return_type: bool
+      - name: isNeutrino
+        return_type: bool
+      - name: isHadron
+        return_type: bool
+      - name: isMeson
+        return_type: bool
+      - name: isBaryon
+        return_type: bool
+      - name: hasStrange
+        return_type: bool
+      - name: hasCharm
+        return_type: bool
+      - name: hasBottom
+        return_type: bool
+      - name: isLightMeson
+        return_type: bool
+      - name: isLightBaryon
+        return_type: bool
+      - name: isLightHadron
+        return_type: bool
+      - name: isHeavyMeson
+        return_type: bool
+      - name: isHeavyBaryon
+        return_type: bool
+      - name: isHeavyHadron
+        return_type: bool
+      - name: isBottomMeson
+        return_type: bool
+      - name: isBottomBaryon
+        return_type: bool
+      - name: isBottomHadron
+        return_type: bool
+      - name: isCharmMeson
+        return_type: bool
+      - name: isCharmBaryon
+        return_type: bool
+      - name: isCharmHadron
+        return_type: bool
+      - name: isStrangeMeson
+        return_type: bool
+      - name: isStrangeBaryon
+        return_type: bool
+      - name: isStrangeHadron
+        return_type: bool
+      - name: isQuark
+        return_type: bool
+      - name: isParton
+        return_type: bool
+      - name: isTop
+        return_type: bool
+      - name: isW
+        return_type: bool
+      - name: isZ
+        return_type: bool
+      - name: isHiggs
+        return_type: bool
+      - name: isResonance
+        return_type: bool
+      - name: isGenSpecific
+        return_type: bool
+      - name: isBSM
+        return_type: bool
+      - name: polarizationParameter
+        return_type: bool
+        arguments:
+          - name: value
+            type: float
+          - name: parameter
+            type: xAOD.TruthParticle_v1.PolParam
+      - name: setPolarizationParameter
+        return_type: bool
+        arguments:
+          - name: value
+            type: float
+          - name: parameter
+            type: xAOD.TruthParticle_v1.PolParam
+      - name: polarization
+        return_type: xAOD::TruthParticle_v1::Polarization
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.TruthParticle_v1.Polarization
+    cpp_name: xAOD::TruthParticle_v1::Polarization
+    include_file: xAODTruth/versions/TruthParticle_v1.h
+    methods:
+      - name: valid
+        return_type: bool
+  - python_name: xAOD.TruthVertex_v1
+    cpp_name: xAOD::TruthVertex_v1
+    include_file: xAODTruth/versions/TruthVertex_v1.h
+    methods:
+      - name: id
+        return_type: int
+      - name: barcode
+        return_type: int
+      - name: incomingParticleLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TruthParticle_v1> > >
+      - name: nIncomingParticles
+        return_type: int
+      - name: incomingParticle
+        return_type: const xAOD::TruthParticle_v1*
+        arguments:
+          - name: index
+            type: int
+      - name: outgoingParticleLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TruthParticle_v1> > >
+      - name: nOutgoingParticles
+        return_type: int
+      - name: outgoingParticle
+        return_type: const xAOD::TruthParticle_v1*
+        arguments:
+          - name: index
+            type: int
+      - name: x
+        return_type: float
+      - name: y
+        return_type: float
+      - name: z
+        return_type: float
+      - name: perp
+        return_type: float
+      - name: eta
+        return_type: float
+      - name: phi
+        return_type: float
+      - name: t
+        return_type: float
+      - name: v4
+        return_type: const TLorentzVector
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+  - python_name: xAOD.Vertex_v1
+    cpp_name: xAOD::Vertex_v1
+    include_file: xAODTracking/versions/Vertex_v1.h
+    methods:
+      - name: x
+        return_type: float
+      - name: y
+        return_type: float
+      - name: z
+        return_type: float
+      - name: covariance
+        return_type: const vector<float>
+      - name: chiSquared
+        return_type: float
+      - name: numberDoF
+        return_type: float
+      - name: trackParticleLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::TrackParticle_v1> > >
+      - name: trackWeights
+        return_type: const vector<float>
+      - name: neutralParticleLinks
+        return_type: const vector<ElementLink<DataVector<xAOD::NeutralParticle_v1> > >
+      - name: neutralWeights
+        return_type: const vector<float>
+      - name: trackParticle
+        return_type: const xAOD::TrackParticle_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: trackWeight
+        return_type: float
+        arguments:
+          - name: i
+            type: int
+      - name: nTrackParticles
+        return_type: int
+      - name: neutralParticle
+        return_type: const xAOD::NeutralParticle_v1*
+        arguments:
+          - name: i
+            type: int
+      - name: neutralWeight
+        return_type: float
+        arguments:
+          - name: i
+            type: int
+      - name: nNeutralParticles
+        return_type: int
+      - name: index
+        return_type: int
+      - name: usingPrivateStore
+        return_type: bool
+      - name: usingStandaloneStore
+        return_type: bool
+      - name: hasStore
+        return_type: bool
+      - name: hasNonConstStore
+        return_type: bool
+      - name: clearDecorations
+        return_type: bool
+      - name: auxdataConst
+        return_type: U
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
+      - name: isAvailable
+        return_type: bool
+        arguments:
+          - name: name
+            type: str
+        parameter_arguments:
+          - name: auxdata_type
+            type: cpp_type[U]
+        param_helper: type_support.index_type_forwarder
+        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
+files:
+  - name: trigger.py
+    init_lines:
+      - from .trigger import tdt_chain_fired
+      - from .trigger import tmt_match_object
+    contents:
+      - "# Temp file to develop the code we need to run as the TDT"
+      - "from typing import Tuple, TypeVar"
+      - "from func_adl import func_adl_callable, ObjectStream"
+      - "import ast"
+      - ""
+      - "T = TypeVar(\"T\")"
+      - ""
+      - ""
+      - "def _add_decision_tool(s: ObjectStream[T]) -> ObjectStream[T]:"
+      - "    'Add code block for a decision tool initialization'"
+      - "    return s.MetaData("
+      - "        {"
+      - "            \"metadata_type\": \"inject_code\","
+      - "            \"name\": \"trigger_decision_tool\","
+      - "            \"header_includes\": ["
+      - "                \"TrigConfInterfaces/ITrigConfigTool.h\","
+      - "                \"TrigDecisionTool/TrigDecisionTool.h\","
+      - "                \"AsgTools/AnaToolHandle.h\","
+      - "            ],"
+      - "            \"private_members\": ["
+      - "                \"asg::AnaToolHandle<TrigConf::ITrigConfigTool> m_trigConf;\","
+      - "                \"asg::AnaToolHandle<Trig::TrigDecisionTool> m_trigDec;\","
+      - "            ],"
+      - "            \"instance_initialization\": ["
+      - "                'm_trigConf(\"TrigConf::xAODConfigTool/xAODConfigTool\")',"
+      - "                'm_trigDec(\"Trig::TrigDecisionTool/TrigDecisionTool\")',"
+      - "            ],"
+      - "            \"initialize_lines\": ["
+      - "                \"ANA_CHECK (m_trigConf.initialize());\","
+      - "                'ANA_CHECK (m_trigDec.setProperty(\"ConfigTool\", m_trigConf.getHandle()));',"
+      - "                'ANA_CHECK (m_trigDec.setProperty(\"TrigDecisionKey\", \"xTrigDecision\"));',"
+      - "                \"ANA_CHECK (m_trigDec.initialize());\","
+      - "            ],"
+      - "            \"link_libraries\": [\"TrigDecisionToolLib\", \"TrigConfInterfaces\"],"
+      - "        }"
+      - "    )"
+      - ""
+      - ""
+      - "def _add_match_tool(s: ObjectStream[T]) -> ObjectStream[T]:"
+      - "    new_s = s.MetaData("
+      - "            {"
+      - "                \"metadata_type\": \"inject_code\","
+      - "                \"name\": \"trigger_match_tool\","
+      - "                \"private_members\": ["
+      - "                    \"asg::AnaToolHandle<Trig::IMatchingTool> m_tmt;\","
+      - "                ],"
+      - "                \"header_includes\": ["
+      - "                    \"TriggerMatchingTool/MatchFromCompositeTool.h\","
+      - "                ],"
+      - "                \"instance_initialization\": ["
+      - "                    'm_tmt(\"Trig::MatchFromCompositeTool\")',"
+      - "                ],"
+      - "                \"initialize_lines\": ["
+      - "                    'ANA_CHECK(m_tmt.initialize());',"
+      - "                ],"
+      - "                \"link_libraries\": [\"TriggerMatchingToolLib\"],"
+      - "            }"
+      - "    )"
+      - "    return _add_decision_tool(new_s)"
+      - ""
+      - ""
+      - "def _tdt_chain_fired_processor("
+      - "    s: ObjectStream[T], a: ast.Call"
+      - ") -> Tuple[ObjectStream[T], ast.Call]:"
+      - "    \"\"\"Configure the backend to run the Trigger Decision Tool!"
+      - ""
+      - "    Args:"
+      - "        s (ObjectStream[T]): The stream func_adl is working on - and we can add meta data to.Tuple"
+      - "        a (ast.Call): The callsite in case we need to modify it"
+      - ""
+      - "    Returns:"
+      - "        Tuple[ObjectStream[T], ast.Call]: Update stream and call site."
+      - "    \"\"\""
+      - "    # Make sure the TDT is declared and send the code"
+      - "    # for this particular function"
+      - "    new_s = s.MetaData("
+      - "        {"
+      - "            \"metadata_type\": \"add_cpp_function\","
+      - "            \"name\": \"tdt_chain_fired\","
+      - "            \"include_files\": [],"
+      - "            \"arguments\": [\"triggers\"],"
+      - "            \"code\": [\"auto result = m_trigDec->isPassed(triggers,TrigDefs::Physics);\"],"
+      - "            \"result_name\": \"result\","
+      - "            \"return_type\": \"bool\","
+      - "        }"
+      - "    )"
+      - ""
+      - "    return _add_decision_tool(new_s), a"
+      - ""
+      - ""
+      - "def _tmt_match_object_processor(s: ObjectStream[T], a: ast.Call) -> Tuple[ObjectStream[T], ast.Call]:"
+      - "    new_s = s.MetaData("
+      - "        {"
+      - "            \"metadata_type\": \"add_cpp_function\","
+      - "            \"name\": \"tmt_match_object\","
+      - "            \"include_files\": [],"
+      - "            \"arguments\": [\"trigger\", \"offline_object\", \"dr\"],"
+      - "            \"code\": ["
+      - "                \"std::vector<const xAOD::IParticle*> myParticles\","
+      - "                \"myParticles.push_back(offline_object);\","
+      - "                \"auto result = m_tmt->match(myParticles, trigger , dr);\","
+      - "                ],"
+      - "            \"result_name\": \"result\","
+      - "            \"return_type\": \"bool\","
+      - "        })"
+      - ""
+      - "    return (_add_match_tool(new_s), a)"
+      - ""
+      - ""
+      - "@func_adl_callable(_tdt_chain_fired_processor)"
+      - "def tdt_chain_fired(triggers: str) -> bool:"
+      - "    \"\"\"Returns true if the event has any of the trigger chain names that have"
+      - "    fired. Uses the ATLAS Trigger Decision Tool to query the event."
+      - ""
+      - "    Args:"
+      - "        triggers (str): String specifying the triggers to check for. This is passed directly to the"
+      - "        ATLAS TriggerDecisionTool, so can include any valid wildcards."
+      - ""
+      - "    Returns:"
+      - "        bool: True if the TDT says this chain has fired on this event, false other wise."
+      - "    \"\"\""
+      - "    ..."
+      - ""
+      - "@func_adl_callable(_tmt_match_object_processor)"
+      - "def tmt_match_object(trigger: str, offline_object, dr: float = 0.7) -> bool:"
+      - "    '''Returns true if the `offline_object` is a close match to the trigger"
+      - "    object. Close match is done as a function of $\\Delta R < `dr`$."
+      - ""
+      - "    Args:"
+      - "        trigger (str): Trigger name"
+      - "        offline_object ([type]): The offline object (like an electron)"
+      - ""
+      - "    Returns:"
+      - "        bool: True if the match is good."
+      - "    '''"
+      - "    ..."
+  - "name": "type_support.py"
+    "init_lines":
+      - "from .type_support import cpp_float, cpp_double, cpp_vfloat, cpp_string, cpp_int"
+      - "from . import type_support"
+    "contents":
+      - "from typing import Callable, Generic, Iterable, Optional, Tuple, Type, TypeVar"
+      - "from func_adl import ObjectStream"
+      - "import ast"
+      - ""
+      - "T = TypeVar('T')"
+      - ""
+      - "class cpp_type(Generic[T]):"
+      - "    'Used to indicate C++ types in template arguments'"
+      - "    def __init__ (self, cpp_base_type: str, python_base_type: Type, cpp_collection_type: Optional[str] = None):"
+      - "        '''For a particular type"
+      - "        '''"
+      - "        self._cpp_type = cpp_base_type"
+      - "        self._python_type = python_base_type"
+      - "        self._cpp_collection_type = cpp_collection_type"
+      - ""
+      - "    @property"
+      - "    def cpp_type(self) -> str:"
+      - "        return self._cpp_type"
+      - ""
+      - "    @property"
+      - "    def python_type(self) -> Type:"
+      - "        return self._python_type"
+      - ""
+      - "    @property"
+      - "    def is_collection(self) -> bool:"
+      - "        return self._cpp_collection_type is not None"
+      - ""
+      - "    @property"
+      - "    def actual_cpp_type(self) -> str:"
+      - "        if self._cpp_collection_type is None:"
+      - "            return self.cpp_type"
+      - "        else:"
+      - "            return self._cpp_collection_type"
+      - ""
+      - "    @property"
+      - "    def actual_cpp_type_norm(self) -> str:"
+      - "        return self.actual_cpp_type.replace('::', '_').replace('<', '_').replace('>', '_')"
+      - ""
+      - ""
+      - "cpp_float = cpp_type[float](\"float\", float)"
+      - "cpp_int = cpp_type[float](\"int\", int)"
+      - "cpp_double = cpp_type[float](\"double\", float)"
+      - "cpp_string = cpp_type[float](\"std::string\", float)"
+      - "cpp_vfloat = cpp_type[Iterable[float]](\"float\", float, \"std::vector<float>\")"
+      - ""
+      - ""
+      - "# TODO: 3.10 and this should be a ParamSpec, not a TypeVar."
+      - "ParamValue = TypeVar('ParamValue')"
+      - ""
+      - ""
+      - "class index_type_forwarder(Generic[ParamValue]):"
+      - "    def __getitem__(self, typ: cpp_type[T]) -> Callable[[ParamValue], T]:"
+      - "        ..."
+      - ""
+      - "    def __call__(self, typ: cpp_type[T]) -> Callable[[ParamValue], T]:"
+      - "        ..."
+      - ""
+      - ""
+      - "def cpp_generic_1arg_callback(method_name: str, s: ObjectStream[T], a: ast.Call, param_1: cpp_type) -> Tuple[ObjectStream[T], ast.Call, Type]:"
+      - "    'We deal with generic function return types'"
+      - ""
+      - "    new_s = s.MetaData({"
+      - "        'metadata_type': \"add_cpp_function\","
+      - "        'name': f'{method_name}_{param_1.actual_cpp_type_norm}',"
+      - "        'arguments': ['moment_name'],"
+      - "        'code': [f'auto result = obj_j->{method_name}<{param_1.actual_cpp_type}>(moment_name);'],"
+      - "        'instance_object': 'xAOD::Jet_v1',"
+      - "        'method_object': 'obj_j',"
+      - "        'return_type': param_1.cpp_type,"
+      - "        'return_is_collection': param_1.is_collection,"
+      - "        'include_files': [],"
+      - "    })"
+      - ""
+      - "    import copy"
+      - "    new_a = copy.copy(a)"
+      - "    new_a.func = ast.Attribute(a.func.value, f'{method_name}_{param_1.actual_cpp_type_norm}', a.func.ctx)"
+      - ""
+      - "    return new_s, new_a, param_1.python_type"
+  - "name": "calibration_support.py"
+    "init_lines":
+      - "from .calibration_support import CalibrationEventConfig, calib_tools"
+    "contents":
+      - "import ast"
+      - "import copy"
+      - "import logging"
+      - "import re"
+      - "from pathlib import Path"
+      - "from typing import Dict, Optional, Tuple, TypeVar"
+      - ""
+      - "import jinja2"
+      - "from func_adl import ObjectStream"
+      - "from func_adl.ast.meta_data import lookup_query_metadata"
+      - "from .default_calibration_config import ("
+      - "    default_calibration_config,"
+      - "    default_calibration_name,"
+      - ")"
+      - "from .calibration_event_config import CalibrationEventConfig"
+      - ""
+      - "from .metadata_for_collections import ("
+      - "    g_metadata_names_no_overlap,"
+      - "    g_metadata_names_overlap,"
+      - ")"
+      - ""
+      - "T = TypeVar(\"T\")"
+      - ""
+      - ""
+      - "class calib_tools:"
+      - "    \"\"\"Helper functions to work with a query's calibration configuration.\"\"\""
+      - ""
+      - "    _default_calibration: Optional[Dict[str, CalibrationEventConfig]] = None"
+      - ""
+      - "    _default_sys_error: Optional[str] = \"NOSYS\""
+      - ""
+      - "    @classmethod"
+      - "    def reset_config(cls):"
+      - "        \"\"\"Reset calibration config to the default."
+      - ""
+      - "        * This is configured by release default."
+      - ""
+      - "        \"\"\""
+      - "        cls._default_calibration = default_calibration_config()"
+      - ""
+      - "    @classmethod"
+      - "    def _setup(cls):"
+      - "        if cls._default_calibration is None:"
+      - "            cls.reset_config()"
+      - ""
+      - "    @classmethod"
+      - "    def set_default_config("
+      - "        cls, config: CalibrationEventConfig, config_name: Optional[str] = None"
+      - "    ):"
+      - "        \"\"\"Store a new default config. Will be used by everyone after this."
+      - "        It can be named - but if not the default config is over-written."
+      - ""
+      - "        Args:"
+      - "            config (CalibrationEventConfig): The configuration to store"
+      - "            config_name (Optional[str], optional): The configuration name to"
+      - "                store this in. If none, the default one is used. Defaults to None."
+      - "        \"\"\""
+      - "        if config_name is None:"
+      - "            config_name = default_calibration_name()"
+      - ""
+      - "        assert cls._default_calibration is not None"
+      - "        cls._default_calibration[config_name] = copy.copy(config)"
+      - ""
+      - "    @classmethod"
+      - "    def default_config("
+      - "        cls, config_name: Optional[str] = None"
+      - "    ) -> CalibrationEventConfig:"
+      - "        \"\"\"Return a copy of the current default calibration configuration."
+      - ""
+      - "        If no name is given, then the default data format is returned."
+      - ""
+      - "        Args:"
+      - "            config_name (Optional[str], optional): The calibration config name."
+      - "                        Defaults to None."
+      - ""
+      - "        Returns:"
+      - "            CalibrationEventConfig: Config for the requested name (or default one)."
+      - "        \"\"\""
+      - "        \"Return a copy of the current default calibration configuration.\""
+      - "        cls._setup()"
+      - ""
+      - "        if config_name is None:"
+      - "            config_name = default_calibration_name()"
+      - ""
+      - "        assert cls._default_calibration is not None"
+      - "        return copy.copy(cls._default_calibration[config_name])"
+      - ""
+      - "    @classmethod"
+      - "    def query_update("
+      - "        cls,"
+      - "        query: ObjectStream[T],"
+      - "        calib_config: Optional[CalibrationEventConfig] = None,"
+      - "        **kwargs,"
+      - "    ) -> ObjectStream[T]:"
+      - "        \"\"\"Add metadata to a query to indicate a change in the calibration"
+      - "        configuration for the query."
+      - ""
+      - "        Args:"
+      - "            query (ObjectStream[T]): The query to update."
+      - ""
+      - "            calib_config (Optional[CalibrationEventConfig]): The new calibration"
+      - "                configuration to use. If specified will override all calibration"
+      - "                configuration options in the query."
+      - ""
+      - "            jet_collection, ...: Use any property name from the `CalibrationEventConfig`"
+      - "                class to override that particular options for this query. You may"
+      - "                specify as many of them as you like."
+      - ""
+      - "        Returns:"
+      - "            ObjectStream[T]: The updated query."
+      - ""
+      - "        Notes:"
+      - ""
+      - "            * This function can be chained - resolution works by looking at the most"
+      - "              recent `query_update` in the query."
+      - "            * This function works by storing a complete `CalibrationEventConfig` object,"
+      - "              updated as requested, in the query. So even if you just update"
+      - "              `jet_collection`, changing the `default_config` after calling this will"
+      - "              have no effect."
+      - "        \"\"\""
+      - ""
+      - "        # Get a base calibration config we can modify (e.g. a copy)"
+      - "        config = calib_config"
+      - "        if config is None:"
+      - "            config = calib_tools.query_get(query)"
+      - ""
+      - "        # Now, modify by any arguments we were given"
+      - "        for k, v in kwargs.items():"
+      - "            if hasattr(config, k):"
+      - "                setattr(config, k, v)"
+      - "            else:"
+      - "                raise ValueError("
+      - "                    f\"Unknown calibration config option: {k} in `query_update`\""
+      - "                )"
+      - ""
+      - "        # Place it in the query stream for later use"
+      - "        return query.QMetaData({\"calibration\": config})"
+      - ""
+      - "    @classmethod"
+      - "    def query_get(cls, query: ObjectStream[T]) -> CalibrationEventConfig:"
+      - "        \"\"\"Return a copy of the calibration if the query were issued at this point."
+      - ""
+      - "        Args:"
+      - "            query (ObjectStream[T]): The query to inspect."
+      - ""
+      - "        Returns:"
+      - "            CalibrationEventConfig: The calibration configuration for the query."
+      - "        \"\"\""
+      - "        r = lookup_query_metadata(query, \"calibration\")"
+      - "        if r is None:"
+      - "            # Really, a user needs to be more careful!"
+      - "            logging.warning("
+      - "                \"Fetched the default calibration configuration for a query. It should \""
+      - "                \"have been intentionally configured - using configuration for data \""
+      - "                f\"format {default_calibration_name()}\""
+      - "            )"
+      - "            return calib_tools.default_config()"
+      - "        else:"
+      - "            return copy.copy(r)"
+      - ""
+      - "    @classmethod"
+      - "    @property"
+      - "    def default_sys_error(cls) -> str:"
+      - "        \"\"\"Return the default systematic error\"\"\""
+      - "        if cls._default_sys_error is None:"
+      - "            return \"NOSYS\""
+      - "        return cls._default_sys_error"
+      - ""
+      - "    @classmethod"
+      - "    def set_default_sys_error(cls, value: str):"
+      - "        \"\"\"Set the default systematic error\"\"\""
+      - "        cls._default_sys_error = value"
+      - ""
+      - "    @classmethod"
+      - "    def reset_sys_error(cls):"
+      - "        \"\"\"Reset to 'NOSYS' the default systematic error\"\"\""
+      - "        cls._default_sys_error = \"NOSYS\""
+      - ""
+      - "    @classmethod"
+      - "    def query_sys_error(cls, query: ObjectStream[T], sys_error: str) -> ObjectStream[T]:"
+      - "        \"\"\"Add metadata to a query to indicate a change in the systematic error for the"
+      - "        events."
+      - ""
+      - "        Args:"
+      - "            query (ObjectStream[T]): The query to update."
+      - ""
+      - "            sys_error (str): The systematic error to fetch. Only a single one is"
+      - "                possible at any time. The sys error names are the same as used"
+      - "                by the common CP algorithms."
+      - ""
+      - "        Returns:"
+      - "            ObjectStream[T]: The updated query."
+      - ""
+      - "        Notes:"
+      - ""
+      - "            * This function can be chained - resolution works by looking at the most"
+      - "              recent `query_sys_error` in the query."
+      - "        \"\"\""
+      - "        return query.QMetaData({\"calibration_sys_error\": sys_error})"
+      - ""
+      - ""
+      - "_g_jinja2_env: Optional[jinja2.Environment] = None"
+      - ""
+      - ""
+      - "def template_configure() -> jinja2.Environment:"
+      - "    \"\"\"Configure the jinja2 template\"\"\""
+      - "    global _g_jinja2_env"
+      - "    if _g_jinja2_env is None:"
+      - "        template_path = Path(__file__).parent / \"templates\""
+      - "        loader = jinja2.FileSystemLoader(str(template_path))"
+      - "        _g_jinja2_env = jinja2.Environment(loader=loader)"
+      - "    return _g_jinja2_env"
+      - ""
+      - ""
+      - "def fixup_collection_call("
+      - "    s: ObjectStream[T], a: ast.Call, collection_attr_name: str"
+      - ") -> Tuple[ObjectStream[T], ast.Call]:"
+      - "    \"Apply all the fixes to the collection call\""
+      - ""
+      - "    # Find the two arguments"
+      - "    bank_name = None"
+      - "    calibrate = None"
+      - ""
+      - "    if len(a.args) >= 1:"
+      - "        bank_name = ast.literal_eval(a.args[0])"
+      - ""
+      - "    if len(a.args) >= 2:"
+      - "        calibrate = ast.literal_eval(a.args[1])"
+      - ""
+      - "    for arg in a.keywords:"
+      - "        if arg.arg == \"collection\":"
+      - "            bank_name = ast.literal_eval(arg.value)"
+      - "        if arg.arg == \"calibrate\":"
+      - "            calibrate = ast.literal_eval(arg.value)"
+      - ""
+      - "    new_s = s"
+      - "    if bank_name is not None:"
+      - "        new_s = calib_tools.query_update(new_s, **{collection_attr_name: bank_name})"
+      - ""
+      - "    # See if there is a systematic error we need to fetch"
+      - "    sys_error = lookup_query_metadata(new_s, \"calibration_sys_error\")"
+      - "    if sys_error is None:"
+      - "        sys_error = calib_tools.default_sys_error"
+      - ""
+      - "    # Make sure the bank name is set properly (or defaulted)"
+      - "    calibration_info = calib_tools.query_get(new_s)"
+      - "    if bank_name is None:"
+      - "        bank_name = calibration_info.jet_collection"
+      - ""
+      - "    # Default behavior for running calibrations"
+      - "    if calibrate is None:"
+      - "        # Force calibration code to run if we are looking at SYstematic errors unless user has requested..."
+      - "        if sys_error != \"NOSYS\":"
+      - "            calibrate = True"
+      - "        else:"
+      - "            calibrate = calibration_info.calibrate"
+      - "    else:"
+      - "        if (not calibrate) and (not calibration_info.uncalibrated_possible):"
+      - "            raise NotImplementedError("
+      - "                f\"Requested uncalibrated {bank_name}, but that \""
+      - "                \"is not possible on this dataset type\""
+      - "            )"
+      - "    if sys_error != \"NOSYS\" and not calibrate:"
+      - "        raise NotImplementedError("
+      - "            \"Cannot request a systematic error and not have calibration run \""
+      - "            f\"for {bank_name}\""
+      - "        )"
+      - ""
+      - "    # Uncalibrated collection is pretty easy - nothing to do here!"
+      - "    if not calibrate:"
+      - "        output_collection_name = bank_name"
+      - "    else:"
+      - "        # Going to have to run calibrations, so load up the meta-data"
+      - "        j_env = template_configure()"
+      - "        dependent_md_name = None"
+      - "        output_collection_name = None"
+      - "        md_to_transmit = ("
+      - "            g_metadata_names_overlap[collection_attr_name]"
+      - "            if calibration_info.perform_overlap_removal"
+      - "            else g_metadata_names_no_overlap[collection_attr_name]"
+      - "        )"
+      - "        for md_name in md_to_transmit:"
+      - "            md_template = j_env.get_template(f\"{md_name}.py\")"
+      - "            text = md_template.render(calib=calibration_info, sys_error=sys_error)"
+      - "            md_text = {"
+      - "                \"metadata_type\": \"add_job_script\","
+      - "                \"name\": md_name,"
+      - "                \"script\": text.splitlines(),"
+      - "            }"
+      - "            if dependent_md_name is not None:"
+      - "                md_text[\"depends_on\"] = [dependent_md_name]"
+      - ""
+      - "            new_s = new_s.MetaData(md_text)"
+      - ""
+      - "            dependent_md_name = md_name"
+      - ""
+      - "            # Have we found the output collection name?"
+      - "            found = re.search(f\"# Output {collection_attr_name} = (.+)(\\\\s|$)\", text)"
+      - "            if found is not None:"
+      - "                output_collection_name = found.group(1)"
+      - ""
+      - "    if output_collection_name is None:"
+      - "        raise RuntimeError("
+      - "            \"Could not find output collection name in templates for collection\""
+      - "            f\" '{collection_attr_name}' - xAOD job options templates are malformed.\""
+      - "        )"
+      - ""
+      - "    # Finally, rewrite the call to fetch the collection with the actual collection name"
+      - "    # we want to fetch."
+      - "    new_call = copy.copy(a)"
+      - "    new_call.args = [ast.parse(f\"'{output_collection_name}'\").body[0].value]  # type: ignore"
+      - ""
+      - "    return new_s, new_call"
+  - "name": "metadata_for_collections.py"
+    "init_lines":
+      []
+    "contents":
+      - "# Contains all the necessary ordering and linkages between"
+      - "# the CP tools that have to run."
+      - ""
+      - "g_metadata_names_no_overlap = {"
+      - "    \"jet_collection\": ["
+      - "        \"sys_error_tool\","
+      - "        \"pileup_tool\","
+      - "        \"corrections_jet\","
+      - "        \"add_calibration_to_job\","
+      - "    ],"
+      - "    \"electron_collection\": ["
+      - "        \"sys_error_tool\","
+      - "        \"pileup_tool\","
+      - "        \"corrections_electron\","
+      - "        \"add_calibration_to_job\","
+      - "    ],"
+      - "    \"muon_collection\": ["
+      - "        \"sys_error_tool\","
+      - "        \"pileup_tool\","
+      - "        \"corrections_muon\","
+      - "        \"add_calibration_to_job\","
+      - "    ],"
+      - "    \"photon_collection\": ["
+      - "        \"sys_error_tool\","
+      - "        \"pileup_tool\","
+      - "        \"corrections_photon\","
+      - "        \"add_calibration_to_job\","
+      - "    ],"
+      - "    \"tau_collection\": ["
+      - "        \"sys_error_tool\","
+      - "        \"pileup_tool\","
+      - "        \"corrections_tau\","
+      - "        \"add_calibration_to_job\","
+      - "    ],"
+      - "    \"met_collection\": ["
+      - "        \"sys_error_tool\","
+      - "        \"pileup_tool\","
+      - "        \"corrections_jet\","
+      - "        \"corrections_muon\","
+      - "        \"corrections_electron\","
+      - "        \"corrections_met\","
+      - "        \"add_calibration_to_job\","
+      - "    ],"
+      - "}"
+      - ""
+      - "g_metadata_names_overlap = {"
+      - "    \"jet_collection\": ["
+      - "        \"sys_error_tool\","
+      - "        \"pileup_tool\","
+      - "        \"corrections_jet\","
+      - "        \"corrections_muon\","
+      - "        \"corrections_electron\","
+      - "        \"corrections_photon\","
+      - "        \"corrections_tau\","
+      - "        \"corrections_overlap\","
+      - "        \"add_calibration_to_job\","
+      - "    ],"
+      - "    \"electron_collection\": ["
+      - "        \"sys_error_tool\","
+      - "        \"pileup_tool\","
+      - "        \"corrections_jet\","
+      - "        \"corrections_muon\","
+      - "        \"corrections_electron\","
+      - "        \"corrections_photon\","
+      - "        \"corrections_tau\","
+      - "        \"corrections_overlap\","
+      - "        \"add_calibration_to_job\","
+      - "    ],"
+      - "    \"muon_collection\": ["
+      - "        \"sys_error_tool\","
+      - "        \"pileup_tool\","
+      - "        \"corrections_jet\","
+      - "        \"corrections_muon\","
+      - "        \"corrections_electron\","
+      - "        \"corrections_photon\","
+      - "        \"corrections_tau\","
+      - "        \"corrections_overlap\","
+      - "        \"add_calibration_to_job\","
+      - "    ],"
+      - "    \"photon_collection\": ["
+      - "        \"sys_error_tool\","
+      - "        \"pileup_tool\","
+      - "        \"corrections_jet\","
+      - "        \"corrections_muon\","
+      - "        \"corrections_electron\","
+      - "        \"corrections_photon\","
+      - "        \"corrections_tau\","
+      - "        \"corrections_overlap\","
+      - "        \"add_calibration_to_job\","
+      - "    ],"
+      - "    \"tau_collection\": ["
+      - "        \"sys_error_tool\","
+      - "        \"pileup_tool\","
+      - "        \"corrections_jet\","
+      - "        \"corrections_muon\","
+      - "        \"corrections_electron\","
+      - "        \"corrections_photon\","
+      - "        \"corrections_tau\","
+      - "        \"corrections_overlap\","
+      - "        \"add_calibration_to_job\","
+      - "    ],"
+      - "    \"met_collection\": ["
+      - "        \"sys_error_tool\","
+      - "        \"pileup_tool\","
+      - "        \"corrections_jet\","
+      - "        \"corrections_muon\","
+      - "        \"corrections_electron\","
+      - "        \"corrections_met\","
+      - "        \"add_calibration_to_job\","
+      - "    ],"
+      - "}"
+  - "name": "default_calibration_config.py"
+    "init_lines":
+      []
+    "contents":
+      - "from typing import Dict"
+      - ""
+      - "from .calibration_event_config import CalibrationEventConfig"
+      - ""
+      - ""
+      - "def default_calibration_name() -> str:"
+      - "    \"\"\"Should return the default configuration name from the calibration"
+      - "    dictionary that should be used if the user doesn't specify anything else."
+      - ""
+      - "    Returns:"
+      - "        str: _description_"
+      - "    \"\"\""
+      - "    return \"PHYS\""
+      - ""
+      - ""
+      - "def default_calibration_config() -> Dict[str, CalibrationEventConfig]:"
+      - "    \"\"\"Return the default calibration configuration for this release"
+      - "    (this is based on R21 here). We return a config for each type of"
+      - "    data typically encountered in the experiment."
+      - ""
+      - "    The user can change the default config - this is only used when nothing"
+      - "    else is provided (or the default is explicitly requested). In general, a"
+      - "    user shouldn't call this, but use the `calib_tools` object."
+      - ""
+      - "    This is in its own file to enable changes and updates for different"
+      - "    releases to be easily handled."
+      - ""
+      - "    PHYS - for working with R21 DAOD_PHYS formats"
+      - ""
+      - "    Returns:"
+      - "        Dict[str, CalibrationEventConfig]: The default config."
+      - "    \"\"\""
+      - "    return {"
+      - "        \"PHYS\": CalibrationEventConfig("
+      - "            jet_collection=\"AntiKt4EMPFlowJets\","
+      - "            jet_calib_truth_collection=\"AntiKt4TruthDressedWZJets\","
+      - "            run_jet_ghost_muon_association=True,"
+      - "            electron_collection=\"Electrons\","
+      - "            electron_working_point=\"MediumLHElectron\","
+      - "            electron_isolation=\"NonIso\","
+      - "            photon_collection=\"Photons\","
+      - "            photon_working_point=\"Tight\","
+      - "            photon_isolation=\"FixedCutTight\","
+      - "            muon_collection=\"Muons\","
+      - "            muon_working_point=\"Medium\","
+      - "            muon_isolation=\"NonIso\","
+      - "            tau_collection=\"TauJets\","
+      - "            tau_working_point=\"Tight\","
+      - "            perform_overlap_removal=True,"
+      - "            datatype=\"mc\","
+      - "            calibrate=True,"
+      - "            uncalibrated_possible=True,"
+      - "            correct_pileup=True,"
+      - "        )"
+      - "    }"
+  - "name": "calibration_event_config.py"
+    "init_lines":
+      []
+    "contents":
+      - "from dataclasses import dataclass"
+      - ""
+      - ""
+      - "@dataclass"
+      - "class CalibrationEventConfig:"
+      - "    # Name of the jet collection to calibrate and use by default"
+      - "    jet_collection: str"
+      - ""
+      - "    # Name of the truth jets to be used for the jet calibration"
+      - "    jet_calib_truth_collection: str"
+      - ""
+      - "    # SHoudl the muon ghost association run? No if this is phys lite"
+      - "    run_jet_ghost_muon_association: bool"
+      - ""
+      - "    # ** Electrons"
+      - "    # Name of the electron collection to calibrate and use by default"
+      - "    electron_collection: str"
+      - ""
+      - "    # The working point (e.g. xxx)"
+      - "    electron_working_point: str"
+      - ""
+      - "    # The isolation (e.g. xxxx)"
+      - "    electron_isolation: str"
+      - ""
+      - "    # ** Photons"
+      - "    # Name of the photon collection to calibrate and use by default."
+      - "    photon_collection: str"
+      - ""
+      - "    # The working point (e.g. xxx)"
+      - "    photon_working_point: str"
+      - ""
+      - "    # The isolation (e.g. xxxx)"
+      - "    photon_isolation: str"
+      - ""
+      - "    # ** Muons"
+      - "    # Name of the muon collection to calibration and use by default."
+      - "    muon_collection: str"
+      - ""
+      - "    # The working point (e.g. xxx)"
+      - "    muon_working_point: str"
+      - ""
+      - "    # The isolation (e.g. xxxx)"
+      - "    muon_isolation: str"
+      - ""
+      - "    # ** Taus"
+      - "    # Name of the tau collection to calibrate and use by default."
+      - "    tau_collection: str"
+      - ""
+      - "    # The working point (e.g. xxxx)"
+      - "    tau_working_point: str"
+      - ""
+      - "    # ** Other Config Options"
+      - "    perform_overlap_removal: bool"
+      - ""
+      - "    # ** Data Type (data, MC, etc., used for pileup, jet corrections, etc.)"
+      - "    datatype: str"
+      - ""
+      - "    # Perform pileup correction. Almost should do it."
+      - "    correct_pileup: bool"
+      - ""
+      - "    # ** Run calibrations by default (PHYSLITE vs PHYS)"
+      - "    calibrate: bool"
+      - ""
+      - "    # ** True if we can return uncalibrated (PHYSLITE doesn't)"
+      - "    uncalibrated_possible: bool"
+  - "name": "templates/sys_error_tool.py"
+    "init_lines":
+      []
+    "contents":
+      - "# pulled from:https://gitlab.cern.ch/atlas/athena/-/blob/21.2/PhysicsAnalysis/Algorithms/JetAnalysisAlgorithms/python/JetAnalysisAlgorithmsTest.py"
+      - "# Set up the systematics loader/handler service:"
+      - "from AnaAlgorithm.DualUseConfig import createService"
+      - "from AnaAlgorithm.AlgSequence import AlgSequence"
+      - "calibrationAlgSeq = AlgSequence()"
+      - "sysService = createService( 'CP::SystematicsSvc', 'SystematicsSvc', sequence = calibrationAlgSeq )"
+      - "sysService.systematicsList = ['{{ sys_error }}']"
+      - "# Add sequence to job"
+  - "name": "templates/pileup_tool.py"
+    "init_lines":
+      []
+    "contents":
+      - "{%- if calib.correct_pileup %}"
+      - "from AsgAnalysisAlgorithms.PileupAnalysisSequence import makePileupAnalysisSequence"
+      - ""
+      - "# Use the sh object (sample Handler) to get the first tile and extract the filename"
+      - "# from it, which can then be used to fetch the MC campaign. `calib.datatype`"
+      - "# should contain `data` or `mc`"
+      - "pileupSequence = makePileupAnalysisSequence(\"{{calib.datatype}}\")"
+      - "pileupSequence.configure(inputName={}, outputName={})"
+      - "print(pileupSequence)  # For debugging"
+      - ""
+      - "calibrationAlgSeq += pileupSequence"
+      - "{% endif %}"
+  - "name": "templates/corrections_jet.py"
+    "init_lines":
+      []
+    "contents":
+      - "jetContainer = \"{{calib.jet_collection}}\""
+      - "from JetAnalysisAlgorithms.JetAnalysisSequence import makeJetAnalysisSequence"
+      - ""
+      - "# Do not run ghost muon association if you have already"
+      - "# corrected objects."
+      - "jetSequence = makeJetAnalysisSequence("
+      - "    \"{{calib.datatype}}\","
+      - "    jetContainer,"
+      - "    runGhostMuonAssociation={{calib.run_jet_ghost_muon_association}},"
+      - ")"
+      - "jetSequence.configure(inputName=jetContainer, outputName=jetContainer + \"_Base_%SYS%\")"
+      - "jetSequence.JvtEfficiencyAlg.truthJetCollection = \"{{calib.jet_calib_truth_collection}}\""
+      - "try:"
+      - "    jetSequence.ForwardJvtEfficiencyAlg.truthJetCollection = ("
+      - "        \"{{calib.jet_calib_truth_collection}}\""
+      - "    )"
+      - "except AttributeError:"
+      - "    pass"
+      - ""
+      - "calibrationAlgSeq += jetSequence"
+      - "print(jetSequence)  # For debugging"
+      - ""
+      - "# Include, and then set up the jet analysis algorithm sequence:"
+      - "from JetAnalysisAlgorithms.JetJvtAnalysisSequence import makeJetJvtAnalysisSequence"
+      - ""
+      - "jvtSequence = makeJetJvtAnalysisSequence(\"mc\", jetContainer, enableCutflow=True)"
+      - "jvtSequence.configure("
+      - "    inputName={\"jets\": jetContainer + \"_Base_%SYS%\"},"
+      - "    outputName={\"jets\": jetContainer + \"Calib_%SYS%\"},"
+      - ")"
+      - "calibrationAlgSeq += jvtSequence"
+      - "print(jvtSequence)  # For debugging"
+      - "output_jet_container = \"{{calib.jet_collection}}Calib_%SYS%\""
+      - "# Output jet_collection = {{calib.jet_collection}}Calib_{{ sys_error }}"
+  - "name": "templates/corrections_electron.py"
+    "init_lines":
+      []
+    "contents":
+      - "from EgammaAnalysisAlgorithms.ElectronAnalysisSequence import makeElectronAnalysisSequence"
+      - "electronSequence = makeElectronAnalysisSequence( 'mc', '{{calib.electron_working_point}}.{{calib.electron_isolation}}', postfix = '{{calib.electron_working_point}}_{{calib.electron_isolation}}')"
+      - "electronSequence.configure( inputName = '{{calib.electron_collection}}',"
+      - "                            outputName = '{{calib.electron_collection}}_{{calib.electron_working_point}}_{{calib.electron_isolation}}_%SYS%' )"
+      - "calibrationAlgSeq += electronSequence"
+      - "print( electronSequence ) # For debugging"
+      - "output_electron_container = \"{{calib.electron_collection}}_{{calib.electron_working_point}}_{{calib.electron_isolation}}_%SYS%\""
+      - "# Output electron_collection = {{calib.electron_collection}}_{{calib.electron_working_point}}_{{calib.electron_isolation}}_{{ sys_error }}"
+  - "name": "templates/corrections_photon.py"
+    "init_lines":
+      []
+    "contents":
+      - "#TODO: Get photon corrections working. It does not seem possible in R21 and on PHYS_DAOD."
+      - "# If you remove the fudge tool, then the photon eff tool has trouble."
+      - "# If you remove that, then the sequence has trouble. Needs more work."
+      - "# from EgammaAnalysisAlgorithms.PhotonAnalysisSequence import makePhotonAnalysisSequence"
+      - "# photonSequence = makePhotonAnalysisSequence( 'mc', '{{calib.photon_working_point}}.{{calib.photon_isolation}}', postfix = '{{calib.photon_working_point}}_{{calib.photon_isolation}}')"
+      - "# photonSequence.configure( inputName = '{{calib.photon_collection}}',"
+      - "#                             outputName = '{{calib.photon_collection}}_{{calib.photon_working_point}}_{{calib.photon_isolation}}_%SYS%' )"
+      - "# print( photonSequence ) # For debugging"
+      - "# attr = getattr(photonSequence, 'PhotonShowerShapeFudgeAlg_Tight_FixedCutTight')"
+      - "# del attr"
+      - "# del photonSequence.PhotonShowerShapeFudgeAlg_Tight_FixedCutTight"
+      - "# del photonSequence.PhotonIsolationCorrectionAlg_Tight_FixedCutTight"
+      - "# calibrationAlgSeq += photonSequence"
+      - "# Output photon_collection = {{calib.photon_collection}}"
+  - "name": "templates/corrections_muon.py"
+    "init_lines":
+      []
+    "contents":
+      - "muon_container = '{{calib.muon_collection}}'"
+      - "from MuonAnalysisAlgorithms.MuonAnalysisSequence import makeMuonAnalysisSequence"
+      - "muonSequence = makeMuonAnalysisSequence('mc', workingPoint='{{calib.muon_working_point}}.{{calib.muon_isolation}}', postfix = '{{calib.muon_working_point}}_{{calib.muon_isolation}}')"
+      - "muonSequence.configure( inputName = muon_container,"
+      - "                        outputName = muon_container + 'Calib_{{calib.muon_working_point}}{{calib.muon_isolation}}_%SYS%' )"
+      - "calibrationAlgSeq += muonSequence"
+      - "print( muonSequence ) # For debugging"
+      - "output_muon_container = \"{{calib.muon_collection}}Calib_{{calib.muon_working_point}}{{calib.muon_isolation}}_%SYS%\""
+      - "# Output muon_collection = {{calib.muon_collection}}Calib_{{calib.muon_working_point}}{{calib.muon_isolation}}_{{ sys_error }}"
+  - "name": "templates/corrections_tau.py"
+    "init_lines":
+      []
+    "contents":
+      - "from TauAnalysisAlgorithms.TauAnalysisSequence import makeTauAnalysisSequence"
+      - "tauSequence = makeTauAnalysisSequence( 'mc', '{{calib.tau_working_point}}', postfix = '{{calib.tau_working_point}}', rerunTruthMatching=False)"
+      - "tauSequence.configure( inputName = '{{calib.tau_collection}}',"
+      - "                       outputName = '{{calib.tau_collection}}_{{calib.tau_working_point}}_%SYS%' )"
+      - "calibrationAlgSeq += tauSequence"
+      - "print( tauSequence ) # For debugging"
+      - "output_tau_container = '{{calib.tau_collection}}_{{calib.tau_working_point}}_%SYS%'"
+      - "# Output tau_collection = {{calib.tau_collection}}_{{calib.tau_working_point}}_{{ sys_error }}"
+  - "name": "templates/corrections_overlap.py"
+    "init_lines":
+      []
+    "contents":
+      - "from AsgAnalysisAlgorithms.OverlapAnalysisSequence import makeOverlapAnalysisSequence"
+      - "overlapSequence = makeOverlapAnalysisSequence('mc')"
+      - "overlapSequence.configure("
+      - "    inputName = {"
+      - "        'electrons' : output_electron_container,"
+      - "        'photons'   : '{{calib.photon_collection}}',"
+      - "        'muons'     : output_muon_container,"
+      - "        'jets'      : output_jet_container,"
+      - "        'taus'      : output_tau_container,"
+      - "    },"
+      - "    outputName = {"
+      - "        'electrons' : '{{calib.electron_collection}}_{{calib.electron_working_point}}_{{calib.electron_isolation}}_OR_%SYS%',"
+      - "        'photons'   : '{{calib.photon_collection}}_OR_%SYS%',"
+      - "        'muons'     : '{{calib.muon_collection}}Calib_{{calib.muon_working_point}}{{calib.muon_isolation}}_OR_%SYS%',"
+      - "        'jets'      : '{{calib.jet_collection}}Calib_OR_%SYS%',"
+      - "        'taus'      : '{{calib.tau_collection}}_{{calib.tau_working_point}}_OR_%SYS%'"
+      - "    })"
+      - "calibrationAlgSeq += overlapSequence"
+      - "# Output electron_collection = {{calib.electron_collection}}_{{calib.electron_working_point}}_{{calib.electron_isolation}}_OR_{{ sys_error }}"
+      - "# Output photon_collection = {{calib.photon_collection}}_OR_{{ ssy_error }}"
+      - "# Output muon_collection = {{calib.muon_collection}}Calib_{{calib.muon_working_point}}{{calib.muon_isolation}}_OR_{{ sys_error }}"
+      - "# Output jet_collection = {{calib.jet_collection}}Calib_OR_{{ sys_error }}"
+      - "# Output tau_collection = {{calib.tau_collection}}_{{calib.tau_working_point}}_OR_{{ sys_error }}"
+  - "name": "templates/corrections_met.py"
+    "init_lines":
+      []
+    "contents":
+      - "from MetAnalysisAlgorithms.MetAnalysisSequence import makeMetAnalysisSequence"
+      - "met_jetContainer = '{{calib.jet_collection}}'"
+      - "metSequence = makeMetAnalysisSequence('mc', metSuffix = met_jetContainer[:-4] )"
+      - "metSequence.configure( inputName = { 'jets'      : output_jet_container,"
+      - "                                        'muons'     : output_muon_container,"
+      - "                                        'electrons' : output_electron_container },"
+      - "                        outputName = 'AnalysisMET_%SYS%' )"
+      - "print(metSequence)  # For debugging"
+      - "calibrationAlgSeq += metSequence"
+      - "# Output met_collection = AnalysisMET_{{ sys_error }}"
+  - "name": "templates/add_calibration_to_job.py"
+    "init_lines":
+      []
+    "contents":
+      - "calibrationAlgSeq.addSelfToJob( job )"
+      - "print(job) # for debugging"
+"config":
+  "atlas_release": "21.2.247"
+  "dataset_types":
+    - "PHYS"
+metadata:
+  - name: sys_error_tool
+    data:
+      - metadata_type: add_job_script
+        name: sys_error_tool
+        script:
+          - "# pulled from:https://gitlab.cern.ch/atlas/athena/-/blob/21.2/PhysicsAnalysis/Algorithms/JetAnalysisAlgorithms/python/JetAnalysisAlgorithmsTest.py "
+          - "# Set up the systematics loader/handler service:"
+          - "from AnaAlgorithm.DualUseConfig import createService"
+          - "from AnaAlgorithm.AlgSequence import AlgSequence"
+          - "calibrationAlgSeq = AlgSequence()"
+          - "sysService = createService( 'CP::SystematicsSvc', 'SystematicsSvc', sequence = calibrationAlgSeq )"
+          - "sysService.systematicsList = ['{calibration}']"
+          - "# Add sequence to job"
+  - name: pileup_tool
+    data:
+      - metadata_type: add_job_script
+        name: pileup_tool
+        script:
+          - "from AsgAnalysisAlgorithms.PileupAnalysisSequence import makePileupAnalysisSequence"
+          - "pileupSequence = makePileupAnalysisSequence( 'mc' )"
+          - "pileupSequence.configure( inputName = {}, outputName = {} )"
+          - "print( pileupSequence ) # For debugging"
+          - "calibrationAlgSeq += pileupSequence"
+        depends_on: 
+          - sys_error_tool
+  - name: common_corrections
+    data:
+      - metadata_type: add_job_script
+        name: common_corrections
+        script:
+          - "jetContainer = '{calib.jet_collection}'"
+          - "from JetAnalysisAlgorithms.JetAnalysisSequence import makeJetAnalysisSequence"
+          - "jetSequence = makeJetAnalysisSequence( 'mc', jetContainer)"
+          - "jetSequence.configure( inputName = jetContainer, outputName = jetContainer + '_Base_%SYS%' )"
+          - "jetSequence.JvtEfficiencyAlg.truthJetCollection = '{calib.jet_calib_truth_collection}'"
+          - "jetSequence.ForwardJvtEfficiencyAlg.truthJetCollection = '{calib.jet_calib_truth_collection}'"
+          - "calibrationAlgSeq += jetSequence"
+          - "print( jetSequence ) # For debugging"
+          - ""
+          - "# Include, and then set up the jet analysis algorithm sequence:"
+          - "from JetAnalysisAlgorithms.JetJvtAnalysisSequence import makeJetJvtAnalysisSequence"
+          - "jvtSequence = makeJetJvtAnalysisSequence( 'mc', jetContainer, enableCutflow=True )"
+          - "jvtSequence.configure( inputName = {'jets'      : jetContainer + '_Base_%SYS%' },"
+          - "                       outputName = { 'jets'      : jetContainer + 'Calib_%SYS%' },"
+          - "                       )"
+          - "calibrationAlgSeq += jvtSequence"
+          - "print( jvtSequence ) # For debugging"
+          - "#"
+          - "muon_container = '{calib.muon_collection}'"
+          - "from MuonAnalysisAlgorithms.MuonAnalysisSequence import makeMuonAnalysisSequence"
+          - "muonSequence = makeMuonAnalysisSequence('mc', workingPoint='{calib.muon_working_point}.{calib.muon_isolation}', postfix = '{calib.muon_working_point}_{calib.muon_isolation}')"
+          - "muonSequence.configure( inputName = muon_container,"
+          - "                        outputName = muon_container + 'Calib_{calib.muon_working_point}{calib.muon_isolation}_%SYS%' )"
+          - "calibrationAlgSeq += muonSequence"
+          - "print( muonSequence ) # For debugging"
+          - "#"
+          - "from EgammaAnalysisAlgorithms.ElectronAnalysisSequence import makeElectronAnalysisSequence"
+          - "electronSequence = makeElectronAnalysisSequence( 'mc', '{working_point}.{isolation}', postfix = '{working_point}_{isolation}')"
+          - "electronSequence.configure( inputName = '{calib.electron_collection}',"
+          - "                            outputName = '{calib.electron_collection}_{working_point}_{isolation}_%SYS%' )"
+          - "calibrationAlgSeq += electronSequence"
+          - "print( electronSequence ) # For debugging"
+          - "#"
+          - "from EgammaAnalysisAlgorithms.PhotonAnalysisSequence import makePhotonAnalysisSequence"
+          - "photonSequence = makePhotonAnalysisSequence( 'mc', '{calib.photon_working_point}.{calib.photon_isolation}', postfix = '{calib.photon_working_point}_{calib.photon_isolation}')"
+          - "photonSequence.configure( inputName = '{calib.photon_collection}',"
+          - "                            outputName = '{calib.photon_collection}_{calib.photon_working_point}_{calib.photon_isolation}_%SYS%' )"
+          - "calibrationAlgSeq += photonSequence"
+          - "print( photonSequence ) # For debugging"
+          - "#"
+          - "from TauAnalysisAlgorithms.TauAnalysisSequence import makeTauAnalysisSequence"
+          - "tauSequence = makeTauAnalysisSequence( 'mc', '{calib.tau_working_point}', postfix = '{calib.tau_working_point}', rerunTruthMatching=False)"
+          - "tauSequence.configure( inputName = '{calib.tau_collection}',"
+          - "                       outputName = '{calib.tau_collection}_{calib.tau_working_point}_%SYS%' )"
+          - "calibrationAlgSeq += tauSequence"
+          - "print( tauSequence ) # For debugging"
+        depends_on:
+          - 'pileup_tool'
+  - name: ditau_corrections
+    data:
+      - metadata_type: add_job_script
+        name: ditau_corrections
+        script:
+          - "from TauAnalysisAlgorithms.DiTauAnalysisSequence import makeDiTauAnalysisSequence"
+          - "diTauSequence = makeDiTauAnalysisSequence( 'mc', '{working_point}', postfix = '{working_point}')"
+          - "diTauSequence.configure( inputName = '{bank_name}',"
+          - "                       outputName = '{bank_name}_{working_point}_%SYS%' )"
+          - "calibrationAlgSeq += diTauSequence"
+          - "print( diTauSequence ) # For debugging"
+        depends_on:
+          - 'pileup_tool'
+  - name: add_calibration_to_job
+    data:
+      - metadata_type: add_job_script
+        name: add_calibration_to_job
+        script:
+          - "calibrationAlgSeq.addSelfToJob( job )"
+          - "print(job) # for debugging"
+        depends_on:
+          - '*PREVIOUS*'

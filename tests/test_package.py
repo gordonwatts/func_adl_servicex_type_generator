@@ -5,6 +5,8 @@ import pytest
 from func_adl_servicex_type_generator.data_model import (
     class_info,
     collection_info,
+    enum_info,
+    enum_value_info,
     extra_parameter,
     file_info,
     method_arg_info,
@@ -13,6 +15,7 @@ from func_adl_servicex_type_generator.data_model import (
     parameter_action,
 )
 from func_adl_servicex_type_generator.package import (
+    py_type_from_cpp,
     template_package_scaffolding,
     write_out_classes,
 )
@@ -675,6 +678,69 @@ def test_class_simple(tmp_path, template_path):
     assert 'jets = _load_me("package.jets")' in init_text
 
 
+def test_class_with_just_enum(tmp_path, template_path):
+    """Write out a very simple top level class with enum
+
+    Args:
+        tmp_path ([type]): [description]
+    """
+    classes = [
+        class_info(
+            "Jets",
+            "Jets",
+            [],
+            None,
+            None,
+            "jet.hpp",
+            enums=[enum_info(name="Color", values=[enum_value_info("Red", 1)])],
+        ),
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package", "22")
+
+    assert (tmp_path / "jets.py").exists()
+    assert (tmp_path / "__init__.py").exists()
+
+    class_text = (tmp_path / "jets.py").read_text()
+    assert "class Color(Enum)" in class_text
+    assert "Red = 1" in class_text
+    assert "from enum import Enum" in class_text
+
+
+def test_class_with_just_enums(tmp_path, template_path):
+    """Write out a very simple top level class with enum
+
+    Args:
+        tmp_path ([type]): [description]
+    """
+    classes = [
+        class_info(
+            "Jets",
+            "Jets",
+            [],
+            None,
+            None,
+            "jet.hpp",
+            enums=[
+                enum_info(
+                    name="Color",
+                    values=[enum_value_info("Red", 1), enum_value_info("Blue", 2)],
+                )
+            ],
+        ),
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package", "22")
+
+    assert (tmp_path / "jets.py").exists()
+    assert (tmp_path / "__init__.py").exists()
+
+    class_text = (tmp_path / "jets.py").read_text()
+    assert "class Color(Enum)" in class_text
+    assert "Red = 1\n        Blue = 2" in class_text
+    assert "from enum import Enum" in class_text
+
+
 def test_class_simple_release_different(tmp_path, template_path):
     """Write out a very simple top level class.
 
@@ -1095,3 +1161,49 @@ def test_method_with_param_args(tmp_path, template_path):
 
     assert "@property" in all_text
     assert "def pt(self) -> package.fetcher[float]:" in all_text
+
+
+def test_py_type_from_cpp_class_name():
+    class_dict = {
+        "xAOD::Jets": class_info("xAOD.Jets", "xAOD::Jets", [], None, None, "jet.hpp"),
+        "xAOD::Taus": class_info("xAOD.Taus", "xAOD::Taus", [], None, None, "tau.hpp"),
+    }
+
+    assert py_type_from_cpp("xAOD::Jets", class_dict) == "xAOD.Jets"
+
+
+def test_py_type_from_cpp_class_enum():
+    class_dict = {
+        "xAOD::Jets": class_info(
+            "xAOD.Jets",
+            "xAOD::Jets",
+            [],
+            None,
+            None,
+            "jet.hpp",
+            enums=[enum_info(name="Color", values=[enum_value_info("Red", 1)])],
+        ),
+        "xAOD::Taus": class_info("xAOD.Taus", "xAOD::Taus", [], None, None, "tau.hpp"),
+    }
+
+    assert py_type_from_cpp("xAOD::Jets::Color", class_dict) == "xAOD.Jets.Color"
+
+
+def test_py_type_from_cpp_class_bad():
+    class_dict = {
+        "xAOD::Jets": class_info(
+            "xAOD.Jets",
+            "xAOD::Jets",
+            [],
+            None,
+            None,
+            "jet.hpp",
+            enums=[enum_info(name="Color", values=[enum_value_info("Red", 1)])],
+        ),
+        "xAOD::Taus": class_info("xAOD.Taus", "xAOD::Taus", [], None, None, "tau.hpp"),
+    }
+
+    with pytest.raises(RuntimeError) as e:
+        py_type_from_cpp("xAOD::Jets::ColorR", class_dict)
+
+    assert "ColorR" in str(e.value)

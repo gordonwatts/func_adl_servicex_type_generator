@@ -101,7 +101,6 @@ def generate_package(
     template_path = Path(__file__).parent / ".." / "template"
     assert template_path.exists()
     output_path = output_directory
-    output_path = output_directory
 
     template_package_scaffolding(template_data, template_path, output_path, data.files)
 
