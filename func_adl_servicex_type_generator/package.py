@@ -1,3 +1,4 @@
+import logging
 import shutil
 from dataclasses import dataclass
 from pathlib import Path
@@ -80,6 +81,7 @@ def template_package_scaffolding(
         template = env.get_template(t)
         output_file = output_path / t
         output_file.parent.mkdir(parents=True, exist_ok=True)
+        logging.info(f"Rendering {output_file}")
         with output_file.open("wt") as out:
             for line in template.render(template_data).splitlines():
                 out.write(line)
