@@ -398,6 +398,7 @@ def write_out_classes(
             inheritance_list=inheritance_list,
             methods_info=methods,
             package_name=package_name,
+            enums_info=c.enums,
         )
 
         with class_file.open("wt") as out:

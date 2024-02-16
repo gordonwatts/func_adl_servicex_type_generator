@@ -706,6 +706,40 @@ def test_class_with_just_enum(tmp_path, template_path):
     assert "from enum import Enum" in class_text
 
 
+def test_class_with_just_enums(tmp_path, template_path):
+    """Write out a very simple top level class with enum
+
+    Args:
+        tmp_path ([type]): [description]
+    """
+    classes = [
+        class_info(
+            "Jets",
+            "Jets",
+            [],
+            None,
+            None,
+            "jet.hpp",
+            enums=[
+                enum_info(
+                    name="Color",
+                    values=[enum_value_info("Red", 1), enum_value_info("Blue", 2)],
+                )
+            ],
+        ),
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package", "22")
+
+    assert (tmp_path / "jets.py").exists()
+    assert (tmp_path / "__init__.py").exists()
+
+    class_text = (tmp_path / "jets.py").read_text()
+    assert "class Color(Enum)" in class_text
+    assert "Red = 1\n        Blue = 2" in class_text
+    assert "from enum import Enum" in class_text
+
+
 def test_class_simple_release_different(tmp_path, template_path):
     """Write out a very simple top level class.
 
