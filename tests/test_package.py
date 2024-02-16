@@ -15,6 +15,7 @@ from func_adl_servicex_type_generator.data_model import (
     parameter_action,
 )
 from func_adl_servicex_type_generator.package import (
+    py_type_from_cpp,
     template_package_scaffolding,
     write_out_classes,
 )
@@ -1243,3 +1244,49 @@ def test_method_with_param_args(tmp_path, template_path):
 #     assert "import package" in tau_text
 #     assert "pt(self) -> package.xAOD.Jets:" in tau_text
 # TODO: Fix or remove
+
+
+def test_py_type_from_cpp_class_name():
+    class_dict = {
+        "xAOD::Jets": class_info("xAOD.Jets", "xAOD::Jets", [], None, None, "jet.hpp"),
+        "xAOD::Taus": class_info("xAOD.Taus", "xAOD::Taus", [], None, None, "tau.hpp"),
+    }
+
+    assert py_type_from_cpp("xAOD::Jets", class_dict) == "xAOD.Jets"
+
+
+def test_py_type_from_cpp_class_enum():
+    class_dict = {
+        "xAOD::Jets": class_info(
+            "xAOD.Jets",
+            "xAOD::Jets",
+            [],
+            None,
+            None,
+            "jet.hpp",
+            enums=[enum_info(name="Color", values=[enum_value_info("Red", 1)])],
+        ),
+        "xAOD::Taus": class_info("xAOD.Taus", "xAOD::Taus", [], None, None, "tau.hpp"),
+    }
+
+    assert py_type_from_cpp("xAOD::Jets::Color", class_dict) == "xAOD.Jets.Color"
+
+
+def test_py_type_from_cpp_class_bad():
+    class_dict = {
+        "xAOD::Jets": class_info(
+            "xAOD.Jets",
+            "xAOD::Jets",
+            [],
+            None,
+            None,
+            "jet.hpp",
+            enums=[enum_info(name="Color", values=[enum_value_info("Red", 1)])],
+        ),
+        "xAOD::Taus": class_info("xAOD.Taus", "xAOD::Taus", [], None, None, "tau.hpp"),
+    }
+
+    with pytest.raises(RuntimeError) as e:
+        py_type_from_cpp("xAOD::Jets::ColorR", class_dict)
+
+    assert "ColorR" in str(e.value)
