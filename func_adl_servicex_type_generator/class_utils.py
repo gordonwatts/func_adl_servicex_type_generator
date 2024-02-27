@@ -128,10 +128,11 @@ def package_qualified_class(
     """Return a package name qualified class, as long as the class is one
     of the classes we are processing in this package.
 
-    xAOD.Jet -> package_name.xAOD.Jet
+    xAOD.Jet -> package_name.xAOD.jet.Jet
     float -> float
     Iterable[xAOD.Jet] -> Iterable[package_name.xAOD.Jet]
     None -> None
+    xAOD.Jet.Enum -> package_name.xAOD.jet.Jet.Enum
 
     Args:
         class_name (str): Name of class we should return
@@ -143,11 +144,20 @@ def package_qualified_class(
     """
 
     def _remove_namespace(name: str) -> str:
-        if name in all_classes:
+        is_in_classes = name in all_classes
+        is_enum_in_classes = name.rsplit(".", 1)[0] in all_classes
+        if is_in_classes:
             name_parts = name.split(".")
-            name_parts.append(name_parts[-1])
-            name_parts[-2] = name_parts[-2].lower()
-            return f"{package_name}.{'.'.join(name_parts)}"
+            new_name_parts = name_parts[:-1] + [name_parts[-1].lower(), name_parts[-1]]
+            return f"{package_name}.{'.'.join(new_name_parts)}"
+        if is_enum_in_classes:
+            name_parts = name.split(".")
+            new_name_parts = name_parts[:-2] + [
+                name_parts[-2].lower(),
+                name_parts[-2],
+                name_parts[-1],
+            ]
+            return f"{package_name}.{'.'.join(new_name_parts)}"
         if name == "Iterable":
             return f"{package_name}.FADLStream"
         return name

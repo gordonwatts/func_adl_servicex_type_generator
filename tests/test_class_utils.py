@@ -113,6 +113,20 @@ def test_qualified_name_two_arg_template():
     )
 
 
+def test_qualified_name_object():
+    assert (
+        package_qualified_class("xAOD.Jet", "package", {"xAOD.Jet"})
+        == "package.xAOD.jet.Jet"
+    )
+
+
+def test_qualified_name_in_enum():
+    assert (
+        package_qualified_class("Enum.Color", "package", {"Enum"})
+        == "package.enum.Enum.Color"
+    )
+
+
 def test_pbn_simple():
     assert process_by_namespace("a", lambda a: "hi") == "hi"
 
