@@ -5,6 +5,7 @@ from func_adl_servicex_type_generator.class_utils import (
     package_qualified_class,
     process_by_namespace,
     remove_namespaces,
+    remove_ns_stem,
     split_release,
 )
 
@@ -19,6 +20,12 @@ def test_split_ns_simple():
     c_ns, c_name = class_split_namespace("xAOD.Jets")
     assert c_ns == "xAOD"
     assert c_name == "Jets"
+
+
+def test_remove_ns_stem():
+    assert remove_ns_stem("xAOD", "xAOD.Jets") == "Jets"
+    assert remove_ns_stem("xAOD", "xAOD1.Jets") == "xAOD1.Jets"
+    assert remove_ns_stem("xAOD", "Forks") == "Forks"
 
 
 def test_as_path_simple_ns():
@@ -103,6 +110,20 @@ def test_qualified_name_two_arg_template():
     assert (
         package_qualified_class("Iterable[hi,there]", "package", {"hi", "there"})
         == "package.FADLStream[package.hi.hi, package.there.there]"
+    )
+
+
+def test_qualified_name_object():
+    assert (
+        package_qualified_class("xAOD.Jet", "package", {"xAOD.Jet"})
+        == "package.xAOD.jet.Jet"
+    )
+
+
+def test_qualified_name_in_enum():
+    assert (
+        package_qualified_class("Enum.Color", "package", {"Enum"})
+        == "package.enum.Enum.Color"
     )
 
 

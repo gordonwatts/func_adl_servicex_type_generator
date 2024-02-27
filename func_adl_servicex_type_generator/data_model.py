@@ -98,7 +98,7 @@ class method_arg_info:
     # Default value
     default_value: Optional[str]
 
-    # The argument type
+    # The Python argument type
     arg_type: str
 
 

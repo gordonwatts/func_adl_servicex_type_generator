@@ -9,6 +9,7 @@ import jinja2
 from func_adl_servicex_type_generator.class_utils import (
     class_ns_as_path,
     class_split_namespace,
+    remove_ns_stem,
 )
 from func_adl_servicex_type_generator.data_model import (
     class_info,
@@ -266,7 +267,7 @@ def py_type_from_cpp(
     # If so, check for the enum in the class.
     last_space = cpp_class_name.rfind("::")
     if last_space >= 0:
-        enum_name = cpp_class_name[last_space + 2 :]
+        enum_name = cpp_class_name[last_space + 2 :]  # noqa
         enum_ns = cpp_class_name[:last_space]
         py_type = cpp_class_dict.get(enum_ns, None)
         if py_type is not None:
@@ -376,7 +377,15 @@ def write_out_classes(
                             py_all_classes_dict,
                         )
                     ),
-                    "arguments": m.arguments,
+                    "arguments": [
+                        {
+                            "arg_type": package_qualified_class(
+                                a.arg_type, package_name, all_classes_names
+                            ),
+                            "name": a.name,
+                        }
+                        for a in m.arguments
+                    ],
                     "param_call_args": m.param_arguments,
                     "param_helper_class": m.param_helper,
                     "param_type_cb": m.param_type_cb,
@@ -409,6 +418,8 @@ def write_out_classes(
             include_file=c.include_file,
             import_statements=import_statements,
             class_split_namespace=class_split_namespace,
+            remove_ns_stem=remove_ns_stem,
+            ns_stem=f"{package_name}.{c_name.lower()}",
             inheritance_list=inheritance_list,
             methods_info=methods,
             package_name=package_name,
