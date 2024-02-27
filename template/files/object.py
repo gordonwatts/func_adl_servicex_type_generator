@@ -59,7 +59,7 @@ class {{ class_name }}{% if inheritance_list|length > 0 %}({% for super_class in
 {% if method.param_call_args|length == 0 %}
     def {{ method.name }}(self
         {%- for arg in method.arguments -%}
-        , {{ arg.name }}: {{ class_split_namespace(arg.arg_type)[1]}}
+        , {{ arg.name }}: {{ remove_ns_stem(ns_stem, arg.arg_type)}}
         {%- endfor -%}
         ) -> {{ method.return_type }}:
 {%- else %}
@@ -67,7 +67,7 @@ class {{ class_name }}{% if inheritance_list|length > 0 %}({% for super_class in
     @property
     def {{ method.name }}(self) -> {{ package_name }}.{{method.param_helper_class}}[
         {%- for arg in method.arguments -%}
-        {{ class_split_namespace(arg.arg_type)[1]}}
+        {{ remove_ns_stem(ns_stem, arg.arg_type)}}
         {%- endfor -%}
     ]:
 {%- endif %}
