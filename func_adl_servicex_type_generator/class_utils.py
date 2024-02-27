@@ -20,6 +20,21 @@ def class_split_namespace(name: str) -> Tuple[str, str]:
     return name[:last_dot], name[last_dot + 1 :]  # noqa: E203
 
 
+def remove_ns_stem(stem: str, name: str) -> str:
+    """Remove the namespace from the name.
+
+    Args:
+        stem (str): The namespace
+        name (str): The fully qualified name
+
+    Returns:
+        str: The name without the namespace
+    """
+    if name.startswith(stem + "."):
+        return name[len(stem) + 1 :]
+    return name
+
+
 def process_by_namespace(name: str, transform: Callable[[str], str]) -> str:
     """Strip off and rebuild a python namespace, calling
     the transform function on each item.

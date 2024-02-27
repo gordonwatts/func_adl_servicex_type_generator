@@ -5,6 +5,7 @@ from func_adl_servicex_type_generator.class_utils import (
     package_qualified_class,
     process_by_namespace,
     remove_namespaces,
+    remove_ns_stem,
     split_release,
 )
 
@@ -19,6 +20,12 @@ def test_split_ns_simple():
     c_ns, c_name = class_split_namespace("xAOD.Jets")
     assert c_ns == "xAOD"
     assert c_name == "Jets"
+
+
+def test_remove_ns_stem():
+    assert remove_ns_stem("xAOD", "xAOD.Jets") == "Jets"
+    assert remove_ns_stem("xAOD", "xAOD1.Jets") == "xAOD1.Jets"
+    assert remove_ns_stem("xAOD", "Forks") == "Forks"
 
 
 def test_as_path_simple_ns():
