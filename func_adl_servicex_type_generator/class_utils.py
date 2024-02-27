@@ -23,6 +23,8 @@ def class_split_namespace(name: str) -> Tuple[str, str]:
 def remove_ns_stem(stem: str, name: str) -> str:
     """Remove the namespace from the name.
 
+    Assumes this is a python namespace/object name.
+
     Args:
         stem (str): The namespace
         name (str): The fully qualified name
