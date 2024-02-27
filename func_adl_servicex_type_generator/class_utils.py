@@ -33,7 +33,7 @@ def remove_ns_stem(stem: str, name: str) -> str:
         str: The name without the namespace
     """
     if name.startswith(stem + "."):
-        return name[len(stem) + 1 :]
+        return name[len(stem) + 1 :]  # noqa
     return name
 
 
