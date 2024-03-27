@@ -25,17 +25,21 @@ _method_map = {
 }
 
 _enum_map = {
-{%- for enum in enums_info %}
-    '{{ enum.name }}': {
-        'metadata_type': 'define_enum',
-        'namespace': '{{ class_name }}',
-        'name': '{{ enum.name }}',
-        'values': [
-        {%- for value in enum.values %}
-            '{{ value.name }}',
-        {%- endfor %}
-        ],
-    },
+{%- for method_name in referenced_enums.keys() %}
+    '{{ method_name }}': [
+{%- for enum in referenced_enums[method_name] %}
+        '{{ enum.name }}': {
+            'metadata_type': 'define_enum',
+            'namespace': '{{ class_name }}',
+            'name': '{{ enum.name }}',
+            'values': [
+            {%- for value in enum.values %}
+                '{{ value.name }}',
+            {%- endfor %}
+            ],
+        },
+{%- endfor %}
+    ],
 {%- endfor %}      
 }
 
