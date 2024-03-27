@@ -760,6 +760,9 @@ def test_class_with_external_enum(tmp_path, template_path):
     )
     assert "import package" in class_text
 
+    assert "define_enum" in class_text
+    assert "'namespace': 'EnumOnly'" in class_text
+
 
 def test_class_with_referenced_enum(tmp_path, template_path):
     """Make sure to reference a local enum in the class, and set metadata

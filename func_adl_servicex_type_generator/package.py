@@ -403,7 +403,7 @@ def write_out_classes(
 
         def lookup_enum(
             arg: method_arg_info, all_classes: Iterable[class_info]
-        ) -> Optional[enum_info]:
+        ) -> Optional[Tuple[class_info, enum_info]]:
             """Return the enum info for the argument if it is an enum.
 
             Args:
@@ -421,13 +421,22 @@ def write_out_classes(
             for c in all_classes:
                 for e in c.enums:
                     if e.name == cpp_type_info[1] and cpp_type_info[0] == c.cpp_name:
-                        return e
+                        return c, e
 
             return None
 
+        def get_referenced_enums(
+            m: method_info, all_classes: Iterable[class_info]
+        ) -> List[Tuple[class_info, enum_info]]:
+            return [
+                e_info
+                for arg in m.arguments
+                if (e_info := lookup_enum(arg, all_classes)) is not None
+            ]
+
         def generate_enums(
             method_list: List[method_info], all_classes: Iterable[class_info]
-        ) -> Dict[str, List[enum_info]]:
+        ) -> Dict[str, List[Tuple[class_info, enum_info]]]:
             """Return a list of the referenced enum definitions for this call.
 
             Args:
@@ -440,14 +449,11 @@ def write_out_classes(
             Returns:
                 Dict[str, Dict[str, Any]]: List, by method name, of all enums referenced.
             """
-            result: Dict[str, List[enum_info]] = {
-                m.name: [
-                    e_info
-                    for arg in m.arguments
-                    if (e_info := lookup_enum(arg, all_classes)) is not None
-                ]
+            result = {
+                m.name: e_info_list
                 for m in method_list
                 if m.return_type is not None
+                and len(e_info_list := get_referenced_enums(m, all_classes)) > 0
             }
             return result
 
