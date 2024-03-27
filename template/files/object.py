@@ -24,6 +24,24 @@ _method_map = {
 {%- endfor %}
 }
 
+_enum_map = {
+{%- for method_name in referenced_enums.keys() %}
+    '{{ method_name }}': [
+{%- for enum in referenced_enums[method_name] %}
+        {
+            'metadata_type': 'define_enum',
+            'namespace': '{{ enum[0].name }}',
+            'name': '{{ enum[1].name }}',
+            'values': [
+            {%- for value in enum[1].values %}
+                '{{ value.name }}',
+            {%- endfor %}
+            ],
+        },
+{%- endfor %}
+    ],
+{%- endfor %}      
+}
 
 T = TypeVar('T')
 
