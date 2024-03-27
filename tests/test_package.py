@@ -706,10 +706,10 @@ def test_class_with_just_enum(tmp_path, template_path):
     assert "Red = 1" in class_text
     assert "from enum import Enum" in class_text
 
-    assert '"metadata_type": "define_enum"' in class_text
-    assert '"namespace": "Jets"' in class_text
-    assert '"name": "Color"' in class_text
-    assert '"values": ["Red"]' in class_text
+    assert "'metadata_type': 'define_enum'" in class_text
+    assert "'namespace': 'Jets'" in class_text
+    assert "'name': 'Color'" in class_text
+    assert "'Red'" in class_text
 
 
 def test_class_with_external_enum(tmp_path, template_path):
