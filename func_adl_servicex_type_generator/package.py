@@ -413,10 +413,15 @@ def write_out_classes(
             Returns:
                 Optional[enum_info]: The enum info if this is an enum, or None
             """
+            # Split into namespace and enum type. We don't deal with
+            # global enums here, so if this isn't a class-enum, then
+            # just return.
             cpp_type = clean_cpp_type(arg.arg_type)
             if cpp_type is None:
                 return None
             cpp_type_info = cpp_type.rsplit(".", 2)
+            if len(cpp_type_info) != 2:
+                return None
 
             for c in all_classes:
                 for e in c.enums:
@@ -428,6 +433,15 @@ def write_out_classes(
         def get_referenced_enums(
             m: method_info, all_classes: Iterable[class_info]
         ) -> List[Tuple[class_info, enum_info]]:
+            """Get referenced enums in a method
+
+            Args:
+                m (method_info): The method to check for referenced enums
+                all_classes (Iterable[class_info]): The list of classes we can go search for enums
+
+            Returns:
+                List[Tuple[class_info, enum_info]]: List of the class and enum that was referenced.
+            """
             return [
                 e_info
                 for arg in m.arguments
