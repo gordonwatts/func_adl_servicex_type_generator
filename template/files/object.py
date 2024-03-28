@@ -59,6 +59,8 @@ def _add_method_metadata(s: ObjectStream[T], a: ast.Call) -> Tuple[ObjectStream[
             'body_includes': ["{{ include_file }}"],
         })
 {%- endif %}
+        for md in _enum_map.get(a.func.attr, []):
+            s_update = s_update.MetaData(md)
         return s_update, a
     else:
         return s, a
