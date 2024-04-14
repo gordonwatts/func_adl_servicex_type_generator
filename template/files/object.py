@@ -24,6 +24,24 @@ _method_map = {
 {%- endfor %}
 }
 
+_enum_map = {
+{%- for method_name in referenced_enums.keys() %}
+    '{{ method_name }}': [
+{%- for enum in referenced_enums[method_name] %}
+        {
+            'metadata_type': 'define_enum',
+            'namespace': '{{ enum[0].name }}',
+            'name': '{{ enum[1].name }}',
+            'values': [
+            {%- for value in enum[1].values %}
+                '{{ value.name }}',
+            {%- endfor %}
+            ],
+        },
+{%- endfor %}
+    ],
+{%- endfor %}      
+}
 
 T = TypeVar('T')
 
@@ -41,6 +59,8 @@ def _add_method_metadata(s: ObjectStream[T], a: ast.Call) -> Tuple[ObjectStream[
             'body_includes': ["{{ include_file }}"],
         })
 {%- endif %}
+        for md in _enum_map.get(a.func.attr, []):
+            s_update = s_update.MetaData(md)
         return s_update, a
     else:
         return s, a

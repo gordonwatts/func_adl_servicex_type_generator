@@ -13,7 +13,9 @@ from func_adl_servicex_type_generator.class_utils import (
 )
 from func_adl_servicex_type_generator.data_model import (
     class_info,
+    enum_info,
     file_info,
+    method_arg_info,
     method_info,
 )
 
@@ -399,7 +401,78 @@ def write_out_classes(
 
             return r
 
+        def lookup_enum(
+            arg: method_arg_info, all_classes: Iterable[class_info]
+        ) -> Optional[Tuple[class_info, enum_info]]:
+            """Return the enum info for the argument if it is an enum.
+
+            Args:
+                arg (method_info): The argument to check
+                all_classes (Iterable[class_info]): All classes to look through
+
+            Returns:
+                Optional[enum_info]: The enum info if this is an enum, or None
+            """
+            # Split into namespace and enum type. We don't deal with
+            # global enums here, so if this isn't a class-enum, then
+            # just return.
+            cpp_type = clean_cpp_type(arg.arg_type)
+            if cpp_type is None:
+                return None
+            cpp_type_info = cpp_type.rsplit(".", 2)
+            if len(cpp_type_info) != 2:
+                return None
+
+            for c in all_classes:
+                for e in c.enums:
+                    if e.name == cpp_type_info[1] and cpp_type_info[0] == c.cpp_name:
+                        return c, e
+
+            return None
+
+        def get_referenced_enums(
+            m: method_info, all_classes: Iterable[class_info]
+        ) -> List[Tuple[class_info, enum_info]]:
+            """Get referenced enums in a method
+
+            Args:
+                m (method_info): The method to check for referenced enums
+                all_classes (Iterable[class_info]): The list of classes we can go search for enums
+
+            Returns:
+                List[Tuple[class_info, enum_info]]: List of the class and enum that was referenced.
+            """
+            return [
+                e_info
+                for arg in m.arguments
+                if (e_info := lookup_enum(arg, all_classes)) is not None
+            ]
+
+        def generate_enums(
+            method_list: List[method_info], all_classes: Iterable[class_info]
+        ) -> Dict[str, List[Tuple[class_info, enum_info]]]:
+            """Return a list of the referenced enum definitions for this call.
+
+            Args:
+                method_list (List[method_info]): List of the methods that we need to look at
+                all_classes (List[class_info]): List of all classes (and thus enums in them)
+
+            Raises:
+                RuntimeError: _description_
+
+            Returns:
+                Dict[str, Dict[str, Any]]: List, by method name, of all enums referenced.
+            """
+            result = {
+                m.name: e_info_list
+                for m in method_list
+                if m.return_type is not None
+                and len(e_info_list := get_referenced_enums(m, all_classes)) > 0
+            }
+            return result
+
         methods = generate_methods(c.methods)
+        referenced_enums = generate_enums(c.methods, all_classes)
 
         # Methods from behavior as classes
         for b in c.behaviors:
@@ -424,6 +497,7 @@ def write_out_classes(
             methods_info=methods,
             package_name=package_name,
             enums_info=c.enums,
+            referenced_enums=referenced_enums,
         )
 
         with class_file.open("wt") as out:

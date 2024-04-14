@@ -706,6 +706,8 @@ def test_class_with_just_enum(tmp_path, template_path):
     assert "Red = 1" in class_text
     assert "from enum import Enum" in class_text
 
+    assert "'metadata_type': 'define_enum'" not in class_text
+
 
 def test_class_with_external_enum(tmp_path, template_path):
     """Two classes. One with enums, and the other class uses
@@ -758,13 +760,13 @@ def test_class_with_external_enum(tmp_path, template_path):
     )
     assert "import package" in class_text
 
+    assert "define_enum" in class_text
+    assert "'namespace': 'EnumOnly'" in class_text
+
 
 def test_class_with_referenced_enum(tmp_path, template_path):
-    """Two classes. One with enums, and the other class uses
-    those enums.
-
-    - Make sure the import works correctly
-    - Make sure the enum is fully qualified in its reference.
+    """Make sure to reference a local enum in the class, and set metadata
+    correctly.
     """
     classes = [
         class_info(
@@ -799,6 +801,49 @@ def test_class_with_referenced_enum(tmp_path, template_path):
     class_text = (tmp_path / "jets.py").read_text()
     assert "class Color(Enum)" in class_text
     assert "def pt_enum(self, color: Jets.Color) -> float" in class_text
+
+    assert "'metadata_type': 'define_enum'" in class_text
+    assert "'namespace': 'Jets'" in class_text
+    assert "'name': 'Color'" in class_text
+    assert "'Red'" in class_text
+
+
+def test_class_with_enum_and_int(tmp_path, template_path):
+    """Make sure to reference a local enum in the class, and set metadata
+    correctly.
+    """
+    classes = [
+        class_info(
+            "Jets",
+            "Jets",
+            [
+                method_info(
+                    name="pt_enum",
+                    return_type="float",
+                    arguments=[method_arg_info("color", None, "int")],
+                    param_arguments=[],
+                    param_helper=None,
+                )
+            ],
+            None,
+            None,
+            "jet.hpp",
+            enums=[
+                enum_info(
+                    name="Color",
+                    values=[enum_value_info("Red", 1), enum_value_info("Blue", 2)],
+                )
+            ],
+        ),
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package", "22")
+
+    assert (tmp_path / "jets.py").exists()
+    assert (tmp_path / "__init__.py").exists()
+
+    class_text = (tmp_path / "jets.py").read_text()
+    assert "'metadata_type': 'define_enum'" not in class_text
 
 
 def test_class_with_just_enums(tmp_path, template_path):
