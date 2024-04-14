@@ -890,13 +890,42 @@ def test_class_simple_release_different(tmp_path, template_path):
         class_info("Jets", "Jets", [], None, None, "jet.hpp"),
     ]
 
-    write_out_classes(classes, template_path, tmp_path, "package", "101")
+    write_out_classes(
+        classes, template_path, tmp_path, "package", ["SXDSAtlasxAODR101"]
+    )
 
     assert (tmp_path / "jets.py").exists()
     assert (tmp_path / "__init__.py").exists()
 
     init_text = (tmp_path / "__init__.py").read_text()
     assert "SXDSAtlasxAODR101" in init_text
+
+
+def test_class_simple_multiple_calib_release(tmp_path, template_path):
+    """Write out multiple calibration types
+
+    Args:
+        tmp_path ([type]): [description]
+    """
+    classes = [
+        class_info("Jets", "Jets", [], None, None, "jet.hpp"),
+    ]
+
+    write_out_classes(
+        classes,
+        template_path,
+        tmp_path,
+        "package",
+        ["SXDSAtlasxAODR101", "SXDSAtlasxAODR101PHYS", "SXDSAtlasxAODR101PHYSLITE"],
+    )
+
+    assert (tmp_path / "jets.py").exists()
+    assert (tmp_path / "__init__.py").exists()
+
+    init_text = (tmp_path / "__init__.py").read_text()
+    assert "SXDSAtlasxAODR101" in init_text
+    assert "SXDSAtlasxAODR101PHYS" in init_text
+    assert "SXDSAtlasxAODR101PHYSLITE" in init_text
 
 
 def test_class_with_init_config(tmp_path, template_path):

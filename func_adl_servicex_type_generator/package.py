@@ -285,7 +285,7 @@ def write_out_classes(
     template_path: Path,
     project_src_path: Path,
     package_name: str,
-    release_series: str,
+    dataset_types: List[str],
     base_init_lines: List[str] = [],
     config_vars: Dict[str, str] = {},
 ):
@@ -299,7 +299,7 @@ def write_out_classes(
         project_src_path (Path): The root of the package source directory
             (top level __init__.py file location)
         project_name (str): Name of package for use in import statements
-        release_series (str): Which release is this (22, or 21, etc.)
+        dataset_types (List[str]): Which release is this (22, or 21, etc.)
     """
     # Load up the template structure and environment
     loader = jinja2.FileSystemLoader(str(template_path / "files"))
@@ -524,7 +524,7 @@ def write_out_classes(
                     module_stub=m_stub,
                     sub_namespaces=sub_ns,
                     package_name=package_name,
-                    sx_dataset_name=f"SXDSAtlasxAODR{release_series}",
+                    sx_dataset_name=dataset_types,
                     base_init_lines=base_init_lines,
                     base_variables=[config_info(k, v) for k, v in config_vars.items()],
                 )
