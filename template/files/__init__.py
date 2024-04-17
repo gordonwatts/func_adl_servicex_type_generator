@@ -1,7 +1,9 @@
 from typing import Any, TYPE_CHECKING
 {%- if module_stub == "" %}
 try:
-    from .sx_dataset import {{ sx_dataset_name }}
+{%- for sx_ds in sx_dataset_name %}
+    from .sx_dataset import {{ sx_ds }}
+{%- endfor %}
 except ImportError:
     pass
 from .func_adl_iterable import FADLStream
