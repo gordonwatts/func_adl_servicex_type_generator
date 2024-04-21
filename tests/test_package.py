@@ -917,6 +917,8 @@ def test_class_simple_release_different(tmp_path, template_path):
 
     init_text = (tmp_path / "__init__.py").read_text()
     assert "SXDSAtlasxAODR101" in init_text
+    assert "SXDSAtlasxAODR101PHYS" in init_text
+    assert "SXDSAtlasxAODR101PHYSLITE" in init_text
 
 
 def test_class_simple_multiple_calib_release(tmp_path, template_path):
