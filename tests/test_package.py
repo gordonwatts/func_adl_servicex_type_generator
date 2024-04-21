@@ -910,7 +910,9 @@ def test_class_simple_release_different(tmp_path, template_path):
         class_info("Jets", "Jets", [], None, None, "jet.hpp"),
     ]
 
-    write_out_classes(classes, template_path, tmp_path, "package", [""], "101")
+    write_out_classes(
+        classes, template_path, tmp_path, "package", ["", "PHYS", "PHYSLITE"], "101"
+    )
 
     assert (tmp_path / "jets.py").exists()
     assert (tmp_path / "__init__.py").exists()
