@@ -6,19 +6,19 @@ try:
         from servicex.servicex import ServiceXDataset
         from servicex.utils import DatasetType
 
-{%- for sx_info in sx_dataset_name %}
+{%- for calibration_name in calibration_types %}
 
 
-        class {{ sx_info[0] }}(ServiceXSourceCPPBase[Event]):
+        class SXDSAtlasxAODR{{ release_series }}{{ calibration_name }}(ServiceXSourceCPPBase[Event]):
         def __init__(self, sx: Union[ServiceXDataset, DatasetType], backend="{{ backend_default_name }}"):
                 """
                 Create a servicex dataset sequence from a servicex dataset.
                 """
                 super().__init__(sx, backend, item_type=Event)
-{%- if sx_info[1] != '' %}
+{%- if calibration_name != '' %}
                 # Do update-in-place to configure the calibration
                 from .calibration_support import calib_tools
-                new_sx = calib_tools.query_update(self, calib_tools.default_config("{{ sx_info[1] }}"))
+                new_sx = calib_tools.query_update(self, calib_tools.default_config("{{ calibration_name }}"))
                 self._q_ast = new_sx._q_ast
 {%- endif %}
 {%- endfor %}
@@ -28,12 +28,12 @@ except ImportError:
 
 try:
         from servicex import FuncADLQuery as sxFuncADLQuery
-{%- for sx_info in sx_dataset_name %}
+{%- for calibration_name in calibration_types %}
 
 
-        class FuncADLQuery{{ sx_info[1] }}(sxFuncADLQuery[Event]):
+        class FuncADLQuery{{ calibration_name }}(sxFuncADLQuery[Event]):
         def __init__(self, **kwargs):
-                '''Builds a `FuncADLQuery` object to work with {{ sx_info[1] }}
+                '''Builds a `FuncADLQuery` object to work with {{ calibration_name }}
                 datasets. Pass any argument to this function that you would normally
                 pass to `FuncADLQuery`.
 
@@ -51,9 +51,9 @@ try:
 
                 super().__init__(**kwargs)
 
-{%- if sx_info[1] != '' %}
+{%- if calibration_name != '' %}
                 # Hack to subvert the replace-in-place.
-                ds = calib_tools.query_update(self, calib_tools.default_config("{{ sx_info[1] }}"))
+                ds = calib_tools.query_update(self, calib_tools.default_config("{{ calibration_name }}"))
                 self._q_ast = ds._q_ast
 {%- endif %}
 {%- endfor %}
