@@ -75,10 +75,6 @@ def template_package_scaffolding(
     # Generate import statements for the collection classes
     template_data = dict(data)
 
-    # Fix up the sx_dataset
-    if not isinstance(template_data["sx_dataset_name"], list):
-        template_data["sx_dataset_name"] = [(template_data["sx_dataset_name"], "")]
-
     # Generate the package
     for t in loader.list_templates():
         template = env.get_template(t)
@@ -285,7 +281,8 @@ def write_out_classes(
     template_path: Path,
     project_src_path: Path,
     package_name: str,
-    dataset_types: List[str],
+    calibration_list: List[str],
+    release_series: str,
     base_init_lines: List[str] = [],
     config_vars: Dict[str, str] = {},
 ):
@@ -524,7 +521,8 @@ def write_out_classes(
                     module_stub=m_stub,
                     sub_namespaces=sub_ns,
                     package_name=package_name,
-                    sx_dataset_name=dataset_types,
+                    calibration_types=calibration_list,
+                    release_series=release_series,
                     base_init_lines=base_init_lines,
                     base_variables=[config_info(k, v) for k, v in config_vars.items()],
                 )
