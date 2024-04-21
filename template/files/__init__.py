@@ -1,17 +1,7 @@
 from typing import Any, TYPE_CHECKING
 {%- if module_stub == "" %}
 try:
-{%- for sx_ds in calibration_types %}
-    from .sx_dataset import SXDSAtlasxAODR{{ release_series }}{{ sx_ds }}
-{%- endfor %}
-except ImportError:
-    # Servicex frontend client 2.X not loaded.
-    pass
-
-try:
-{%- for sx_ds in calibration_types %}
-    from .sx_dataset import FuncADLQuery{{ sx_ds }}
-{%- endfor %}
+    from .sx_dataset import {{ sx_dataset_name }}
 except ImportError:
     # Servicex frontend client 3.X not loaded.
     pass

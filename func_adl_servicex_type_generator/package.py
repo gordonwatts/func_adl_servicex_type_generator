@@ -281,7 +281,6 @@ def write_out_classes(
     template_path: Path,
     project_src_path: Path,
     package_name: str,
-    calibration_list: List[str],
     release_series: str,
     base_init_lines: List[str] = [],
     config_vars: Dict[str, str] = {},
@@ -521,8 +520,7 @@ def write_out_classes(
                     module_stub=m_stub,
                     sub_namespaces=sub_ns,
                     package_name=package_name,
-                    calibration_types=calibration_list,
-                    release_series=release_series,
+                    sx_dataset_name=f"SXDSAtlasxAODR{release_series}",
                     base_init_lines=base_init_lines,
                     base_variables=[config_info(k, v) for k, v in config_vars.items()],
                 )
