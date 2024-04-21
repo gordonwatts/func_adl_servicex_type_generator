@@ -8,13 +8,6 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = ">=3.8"
 
-# Optional packages
-servicex = { version = "^3.0a1", optional = true }
-func_adl_servicex = { version = "^2.0", optional = true }
-
-[tool.poetry.extras]
-sx_3 = ["servicex"]
-default = ["func_adl_servicex"]
 
 [tool.poetry.dev-dependencies]
 
