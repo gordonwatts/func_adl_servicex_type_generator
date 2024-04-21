@@ -6,8 +6,11 @@ authors = ["Gordon Watts <gwatts@uw.edu>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = ">=3.7"
-func_adl_servicex = { version = "^2.0" }
+python = ">=3.8"
+
+[tool.poetry.extras]
+sx_3 = ["servicex>=3.0a1"]
+default = ["func_adl_servicex>=2.0"]
 
 [tool.poetry.dev-dependencies]
 
