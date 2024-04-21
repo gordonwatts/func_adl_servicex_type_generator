@@ -81,18 +81,11 @@ def generate_package(
         assert new_c is not None
         c.collection_type = new_c
 
-    # Build up all the dataset types we are going to support
-    # dataset_object_basename = f"SXDSAtlasxAODR{release_tuple[0]}"
-    # dataset_types = [(dataset_object_basename, "")] + [
-    #     (dataset_object_basename + ds_type, ds_type)
-    #     for ds_type in data.config["dataset_types"]
-    # ]
-
     template_data = {
         "package_name": package_name,
         "package_version": f"{version_base}.{release_name}{pre_version}",
         "package_info_description": f"xAOD R{release_tuple[0]} {data.config['atlas_release']}",  # noqa
-        "calibration_types": [""] + list(data.config["datset_types"]),
+        "calibration_types": [""] + list(data.config["dataset_types"]),
         "backend_default_name": f"atlasr{release_tuple[0]}",
         "collections": data.collections,
         "metadata": data.metadata,
@@ -112,7 +105,8 @@ def generate_package(
         template_path,
         output_path / template_data["package_name"],
         package_name,
-        [ds[0] for ds in dataset_types],
+        [""] + list(data.config["dataset_types"]),
+        "release_series",
         base_init_lines=base_init_lines,
         config_vars=data.config,
     )
