@@ -631,6 +631,8 @@ def test_template_single_sx_dataset(tmp_path, template_path):
     # Make sure it has only one dataset in it.
     text = sx_dataset.read_text()
     assert "class SXDSAtlasxAODR21(" in text
+    assert "class FuncADLQuery(" in text
+    assert "Defaults to `xaod_r21`" in text
 
 
 def test_template_single_sx_flavors(tmp_path, template_path):
