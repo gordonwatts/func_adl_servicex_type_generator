@@ -82,20 +82,21 @@ def generate_package(
         c.collection_type = new_c
 
     # Build up all the dataset types we are going to support
-    dataset_object_basename = f"SXDSAtlasxAODR{release_tuple[0]}"
-    dataset_types = [(dataset_object_basename, "")] + [
-        (dataset_object_basename + ds_type, ds_type)
-        for ds_type in data.config["dataset_types"]
-    ]
+    # dataset_object_basename = f"SXDSAtlasxAODR{release_tuple[0]}"
+    # dataset_types = [(dataset_object_basename, "")] + [
+    #     (dataset_object_basename + ds_type, ds_type)
+    #     for ds_type in data.config["dataset_types"]
+    # ]
 
     template_data = {
         "package_name": package_name,
         "package_version": f"{version_base}.{release_name}{pre_version}",
         "package_info_description": f"xAOD R{release_tuple[0]} {data.config['atlas_release']}",  # noqa
-        "sx_dataset_name": dataset_types,
+        "calibration_types": [""] + list(data.config["datset_types"]),
         "backend_default_name": f"atlasr{release_tuple[0]}",
         "collections": data.collections,
         "metadata": data.metadata,
+        "release_series": release_series,
     }
 
     template_path = Path(__file__).parent / ".." / "template"
