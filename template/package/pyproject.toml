@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "{{ package_name }}"
 version = "{{ package_version }}"
 description = "func-adl typed datasets for Servicex for {{ package_info_description }}"
-authors = [{ name = "Gordon Watts", email = "<gwatts@uw.edu>" }]
+authors = [{ name = "Gordon Watts", email = "gwatts@uw.edu" }]
 readme = "README.md"
 license = { text = "BSD-3-Clause" }
 
