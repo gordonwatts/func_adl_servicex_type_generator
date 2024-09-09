@@ -24,6 +24,7 @@ test = [
     "pytest-cov>=4.0.0",
     "flake8>=5.0.4",
     "black>=21.9",
+    "hatch",
 ]
 
 

@@ -566,7 +566,7 @@ def test_template_collection_with_namespace(tmp_path, template_path):
     assert "Iterable[func_adl_servicex_xaodr21.xAOD.jet.Jet]" in text
 
 
-def test_template_poetry_integration(tmp_path, template_path):
+def test_template_proper_toml_file(tmp_path, template_path):
     """Run a full integration test, including doing the poetry install."""
     data = {
         "package_name": "func_adl_servicex_xaodr21",
@@ -619,9 +619,9 @@ def test_template_poetry_integration(tmp_path, template_path):
     )
 
     # Make sure poetry is comfortable with this file
-    python_location = r"C:\Users\gordo\Code\iris-hep\venv\Scripts\python.exe"
+    python_location = r"python.exe"
     r = os.system(
-        f'powershell -command "cd {output_path}; {python_location} -m poetry check"'
+        f'powershell -command "cd {output_path}; {python_location} -m hatch env show"'
     )
     assert r == 0
 
