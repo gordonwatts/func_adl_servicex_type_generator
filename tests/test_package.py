@@ -647,7 +647,6 @@ def test_template_single_sx_dataset(tmp_path, template_path):
 
     # Make sure it has only one dataset in it.
     text = sx_dataset.read_text()
-    assert "class SXDSAtlasxAODR21(" in text
     assert "class FuncADLQuery(" in text
     assert "Defaults to `xaod_r21`" in text
 
@@ -673,8 +672,8 @@ def test_template_single_sx_flavors(tmp_path, template_path):
 
     # Make sure it has only one dataset in it.
     text = sx_dataset.read_text()
-    assert "class SXDSAtlasxAODR21(" in text
-    assert "class SXDSAtlasxAODR21PHYS(" in text
+    assert "class FuncADLQuery(" in text
+    assert "class FuncADLQueryPHYS(" in text
     assert 'default_config("PHYS")' in text
     assert 'default_config("")' not in text
 
@@ -918,9 +917,9 @@ def test_class_simple_release_different(tmp_path, template_path):
     assert (tmp_path / "__init__.py").exists()
 
     init_text = (tmp_path / "__init__.py").read_text()
-    assert "SXDSAtlasxAODR101" in init_text
-    assert "SXDSAtlasxAODR101PHYS" in init_text
-    assert "SXDSAtlasxAODR101PHYSLITE" in init_text
+    assert "FuncADLQuery" in init_text
+    assert "FuncADLQueryPHYS" in init_text
+    assert "FuncADLQueryPHYSLITE" in init_text
 
 
 def test_class_simple_multiple_calib_release(tmp_path, template_path):
@@ -946,9 +945,9 @@ def test_class_simple_multiple_calib_release(tmp_path, template_path):
     assert (tmp_path / "__init__.py").exists()
 
     init_text = (tmp_path / "__init__.py").read_text()
-    assert "SXDSAtlasxAODR101" in init_text
-    assert "SXDSAtlasxAODR101PHYS" in init_text
-    assert "SXDSAtlasxAODR101PHYSLITE" in init_text
+    assert "FuncADLQuery" in init_text
+    assert "FuncADLQueryPHYS" in init_text
+    assert "FuncADLQueryPHYSLITE" in init_text
 
 
 def test_class_with_init_config(tmp_path, template_path):
