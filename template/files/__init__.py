@@ -16,6 +16,7 @@ from .func_adl_iterable import FADLStream
 {%- endfor %}
 {%- endif %}
 
+
 class _load_me:
     """Python's type resolution system demands that types be already loaded
     when they are resolved by the type hinting system. Unfortunately,
@@ -54,3 +55,4 @@ else:
 {%- for sub_namespace in sub_namespaces %}
 from . import {{sub_namespace}}
 {%- endfor %}
+
