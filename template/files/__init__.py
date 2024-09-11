@@ -1,20 +1,9 @@
 from typing import Any, TYPE_CHECKING
 {%- if module_stub == "" %}
-try:
-{%- for sx_ds in calibration_types %}
-    from .sx_dataset import SXDSAtlasxAODR{{ release_series }}{{ sx_ds }}
-{%- endfor %}
-except ImportError:
-    # Servicex frontend client 2.X not loaded.
-    pass
 
-try:
 {%- for sx_ds in calibration_types %}
-    from .sx_dataset import FuncADLQuery{{ sx_ds }}
+from .sx_dataset import FuncADLQuery{{ sx_ds }}
 {%- endfor %}
-except ImportError:
-    # Servicex frontend client 3.X not loaded.
-    pass
 
 from .func_adl_iterable import FADLStream
 
@@ -26,6 +15,7 @@ from .func_adl_iterable import FADLStream
 {{ v_info.name }} = "{{ v_info.value }}"
 {%- endfor %}
 {%- endif %}
+
 
 class _load_me:
     """Python's type resolution system demands that types be already loaded
@@ -65,3 +55,4 @@ else:
 {%- for sub_namespace in sub_namespaces %}
 from . import {{sub_namespace}}
 {%- endfor %}
+

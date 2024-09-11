@@ -1,25 +1,35 @@
-[tool.poetry]
+[build-system]
+requires = ["hatchling>=1.13.0"]
+build-backend = "hatchling.build"
+
+[project]
 name = "func_adl_servicex_type_generator"
 version = "0.1.0"
 description = "Type generator for func_adl ServiceX data sources"
-authors = ["Gordon Watts <gwatts@uw.edu>"]
+authors = [{ name = "Gordon Watts", email = "gwatts@uw.edu" }]
+readme = "README.md"
+license = { text = "BSD-3-Clause" }
 
-[tool.poetry.dependencies]
-python = "^3.9"
-Jinja2 = "^3.0.2"
-PyYAML = "^6.0"
+requires-python = ">=3.9"
 
-[tool.poetry.dev-dependencies]
-flake8 = "^4.0.1"
-pytest = "^6.2.5"
-black = "^21.9b0"
+dependencies = ["Jinja2>=3.0.2", "PyYAML>=6.0"]
 
-[tool.poetry.scripts]
+
+[project.optional-dependencies]
+
+# Developer extras
+test = [
+    "pytest>=7.2.0",
+    "pytest-mock>=3.10.0",
+    "pytest-cov>=4.0.0",
+    "flake8>=5.0.4",
+    "black>=21.9",
+    "hatch",
+]
+
+
+[project.scripts]
 sx_type_gen = 'func_adl_servicex_type_generator.generator:run'
 
 [tool.pyright]
 exclude = ["template"]
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
