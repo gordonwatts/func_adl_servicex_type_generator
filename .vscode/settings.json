@@ -1,6 +1,5 @@
 {
     "editor.formatOnSave": true,
-    "python.analysis.typeCheckingMode": "basic",
     "cSpell.enableFiletypes": [
         "!yaml"
     ],
