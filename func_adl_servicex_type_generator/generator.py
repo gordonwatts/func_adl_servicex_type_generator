@@ -106,7 +106,7 @@ def generate_package(
         output_path / template_data["package_name"],
         package_name,
         [""] + list(data.config["dataset_types"]),
-        release_series,
+        str(release_series),
         base_init_lines=base_init_lines,
         config_vars=data.config,
     )
