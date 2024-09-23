@@ -1,6 +1,5 @@
 {
     "editor.formatOnSave": true,
-    "python.analysis.typeCheckingMode": "basic",
     "cSpell.enableFiletypes": [
         "!yaml"
     ],
@@ -15,6 +14,7 @@
         "btagging",
         "Calib",
         "calo",
+        "codegen",
         "DAOD",
         "FADL",
         "NOSYS",
@@ -26,22 +26,6 @@
         "subrender",
         "SXDS",
         "Topo",
-        "xaod",
-        "xaodr",
-        "AODR",
-        "Atlasx",
-        "btagging",
-        "Calib",
-        "DAOD",
-        "FADL",
-        "NOSYS",
-        "prereleases",
-        "pypi",
-        "pyright",
-        "pytest",
-        "servicex",
-        "subrender",
-        "SXDS",
         "xaod",
         "xaodr"
     ],

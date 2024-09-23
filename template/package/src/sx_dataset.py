@@ -21,6 +21,10 @@ class FuncADLQuery{{ calibration_name }}(sxFuncADLQuery[Event]):
 
         super().__init__(**kwargs)
 
+        # Initialize the code-gen with the default ServiceX code generator.
+        self.default_codegen = "atlasr{{ release_series }}"
+
+
 {%- if calibration_name != '' %}
         # Hack to subvert the replace-in-place.
         from .calibration_support import calib_tools
