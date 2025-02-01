@@ -472,6 +472,7 @@ def write_out_classes(
         referenced_enums = generate_enums(c.methods, all_classes)
 
         # Methods from behavior as classes
+        all_includes = [c.include_file] if c.include_file != "" else []
         for b in c.behaviors:
             name = clean_cpp_type(b)
             assert name is not None
@@ -480,12 +481,14 @@ def write_out_classes(
             methods += generate_methods(
                 cpp_all_classes_dict[name].methods, count_pointer_depth(b)
             )
+            if cpp_all_classes_dict[name].include_file != "":
+                all_includes.append(cpp_all_classes_dict[name].include_file)
 
         # Write out the object file
         text = class_template_file.render(
             class_name=c_name,
             methods=c.methods,
-            include_file=c.include_file,
+            include_files=all_includes,
             import_statements=import_statements,
             class_split_namespace=class_split_namespace,
             remove_ns_stem=remove_ns_stem,

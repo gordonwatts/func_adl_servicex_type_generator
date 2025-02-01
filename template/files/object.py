@@ -52,13 +52,13 @@ def _add_method_metadata(s: ObjectStream[T], a: ast.Call) -> Tuple[ObjectStream[
     assert isinstance(a.func, ast.Attribute)
     if a.func.attr in _method_map:
         s_update = s.MetaData(_method_map[a.func.attr])
-{%- if include_file != "" %}
+{% for i_file in include_files %}
         s_update = s_update.MetaData({
             'metadata_type': 'inject_code',
-            'name': '{{ include_file }}',
-            'body_includes': ["{{ include_file }}"],
+            'name': '{{ i_file }}',
+            'body_includes': ["{{ i_file }}"],
         })
-{%- endif %}
+{% endfor %}
         for md in _enum_map.get(a.func.attr, []):
             s_update = s_update.MetaData(md)
         return s_update, a
