@@ -169,6 +169,9 @@ class class_info:
     # The include file that needs to be loaded for this class
     include_file: str
 
+    # The library this guy is in
+    library: Optional[str] = None
+
     # If this is an alias marker or not
     is_alias: bool = False
 
