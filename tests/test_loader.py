@@ -1,6 +1,5 @@
 from pathlib import Path
-from func_adl_servicex_type_generator.loader import load_yaml, class_info, metadata_info
-import yaml
+from func_adl_servicex_type_generator.loader import load_yaml
 
 
 def test_load_full_file():
