@@ -188,6 +188,7 @@ def load_yaml(
             is_alias=("is_alias" in c) and (c["is_alias"] == "True"),
             behaviors=c["also_behaves_like"] if "also_behaves_like" in c else [],
             enums=enum_loader(c["enums"]) if "enums" in c else [],
+            library=c["library"] if "library" in c else None,
         )
         for c in data_classes
     ]
