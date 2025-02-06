@@ -1247,6 +1247,7 @@ def test_method_with_behavior_includes(tmp_path, template_path):
             None,
             None,
             "Tracks.hpp",
+            library="xAODTrack",
         ),
     ]
 
@@ -1255,6 +1256,7 @@ def test_method_with_behavior_includes(tmp_path, template_path):
     all_text = (tmp_path / "xAOD" / "jets.py").read_text()
     assert "jet.hpp" in all_text
     assert "Tracks.hpp" in all_text
+    assert "xAODTrack" in all_text
 
 
 def test_method_with_behavior_deref(tmp_path, template_path):

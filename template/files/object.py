@@ -59,6 +59,13 @@ def _add_method_metadata(s: ObjectStream[T], a: ast.Call) -> Tuple[ObjectStream[
             'body_includes': ["{{ i_file }}"],
         })
 {% endfor %}
+{% for l_file in libraries %}
+        s_update = s_update.MetaData({
+            'metadata_type': 'inject_code',
+            'name': '{{ l_file }}',
+            'link_libraries': ["{{ l_file }}"],
+        })
+{% endfor %}
         for md in _enum_map.get(a.func.attr, []):
             s_update = s_update.MetaData(md)
         return s_update, a
