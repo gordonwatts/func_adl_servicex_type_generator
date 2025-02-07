@@ -12,7 +12,6 @@ def test_load_full_file():
     assert "xAOD.Jet_v1" in classes_dict
 
     di_jets = collection_dict["DiTauJets"]
-    # jets = collection_dict["Jets"]
     jets_class = classes_dict["xAOD.Jet_v1"]
     btagging = classes_dict["xAOD.BTagging_v1"]
     truth = classes_dict["xAOD.TruthParticle_v1"]
@@ -27,6 +26,7 @@ def test_load_full_file():
     assert di_jets.cpp_collection_type == "DataVector<xAOD::DiTauJet_v1>"
 
     assert jets_class.name == "xAOD.Jet_v1"
+    assert jets_class.library == "xAODJet"
     assert len(jets_class.methods) > 0
     pt_methods = [m for m in jets_class.methods if m.name == "pt"]
     assert len(pt_methods) == 1
@@ -45,6 +45,7 @@ def test_load_full_file():
     assert len(calc_llr) == 1
     assert len(calc_llr[0].arguments) == 2
     assert calc_llr[0].arguments[0].arg_type == "float"
+    assert btagging.library is None
 
     assert len(event_info.cpp_include_file) == 1
     assert event_info.link_libraries == ["xAODEventInfo"]

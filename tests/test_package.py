@@ -1208,6 +1208,57 @@ def test_method_with_behavior(tmp_path, template_path):
     assert "deref_count" not in all_text
 
 
+def test_method_with_behavior_includes(tmp_path, template_path):
+    """Make sure that connected classes include their includes.
+
+    Args:
+        tmp_path ([type]): [description]
+    """
+    classes = [
+        class_info(
+            "xAOD.Jets",
+            "xAOD::Jets",
+            [
+                method_info(
+                    name="pt1",
+                    return_type="float",
+                    arguments=[],
+                    param_arguments=[],
+                    param_helper=None,
+                )
+            ],
+            None,
+            None,
+            "jet.hpp",
+            behaviors=["xAOD::Tracks"],
+        ),
+        class_info(
+            "xAOD.Tracks",
+            "xAOD::Tracks",
+            [
+                method_info(
+                    name="pt2",
+                    return_type="float",
+                    arguments=[],
+                    param_arguments=[],
+                    param_helper=None,
+                )
+            ],
+            None,
+            None,
+            "Tracks.hpp",
+            library="xAODTrack",
+        ),
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package", [""], "22")
+
+    all_text = (tmp_path / "xAOD" / "jets.py").read_text()
+    assert "jet.hpp" in all_text
+    assert "Tracks.hpp" in all_text
+    assert "xAODTrack" in all_text
+
+
 def test_method_with_behavior_deref(tmp_path, template_path):
     """Write out a very simple top level class with a method.
 

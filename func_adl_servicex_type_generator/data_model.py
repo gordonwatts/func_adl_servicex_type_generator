@@ -178,6 +178,9 @@ class class_info:
     # The list of enums we have
     enums: List[enum_info] = field(default_factory=list)
 
+    # The library this guy is in
+    library: Optional[str] = None
+
 
 @dataclass
 class metadata_info:

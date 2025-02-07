@@ -2579,6 +2579,7 @@ classes:
   - python_name: xAOD.Jet_v1
     cpp_name: xAOD::Jet_v1
     include_file: xAODJet/versions/Jet_v1.h
+    library: "xAODJet"
     methods:
       - name: pt
         return_type: double
