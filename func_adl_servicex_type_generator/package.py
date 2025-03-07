@@ -41,6 +41,7 @@ def prep_jinja2_env(env: jinja2.Environment):
 @dataclass
 class config_info:
     "Config variables to be written out"
+
     name: str
     value: str
 
@@ -146,14 +147,22 @@ def cpp_collection_element(
 _g_cpp_to_py_type_map = {
     "float": "float",
     "int": "int",
+    "uint": "int",
+    "int16_t": "int",
+    "int32_t": "int",
     "unsigned int": "int",
     "short": "int",
     "unsigned short": "int",
     "unsigned long long": "int",
     "long long": "int",
     "long": "int",
+    "unsigned long": "int",
     "double": "float",
     "bool": "bool",
+    "uint64_t": "int",
+    "uint16_t": "int",
+    "uint8_t": "int",
+    "char": "str",
 }
 
 _g_py_single_types = {i for _, i in _g_cpp_to_py_type_map.items()}
