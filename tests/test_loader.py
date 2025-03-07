@@ -1,4 +1,5 @@
 from pathlib import Path
+import pytest
 from func_adl_servicex_type_generator.loader import load_yaml
 
 
@@ -100,3 +101,11 @@ def test_load_with_enums():
     assert len(enum.values) == 18
     assert "Topo_633" in [v.name for v in enum.values]
     assert 12 == [v.value for v in enum.values if v.name == "Topo_633"][0]
+
+
+@pytest.mark.parametrize("yaml_file", Path("./tests").glob("*.yaml"))
+def test_load_all_test_files(yaml_file):
+    data = load_yaml(yaml_file)
+    assert data is not None
+
+    assert "xAOD.CaloCluster_v1" in {c.name for c in data.classes}
