@@ -175,7 +175,7 @@ def load_yaml(
         class_info(
             name=c["python_name"],
             cpp_name=c["cpp_name"],
-            methods=method_loader(c["methods"]),
+            methods=method_loader(c["methods"]) if "methods" in c else [],
             python_container_type=(
                 None
                 if "is_container_of_python" not in c
