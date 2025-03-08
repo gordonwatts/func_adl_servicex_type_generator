@@ -21,39 +21,6 @@ collections:
     parameters:
       - name: name
         type: str
-  - collection_name: SystematicEvents
-    cpp_item_type: xAOD::SystematicEvent
-    python_item_type: xAOD.SystematicEvent
-    cpp_container_type: DataVector<xAOD::SystematicEvent>
-    python_container_type: Iterable[xAOD.SystematicEvent]
-    include_file: TopEvent/SystematicEventContainer.h
-    link_libraries:
-      - TopEvent
-    parameters:
-      - name: name
-        type: str
-  - collection_name: PseudoTopResults
-    cpp_item_type: xAOD::PseudoTopResult
-    python_item_type: xAOD.PseudoTopResult
-    cpp_container_type: DataVector<xAOD::PseudoTopResult>
-    python_container_type: Iterable[xAOD.PseudoTopResult]
-    include_file: TopEvent/PseudoTopResultContainer.h
-    link_libraries:
-      - TopEvent
-    parameters:
-      - name: name
-        type: str
-  - collection_name: KLFitterResults
-    cpp_item_type: xAOD::KLFitterResult
-    python_item_type: xAOD.KLFitterResult
-    cpp_container_type: DataVector<xAOD::KLFitterResult>
-    python_container_type: Iterable[xAOD.KLFitterResult]
-    include_file: TopEvent/KLFitterResultContainer.h
-    link_libraries:
-      - TopEvent
-    parameters:
-      - name: name
-        type: str
   - collection_name: jFexTowers
     cpp_item_type: xAOD::jFexTower_v1
     python_item_type: xAOD.jFexTower_v1
@@ -1643,13 +1610,6 @@ classes:
     methods:
       - name: isValid
         return_type: bool
-  - python_name: ElementLink_DataVector_xAOD_TrackSurface_v1__
-    cpp_name: ElementLink<DataVector<xAOD::TrackSurface_v1>>
-    also_behaves_like:
-      - xAOD::TrackSurface_v1**
-    methods:
-      - name: isValid
-        return_type: bool
   - python_name: ElementLink_DataVector_xAOD_TrigBphys_v1__
     cpp_name: ElementLink<DataVector<xAOD::TrigBphys_v1>>
     also_behaves_like:
@@ -1682,13 +1642,6 @@ classes:
     cpp_name: ElementLink<DataVector<xAOD::TruthVertex_v1>>
     also_behaves_like:
       - xAOD::TruthVertex_v1**
-    methods:
-      - name: isValid
-        return_type: bool
-  - python_name: ElementLink_DataVector_xAOD_UncalibratedMeasurement_v1__
-    cpp_name: ElementLink<DataVector<xAOD::UncalibratedMeasurement_v1>>
-    also_behaves_like:
-      - xAOD::UncalibratedMeasurement_v1**
     methods:
       - name: isValid
         return_type: bool
@@ -1968,7 +1921,7 @@ classes:
         return_type: bool
         arguments:
           - name: classname
-            type: char
+            type: int
       - name: IsFolder
         return_type: bool
       - name: IsSortable
@@ -1983,12 +1936,12 @@ classes:
         return_type: int
         arguments:
           - name: name
-            type: char
+            type: int
       - name: Write
         return_type: int
         arguments:
           - name: name
-            type: char
+            type: int
           - name: option
             type: int
           - name: bufsize
@@ -2412,36 +2365,36 @@ classes:
         return_type: double
         arguments:
           - name: name
-            type: char
+            type: int
       - name: IValue
         return_type: int
         arguments:
           - name: name
-            type: char
+            type: int
       - name: NamedValue
         return_type: string
         arguments:
           - name: name
-            type: char
+            type: int
       - name: GetRealValue
         return_type: bool
         arguments:
           - name: noname_arg
-            type: char
+            type: int
           - name: noname_arg_1
             type: float
       - name: GetIntValue
         return_type: bool
         arguments:
           - name: noname_arg
-            type: char
+            type: int
           - name: noname_arg_1
             type: int
       - name: GetNamedValue
         return_type: bool
         arguments:
           - name: noname_arg
-            type: char
+            type: int
           - name: noname_arg_1
             type: str
   - python_name: ROOT.Math.Minimizer
@@ -2734,12 +2687,12 @@ classes:
         return_type: ROOT::Math::IOptions
         arguments:
           - name: name
-            type: char
+            type: int
       - name: FindDefault
         return_type: ROOT::Math::IOptions *
         arguments:
           - name: name
-            type: char
+            type: int
       - name: PrintLevel
         return_type: int
       - name: MaxFunctionCalls
@@ -2767,12 +2720,21 @@ classes:
         return_type: double
   - python_name: ROOT.TSchemaRule
     cpp_name: ROOT::TSchemaRule
+    enums:
+      - name: RuleType_t
+        values:
+          - name: kReadRule
+            value: 0
+          - name: kReadRawRule
+            value: 1
+          - name: kNone
+            value: 99999
     methods:
       - name: SetFromRule
         return_type: bool
         arguments:
           - name: rule
-            type: char
+            type: int
       - name: GetVersion
         return_type: const char *
       - name: TestVersion
@@ -2803,6 +2765,8 @@ classes:
         return_type: const char *
       - name: GetAttributes
         return_type: const char *
+      - name: GetRuleType
+        return_type: ROOT::TSchemaRule::RuleType_t
       - name: Conflicts
         return_type: bool
         arguments:
@@ -2852,7 +2816,7 @@ classes:
         return_type: bool
         arguments:
           - name: classname
-            type: char
+            type: int
       - name: IsFolder
         return_type: bool
       - name: IsSortable
@@ -2867,12 +2831,12 @@ classes:
         return_type: int
         arguments:
           - name: name
-            type: char
+            type: int
       - name: Write
         return_type: int
         arguments:
           - name: name
-            type: char
+            type: int
           - name: option
             type: int
           - name: bufsize
@@ -3093,6 +3057,21 @@ classes:
         return_type: int
   - python_name: TLorentzVector
     cpp_name: TLorentzVector
+    enums:
+      - name: (unnamed)
+        values:
+          - name: kX
+            value: 0
+          - name: kY
+            value: 1
+          - name: kZ
+            value: 2
+          - name: kT
+            value: 3
+          - name: kNUM_COORDINATES
+            value: 4
+          - name: kSIZE
+            value: 4
     methods:
       - name: X
         return_type: double
@@ -3245,7 +3224,7 @@ classes:
         return_type: bool
         arguments:
           - name: classname
-            type: char
+            type: int
       - name: IsFolder
         return_type: bool
       - name: IsSortable
@@ -3260,12 +3239,12 @@ classes:
         return_type: int
         arguments:
           - name: name
-            type: char
+            type: int
       - name: Write
         return_type: int
         arguments:
           - name: name
-            type: char
+            type: int
           - name: option
             type: int
           - name: bufsize
@@ -3328,7 +3307,7 @@ classes:
           - name: sigma
             type: float
       - name: Poisson
-        return_type: int
+        return_type: unsigned long long
         arguments:
           - name: mean
             type: float
@@ -3392,7 +3371,7 @@ classes:
         return_type: bool
         arguments:
           - name: classname
-            type: char
+            type: int
       - name: IsFolder
         return_type: bool
       - name: IsOnHeap
@@ -3405,12 +3384,12 @@ classes:
         return_type: int
         arguments:
           - name: name
-            type: char
+            type: int
       - name: Write
         return_type: int
         arguments:
           - name: name
-            type: char
+            type: int
           - name: option
             type: int
           - name: bufsize
@@ -3613,7 +3592,7 @@ classes:
         return_type: bool
         arguments:
           - name: classname
-            type: char
+            type: int
       - name: IsFolder
         return_type: bool
       - name: IsSortable
@@ -3628,12 +3607,12 @@ classes:
         return_type: int
         arguments:
           - name: name
-            type: char
+            type: int
       - name: Write
         return_type: int
         arguments:
           - name: name
-            type: char
+            type: int
           - name: option
             type: int
           - name: bufsize
@@ -3710,7 +3689,7 @@ classes:
         return_type: bool
         arguments:
           - name: classname
-            type: char
+            type: int
       - name: IsFolder
         return_type: bool
       - name: IsSortable
@@ -3725,12 +3704,12 @@ classes:
         return_type: int
         arguments:
           - name: name
-            type: char
+            type: int
       - name: Write
         return_type: int
         arguments:
           - name: name
-            type: char
+            type: int
           - name: option
             type: int
           - name: bufsize
@@ -3806,7 +3785,7 @@ classes:
         return_type: bool
         arguments:
           - name: classname
-            type: char
+            type: int
       - name: IsFolder
         return_type: bool
       - name: IsSortable
@@ -3821,12 +3800,12 @@ classes:
         return_type: int
         arguments:
           - name: name
-            type: char
+            type: int
       - name: Write
         return_type: int
         arguments:
           - name: name
-            type: char
+            type: int
           - name: option
             type: int
           - name: bufsize
@@ -3981,7 +3960,7 @@ classes:
         return_type: bool
         arguments:
           - name: classname
-            type: char
+            type: int
       - name: IsFolder
         return_type: bool
       - name: IsOnHeap
@@ -3994,12 +3973,12 @@ classes:
         return_type: int
         arguments:
           - name: name
-            type: char
+            type: int
       - name: Write
         return_type: int
         arguments:
           - name: name
-            type: char
+            type: int
           - name: option
             type: int
           - name: bufsize
@@ -4113,7 +4092,7 @@ classes:
         return_type: bool
         arguments:
           - name: classname
-            type: char
+            type: int
       - name: IsFolder
         return_type: bool
       - name: IsSortable
@@ -4128,12 +4107,12 @@ classes:
         return_type: int
         arguments:
           - name: name
-            type: char
+            type: int
       - name: Write
         return_type: int
         arguments:
           - name: name
-            type: char
+            type: int
           - name: option
             type: int
           - name: bufsize
@@ -4280,7 +4259,7 @@ classes:
         return_type: bool
         arguments:
           - name: classname
-            type: char
+            type: int
       - name: IsFolder
         return_type: bool
       - name: IsSortable
@@ -4295,12 +4274,12 @@ classes:
         return_type: int
         arguments:
           - name: name
-            type: char
+            type: int
       - name: Write
         return_type: int
         arguments:
           - name: name
-            type: char
+            type: int
           - name: option
             type: int
           - name: bufsize
@@ -4334,6 +4313,10 @@ classes:
             value: 1
           - name: copyfmt_event
             value: 2
+      - name: (unnamed)
+        values:
+          - name: _S_local_word_size
+            value: 8
     methods:
       - name: sync_with_stdio
         return_type: bool
@@ -4358,6 +4341,11 @@ classes:
             type: int
   - python_name: locale
     cpp_name: locale
+    enums:
+      - name: (unnamed)
+        values:
+          - name: _S_categories_size
+            value: 12
     methods:
       - name: name
         return_type: string
@@ -4404,6 +4392,11 @@ classes:
         return_type: unsigned int
   - python_name: str
     cpp_name: string
+    enums:
+      - name: (unnamed)
+        values:
+          - name: _S_local_capacity
+            value: 15
     methods:
       - name: empty
         return_type: bool
@@ -4573,10 +4566,10 @@ classes:
     methods:
       - name: size
         return_type: unsigned int
-  - python_name: vector_char_
+  - python_name: vector_int_
     cpp_name: vector<char>
     is_container_of_cpp: char
-    is_container_of_python: char
+    is_container_of_python: int
     methods:
       - name: size
         return_type: unsigned int
@@ -4629,10 +4622,10 @@ classes:
     methods:
       - name: size
         return_type: unsigned int
-  - python_name: vector_unsigned char_
+  - python_name: vector_int_
     cpp_name: vector<unsigned char>
     is_container_of_cpp: unsigned char
-    is_container_of_python: unsigned char
+    is_container_of_python: int
     methods:
       - name: size
         return_type: unsigned int
@@ -4734,6 +4727,833 @@ classes:
     methods:
       - name: size
         return_type: unsigned int
+  - python_name: xAOD
+    cpp_name: xAOD
+    enums:
+      - name: TrackFitter
+        values:
+          - name: Unknown
+            value: 0
+          - name: iPatTrackFitter
+            value: 1
+          - name: xKalman
+            value: 2
+          - name: KalmanFitter
+            value: 3
+          - name: GaussianSumFilter
+            value: 4
+          - name: GlobalChi2Fitter
+            value: 5
+          - name: DistributedKalmanFilter
+            value: 6
+          - name: DeterministicAnnealingFilter
+            value: 7
+          - name: KalmanDNAFitter
+            value: 8
+          - name: MuonboyFitter
+            value: 9
+          - name: NumberOfTrackFitters
+            value: 10
+      - name: TrackProperties
+        values:
+          - name: BremFit
+            value: 1
+          - name: BremFitSuccessful
+            value: 2
+          - name: StraightTrack
+            value: 3
+          - name: SlimmedTrack
+            value: 4
+          - name: HardScatterOrKink
+            value: 5
+          - name: LowPtTrack
+            value: 6
+          - name: NumberOfTrackProperties
+            value: 7
+      - name: TrackPatternRecoInfo
+        values:
+          - name: SiSPSeededFinder
+            value: 0
+          - name: SiCTBTracking
+            value: 1
+          - name: InDetAmbiguitySolver
+            value: 2
+          - name: InDetExtensionProcessor
+            value: 3
+          - name: TRTSeededTrackFinder
+            value: 4
+          - name: Muonboy
+            value: 5
+          - name: MuGirlUnrefitted
+            value: 6
+          - name: STACO
+            value: 7
+          - name: StacoLowPt
+            value: 8
+          - name: MuTag
+            value: 9
+          - name: MooreToTrackTool
+            value: 10
+          - name: TrigIDSCAN
+            value: 11
+          - name: TrigSiTrack
+            value: 12
+          - name: TrigTRTxK
+            value: 13
+          - name: TrigTRTLUT
+            value: 14
+          - name: Fatras
+            value: 15
+          - name: iPatLegacyCnv
+            value: 16
+          - name: xKalmanLegacyCnv
+            value: 17
+          - name: SimpleAmbiguityProcessorTool
+            value: 18
+          - name: InDetAmbiTrackSelectionTool
+            value: 19
+          - name: TRTStandalone
+            value: 20
+          - name: MuidStandAlone
+            value: 21
+          - name: TRTSeededSingleSpTrackFinder
+            value: 22
+          - name: MooreLegacyCnv
+            value: 23
+          - name: MuidComb
+            value: 24
+          - name: Moore
+            value: 25
+          - name: MuidCombined
+            value: 26
+          - name: MuidVertexAssociator
+            value: 27
+          - name: MuGirl
+            value: 28
+          - name: iPatRec
+            value: 29
+          - name: MuGirlLowBeta
+            value: 30
+          - name: FatrasSimulation
+            value: 31
+          - name: ReverseOrderedTrack
+            value: 32
+          - name: MuonNotHittingTileVolume
+            value: 33
+          - name: SiSpacePointsSeedMaker_Cosmic
+            value: 34
+          - name: SiSpacePointsSeedMaker_HeavyIon
+            value: 35
+          - name: SiSpacePointsSeedMaker_LowMomentum
+            value: 36
+          - name: SiSpacePointsSeedMaker_BeamGas
+            value: 37
+          - name: SiSpacePointsSeedMaker_VeryLowMomentum
+            value: 38
+          - name: MuidMuonRecoveryTool
+            value: 39
+          - name: MuidStandaloneRefit
+            value: 40
+          - name: TrackInCaloROI
+            value: 41
+          - name: SiSpacePointsSeedMaker_ForwardTracks
+            value: 42
+          - name: strategyA
+            value: 43
+          - name: strategyB
+            value: 44
+          - name: strategyC
+            value: 45
+          - name: FTK
+            value: 46
+          - name: FastTrackFinderSeed
+            value: 47
+          - name: SiSPSeededFinderSimple
+            value: 48
+          - name: SiSpacePointsSeedMaker_LargeD0
+            value: 49
+          - name: SiSpacePointsSeedMaker_ITkConversionTracks
+            value: 50
+          - name: Pseudotracking
+            value: 51
+          - name: NumberOfTrackRecoInfo
+            value: 52
+      - name: ParticleHypothesis
+        values:
+          - name: nonInteracting
+            value: 0
+          - name: geantino
+            value: 0
+          - name: electron
+            value: 1
+          - name: muon
+            value: 2
+          - name: pion
+            value: 3
+          - name: kaon
+            value: 4
+          - name: proton
+            value: 5
+          - name: photon
+            value: 6
+          - name: neutron
+            value: 7
+          - name: pi0
+            value: 8
+          - name: k0
+            value: 9
+          - name: nonInteractingMuon
+            value: 10
+          - name: noHypothesis
+            value: 99
+          - name: undefined
+            value: 99
+      - name: ParameterPosition
+        values:
+          - name: BeamLine
+            value: 0
+          - name: FirstMeasurement
+            value: 1
+          - name: LastMeasurement
+            value: 2
+          - name: CalorimeterEntrance
+            value: 3
+          - name: CalorimeterExit
+            value: 4
+          - name: MuonSpectrometerEntrance
+            value: 5
+      - name: SummaryType
+        values:
+          - name: numberOfContribPixelLayers
+            value: 29
+          - name: numberOfBLayerHits
+            value: 0
+          - name: numberOfBLayerOutliers
+            value: 31
+          - name: numberOfBLayerSharedHits
+            value: 16
+          - name: numberOfBLayerSplitHits
+            value: 43
+          - name: expectBLayerHit
+            value: 42
+          - name: expectInnermostPixelLayerHit
+            value: 52
+          - name: numberOfInnermostPixelLayerHits
+            value: 53
+          - name: numberOfInnermostPixelLayerOutliers
+            value: 54
+          - name: numberOfInnermostPixelLayerSharedHits
+            value: 55
+          - name: numberOfInnermostPixelLayerSplitHits
+            value: 56
+          - name: numberOfInnermostPixelLayerEndcapHits
+            value: 77
+          - name: numberOfInnermostPixelLayerEndcapOutliers
+            value: 80
+          - name: numberOfInnermostPixelLayerSharedEndcapHits
+            value: 81
+          - name: numberOfInnermostPixelLayerSplitEndcapHits
+            value: 82
+          - name: expectNextToInnermostPixelLayerHit
+            value: 57
+          - name: numberOfNextToInnermostPixelLayerHits
+            value: 58
+          - name: numberOfNextToInnermostPixelLayerOutliers
+            value: 59
+          - name: numberOfNextToInnermostPixelLayerSharedHits
+            value: 60
+          - name: numberOfNextToInnermostPixelLayerSplitHits
+            value: 61
+          - name: numberOfNextToInnermostPixelLayerEndcapHits
+            value: 78
+          - name: numberOfNextToInnermostPixelLayerEndcapOutliers
+            value: 83
+          - name: numberOfNextToInnermostPixelLayerSharedEndcapHits
+            value: 84
+          - name: numberOfNextToInnermostPixelLayerSplitEndcapHits
+            value: 85
+          - name: numberOfDBMHits
+            value: 63
+          - name: numberOfPixelHits
+            value: 2
+          - name: numberOfPixelOutliers
+            value: 41
+          - name: numberOfPixelHoles
+            value: 1
+          - name: numberOfPixelSharedHits
+            value: 17
+          - name: numberOfPixelSplitHits
+            value: 44
+          - name: numberOfGangedPixels
+            value: 14
+          - name: numberOfGangedFlaggedFakes
+            value: 32
+          - name: numberOfPixelDeadSensors
+            value: 33
+          - name: numberOfPixelSpoiltHits
+            value: 35
+          - name: numberOfSCTHits
+            value: 3
+          - name: numberOfSCTOutliers
+            value: 39
+          - name: numberOfSCTHoles
+            value: 4
+          - name: numberOfSCTDoubleHoles
+            value: 28
+          - name: numberOfSCTSharedHits
+            value: 18
+          - name: numberOfSCTDeadSensors
+            value: 34
+          - name: numberOfSCTSpoiltHits
+            value: 36
+          - name: numberOfTRTHits
+            value: 5
+          - name: numberOfTRTOutliers
+            value: 19
+          - name: numberOfTRTHoles
+            value: 40
+          - name: numberOfTRTHighThresholdHits
+            value: 6
+          - name: numberOfTRTHighThresholdHitsTotal
+            value: 64
+          - name: numberOfTRTHighThresholdOutliers
+            value: 20
+          - name: numberOfTRTDeadStraws
+            value: 37
+          - name: numberOfTRTTubeHits
+            value: 38
+          - name: numberOfTRTXenonHits
+            value: 46
+          - name: numberOfTRTSharedHits
+            value: 62
+          - name: numberOfPrecisionLayers
+            value: 7
+          - name: numberOfPrecisionHoleLayers
+            value: 8
+          - name: numberOfPhiLayers
+            value: 9
+          - name: numberOfPhiHoleLayers
+            value: 10
+          - name: numberOfTriggerEtaLayers
+            value: 11
+          - name: numberOfTriggerEtaHoleLayers
+            value: 12
+          - name: numberOfGoodPrecisionLayers
+            value: 66
+          - name: numberOfOutliersOnTrack
+            value: 15
+          - name: standardDeviationOfChi2OS
+            value: 30
+          - name: eProbabilityComb
+            value: 47
+          - name: eProbabilityHT
+            value: 48
+          - name: pixeldEdx
+            value: 51
+          - name: TRTTrackOccupancy
+            value: 67
+          - name: numberOfContribPixelBarrelFlatLayers
+            value: 68
+          - name: numberOfContribPixelBarrelInclinedLayers
+            value: 69
+          - name: numberOfContribPixelEndcap
+            value: 70
+          - name: numberOfPixelBarrelFlatHits
+            value: 71
+          - name: numberOfPixelBarrelInclinedHits
+            value: 72
+          - name: numberOfPixelEndcapHits
+            value: 73
+          - name: numberOfPixelBarrelFlatHoles
+            value: 74
+          - name: numberOfPixelBarrelInclinedHoles
+            value: 75
+          - name: numberOfPixelEndcapHoles
+            value: 76
+          - name: numberOfTrackSummaryTypes
+            value: 86
+      - name: MuonSummaryType
+        values:
+          - name: primarySector
+            value: 0
+          - name: secondarySector
+            value: 1
+          - name: innerSmallHits
+            value: 2
+          - name: innerLargeHits
+            value: 3
+          - name: middleSmallHits
+            value: 4
+          - name: middleLargeHits
+            value: 5
+          - name: outerSmallHits
+            value: 6
+          - name: outerLargeHits
+            value: 7
+          - name: extendedSmallHits
+            value: 8
+          - name: extendedLargeHits
+            value: 9
+          - name: innerSmallHoles
+            value: 10
+          - name: innerLargeHoles
+            value: 11
+          - name: middleSmallHoles
+            value: 12
+          - name: middleLargeHoles
+            value: 13
+          - name: outerSmallHoles
+            value: 14
+          - name: outerLargeHoles
+            value: 15
+          - name: extendedSmallHoles
+            value: 16
+          - name: extendedLargeHoles
+            value: 17
+          - name: phiLayer1Hits
+            value: 18
+          - name: phiLayer2Hits
+            value: 19
+          - name: phiLayer3Hits
+            value: 20
+          - name: phiLayer4Hits
+            value: 21
+          - name: etaLayer1Hits
+            value: 22
+          - name: etaLayer2Hits
+            value: 23
+          - name: etaLayer3Hits
+            value: 24
+          - name: etaLayer4Hits
+            value: 25
+          - name: phiLayer1Holes
+            value: 26
+          - name: phiLayer2Holes
+            value: 27
+          - name: phiLayer3Holes
+            value: 28
+          - name: phiLayer4Holes
+            value: 29
+          - name: etaLayer1Holes
+            value: 30
+          - name: etaLayer2Holes
+            value: 31
+          - name: etaLayer3Holes
+            value: 32
+          - name: etaLayer4Holes
+            value: 33
+          - name: innerClosePrecisionHits
+            value: 34
+          - name: middleClosePrecisionHits
+            value: 35
+          - name: outerClosePrecisionHits
+            value: 36
+          - name: extendedClosePrecisionHits
+            value: 37
+          - name: innerOutBoundsPrecisionHits
+            value: 38
+          - name: middleOutBoundsPrecisionHits
+            value: 39
+          - name: outerOutBoundsPrecisionHits
+            value: 40
+          - name: extendedOutBoundsPrecisionHits
+            value: 41
+          - name: combinedTrackOutBoundsPrecisionHits
+            value: 42
+          - name: isEndcapGoodLayers
+            value: 43
+          - name: isSmallGoodSectors
+            value: 44
+          - name: phiLayer1RPCHits
+            value: 45
+          - name: phiLayer2RPCHits
+            value: 46
+          - name: phiLayer3RPCHits
+            value: 47
+          - name: phiLayer4RPCHits
+            value: 48
+          - name: etaLayer1RPCHits
+            value: 49
+          - name: etaLayer2RPCHits
+            value: 50
+          - name: etaLayer3RPCHits
+            value: 51
+          - name: etaLayer4RPCHits
+            value: 52
+          - name: phiLayer1RPCHoles
+            value: 53
+          - name: phiLayer2RPCHoles
+            value: 54
+          - name: phiLayer3RPCHoles
+            value: 55
+          - name: phiLayer4RPCHoles
+            value: 56
+          - name: etaLayer1RPCHoles
+            value: 57
+          - name: etaLayer2RPCHoles
+            value: 58
+          - name: etaLayer3RPCHoles
+            value: 59
+          - name: etaLayer4RPCHoles
+            value: 60
+          - name: phiLayer1TGCHits
+            value: 61
+          - name: phiLayer2TGCHits
+            value: 62
+          - name: phiLayer3TGCHits
+            value: 63
+          - name: phiLayer4TGCHits
+            value: 64
+          - name: etaLayer1TGCHits
+            value: 65
+          - name: etaLayer2TGCHits
+            value: 66
+          - name: etaLayer3TGCHits
+            value: 67
+          - name: etaLayer4TGCHits
+            value: 68
+          - name: phiLayer1TGCHoles
+            value: 69
+          - name: phiLayer2TGCHoles
+            value: 70
+          - name: phiLayer3TGCHoles
+            value: 71
+          - name: phiLayer4TGCHoles
+            value: 72
+          - name: etaLayer1TGCHoles
+            value: 73
+          - name: etaLayer2TGCHoles
+            value: 74
+          - name: etaLayer3TGCHoles
+            value: 75
+          - name: etaLayer4TGCHoles
+            value: 76
+          - name: phiLayer1STGCHits
+            value: 79
+          - name: phiLayer2STGCHits
+            value: 80
+          - name: etaLayer1STGCHits
+            value: 81
+          - name: etaLayer2STGCHits
+            value: 82
+          - name: phiLayer1STGCHoles
+            value: 83
+          - name: phiLayer2STGCHoles
+            value: 84
+          - name: etaLayer1STGCHoles
+            value: 85
+          - name: etaLayer2STGCHoles
+            value: 86
+          - name: MMHits
+            value: 87
+          - name: MMHoles
+            value: 88
+          - name: cscEtaHits
+            value: 77
+          - name: cscUnspoiledEtaHits
+            value: 78
+          - name: numberOfMuonSummaryTypes
+            value: 89
+      - name: RejectionStep
+        values:
+          - name: solveTracks
+            value: 0
+          - name: addNewTracks
+            value: 1
+          - name: refitTrack
+            value: 2
+          - name: addTrack
+            value: 3
+          - name: decideWhichHitsToKeep
+            value: 4
+          - name: getCleanedOutTrack
+            value: 5
+      - name: RejectionReason
+        values:
+          - name: acceptedTrack
+            value: 0
+          - name: stillBeingProcessed
+            value: 1
+          - name: trackScoreZero
+            value: 2
+          - name: duplicateTrack
+            value: 3
+          - name: subtrackCreated
+            value: 4
+          - name: refitFailed
+            value: 5
+          - name: bremRefitFailed
+            value: 6
+          - name: bremRefitSubtrackCreated
+            value: 7
+          - name: bremRefitTrackScoreZero
+            value: 8
+          - name: refitTrackScoreZero
+            value: 9
+          - name: TSOSRejectedHit
+            value: 10
+          - name: TSOSOutlierShared
+            value: 11
+          - name: pixelSplitButTooManyShared2Ptc
+            value: 12
+          - name: pixelSplitButTooManyShared3Ptc
+            value: 13
+          - name: tooManySharedRecoverable
+            value: 14
+          - name: tooManySharedNonRecoverable
+            value: 15
+          - name: sharedSCT
+            value: 16
+          - name: sharedHitsBadChi2
+            value: 17
+          - name: sharedHitsNotEnoughUniqueHits
+            value: 18
+          - name: firstHitSharedAndPixIBL
+            value: 19
+          - name: firstHitSharedAndExtraShared
+            value: 20
+          - name: sharedHitsNotEnoughUniqueSiHits
+            value: 21
+          - name: sharedIBLSharedWithNoIBLTrack
+            value: 22
+          - name: sharedPixelSharedWithDifferentIBLTrack
+            value: 23
+          - name: tooManySharedAfterIncreasingShared
+            value: 24
+          - name: notEnoughSiHits
+            value: 25
+          - name: notEnoughTRTHits
+            value: 26
+          - name: notEnoughUniqueSiHits
+            value: 27
+          - name: tooFewHits
+            value: 28
+          - name: failedSubtrackCreation
+            value: 29
+          - name: subtrackCreatedWithRecoveredShared
+            value: 30
+          - name: other
+            value: 31
+      - name: ObserverToolIndex
+        values:
+          - name: track
+            value: 0
+          - name: score
+            value: 1
+          - name: rejectStep
+            value: 2
+          - name: rejectReason
+            value: 3
+          - name: parentId
+            value: 4
+          - name: numPixelHoles
+            value: 5
+          - name: numSCTHoles
+            value: 6
+          - name: numSplitSharedPixel
+            value: 7
+          - name: numSplitSharedSCT
+            value: 8
+          - name: numSharedOrSplit
+            value: 9
+          - name: numSharedOrSplitPixels
+            value: 10
+          - name: numShared
+            value: 11
+          - name: isPatternTrack
+            value: 12
+          - name: totalSiHits
+            value: 13
+          - name: inROI
+            value: 14
+          - name: hasIBLHit
+            value: 15
+          - name: hasSharedIBLHit
+            value: 16
+          - name: hasSharedPixel
+            value: 17
+          - name: firstPixIsShared
+            value: 18
+          - name: numPixelDeadSensor
+            value: 19
+          - name: numSCTDeadSensor
+            value: 20
+          - name: numPixelHits
+            value: 21
+          - name: numSCTHits
+            value: 22
+          - name: numUnused
+            value: 23
+          - name: numTRT_Unused
+            value: 24
+          - name: numSCT_Unused
+            value: 25
+          - name: numPseudo
+            value: 26
+          - name: averageSplit1
+            value: 27
+          - name: averageSplit2
+            value: 28
+          - name: numWeightedShared
+            value: 29
+          - name: rejectStep_full
+            value: 30
+          - name: rejectReason_full
+            value: 31
+      - name: SurfaceType
+        values:
+          - name: Cone
+            value: 0
+          - name: Cylinder
+            value: 1
+          - name: Disc
+            value: 2
+          - name: Perigee
+            value: 3
+          - name: Plane
+            value: 4
+          - name: Straw
+            value: 5
+          - name: Curvilinear
+            value: 6
+          - name: Other
+            value: 7
+      - name: JetConstitScale
+        values:
+          - name: UncalibratedJetConstituent
+            value: 0
+          - name: CalibratedJetConstituent
+            value: 1
+          - name: UnknownConstitScale
+            value: 99
+      - name: JetScale
+        values:
+          - name: JetEMScaleMomentum
+            value: 0
+          - name: JetConstitScaleMomentum
+            value: 1
+          - name: JetAssignedScaleMomentum
+            value: 2
+      - name: UncalibMeasType
+        values:
+          - name: Other
+            value: 0
+          - name: PixelClusterType
+            value: 1
+          - name: StripClusterType
+            value: 2
+          - name: MdtDriftCircleType
+            value: 3
+          - name: RpcStripType
+            value: 4
+          - name: TgcStripType
+            value: 5
+          - name: MMClusterType
+            value: 6
+          - name: sTgcStripType
+            value: 7
+          - name: HGTDClusterType
+            value: 8
+          - name: nTypes
+            value: 9
+      - name: BTagInfo
+        values:
+          - name: SV0_NGTinJet
+            value: 100
+          - name: SV0_NGTinSvx
+            value: 101
+          - name: SV0_N2Tpair
+            value: 102
+          - name: SV0_masssvx
+            value: 103
+          - name: SV0_efracsvx
+            value: 104
+          - name: SV0_normdist
+            value: 105
+          - name: SV1_NGTinJet
+            value: 200
+          - name: SV1_NGTinSvx
+            value: 201
+          - name: SV1_N2Tpair
+            value: 202
+          - name: SV1_masssvx
+            value: 203
+          - name: SV1_efracsvx
+            value: 204
+          - name: SV1_normdist
+            value: 205
+          - name: JetFitter_nVTX
+            value: 300
+          - name: JetFitter_nSingleTracks
+            value: 301
+          - name: JetFitter_nTracksAtVtx
+            value: 302
+          - name: JetFitter_mass
+            value: 303
+          - name: JetFitter_energyFraction
+            value: 304
+          - name: JetFitter_significance3d
+            value: 305
+          - name: JetFitter_deltaeta
+            value: 306
+          - name: JetFitter_deltaphi
+            value: 307
+          - name: JetFitter_N2Tpair
+            value: 308
+          - name: IP2D_ntrk
+            value: 400
+          - name: IP2D_gradeOfTracks
+            value: 401
+          - name: IP2D_flagFromV0ofTracks
+            value: 404
+          - name: IP2D_valD0wrtPVofTracks
+            value: 405
+          - name: IP2D_sigD0wrtPVofTracks
+            value: 406
+          - name: IP2D_weightBofTracks
+            value: 409
+          - name: IP2D_weightUofTracks
+            value: 410
+          - name: IP2D_weightCofTracks
+            value: 411
+          - name: IP3D_ntrk
+            value: 500
+          - name: IP3D_gradeOfTracks
+            value: 501
+          - name: IP3D_flagFromV0ofTracks
+            value: 504
+          - name: IP3D_valD0wrtPVofTracks
+            value: 505
+          - name: IP3D_sigD0wrtPVofTracks
+            value: 506
+          - name: IP3D_valZ0wrtPVofTracks
+            value: 507
+          - name: IP3D_sigZ0wrtPVofTracks
+            value: 508
+          - name: IP3D_weightBofTracks
+            value: 509
+          - name: IP3D_weightUofTracks
+            value: 510
+          - name: IP3D_weightCofTracks
+            value: 511
+    methods:
+      - name: setOriginalObjectLink
+        return_type: bool
+        arguments:
+          - name: original
+            type: xAOD.IParticle
+          - name: copy
+            type: xAOD.IParticle
+      - name: getOriginalObject
+        return_type: const xAOD::IParticle *
+        arguments:
+          - name: copy
+            type: xAOD.IParticle
+      - name: getOriginalObjectLink
+        return_type: const ElementLink<DataVector<xAOD::IParticle>>
+        arguments:
+          - name: copy
+            type: xAOD.IParticle
   - python_name: xAOD.AFPDataAuxContainer_v1
     cpp_name: xAOD::AFPDataAuxContainer_v1
     library: xAODForward
@@ -5922,6 +6742,13 @@ classes:
             type: float
           - name: den
             type: float
+      - name: taggerInfo
+        return_type: bool
+        arguments:
+          - name: value
+            type: int
+          - name: info
+            type: xAOD.BTagInfo
       - name: index
         return_type: unsigned int
       - name: usingPrivateStore
@@ -8027,6 +8854,11 @@ classes:
     cpp_name: xAOD::CaloTower_v1
     library: xAODCaloEvent
     include_file: xAODCaloEvent/versions/CaloTower_v1.h
+    enums:
+      - name: (unnamed)
+        values:
+          - name: INVALIDINDEX
+            value: -1
     methods:
       - name: pt
         return_type: double
@@ -9123,7 +9955,7 @@ classes:
         return_type: uint16_t
         arguments:
           - name: bitmask
-            type: uint16_t
+            type: int
       - name: ambiguousObject
         return_type: const xAOD::Egamma_v1 *
       - name: showerShapeValue
@@ -9350,6 +10182,29 @@ classes:
             type: float
           - name: information
             type: xAOD.EgammaParameters.TrackCaloMatchType
+      - name: trackParticleSummaryValue
+        return_type: bool
+        arguments:
+          - name: value
+            type: int
+          - name: information
+            type: xAOD.SummaryType
+          - name: index
+            type: int
+      - name: trackParticleSummaryIntValue
+        return_type: uint8_t
+        arguments:
+          - name: information
+            type: xAOD.SummaryType
+          - name: index
+            type: int
+      - name: trackParticleSummaryFloatValue
+        return_type: float
+        arguments:
+          - name: information
+            type: xAOD.SummaryType
+          - name: index
+            type: int
       - name: pt
         return_type: double
       - name: eta
@@ -9382,7 +10237,7 @@ classes:
         return_type: uint16_t
         arguments:
           - name: bitmask
-            type: uint16_t
+            type: int
       - name: ambiguousObject
         return_type: const xAOD::Egamma_v1 *
       - name: showerShapeValue
@@ -10914,6 +11769,8 @@ classes:
         return_type: xAODType::ObjectType
       - name: rawConstituent
         return_type: const xAOD::IParticle *
+      - name: Dimension
+        return_type: unsigned int
       - name: Px
         return_type: double
       - name: X
@@ -11370,6 +12227,8 @@ classes:
         return_type: float
       - name: pz
         return_type: float
+      - name: getConstituentsSignalState
+        return_type: xAOD::JetConstitScale
       - name: getConstituents
         return_type: xAOD::JetConstituentVector
       - name: numConstituents
@@ -11431,241 +12290,6 @@ classes:
             type: cpp_type[U]
         param_helper: type_support.index_type_forwarder
         param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
-  - python_name: xAOD.KLFitterResult
-    cpp_name: xAOD::KLFitterResult
-    library: TopEvent
-    include_file: TopEvent/KLFitterResult.h
-    methods:
-      - name: selectionCode
-        return_type: unsigned int
-      - name: minuitDidNotConverge
-        return_type: short
-      - name: fitAbortedDueToNaN
-        return_type: short
-      - name: atLeastOneFitParameterAtItsLimit
-        return_type: short
-      - name: invalidTransferFunctionAtConvergence
-        return_type: short
-      - name: bestPermutation
-        return_type: unsigned int
-      - name: logLikelihood
-        return_type: float
-      - name: eventProbability
-        return_type: float
-      - name: parameters
-        return_type: const vector<double>
-      - name: parameterErrors
-        return_type: const vector<double>
-      - name: model_bhad_pt
-        return_type: float
-      - name: model_bhad_eta
-        return_type: float
-      - name: model_bhad_phi
-        return_type: float
-      - name: model_bhad_E
-        return_type: float
-      - name: model_bhad_jetIndex
-        return_type: unsigned int
-      - name: model_blep_pt
-        return_type: float
-      - name: model_blep_eta
-        return_type: float
-      - name: model_blep_phi
-        return_type: float
-      - name: model_blep_E
-        return_type: float
-      - name: model_blep_jetIndex
-        return_type: unsigned int
-      - name: model_lq1_pt
-        return_type: float
-      - name: model_lq1_eta
-        return_type: float
-      - name: model_lq1_phi
-        return_type: float
-      - name: model_lq1_E
-        return_type: float
-      - name: model_lq1_jetIndex
-        return_type: unsigned int
-      - name: model_lq2_pt
-        return_type: float
-      - name: model_lq2_eta
-        return_type: float
-      - name: model_lq2_phi
-        return_type: float
-      - name: model_lq2_E
-        return_type: float
-      - name: model_lq2_jetIndex
-        return_type: unsigned int
-      - name: model_Higgs_b1_pt
-        return_type: float
-      - name: model_Higgs_b1_eta
-        return_type: float
-      - name: model_Higgs_b1_phi
-        return_type: float
-      - name: model_Higgs_b1_E
-        return_type: float
-      - name: model_Higgs_b1_jetIndex
-        return_type: unsigned int
-      - name: model_Higgs_b2_pt
-        return_type: float
-      - name: model_Higgs_b2_eta
-        return_type: float
-      - name: model_Higgs_b2_phi
-        return_type: float
-      - name: model_Higgs_b2_E
-        return_type: float
-      - name: model_Higgs_b2_jetIndex
-        return_type: unsigned int
-      - name: model_lep_pt
-        return_type: float
-      - name: model_lep_eta
-        return_type: float
-      - name: model_lep_phi
-        return_type: float
-      - name: model_lep_E
-        return_type: float
-      - name: model_lep_index
-        return_type: unsigned int
-      - name: model_lepZ1_pt
-        return_type: float
-      - name: model_lepZ1_eta
-        return_type: float
-      - name: model_lepZ1_phi
-        return_type: float
-      - name: model_lepZ1_E
-        return_type: float
-      - name: model_lepZ1_index
-        return_type: unsigned int
-      - name: model_lepZ2_pt
-        return_type: float
-      - name: model_lepZ2_eta
-        return_type: float
-      - name: model_lepZ2_phi
-        return_type: float
-      - name: model_lepZ2_E
-        return_type: float
-      - name: model_lepZ2_index
-        return_type: unsigned int
-      - name: model_nu_pt
-        return_type: float
-      - name: model_nu_eta
-        return_type: float
-      - name: model_nu_phi
-        return_type: float
-      - name: model_nu_E
-        return_type: float
-      - name: model_b_from_top1_pt
-        return_type: float
-      - name: model_b_from_top1_eta
-        return_type: float
-      - name: model_b_from_top1_phi
-        return_type: float
-      - name: model_b_from_top1_E
-        return_type: float
-      - name: model_b_from_top1_jetIndex
-        return_type: unsigned int
-      - name: model_b_from_top2_pt
-        return_type: float
-      - name: model_b_from_top2_eta
-        return_type: float
-      - name: model_b_from_top2_phi
-        return_type: float
-      - name: model_b_from_top2_E
-        return_type: float
-      - name: model_b_from_top2_jetIndex
-        return_type: unsigned int
-      - name: model_lj1_from_top1_pt
-        return_type: float
-      - name: model_lj1_from_top1_eta
-        return_type: float
-      - name: model_lj1_from_top1_phi
-        return_type: float
-      - name: model_lj1_from_top1_E
-        return_type: float
-      - name: model_lj1_from_top1_jetIndex
-        return_type: unsigned int
-      - name: model_lj2_from_top1_pt
-        return_type: float
-      - name: model_lj2_from_top1_eta
-        return_type: float
-      - name: model_lj2_from_top1_phi
-        return_type: float
-      - name: model_lj2_from_top1_E
-        return_type: float
-      - name: model_lj2_from_top1_jetIndex
-        return_type: unsigned int
-      - name: model_lj1_from_top2_pt
-        return_type: float
-      - name: model_lj1_from_top2_eta
-        return_type: float
-      - name: model_lj1_from_top2_phi
-        return_type: float
-      - name: model_lj1_from_top2_E
-        return_type: float
-      - name: model_lj1_from_top2_jetIndex
-        return_type: unsigned int
-      - name: model_lj2_from_top2_pt
-        return_type: float
-      - name: model_lj2_from_top2_eta
-        return_type: float
-      - name: model_lj2_from_top2_phi
-        return_type: float
-      - name: model_lj2_from_top2_E
-        return_type: float
-      - name: model_lj2_from_top2_jetIndex
-        return_type: unsigned int
-      - name: index
-        return_type: unsigned int
-      - name: usingPrivateStore
-        return_type: bool
-      - name: usingStandaloneStore
-        return_type: bool
-      - name: hasStore
-        return_type: bool
-      - name: hasNonConstStore
-        return_type: bool
-      - name: clearDecorations
-        return_type: bool
-      - name: trackIndices
-        return_type: bool
-      - name: auxdataConst
-        return_type: U
-        arguments:
-          - name: name
-            type: str
-        parameter_arguments:
-          - name: auxdata_type
-            type: cpp_type[U]
-        param_helper: type_support.index_type_forwarder
-        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
-      - name: isAvailable
-        return_type: bool
-        arguments:
-          - name: name
-            type: str
-        parameter_arguments:
-          - name: auxdata_type
-            type: cpp_type[U]
-        param_helper: type_support.index_type_forwarder
-        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
-  - python_name: xAOD.KLFitterResultAuxContainer
-    cpp_name: xAOD::KLFitterResultAuxContainer
-    library: TopEvent
-    include_file: TopEvent/KLFitterResultAuxContainer.h
-    methods:
-      - name: memResource
-        return_type: pmr::memory_resource *
-      - name: clearDecorations
-        return_type: bool
-      - name: size
-        return_type: unsigned int
-      - name: resize
-        return_type: bool
-        arguments:
-          - name: size
-            type: int
-      - name: name
-        return_type: const char *
   - python_name: xAOD.L1TopoRawDataAuxContainer_v1
     cpp_name: xAOD::L1TopoRawDataAuxContainer_v1
     library: xAODTrigL1Calo
@@ -12903,6 +13527,12 @@ classes:
         return_type: bool
       - name: isRun3
         return_type: bool
+      - name: roiExtraWord
+        return_type: unsigned int
+      - name: pt
+        return_type: float
+      - name: isRun4
+        return_type: bool
       - name: index
         return_type: unsigned int
       - name: usingPrivateStore
@@ -13201,6 +13831,28 @@ classes:
         return_type: uint16_t
       - name: muonType
         return_type: xAOD::Muon_v1::MuonType
+      - name: summaryValue
+        return_type: bool
+        arguments:
+          - name: value
+            type: int
+          - name: information
+            type: xAOD.SummaryType
+      - name: floatSummaryValue
+        return_type: float
+        arguments:
+          - name: information
+            type: xAOD.SummaryType
+      - name: uint8SummaryValue
+        return_type: uint8_t
+        arguments:
+          - name: information
+            type: xAOD.SummaryType
+      - name: uint8MuonSummaryValue
+        return_type: float
+        arguments:
+          - name: information
+            type: xAOD.MuonSummaryType
       - name: parameter
         return_type: bool
         arguments:
@@ -13221,8 +13873,6 @@ classes:
       - name: quality
         return_type: xAOD::Muon_v1::Quality
       - name: passesIDCuts
-        return_type: bool
-      - name: passesHighPtCuts
         return_type: bool
       - name: isolation
         return_type: bool
@@ -14103,7 +14753,7 @@ classes:
         return_type: uint16_t
         arguments:
           - name: bitmask
-            type: uint16_t
+            type: int
       - name: ambiguousObject
         return_type: const xAOD::Egamma_v1 *
       - name: showerShapeValue
@@ -14223,45 +14873,6 @@ classes:
             type: float
           - name: LHValue
             type: str
-      - name: index
-        return_type: unsigned int
-      - name: usingPrivateStore
-        return_type: bool
-      - name: usingStandaloneStore
-        return_type: bool
-      - name: hasStore
-        return_type: bool
-      - name: hasNonConstStore
-        return_type: bool
-      - name: clearDecorations
-        return_type: bool
-      - name: trackIndices
-        return_type: bool
-      - name: auxdataConst
-        return_type: U
-        arguments:
-          - name: name
-            type: str
-        parameter_arguments:
-          - name: auxdata_type
-            type: cpp_type[U]
-        param_helper: type_support.index_type_forwarder
-        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
-      - name: isAvailable
-        return_type: bool
-        arguments:
-          - name: name
-            type: str
-        parameter_arguments:
-          - name: auxdata_type
-            type: cpp_type[U]
-        param_helper: type_support.index_type_forwarder
-        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
-  - python_name: xAOD.PseudoTopResult
-    cpp_name: xAOD::PseudoTopResult
-    library: TopEvent
-    include_file: TopEvent/PseudoTopResult.h
-    methods:
       - name: index
         return_type: unsigned int
       - name: usingPrivateStore
@@ -14785,89 +15396,6 @@ classes:
             type: cpp_type[U]
         param_helper: type_support.index_type_forwarder
         param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
-  - python_name: xAOD.SystematicEvent
-    cpp_name: xAOD::SystematicEvent
-    library: TopEvent
-    include_file: TopEvent/SystematicEvent.h
-    methods:
-      - name: hashValue
-        return_type: unsigned int
-      - name: ttreeIndex
-        return_type: unsigned int
-      - name: isLooseEvent
-        return_type: char
-      - name: goodPhotons
-        return_type: const vector<unsigned int>
-      - name: goodElectrons
-        return_type: const vector<unsigned int>
-      - name: goodFwdElectrons
-        return_type: const vector<unsigned int>
-      - name: goodMuons
-        return_type: const vector<unsigned int>
-      - name: goodSoftMuons
-        return_type: const vector<unsigned int>
-      - name: goodTaus
-        return_type: const vector<unsigned int>
-      - name: goodJets
-        return_type: const vector<unsigned int>
-      - name: goodLargeRJets
-        return_type: const vector<unsigned int>
-      - name: goodTrackJets
-        return_type: const vector<unsigned int>
-      - name: goodTracks
-        return_type: const vector<unsigned int>
-      - name: index
-        return_type: unsigned int
-      - name: usingPrivateStore
-        return_type: bool
-      - name: usingStandaloneStore
-        return_type: bool
-      - name: hasStore
-        return_type: bool
-      - name: hasNonConstStore
-        return_type: bool
-      - name: clearDecorations
-        return_type: bool
-      - name: trackIndices
-        return_type: bool
-      - name: auxdataConst
-        return_type: U
-        arguments:
-          - name: name
-            type: str
-        parameter_arguments:
-          - name: auxdata_type
-            type: cpp_type[U]
-        param_helper: type_support.index_type_forwarder
-        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('auxdataConst', s, a, param_1)"
-      - name: isAvailable
-        return_type: bool
-        arguments:
-          - name: name
-            type: str
-        parameter_arguments:
-          - name: auxdata_type
-            type: cpp_type[U]
-        param_helper: type_support.index_type_forwarder
-        param_type_callback: "lambda s, a, param_1: {{package_name}}.type_support.cpp_generic_1arg_callback('isAvailable', s, a, param_1)"
-  - python_name: xAOD.SystematicEventAuxContainer
-    cpp_name: xAOD::SystematicEventAuxContainer
-    library: TopEvent
-    include_file: TopEvent/SystematicEventAuxContainer.h
-    methods:
-      - name: memResource
-        return_type: pmr::memory_resource *
-      - name: clearDecorations
-        return_type: bool
-      - name: size
-        return_type: unsigned int
-      - name: resize
-        return_type: bool
-        arguments:
-          - name: size
-            type: int
-      - name: name
-        return_type: const char *
   - python_name: xAOD.TauJetAuxContainer_v3
     cpp_name: xAOD::TauJetAuxContainer_v3
     library: xAODTau
@@ -15932,8 +16460,6 @@ classes:
         return_type: const vector<double>
       - name: covMatrix
         return_type: const vector<double>
-      - name: uncalibratedMeasurementLink
-        return_type: const ElementLink<DataVector<xAOD::UncalibratedMeasurement_v1>>
       - name: uncalibratedMeasurement
         return_type: const xAOD::UncalibratedMeasurement_v1 *
       - name: projector
@@ -16210,6 +16736,18 @@ classes:
         arguments:
           - name: index
             type: int
+      - name: parameterPosition
+        return_type: xAOD::ParameterPosition
+        arguments:
+          - name: index
+            type: int
+      - name: indexOfParameterAtPosition
+        return_type: bool
+        arguments:
+          - name: index
+            type: int
+          - name: position
+            type: xAOD.ParameterPosition
       - name: radiusOfFirstHit
         return_type: float
       - name: identifierOfFirstHit
@@ -16228,6 +16766,19 @@ classes:
         return_type: float
       - name: numberDoF
         return_type: float
+      - name: trackProperties
+        return_type: xAOD::TrackProperties
+      - name: particleHypothesis
+        return_type: xAOD::ParticleHypothesis
+      - name: trackFitter
+        return_type: xAOD::TrackFitter
+      - name: summaryValue
+        return_type: bool
+        arguments:
+          - name: value
+            type: int
+          - name: information
+            type: xAOD.SummaryType
       - name: index
         return_type: unsigned int
       - name: usingPrivateStore
@@ -16386,12 +16937,12 @@ classes:
         return_type: uint64_t
       - name: typeFlagsPtr
         return_type: const uint64_t *
-      - name: uncalibratedMeasurementLink
-        return_type: ElementLink<DataVector<xAOD::UncalibratedMeasurement_v1>>
+      - name: uncalibratedMeasurement
+        return_type: const xAOD::UncalibratedMeasurement_v1 *
       - name: geometryId
         return_type: uint64_t
-      - name: surfaceLink
-        return_type: ElementLink<DataVector<xAOD::TrackSurface_v1>>
+      - name: surfaceIndex
+        return_type: unsigned int
       - name: index
         return_type: unsigned int
       - name: usingPrivateStore
@@ -16554,6 +17105,8 @@ classes:
         return_type: const vector<float>
       - name: boundValues
         return_type: const vector<float>
+      - name: surfaceType
+        return_type: const xAOD::SurfaceType
       - name: size
         return_type: unsigned int
       - name: index
@@ -16940,7 +17493,7 @@ classes:
       - name: linkColKeys
         return_type: const vector<unsigned int>
       - name: linkColIndices
-        return_type: const vector<unsigned short>
+        return_type: const vector<unsigned int>
       - name: linkColClids
         return_type: const vector<unsigned int>
       - name: isRemapped
@@ -16948,7 +17501,7 @@ classes:
       - name: linkColKeysRemap
         return_type: const vector<unsigned int>
       - name: linkColIndicesRemap
-        return_type: const vector<unsigned short>
+        return_type: const vector<unsigned int>
       - name: index
         return_type: unsigned int
       - name: usingPrivateStore
@@ -19193,6 +19746,8 @@ classes:
     library: xAODMeasurementBase
     include_file: xAODMeasurementBase/versions/UncalibratedMeasurement_v1.h
     methods:
+      - name: type
+        return_type: xAOD::UncalibMeasType
       - name: numDimensions
         return_type: unsigned int
       - name: index
@@ -21894,7 +22449,7 @@ files:
       - "calibrationAlgSeq.addSelfToJob( job )"
       - "print(job) # for debugging"
 "config":
-  "atlas_release": "25.2.12"
+  "atlas_release": "25.2.42"
   "dataset_types":
     - "PHYS"
     - "PHYSLITE"

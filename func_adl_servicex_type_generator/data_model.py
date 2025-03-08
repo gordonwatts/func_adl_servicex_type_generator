@@ -181,6 +181,15 @@ class class_info:
     # The library this guy is in
     library: Optional[str] = None
 
+    def __post_init__(self):
+        "Double check the data integrity"
+        if self.python_container_type is not None:
+            assert (
+                " " not in self.python_container_type
+            ), "No spaces in python type names"
+
+        assert " " not in self.name, "No spaces in class names"
+
 
 @dataclass
 class metadata_info:
