@@ -163,6 +163,7 @@ _g_cpp_to_py_type_map = {
     "uint16_t": "int",
     "uint8_t": "int",
     "char": "str",
+    "string": "str",
 }
 
 _g_py_single_types = {i for _, i in _g_cpp_to_py_type_map.items()}
