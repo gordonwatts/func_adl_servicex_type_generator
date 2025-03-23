@@ -409,7 +409,7 @@ def write_out_classes(
             return r
 
         def lookup_enum(
-            arg: method_arg_info, all_classes: Iterable[class_info]
+            arg: str, all_classes: Iterable[class_info]
         ) -> Optional[Tuple[class_info, enum_info]]:
             """Return the enum info for the argument if it is an enum.
 
@@ -423,7 +423,7 @@ def write_out_classes(
             # Split into namespace and enum type. We don't deal with
             # global enums here, so if this isn't a class-enum, then
             # just return.
-            cpp_type = clean_cpp_type(arg.arg_type)
+            cpp_type = clean_cpp_type(arg)
             if cpp_type is None:
                 return None
             cpp_type_info = cpp_type.rsplit(".", 2)
@@ -451,8 +451,10 @@ def write_out_classes(
             """
             return [
                 e_info
-                for arg in m.arguments
-                if (e_info := lookup_enum(arg, all_classes)) is not None
+                for arg in [a.arg_type for a in m.arguments]
+                + [py_type_from_cpp(m.return_type, cpp_all_classes_dict)]
+                if (arg is not None)
+                and (e_info := lookup_enum(arg, all_classes)) is not None
             ]
 
         def generate_enums(
