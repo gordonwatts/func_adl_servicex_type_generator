@@ -15,7 +15,6 @@ from func_adl_servicex_type_generator.data_model import (
     class_info,
     enum_info,
     file_info,
-    method_arg_info,
     method_info,
 )
 
