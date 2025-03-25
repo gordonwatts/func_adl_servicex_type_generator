@@ -413,25 +413,20 @@ def write_out_classes(
             """Return the enum info for the argument if it is an enum.
 
             Args:
-                arg (method_info): The argument to check
+                arg (method_info): The argument to check (python type)
                 all_classes (Iterable[class_info]): All classes to look through
 
             Returns:
                 Optional[enum_info]: The enum info if this is an enum, or None
             """
-            # Split into namespace and enum type. We don't deal with
-            # global enums here, so if this isn't a class-enum, then
-            # just return.
-            cpp_type = clean_cpp_type(arg)
-            if cpp_type is None:
-                return None
-            cpp_type_info = cpp_type.rsplit(".", 2)
-            if len(cpp_type_info) != 2:
+            # Split into namespace and enum type.
+            type_info = arg.rsplit(".", 1)
+            if len(type_info) != 2:
                 return None
 
             for c in all_classes:
                 for e in c.enums:
-                    if e.name == cpp_type_info[1] and cpp_type_info[0] == c.cpp_name:
+                    if e.name == type_info[1] and type_info[0] == c.name:
                         return c, e
 
             return None
