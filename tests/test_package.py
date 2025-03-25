@@ -871,6 +871,58 @@ def test_class_with_other_class_enum_in_arg(tmp_path, template_path):
     assert "'namespace': 'EnumOnly'" in class_text
 
 
+def test_class_with_other_class_enum_in_return(tmp_path, template_path):
+    """Two classes. One with enums, and the other class uses
+    those enums. Used in the return.
+
+    - Make sure the import works correctly
+    - Make sure the enum is fully qualified in its reference.
+    """
+    classes = [
+        class_info(
+            "Jets",
+            "Jets",
+            [
+                method_info(
+                    name="pt_enum",
+                    return_type="xAOD::VxType::VertexType",
+                    arguments=[],
+                    param_arguments=[],
+                    param_helper=None,
+                )
+            ],
+            None,
+            None,
+            "jet.hpp",
+        ),
+        class_info(
+            "xAOD.VxType",
+            "xAOD::VxType",
+            [],
+            None,
+            None,
+            "enums.hpp",
+            enums=[
+                enum_info(
+                    name="VertexType",
+                    values=[enum_value_info("NoVtx", 1), enum_value_info("PriVtx", 2)],
+                )
+            ],
+        ),
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package", [""], "22")
+
+    assert (tmp_path / "jets.py").exists()
+    class_text = (tmp_path / "jets.py").read_text()
+
+    assert "def pt_enum(self) -> package.xAOD.vxtype.VxType.VertexType" in class_text
+    assert "import package" in class_text
+
+    assert "define_enum" in class_text
+    assert "'namespace': 'xAOD.VxType'" in class_text
+
+
 def test_class_with_enum_and_int(tmp_path, template_path):
     """Make sure to reference a local enum in the class that has specific integer types
     correctly.
