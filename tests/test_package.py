@@ -725,7 +725,34 @@ def test_class_with_just_enum_decl(tmp_path, template_path):
     assert "Red = 1" in class_text
     assert "from enum import Enum" in class_text
 
-    assert "'metadata_type': 'define_enum'" not in class_text
+    assert "'metadata_type': 'define_enum'" in class_text
+
+
+def test_class_namespace_with_just_enum_decl(tmp_path, template_path):
+    """Write out a very simple top level class with enum, but the enum is not used.
+
+    Args:
+        tmp_path ([type]): [description]
+    """
+    classes = [
+        class_info(
+            "xAOD.Jets",
+            "xAOD::Jets",
+            [],
+            None,
+            None,
+            "jet.hpp",
+            enums=[enum_info(name="Color", values=[enum_value_info("Red", 1)])],
+        ),
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package", [""], "22")
+
+    assert (tmp_path / "xAOD" / "jets.py").exists()
+
+    class_text = (tmp_path / "xAOD" / "jets.py").read_text()
+    assert "'metadata_type': 'define_enum'" in class_text
+    assert "'namespace': 'xAOD.Jets'," in class_text
 
 
 def test_class_with_enum_in_arg(tmp_path, template_path):
@@ -959,7 +986,7 @@ def test_class_with_enum_and_int(tmp_path, template_path):
     assert (tmp_path / "__init__.py").exists()
 
     class_text = (tmp_path / "jets.py").read_text()
-    assert "'metadata_type': 'define_enum'" not in class_text
+    assert class_text.count("'metadata_type': 'define_enum'") == 1
 
 
 def test_class_with_just_enums(tmp_path, template_path):

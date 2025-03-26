@@ -489,6 +489,7 @@ def write_out_classes(
         # Write out the object file
         text = class_template_file.render(
             class_name=c_name,
+            full_class_name=c.name,
             methods=c.methods,
             include_files=all_includes,
             import_statements=import_statements,
