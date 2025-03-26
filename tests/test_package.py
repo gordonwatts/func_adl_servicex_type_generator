@@ -697,8 +697,8 @@ def test_class_simple(tmp_path, template_path):
     assert 'jets = _load_me("package.jets")' in init_text
 
 
-def test_class_with_just_enum(tmp_path, template_path):
-    """Write out a very simple top level class with enum
+def test_class_with_just_enum_decl(tmp_path, template_path):
+    """Write out a very simple top level class with enum, but the enum is not used.
 
     Args:
         tmp_path ([type]): [description]
@@ -725,10 +725,125 @@ def test_class_with_just_enum(tmp_path, template_path):
     assert "Red = 1" in class_text
     assert "from enum import Enum" in class_text
 
-    assert "'metadata_type': 'define_enum'" not in class_text
+    assert "'metadata_type': 'define_enum'" in class_text
 
 
-def test_class_with_external_enum(tmp_path, template_path):
+def test_class_namespace_with_just_enum_decl(tmp_path, template_path):
+    """Write out a very simple top level class with enum, but the enum is not used.
+
+    Args:
+        tmp_path ([type]): [description]
+    """
+    classes = [
+        class_info(
+            "xAOD.Jets",
+            "xAOD::Jets",
+            [],
+            None,
+            None,
+            "jet.hpp",
+            enums=[enum_info(name="Color", values=[enum_value_info("Red", 1)])],
+        ),
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package", [""], "22")
+
+    assert (tmp_path / "xAOD" / "jets.py").exists()
+
+    class_text = (tmp_path / "xAOD" / "jets.py").read_text()
+    assert "'metadata_type': 'define_enum'" in class_text
+    assert "'namespace': 'xAOD.Jets'," in class_text
+
+
+def test_class_with_enum_in_arg(tmp_path, template_path):
+    """Make sure to reference a local enum in the class method, and set metadata
+    correctly.
+    """
+    classes = [
+        class_info(
+            "Jets",
+            "Jets",
+            [
+                method_info(
+                    name="pt_enum",
+                    return_type="float",
+                    arguments=[method_arg_info("color", None, "Jets.Color")],
+                    param_arguments=[],
+                    param_helper=None,
+                )
+            ],
+            None,
+            None,
+            "jet.hpp",
+            enums=[
+                enum_info(
+                    name="Color",
+                    values=[enum_value_info("Red", 1), enum_value_info("Blue", 2)],
+                )
+            ],
+        ),
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package", [""], "22")
+
+    assert (tmp_path / "jets.py").exists()
+    assert (tmp_path / "__init__.py").exists()
+
+    class_text = (tmp_path / "jets.py").read_text()
+    assert "class Color(Enum)" in class_text
+    assert "def pt_enum(self, color: Jets.Color) -> float" in class_text
+
+    assert "'metadata_type': 'define_enum'" in class_text
+    assert "'namespace': 'Jets'" in class_text
+    assert "'name': 'Color'" in class_text
+    assert "'Red'" in class_text
+
+
+def test_class_with_enum_in_return(tmp_path, template_path):
+    """Make sure to reference a local enum in the class method return type, and set metadata
+    correctly.
+    """
+    classes = [
+        class_info(
+            "Jets",
+            "Jets",
+            [
+                method_info(
+                    name="pt_enum",
+                    return_type="Jets::Color",
+                    arguments=[],
+                    param_arguments=[],
+                    param_helper=None,
+                )
+            ],
+            None,
+            None,
+            "jet.hpp",
+            enums=[
+                enum_info(
+                    name="Color",
+                    values=[enum_value_info("Red", 1), enum_value_info("Blue", 2)],
+                )
+            ],
+        ),
+    ]
+
+    write_out_classes(classes, template_path, tmp_path, "package", [""], "22")
+
+    assert (tmp_path / "jets.py").exists()
+    assert (tmp_path / "__init__.py").exists()
+
+    class_text = (tmp_path / "jets.py").read_text()
+    assert "class Color(Enum)" in class_text
+    assert "def pt_enum(self) -> package.jets.Jets.Color" in class_text
+
+    assert "'metadata_type': 'define_enum'" in class_text
+    assert "'namespace': 'Jets'" in class_text
+    assert "'name': 'Color'" in class_text
+    assert "'Red'" in class_text
+
+
+def test_class_with_other_class_enum_in_arg(tmp_path, template_path):
     """Two classes. One with enums, and the other class uses
     those enums.
 
@@ -783,9 +898,12 @@ def test_class_with_external_enum(tmp_path, template_path):
     assert "'namespace': 'EnumOnly'" in class_text
 
 
-def test_class_with_referenced_enum(tmp_path, template_path):
-    """Make sure to reference a local enum in the class, and set metadata
-    correctly.
+def test_class_with_other_class_enum_in_return(tmp_path, template_path):
+    """Two classes. One with enums, and the other class uses
+    those enums. Used in the return.
+
+    - Make sure the import works correctly
+    - Make sure the enum is fully qualified in its reference.
     """
     classes = [
         class_info(
@@ -794,8 +912,8 @@ def test_class_with_referenced_enum(tmp_path, template_path):
             [
                 method_info(
                     name="pt_enum",
-                    return_type="float",
-                    arguments=[method_arg_info("color", None, "Jets.Color")],
+                    return_type="xAOD::VxType::VertexType",
+                    arguments=[],
                     param_arguments=[],
                     param_helper=None,
                 )
@@ -803,10 +921,18 @@ def test_class_with_referenced_enum(tmp_path, template_path):
             None,
             None,
             "jet.hpp",
+        ),
+        class_info(
+            "xAOD.VxType",
+            "xAOD::VxType",
+            [],
+            None,
+            None,
+            "enums.hpp",
             enums=[
                 enum_info(
-                    name="Color",
-                    values=[enum_value_info("Red", 1), enum_value_info("Blue", 2)],
+                    name="VertexType",
+                    values=[enum_value_info("NoVtx", 1), enum_value_info("PriVtx", 2)],
                 )
             ],
         ),
@@ -815,20 +941,18 @@ def test_class_with_referenced_enum(tmp_path, template_path):
     write_out_classes(classes, template_path, tmp_path, "package", [""], "22")
 
     assert (tmp_path / "jets.py").exists()
-    assert (tmp_path / "__init__.py").exists()
-
     class_text = (tmp_path / "jets.py").read_text()
-    assert "class Color(Enum)" in class_text
-    assert "def pt_enum(self, color: Jets.Color) -> float" in class_text
 
-    assert "'metadata_type': 'define_enum'" in class_text
-    assert "'namespace': 'Jets'" in class_text
-    assert "'name': 'Color'" in class_text
-    assert "'Red'" in class_text
+    assert "def pt_enum(self) -> package.xAOD.vxtype.VxType.VertexType" in class_text
+    assert "import package" in class_text
+
+    assert "define_enum" in class_text
+    assert "'namespace': 'xAOD.VxType'" in class_text
+    assert '_object_cpp_as_py_namespace=""' in class_text
 
 
 def test_class_with_enum_and_int(tmp_path, template_path):
-    """Make sure to reference a local enum in the class, and set metadata
+    """Make sure to reference a local enum in the class that has specific integer types
     correctly.
     """
     classes = [
@@ -862,7 +986,7 @@ def test_class_with_enum_and_int(tmp_path, template_path):
     assert (tmp_path / "__init__.py").exists()
 
     class_text = (tmp_path / "jets.py").read_text()
-    assert "'metadata_type': 'define_enum'" not in class_text
+    assert class_text.count("'metadata_type': 'define_enum'") == 1
 
 
 def test_class_with_just_enums(tmp_path, template_path):
@@ -1003,6 +1127,8 @@ def test_class_namespace(tmp_path, template_path):
     write_out_classes(classes, template_path, tmp_path, "package", [""], "22")
 
     assert (tmp_path / "xAOD" / "jets.py").exists()
+    jet_text = (tmp_path / "xAOD" / "jets.py").read_text()
+    assert '_object_cpp_as_py_namespace="xAOD"' in jet_text
 
     assert (tmp_path / "xAOD" / "__init__.py").exists()
     init_text = (tmp_path / "xAOD" / "__init__.py").read_text()

@@ -15,7 +15,6 @@ from func_adl_servicex_type_generator.data_model import (
     class_info,
     enum_info,
     file_info,
-    method_arg_info,
     method_info,
 )
 
@@ -273,10 +272,9 @@ def py_type_from_cpp(
 
     # Last resort, it is an enum. We need to strip the last name off, see if we can do the lookup.
     # If so, check for the enum in the class.
-    last_space = cpp_class_name.rfind("::")
-    if last_space >= 0:
-        enum_name = cpp_class_name[last_space + 2 :]  # noqa
-        enum_ns = cpp_class_name[:last_space]
+    split_result = cpp_class_name.rsplit("::", 1)
+    if len(split_result) == 2:
+        enum_ns, enum_name = split_result
         py_type = cpp_class_dict.get(enum_ns, None)
         if py_type is not None:
             for e in py_type.enums:
@@ -408,61 +406,51 @@ def write_out_classes(
 
             return r
 
-        def lookup_enum(
-            arg: method_arg_info, all_classes: Iterable[class_info]
-        ) -> Optional[Tuple[class_info, enum_info]]:
+        def lookup_enum(arg: str) -> Optional[Tuple[class_info, enum_info]]:
             """Return the enum info for the argument if it is an enum.
 
             Args:
-                arg (method_info): The argument to check
-                all_classes (Iterable[class_info]): All classes to look through
+                arg (method_info): The argument to check (python type)
 
             Returns:
                 Optional[enum_info]: The enum info if this is an enum, or None
             """
-            # Split into namespace and enum type. We don't deal with
-            # global enums here, so if this isn't a class-enum, then
-            # just return.
-            cpp_type = clean_cpp_type(arg.arg_type)
-            if cpp_type is None:
+            # Split into namespace and enum type.
+            type_info = arg.rsplit(".", 1)
+            if len(type_info) != 2:
                 return None
-            cpp_type_info = cpp_type.rsplit(".", 2)
-            if len(cpp_type_info) != 2:
-                return None
+            enum_ns, enum_name = type_info
 
-            for c in all_classes:
-                for e in c.enums:
-                    if e.name == cpp_type_info[1] and cpp_type_info[0] == c.cpp_name:
-                        return c, e
+            if (enum_ns_class := py_all_classes_dict.get(enum_ns, None)) is not None:
+                for e in enum_ns_class.enums:
+                    if e.name == enum_name:
+                        return enum_ns_class, e
 
             return None
 
-        def get_referenced_enums(
-            m: method_info, all_classes: Iterable[class_info]
-        ) -> List[Tuple[class_info, enum_info]]:
+        def get_referenced_enums(m: method_info) -> List[Tuple[class_info, enum_info]]:
             """Get referenced enums in a method
 
             Args:
                 m (method_info): The method to check for referenced enums
-                all_classes (Iterable[class_info]): The list of classes we can go search for enums
 
             Returns:
                 List[Tuple[class_info, enum_info]]: List of the class and enum that was referenced.
             """
             return [
                 e_info
-                for arg in m.arguments
-                if (e_info := lookup_enum(arg, all_classes)) is not None
+                for arg in [a.arg_type for a in m.arguments]
+                + [py_type_from_cpp(m.return_type, cpp_all_classes_dict)]
+                if (arg is not None) and (e_info := lookup_enum(arg)) is not None
             ]
 
         def generate_enums(
-            method_list: List[method_info], all_classes: Iterable[class_info]
+            method_list: List[method_info],
         ) -> Dict[str, List[Tuple[class_info, enum_info]]]:
             """Return a list of the referenced enum definitions for this call.
 
             Args:
                 method_list (List[method_info]): List of the methods that we need to look at
-                all_classes (List[class_info]): List of all classes (and thus enums in them)
 
             Raises:
                 RuntimeError: _description_
@@ -474,12 +462,12 @@ def write_out_classes(
                 m.name: e_info_list
                 for m in method_list
                 if m.return_type is not None
-                and len(e_info_list := get_referenced_enums(m, all_classes)) > 0
+                and len(e_info_list := get_referenced_enums(m)) > 0
             }
             return result
 
         methods = generate_methods(c.methods)
-        referenced_enums = generate_enums(c.methods, all_classes)
+        referenced_enums = generate_enums(c.methods)
 
         # Methods from behavior as classes
         all_includes = [c.include_file] if c.include_file != "" else []
@@ -501,6 +489,7 @@ def write_out_classes(
         # Write out the object file
         text = class_template_file.render(
             class_name=c_name,
+            full_class_name=c.name,
             methods=c.methods,
             include_files=all_includes,
             import_statements=import_statements,
@@ -513,6 +502,7 @@ def write_out_classes(
             enums_info=c.enums,
             referenced_enums=referenced_enums,
             libraries=all_libraries,
+            cpp_as_py_namespace=c_ns,
         )
 
         with class_file.open("wt") as out:
