@@ -24,7 +24,7 @@ _method_map = {
 {%- endfor %}
 }
 
-_enum_map = {
+_enum_function_map = {
 {%- for method_name in referenced_enums.keys() %}
     '{{ method_name }}': [
 {%- for enum in referenced_enums[method_name] %}
@@ -68,7 +68,7 @@ def _add_method_metadata(s: ObjectStream[T], a: ast.Call) -> Tuple[ObjectStream[
             'link_libraries': ["{{ l_file }}"],
         })
 {% endfor %}
-        for md in _enum_map.get(a.func.attr, []):
+        for md in _enum_function_map.get(a.func.attr, []):
             s_update = s_update.MetaData(md)
         return s_update, a
     else:
