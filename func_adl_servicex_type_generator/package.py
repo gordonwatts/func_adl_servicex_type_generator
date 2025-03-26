@@ -501,6 +501,7 @@ def write_out_classes(
             enums_info=c.enums,
             referenced_enums=referenced_enums,
             libraries=all_libraries,
+            cpp_as_py_namespace=c_ns,
         )
 
         with class_file.open("wt") as out:

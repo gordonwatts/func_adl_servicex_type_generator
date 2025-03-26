@@ -43,6 +43,8 @@ _enum_map = {
 {%- endfor %}      
 }
 
+_object_cpp_as_py_namespace="{{ cpp_as_py_namespace }}"
+
 T = TypeVar('T')
 
 

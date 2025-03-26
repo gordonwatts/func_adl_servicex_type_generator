@@ -921,6 +921,7 @@ def test_class_with_other_class_enum_in_return(tmp_path, template_path):
 
     assert "define_enum" in class_text
     assert "'namespace': 'xAOD.VxType'" in class_text
+    assert '_object_cpp_as_py_namespace=""' in class_text
 
 
 def test_class_with_enum_and_int(tmp_path, template_path):
@@ -1099,6 +1100,8 @@ def test_class_namespace(tmp_path, template_path):
     write_out_classes(classes, template_path, tmp_path, "package", [""], "22")
 
     assert (tmp_path / "xAOD" / "jets.py").exists()
+    jet_text = (tmp_path / "xAOD" / "jets.py").read_text()
+    assert '_object_cpp_as_py_namespace="xAOD"' in jet_text
 
     assert (tmp_path / "xAOD" / "__init__.py").exists()
     init_text = (tmp_path / "xAOD" / "__init__.py").read_text()
