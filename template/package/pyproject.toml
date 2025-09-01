@@ -28,7 +28,11 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Physics",
 ]
 
-dependencies = ["servicex>=3.0.0b1"]
+dependencies = [
+    "servicex>=3.0.0b1",
+    "Jinja2>=3.0.2",
+    "func_adl_xAOD",
+    ]
 
 [project.urls]
 # Documentation = "https://servicex.readthedocs.io/"
